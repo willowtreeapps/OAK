@@ -1,0 +1,11 @@
+.idea/
+.settings/
+gen/
+bin/
+*.log
+proguard/
+local.properties
+*.DS_Store
+design/
+Tests/
+external_data/
