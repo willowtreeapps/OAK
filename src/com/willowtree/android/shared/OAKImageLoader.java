@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 
 import android.content.Context;
@@ -22,11 +21,9 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.widget.ImageView;
 
-import com.github.droidfu.adapters.WebGalleryAdapter;
+
 import com.github.droidfu.cachefu.ImageCache;
 import com.github.droidfu.imageloader.ImageLoader;
-import com.github.droidfu.imageloader.ImageLoaderHandler;
-import com.github.droidfu.widgets.WebImageView;
 
 public class OAKImageLoader extends ImageLoader implements Runnable {
 	
@@ -97,6 +94,7 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 		this.transformations = transformations;
 	}
 	
+
 	public static void start(String imageUrl, OAKImageLoaderHandler handler, ImageTransformation ... transformations) {
 		start(imageUrl, handler.getImageView(), handler, null, null, transformations);
 	}
@@ -202,7 +200,8 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
                 			bm = trans.transform(bm);
                 		}
                 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                		bm.compress(CompressFormat.JPEG, 75, bos);
+                		bm.compress(CompressFormat.JPEG, 90, bos);
+                		bm.recycle(); // This thing is bad, ditch it
                 		imageData = bos.toByteArray();
                 		imageCache.put(printedUrl, imageData);
                 	}

@@ -32,10 +32,10 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.widget.ImageView;
 
-import com.github.droidfu.adapters.WebGalleryAdapter;
+//import com.github.droidfu.adapters.WebGalleryAdapter;
 import com.github.droidfu.cachefu.AbstractCache;
 import com.github.droidfu.cachefu.ImageCache;
-import com.github.droidfu.widgets.WebImageView;
+
 
 /**
  * Realizes an background image loader backed by a two-level FIFO cache. If the image to be loaded
@@ -127,9 +127,11 @@ public class ImageLoader implements Runnable {
      * @param imageView
      *            the ImageView which should be updated with the new image
      */
+    
+    /*
     public static void start(String imageUrl, ImageView imageView) {
         start(imageUrl, imageView, new ImageLoaderHandler(imageView, imageUrl), null, null);
-    }
+    }*/
 
     /**
      * Triggers the image loader for the given image and view and sets a dummy image while waiting
@@ -146,12 +148,19 @@ public class ImageLoader implements Runnable {
      * @param errorDrawable
      *            the Drawable set to the ImageView if a download error occurs
      */
+    /**
+     * @param imageUrl
+     * @param imageView
+     * @param dummyDrawable
+     * @param errorDrawable
+     */
+    /*
     public static void start(String imageUrl, ImageView imageView, Drawable dummyDrawable,
             Drawable errorDrawable) {
         start(imageUrl, imageView, new ImageLoaderHandler(imageView, imageUrl,
  errorDrawable),
                 dummyDrawable, errorDrawable);
-    }
+    }*/
 
     /**
      * Triggers the image loader for the given image and handler. The image loading will be
@@ -165,9 +174,14 @@ public class ImageLoader implements Runnable {
      * @param handler
      *            the handler which is used to handle the downloaded image
      */
+    /**
+     * @param imageUrl
+     * @param handler
+     */
+    /*
     public static void start(String imageUrl, ImageLoaderHandler handler) {
         start(imageUrl, handler.getImageView(), handler, null, null);
-    }
+    }*/
 
     /**
      * Triggers the image loader for the given image and handler. The image loading will be
@@ -185,10 +199,17 @@ public class ImageLoader implements Runnable {
      * @param errorDrawable
      *            the Drawable set to the ImageView if a download error occurs
      */
+    /**
+     * @param imageUrl
+     * @param handler
+     * @param dummyDrawable
+     * @param errorDrawable
+     */
+    /*
     public static void start(String imageUrl, ImageLoaderHandler handler, Drawable dummyDrawable,
             Drawable errorDrawable) {
         start(imageUrl, handler.getImageView(), handler, dummyDrawable, errorDrawable);
-    }
+    }*/
 
     private static void start(String imageUrl, ImageView imageView, ImageLoaderHandler handler,
             Drawable dummyDrawable, Drawable errorDrawable) {

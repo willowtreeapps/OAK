@@ -44,7 +44,7 @@ public class OAKImageCache extends ImageCache {
 	}
 	
 	/**
-	 * Set how large the cache may grow before old images are discarded.
+	 * Set how large the disk cache may grow before old images are discarded.
 	 * @param newLimit New cache size in bytes.
 	 */
 	public void setCacheLimit(int newLimit) {
