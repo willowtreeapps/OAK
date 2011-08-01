@@ -1,4 +1,4 @@
-package com.willowtree.android.shared;
+package com.willowtree.android.shared.test;
 
 public class PhotoItem {
 

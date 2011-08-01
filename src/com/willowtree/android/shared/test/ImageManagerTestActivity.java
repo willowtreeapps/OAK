@@ -1,4 +1,4 @@
-package com.willowtree.android.shared;
+package com.willowtree.android.shared.test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,18 +16,25 @@ import org.apache.http.util.EntityUtils;
 
 //import com.github.droidfu.imageloader.ImageLoader;
 //import com.github.droidfu.imageloader.ImageLoaderHandler;
+import com.willowtree.android.shared.ImageTransformation;
+import com.willowtree.android.shared.OAKImageLoader;
+import com.willowtree.android.shared.OAKImageLoaderHandler;
 import com.willowtree.android.shared.R;
+import com.willowtree.android.shared.R.id;
+import com.willowtree.android.shared.R.layout;
 //import com.willowtree.android.shared.R.id;
 //import com.willowtree.android.shared.R.layout;
 
 
 //import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.ListActivity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.os.Debug;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -50,10 +57,12 @@ public class ImageManagerTestActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-             
+        ;
+        Log.d("MEMINFO", "HEAP SIZE: " + Long.toString(Debug.getNativeHeapSize()));
         this.photoItemList = new ArrayList<PhotoItem>();
         initializeData();
         OAKImageLoader.initialize(this, OAKImageLoader.PREFER_SD);
+        OAKImageLoader.clearCache();
         droidFuHandler = new Handler();
         
         ListAdapter adapter = new PhotoItemListAdapter(photoItemList, this);
@@ -92,9 +101,8 @@ public class ImageManagerTestActivity extends ListActivity {
 			
 			if (res == null) {
 				res = (LinearLayout) getLayoutInflater().inflate(R.layout.photo_list_item, parent, false);
-				//photoItemLayout = (LinearLayout) LayoutInflater.from(context)
-					//.inflate(R.layout.photo_list_item, parent, false);
 			}
+			
 			final ImageView imageView = (ImageView) res.findViewById(R.id.item_image);
 			
 			if (thumbnailCache.containsKey(photoItem.getURL()) && thumbnailCache.get(photoItem.getURL()) != null) {

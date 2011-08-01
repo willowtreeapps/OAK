@@ -2,6 +2,7 @@ package com.willowtree.android.shared;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -32,15 +33,17 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 	private static final String LOG_TAG = OAKImageLoader.class.getSimpleName();
 	
 	private String imageUrl;
-	private String printedUrl;
+	private String printedUrl; // imageUrl with transformation fingerprints prepended
 	private OAKImageLoaderHandler handler;
 	private ImageTransformation[] transformations;
+	private static OAKImageCache imageCache;
 	
 	public static final int NO_DISK_CACHING = 0;
 	public static final int INTERNAL_CACHING = 1;
 	public static final int SD_CACHING = 2;
 	public static final int PREFER_INTERNAL = 3;
 	public static final int PREFER_SD = 4;
+	
 	
 	
 	 /**
@@ -59,21 +62,9 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
     public static synchronized void initialize(Context context, int cacheType) {
         if (executor == null) {
             executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(DEFAULT_POOL_SIZE);
-            //final int threadPriority = Thread.currentThread().getPriority() + 1;
-            /*executor.setThreadFactory(new ThreadFactory() {
-
-				@Override
-				public Thread newThread(Runnable r) {
-					Thread thread = new Thread(r);
-					thread.setPriority(Process.THREAD_PRIORITY_BACKGROUND);
-					return thread;
-				}
-            	
-            });*/
         }
         if (imageCache == null) {
-            imageCache = new ImageCache(25, expirationInMinutes, DEFAULT_POOL_SIZE);
-            //imageCache.enableDiskCache(context, ImageCache.DISK_CACHE_SDCARD);
+            imageCache = new OAKImageCache(25, expirationInMinutes, DEFAULT_POOL_SIZE);
             switch(cacheType) {
             case NO_DISK_CACHING:
             	break;
@@ -94,12 +85,13 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
             default:
             	break;
             }
-            
+            imageCache.updateContents();
         }
     }
     
 	private OAKImageLoader(String imageUrl, String printedUrl, OAKImageLoaderHandler handler, ImageTransformation ... transformations) {
 		super(imageUrl, handler);
+		this.imageUrl = imageUrl;
 		this.handler = handler;
 		this.printedUrl = printedUrl;
 		this.transformations = transformations;
@@ -109,21 +101,22 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 		start(imageUrl, handler.getImageView(), handler, null, null, transformations);
 	}
 	
-	/*
-	public static void start(String imageUrl, ImageView imageView) {
-		
+	
+	public static void start(String imageUrl, ImageView imageView, ImageTransformation ... transformations) {
+		start(imageUrl, imageView, new OAKImageLoaderHandler(imageView, imageUrl), null, null, transformations);
 	}
 	
 	public static void start(String imageUrl, ImageView imageView, Drawable dummyDrawable,
-			Drawable errorDrawable) {
-		
+			Drawable errorDrawable, ImageTransformation ... transformations) {
+		start(imageUrl, imageView, new OAKImageLoaderHandler(imageView, imageUrl), dummyDrawable,
+				errorDrawable, transformations);
 	}
 	
-	public static void start(String imageUrl, ImageLoaderHandler handler, DrawabledummyDrawable,
-			Drawable errorDrawable) {
-			
+	public static void start(String imageUrl, OAKImageLoaderHandler handler, Drawable dummyDrawable,
+			Drawable errorDrawable, ImageTransformation ... transformations) {
+		start(imageUrl, handler.getImageView(), handler, dummyDrawable, errorDrawable, transformations);
 	}
-	*/
+	
 	protected static void start(String imageUrl, ImageView imageView, OAKImageLoaderHandler handler,
 			Drawable dummyDrawable, Drawable errorDrawable, ImageTransformation ... transformations) {
 		String printedUrl = imageUrl;
@@ -170,7 +163,6 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
         }
 
         // TODO: gracefully handle this case.
-        //notifyImageLoaded(imageUrl, bitmap);
         notifyImageLoaded(this.printedUrl, bitmap);
     }
 	
@@ -261,9 +253,7 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
             
             while(true){
                 bytesRead = istream.read(buffer);
-                
                 if (bytesRead <= 0) break;
-                
                 baos.write(buffer, 0, bytesRead);
             }
 
@@ -274,5 +264,9 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
         connection.disconnect();
         return result;
     }
+	
+	public static void clearCache() {
+		imageCache.clear();
+	}
 	
 }
