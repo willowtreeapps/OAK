@@ -15,13 +15,6 @@
 
 package com.github.droidfu.imageloader;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -31,11 +24,25 @@ import android.os.Message;
 import android.os.SystemClock;
 import android.util.Log;
 import android.widget.ImageView;
+import com.github.droidfu.cachefu.ImageCache;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
+
+<<<<<<< HEAD
 import com.github.droidfu.adapters.WebGalleryAdapter;
 import com.github.droidfu.cachefu.AbstractCache;
 import com.github.droidfu.cachefu.ImageCache;
 import com.github.droidfu.widgets.WebImageView;
+=======
+//import com.github.droidfu.adapters.WebGalleryAdapter;
+
+>>>>>>> 84c583171170896042c69dbfd3e32fafef1d568c
 
 /**
  * Realizes an background image loader backed by a two-level FIFO cache. If the image to be loaded
@@ -165,6 +172,14 @@ public class ImageLoader implements Runnable {
      * @param handler
      *            the handler which is used to handle the downloaded image
      */
+<<<<<<< HEAD
+=======
+    /**
+     * @param imageUrl
+     * @param handler
+     */
+
+>>>>>>> 84c583171170896042c69dbfd3e32fafef1d568c
     public static void start(String imageUrl, ImageLoaderHandler handler) {
         start(imageUrl, handler.getImageView(), handler, null, null);
     }
@@ -285,29 +300,39 @@ public class ImageLoader implements Runnable {
     protected byte[] retrieveImageData() throws IOException {
         URL url = new URL(imageUrl);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
+        byte[] result;
         // determine the image size and allocate a buffer
         int fileSize = connection.getContentLength();
-        if (fileSize < 0) {
-            return null;
-        }
-        byte[] imageData = new byte[fileSize];
-
-        // download the file
         Log.d(LOG_TAG, "fetching image " + imageUrl + " (" + fileSize + ")");
-        BufferedInputStream istream = new BufferedInputStream(connection.getInputStream(), AbstractCache.DEFAULT_BUFFER_SIZE);
-        int bytesRead = 0;
-        int offset = 0;
-        while (bytesRead != -1 && offset < fileSize) {
-            bytesRead = istream.read(imageData, offset, fileSize - offset);
-            offset += bytesRead;
-        }
+        BufferedInputStream istream = new BufferedInputStream(connection.getInputStream());
+        if (fileSize > -1) {
 
-        // clean up
+            byte[] imageData = new byte[fileSize];
+
+            // download the file
+            int bytesRead = 0;
+            int offset = 0;
+            while (bytesRead != -1 && offset < fileSize) {
+                bytesRead = istream.read(imageData, offset, fileSize - offset);
+                offset += bytesRead;
+            }
+
+            result = imageData;
+        } else {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            while (true) {
+                bytesRead = istream.read(buffer);
+                if (bytesRead <= 0) break;
+                baos.write(buffer, 0, bytesRead);
+            }
+            result = baos.toByteArray();
+        }
         istream.close();
         connection.disconnect();
 
-        return imageData;
+        return result;
     }
 
     public void notifyImageLoaded(String url, Bitmap bitmap) {

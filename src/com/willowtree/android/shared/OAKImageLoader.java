@@ -44,7 +44,8 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 	public static final int PREFER_INTERNAL = 3;
 	public static final int PREFER_SD = 4;
 	
-	
+	private static Drawable defaultLoading = null;
+	private static Drawable defaultError = null;
 	
 	 /**
      * This method must be called before any other method is invoked on this class.
@@ -119,6 +120,11 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 	
 	protected static void start(String imageUrl, ImageView imageView, OAKImageLoaderHandler handler,
 			Drawable dummyDrawable, Drawable errorDrawable, ImageTransformation ... transformations) {
+		
+		//Set up defaults that can be configured at startup...
+		dummyDrawable = (dummyDrawable == null)?defaultLoading:dummyDrawable;
+		errorDrawable = (errorDrawable == null)?defaultError:errorDrawable;
+		
 		String printedUrl = imageUrl;
 		for(ImageTransformation trans : transformations) {
 			printedUrl = trans.fingerprint() + printedUrl;
@@ -268,6 +274,30 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 	
 	public static void clearCache() {
 		imageCache.clear();
+	}
+
+	public static Drawable getDefaultLoading() {
+		return defaultLoading;
+	}
+
+	/**
+	 * Sets the default "dummy" drawable- to use while loading.
+	 * @param defaultLoading
+	 */
+	public static void setDefaultLoading(Drawable defaultLoading) {
+		OAKImageLoader.defaultLoading = defaultLoading;
+	}
+
+	public static Drawable getDefaultError() {
+		return defaultError;
+	}
+
+	/**
+	 * Sets the default error drawable- to use when there was an error in loading the image.
+	 * @param defaultError the Drawable of the default error image.
+	 */
+	public static void setDefaultError(Drawable defaultError) {
+		OAKImageLoader.defaultError = defaultError;
 	}
 	
 }
