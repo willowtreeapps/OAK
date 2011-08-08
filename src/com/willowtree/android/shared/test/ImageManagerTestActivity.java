@@ -57,7 +57,6 @@ public class ImageManagerTestActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ;
         Log.d("MEMINFO", "HEAP SIZE: " + Long.toString(Debug.getNativeHeapSize()));
         this.photoItemList = new ArrayList<PhotoItem>();
         initializeData();
