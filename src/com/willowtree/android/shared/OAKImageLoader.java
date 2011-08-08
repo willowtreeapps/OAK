@@ -203,6 +203,7 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
                 		}
                 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
                 		bm.compress(CompressFormat.JPEG, 75, bos);
+                		bm.recycle();
                 		imageData = bos.toByteArray();
                 		imageCache.put(printedUrl, imageData);
                 	}

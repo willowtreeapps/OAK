@@ -7,7 +7,7 @@ public class PhotoItem {
     String description;
 
     public void setDescription(String desc) {
-        description = desc.replace("<![CDATA[", "").replace("]]>", "");
+        this.description = desc.replace("<![CDATA[", "").replace("]]>", "");
     }
 
     public String getDescription() {
