@@ -2,7 +2,6 @@ package com.willowtree.android.shared;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -11,16 +10,19 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Message;
 import android.os.Process;
 import android.os.SystemClock;
 import android.util.Log;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
-
+import android.widget.ProgressBar;
 
 import com.github.droidfu.cachefu.ImageCache;
 import com.github.droidfu.imageloader.ImageLoader;
@@ -43,6 +45,7 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 	
 	private static Drawable defaultLoading = null;
 	private static Drawable defaultError = null;
+	public static boolean spinLoading = false;
 	
 	 /**
      * This method must be called before any other method is invoked on this class.
@@ -85,6 +88,12 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
             }
             imageCache.updateContents();
         }
+        
+        if(defaultLoading == null){//initialize a spinner as the default loader
+        	defaultLoading = new ProgressBar(context).getIndeterminateDrawable(); //get the spinner
+        	spinLoading = true; //and set it to spin
+        }
+        
     }
     
 	private OAKImageLoader(String imageUrl, String printedUrl, OAKImageLoaderHandler handler, ImageTransformation ... transformations) {
@@ -132,7 +141,7 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
                 // In a ListView views are reused, so we must be sure to remove the tag that could
                 // have been set to the ImageView to prevent that the wrong image is set.
                 imageView.setTag(null);
-                imageView.setImageDrawable(dummyDrawable);
+                setLoading(imageView, dummyDrawable);
                 return;
             }
             String oldImageUrl = (String) imageView.getTag();
@@ -141,7 +150,7 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
                 return;
             } else {
                 // Set the dummy image while waiting for the actual image to be downloaded.
-                imageView.setImageDrawable(dummyDrawable);
+                setLoading(imageView, dummyDrawable);
                 imageView.setTag(printedUrl);
             }
         }
@@ -296,6 +305,30 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 	 */
 	public static void setDefaultError(Drawable defaultError) {
 		OAKImageLoader.defaultError = defaultError;
+	}
+	
+	/**
+	 * Gets a "spinning" animation to use with a loading dialog.
+	 * Rotates at 1HZ and does not stop.
+	 */
+	public static Animation getSpinAnimation(){
+		Animation a = new RotateAnimation(0f, 360f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+		a.setRepeatCount(Animation.INFINITE);
+		a.setDuration(1);
+		return a;
+	}
+	
+	/**
+	 * Sets an image in the loading state.
+	 * @param v
+	 * @param loading
+	 */
+	public static void setLoading(ImageView v, Drawable loading){
+		v.setImageDrawable(loading);
+        if(spinLoading){
+        	v.setAnimation(getSpinAnimation());
+        }
+        v.setVisibility(View.VISIBLE);
 	}
 	
 }

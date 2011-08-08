@@ -54,6 +54,9 @@ public class OAKImageLoaderHandler extends ImageLoaderHandler {
                 getImageView().setImageBitmap(image);
             }
 
+            if(OAKImageLoader.spinLoading){
+            	getImageView().clearAnimation();//clear the loading 
+            }
             return true;
         }
 
