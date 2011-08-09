@@ -34,16 +34,6 @@ import java.net.URL;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
-<<<<<<< HEAD
-import com.github.droidfu.adapters.WebGalleryAdapter;
-import com.github.droidfu.cachefu.AbstractCache;
-import com.github.droidfu.cachefu.ImageCache;
-import com.github.droidfu.widgets.WebImageView;
-=======
-//import com.github.droidfu.adapters.WebGalleryAdapter;
-
->>>>>>> 84c583171170896042c69dbfd3e32fafef1d568c
-
 /**
  * Realizes an background image loader backed by a two-level FIFO cache. If the image to be loaded
  * is present in the cache, it is set immediately on the given view. Otherwise, a thread from a
@@ -172,14 +162,7 @@ public class ImageLoader implements Runnable {
      * @param handler
      *            the handler which is used to handle the downloaded image
      */
-<<<<<<< HEAD
-=======
-    /**
-     * @param imageUrl
-     * @param handler
-     */
 
->>>>>>> 84c583171170896042c69dbfd3e32fafef1d568c
     public static void start(String imageUrl, ImageLoaderHandler handler) {
         start(imageUrl, handler.getImageView(), handler, null, null);
     }

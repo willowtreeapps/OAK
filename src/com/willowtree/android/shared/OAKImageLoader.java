@@ -107,10 +107,14 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 		this.transformations = transformations;
 	}
 	
+	
 	public static void start(String imageUrl, OAKImageLoaderHandler handler, ImageTransformation ... transformations) {
 		start(imageUrl, handler.getImageView(), handler, null, null, transformations);
 	}
 	
+	public static void start(String imageUrl, ImageView imageView) {
+		start(imageUrl, imageView, new OAKImageLoaderHandler(imageView, imageUrl), null, null, new ImageTransformation[]{});
+	}
 	
 	public static void start(String imageUrl, ImageView imageView, ImageTransformation ... transformations) {
 		start(imageUrl, imageView, new OAKImageLoaderHandler(imageView, imageUrl), null, null, transformations);
