@@ -177,8 +177,9 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 		Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
         Bitmap bitmap = imageCache.getBitmap(this.printedUrl);
 
-        if (bitmap == null) {
-            bitmap = downloadImage();
+        //Decoding bitmap might not always work, so we may need to d/l again...
+        for(int tries = 0; bitmap == null && tries <= numRetries; tries++){
+        	bitmap = downloadImage();
         }
 
         // TODO: gracefully handle this case.
@@ -252,7 +253,7 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
         // determine the image size and allocate a buffer
         int fileSize = connection.getContentLength();
         Log.d(LOG_TAG, "fetching image " + imageUrl + " (" + fileSize + ")");
-        BufferedInputStream istream = new BufferedInputStream(connection.getInputStream());
+        FlushedInputStream istream = new FlushedInputStream(connection.getInputStream());
 
         if (fileSize > -1) {
 
