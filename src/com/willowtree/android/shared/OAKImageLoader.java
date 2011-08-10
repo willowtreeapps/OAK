@@ -164,7 +164,12 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
         if (imageCache.containsKeyInMemory(printedUrl)) {
             // do not go through message passing, handle directly instead
         	handler.setPrintedUrl(printedUrl);
-            handler.handleImageLoaded(imageCache.getBitmap(printedUrl), null);
+        	try{
+        		handler.handleImageLoaded(imageCache.getBitmap(printedUrl), null);
+        	}catch(java.lang.OutOfMemoryError e){
+        		Log.e(LOG_TAG, "Out of memory from OAK cache", e);
+        	}
+            
         } else {
             executor.execute(new OAKImageLoader(imageUrl, printedUrl, handler, transformations));
         }
@@ -175,7 +180,15 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
         // TODO: if we had a way to check for in-memory hits, we could improve performance by
         // fetching an image from the in-memory cache on the main thread
 		Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
-        Bitmap bitmap = imageCache.getBitmap(this.printedUrl);
+        Bitmap bitmap = null;
+		try{
+        	bitmap = imageCache.getBitmap(this.printedUrl);
+        }catch(java.lang.OutOfMemoryError e){//Ran out of memory while decoding...
+        	try{
+        		bitmap.recycle();
+        	}catch(NullPointerException n){}
+        	Log.e(LOG_TAG, "Out of memory from OAK cache", e);
+        }
 
         //Decoding bitmap might not always work, so we may need to d/l again...
         for(int tries = 0; bitmap == null && tries <= numRetries; tries++){
