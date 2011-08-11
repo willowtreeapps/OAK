@@ -12,6 +12,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
+import android.graphics.Interpolator;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Message;
@@ -20,6 +21,8 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -311,11 +314,13 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 	 * Gets a "spinning" animation to use with a loading dialog.
 	 * Rotates at 1HZ and does not stop.
 	 */
-	public static Animation getSpinAnimation(){
-		Animation a = new RotateAnimation(0f, 360f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+	public static void setSpinning(View v){
+		RotateAnimation a = new RotateAnimation(0f, 360f, Animation.ABSOLUTE, v.getWidth()/2, Animation.ABSOLUTE, v.getHeight()/2);
 		a.setRepeatCount(Animation.INFINITE);
 		a.setDuration(1);
-		return a;
+		a.setStartTime(AnimationUtils.currentAnimationTimeMillis());
+		
+		v.setAnimation(a);
 	}
 	
 	/**
@@ -326,7 +331,7 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 	public static void setLoading(ImageView v, Drawable loading){
 		v.setImageDrawable(loading);
         if(spinLoading){
-        	v.setAnimation(getSpinAnimation());
+        	setSpinning(v);
         }
         v.setVisibility(View.VISIBLE);
 	}
