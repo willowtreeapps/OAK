@@ -3,10 +3,18 @@ package com.willowtree.android.shared;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.entity.BufferedHttpEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -29,6 +37,8 @@ import android.widget.ProgressBar;
 
 import com.github.droidfu.cachefu.ImageCache;
 import com.github.droidfu.imageloader.ImageLoader;
+import com.github.droidfu.imageloader.ImageLoaderHandler;
+import com.github.droidfu.widgets.WebImageView;
 
 public class OAKImageLoader extends ImageLoader implements Runnable {
 	
@@ -107,11 +117,14 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 		this.transformations = transformations;
 	}
 	
-
+	
 	public static void start(String imageUrl, OAKImageLoaderHandler handler, ImageTransformation ... transformations) {
 		start(imageUrl, handler.getImageView(), handler, null, null, transformations);
 	}
 	
+	public static void start(String imageUrl, ImageView imageView) {
+		start(imageUrl, imageView, new OAKImageLoaderHandler(imageView, imageUrl), null, null, new ImageTransformation[]{});
+	}
 	
 	public static void start(String imageUrl, ImageView imageView, ImageTransformation ... transformations) {
 		start(imageUrl, imageView, new OAKImageLoaderHandler(imageView, imageUrl), null, null, transformations);
@@ -161,7 +174,12 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
         if (imageCache.containsKeyInMemory(printedUrl)) {
             // do not go through message passing, handle directly instead
         	handler.setPrintedUrl(printedUrl);
-            handler.handleImageLoaded(imageCache.getBitmap(printedUrl), null);
+        	try{
+        		handler.handleImageLoaded(imageCache.getBitmap(printedUrl), null);
+        	}catch(java.lang.OutOfMemoryError e){
+        		Log.e(LOG_TAG, "Out of memory from OAK cache", e);
+        	}
+            
         } else {
             executor.execute(new OAKImageLoader(imageUrl, printedUrl, handler, transformations));
         }
@@ -172,10 +190,19 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
         // TODO: if we had a way to check for in-memory hits, we could improve performance by
         // fetching an image from the in-memory cache on the main thread
 		Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
-        Bitmap bitmap = imageCache.getBitmap(this.printedUrl);
+        Bitmap bitmap = null;
+		try{
+        	bitmap = imageCache.getBitmap(this.printedUrl);
+        }catch(java.lang.OutOfMemoryError e){//Ran out of memory while decoding...
+        	try{
+        		bitmap.recycle();
+        	}catch(NullPointerException n){}
+        	Log.e(LOG_TAG, "Out of memory from OAK cache", e);
+        }
 
-        if (bitmap == null) {
-            bitmap = downloadImage();
+        //Decoding bitmap might not always work, so we may need to d/l again...
+        for(int tries = 0; bitmap == null && tries <= numRetries; tries++){
+        	bitmap = downloadImage();
         }
 
         // TODO: gracefully handle this case.
@@ -218,8 +245,8 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
                 			bm = trans.transform(bm);
                 		}
                 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                		bm.compress(CompressFormat.JPEG, 90, bos);
-                		bm.recycle(); // This thing is bad, ditch it
+                		bm.compress(CompressFormat.JPEG, 75, bos);
+                		bm.recycle();
                 		imageData = bos.toByteArray();
                 		imageCache.put(printedUrl, imageData);
                 	}
@@ -239,47 +266,26 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
         return image;
     }
 	
-	@Override
+	private HttpClient getHttpClient() {
+		return new DefaultHttpClient();
+	}
+
+	/**
+	 * Uses a BufferedHttpEntity to write to a byte array,
+	 * to ensure that the complete data is loaded.
+	 * New version 8/11/11 by cceckman to try to fix 2.3 issues.
+	 */
 	protected byte[] retrieveImageData() throws IOException {
 
-        URL url = new URL(imageUrl);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        byte[] result;
-
-        // determine the image size and allocate a buffer
-        int fileSize = connection.getContentLength();
-        Log.d(LOG_TAG, "fetching image " + imageUrl + " (" + fileSize + ")");
-        BufferedInputStream istream = new BufferedInputStream(connection.getInputStream());
-
-        if (fileSize > -1) {
-
-            byte[] imageData = new byte[fileSize];
-            // download the file
-            int bytesRead = 0;
-            int offset = 0;
-            while (bytesRead != -1 && offset < fileSize) {
-                bytesRead = istream.read(imageData, offset, fileSize - offset);
-                offset += bytesRead;
-            }
-            result = imageData;
-            
-        } else {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            byte[] buffer = new byte[1024];
-            int bytesRead;
-            
-            while(true){
-                bytesRead = istream.read(buffer);
-                if (bytesRead <= 0) break;
-                baos.write(buffer, 0, bytesRead);
-            }
-
-            result = baos.toByteArray();
-        }
-
-        istream.close();
-        connection.disconnect();
-        return result;
+		HttpGet req = new HttpGet(imageUrl);
+		HttpResponse resp = (HttpResponse)getHttpClient().execute(req);
+		
+		BufferedHttpEntity bufResponse = new BufferedHttpEntity(resp.getEntity());//buffer the response before it comes back...
+	
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		bufResponse.writeTo(baos);
+		return baos.toByteArray();
+		
     }
 	
 	public static void clearCache() {
@@ -316,6 +322,7 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 	 */
 	public static void setSpinning(View v){
 		RotateAnimation a = new RotateAnimation(0f, 360f, Animation.ABSOLUTE, v.getWidth()/2, Animation.ABSOLUTE, v.getHeight()/2);
+		a.setInterpolator(new LinearInterpolator());
 		a.setRepeatCount(Animation.INFINITE);
 		a.setDuration(1);
 		a.setStartTime(AnimationUtils.currentAnimationTimeMillis());
