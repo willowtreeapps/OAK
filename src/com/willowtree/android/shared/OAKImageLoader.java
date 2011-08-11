@@ -1,13 +1,8 @@
 package com.willowtree.android.shared;
 
-import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 
 import org.apache.http.HttpResponse;
@@ -20,7 +15,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
-import android.graphics.Interpolator;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Message;
@@ -37,8 +31,6 @@ import android.widget.ProgressBar;
 
 import com.github.droidfu.cachefu.ImageCache;
 import com.github.droidfu.imageloader.ImageLoader;
-import com.github.droidfu.imageloader.ImageLoaderHandler;
-import com.github.droidfu.widgets.WebImageView;
 
 public class OAKImageLoader extends ImageLoader implements Runnable {
 	
