@@ -1,13 +1,16 @@
 package com.willowtree.android.shared;
 
-import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.entity.BufferedHttpEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -21,6 +24,8 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -256,47 +261,26 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
         return image;
     }
 	
-	@Override
+	private HttpClient getHttpClient() {
+		return new DefaultHttpClient();
+	}
+
+	/**
+	 * Uses a BufferedHttpEntity to write to a byte array,
+	 * to ensure that the complete data is loaded.
+	 * New version 8/11/11 by cceckman to try to fix 2.3 issues.
+	 */
 	protected byte[] retrieveImageData() throws IOException {
 
-        URL url = new URL(imageUrl);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        byte[] result;
-
-        // determine the image size and allocate a buffer
-        int fileSize = connection.getContentLength();
-        Log.d(LOG_TAG, "fetching image " + imageUrl + " (" + fileSize + ")");
-        FlushedInputStream istream = new FlushedInputStream(connection.getInputStream());
-
-        if (fileSize > -1) {
-
-            byte[] imageData = new byte[fileSize];
-            // download the file
-            int bytesRead = 0;
-            int offset = 0;
-            while (bytesRead != -1 && offset < fileSize) {
-                bytesRead = istream.read(imageData, offset, fileSize - offset);
-                offset += bytesRead;
-            }
-            result = imageData;
-            
-        } else {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            byte[] buffer = new byte[1024];
-            int bytesRead;
-            
-            while(true){
-                bytesRead = istream.read(buffer);
-                if (bytesRead <= 0) break;
-                baos.write(buffer, 0, bytesRead);
-            }
-
-            result = baos.toByteArray();
-        }
-
-        istream.close();
-        connection.disconnect();
-        return result;
+		HttpGet req = new HttpGet(imageUrl);
+		HttpResponse resp = (HttpResponse)getHttpClient().execute(req);
+		
+		BufferedHttpEntity bufResponse = new BufferedHttpEntity(resp.getEntity());//buffer the response before it comes back...
+	
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		bufResponse.writeTo(baos);
+		return baos.toByteArray();
+		
     }
 	
 	public static void clearCache() {
@@ -331,11 +315,14 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 	 * Gets a "spinning" animation to use with a loading dialog.
 	 * Rotates at 1HZ and does not stop.
 	 */
-	public static Animation getSpinAnimation(){
-		Animation a = new RotateAnimation(0f, 360f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+	public static void setSpinning(View v){
+		RotateAnimation a = new RotateAnimation(0f, 360f, Animation.ABSOLUTE, v.getWidth()/2, Animation.ABSOLUTE, v.getHeight()/2);
+		a.setInterpolator(new LinearInterpolator());
 		a.setRepeatCount(Animation.INFINITE);
 		a.setDuration(1);
-		return a;
+		a.setStartTime(AnimationUtils.currentAnimationTimeMillis());
+		
+		v.setAnimation(a);
 	}
 	
 	/**
@@ -346,7 +333,7 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 	public static void setLoading(ImageView v, Drawable loading){
 		v.setImageDrawable(loading);
         if(spinLoading){
-        	v.setAnimation(getSpinAnimation());
+        	setSpinning(v);
         }
         v.setVisibility(View.VISIBLE);
 	}
