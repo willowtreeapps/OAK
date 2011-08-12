@@ -94,11 +94,6 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
             imageCache.updateContents();
         }
         
-        if(defaultLoading == null){//initialize a spinner as the default loader
-        	defaultLoading = new ProgressBar(context).getIndeterminateDrawable(); //get the spinner
-        	spinLoading = true; //and set it to spin
-        }
-        
     }
     
 	private OAKImageLoader(String imageUrl, String printedUrl, OAKImageLoaderHandler handler, ImageTransformation ... transformations) {
