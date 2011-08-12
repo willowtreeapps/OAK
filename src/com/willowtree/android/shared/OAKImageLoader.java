@@ -110,10 +110,26 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 	}
 	
 	
+	public static void start(String imageUrl, OAKImageLoaderHandler handler) {
+		start(imageUrl, handler.getImageView(), handler, null, null, new ImageTransformation[]{});
+	}
+	
 	public static void start(String imageUrl, OAKImageLoaderHandler handler, ImageTransformation ... transformations) {
 		start(imageUrl, handler.getImageView(), handler, null, null, transformations);
 	}
 	
+	public static void start(String imageUrl, ImageView imageView, Drawable dummyDrawable,
+			Drawable errorDrawable) {
+		start(imageUrl, imageView, new OAKImageLoaderHandler(imageView, imageUrl), dummyDrawable,
+				errorDrawable, new ImageTransformation[]{});
+	}
+	
+	public static void start(String imageUrl, ImageView imageView, Drawable dummyDrawable,
+			Drawable errorDrawable, ImageTransformation ... transformations) {
+		start(imageUrl, imageView, new OAKImageLoaderHandler(imageView, imageUrl), dummyDrawable,
+				errorDrawable, transformations);
+	}
+		
 	public static void start(String imageUrl, ImageView imageView) {
 		start(imageUrl, imageView, new OAKImageLoaderHandler(imageView, imageUrl), null, null, new ImageTransformation[]{});
 	}
@@ -122,15 +138,15 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 		start(imageUrl, imageView, new OAKImageLoaderHandler(imageView, imageUrl), null, null, transformations);
 	}
 	
-	public static void start(String imageUrl, ImageView imageView, Drawable dummyDrawable,
-			Drawable errorDrawable, ImageTransformation ... transformations) {
-		start(imageUrl, imageView, new OAKImageLoaderHandler(imageView, imageUrl), dummyDrawable,
-				errorDrawable, transformations);
-	}
-	
 	public static void start(String imageUrl, OAKImageLoaderHandler handler, Drawable dummyDrawable,
 			Drawable errorDrawable, ImageTransformation ... transformations) {
 		start(imageUrl, handler.getImageView(), handler, dummyDrawable, errorDrawable, transformations);
+	}
+	
+	public static void start(String imageUrl, OAKImageLoaderHandler handler, Drawable dummyDrawable,
+			Drawable errorDrawable) {
+		start(imageUrl, handler.getImageView(), handler, dummyDrawable, errorDrawable,
+				new ImageTransformation[]{});
 	}
 	
 	protected static void start(String imageUrl, ImageView imageView, OAKImageLoaderHandler handler,
