@@ -88,5 +88,10 @@ public class OAKImageCache extends ImageCache {
 			this.remove(oldestUrl);  // ... and disk
 		}
 	}
+	
+	@Override
+	protected void cacheToDisk(String key, byte[] value) {
+		super.cacheToDisk(key, value);
+	}
 
 }
