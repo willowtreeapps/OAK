@@ -268,7 +268,7 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 				if (imageData != null) {
 					if (transformations.length == 0) {
 						if(toDiskOnly) {
-							imageCache.cacheToDisk(imageUrl, imageData);
+							imageCache.putToDisk(imageUrl, imageData);
 						} else {
 							imageCache.put(imageUrl, imageData);
 						}
@@ -283,7 +283,7 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 								bm.recycle();
 								imageData = bos.toByteArray();
 								if(toDiskOnly) {
-									imageCache.cacheToDisk(printedUrl, imageData);
+									imageCache.putToDisk(printedUrl, imageData);
 								} else {
 									imageCache.put(printedUrl, imageData);
 								}								

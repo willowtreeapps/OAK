@@ -35,6 +35,14 @@ public class OAKImageCache extends ImageCache {
 		return result;
 	}
 	
+	public synchronized void putToDisk(String imageUrl, byte[] data) {
+		fileAges.put(imageUrl,  (new Date().getTime()));
+		while(cacheAllocated + data.length > cacheLimit) {
+			deleteOldestImage();
+		}
+		super.cacheToDisk(imageUrl, data);
+	}
+	
 	public int getCacheAllocated() {
 		return cacheAllocated;
 	}
