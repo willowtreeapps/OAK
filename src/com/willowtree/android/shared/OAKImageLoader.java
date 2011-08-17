@@ -85,13 +85,14 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 					imageCache.enableDiskCache(context, ImageCache.DISK_CACHE_SDCARD);
 				break;
 			case PREFER_SD:
-				if(!imageCache.enableDiskCache(context, ImageCache.DISK_CACHE_SDCARD));
+				if(!imageCache.enableDiskCache(context, ImageCache.DISK_CACHE_SDCARD))
 				imageCache.enableDiskCache(context, ImageCache.DISK_CACHE_INTERNAL);
 				break;
 			default:
 				break;
 			}
 			imageCache.updateContents();
+			Log.d("OAKImageLoader", "Caching to " + imageCache.getDiskCacheDirectory());
 		}
 
 	}
