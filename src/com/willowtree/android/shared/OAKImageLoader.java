@@ -8,6 +8,9 @@ import java.util.concurrent.ThreadPoolExecutor;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.conn.ssl.AbstractVerifier;
+import org.apache.http.conn.ssl.SSLSocketFactory;
+import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.entity.BufferedHttpEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
@@ -27,10 +30,12 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 
 import com.github.droidfu.cachefu.ImageCache;
 import com.github.droidfu.imageloader.ImageLoader;
+
+import javax.net.ssl.SSLException;
+
 
 public class OAKImageLoader extends ImageLoader implements Runnable {
 
@@ -54,7 +59,7 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 
 	/**
 	 * This method must be called before any other method is invoked on this class.
-	 * 
+	 *
 	 * @param context
 	 *            the current context
 	 * @param cacheType
@@ -147,7 +152,7 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 
 	protected static void start(String imageUrl, ImageView imageView, OAKImageLoaderHandler handler,
 			Drawable dummyDrawable, Drawable errorDrawable, ImageTransformation ... transformations) {
-		
+
 		// No handler => No callback, do a single image pre-cache.
 		// preCache() *should* be called directly but this is a
 		// squirrelly way to get to it.
@@ -202,7 +207,7 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 	/**
 	 * Downloads images in urls array and applies transformations to each. Transformed images
 	 * are then written to disk cache for fast retrieval later with ImageLoader.start().
-	 * @param urls 
+	 * @param urls
 	 * @param transformations
 	 */
 	public static void preCache(String[] urls, ImageTransformation ... transformations) {
@@ -217,7 +222,7 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 		// TODO: if we had a way to check for in-memory hits, we could improve performance by
 		// fetching an image from the in-memory cache on the main thread
 		Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
-		
+
 		// If the handler is null, there's no callback which means we're doing
 		// a pre-cache. We should just download the image, write it to disk,
 		// and *not* inflate a bitmap.
@@ -225,7 +230,7 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 			downloadImage(true);
 			return;
 		}
-		
+
 		Bitmap bitmap = imageCache.getBitmap(this.printedUrl);
 
 		if(bitmap == null) {
@@ -253,14 +258,14 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 	// TODO: we could probably improve performance by re-using connections instead of closing them
 	// after each and every download
 	/**
-	 * 
+	 *
 	 * @param toDiskOnly
 	 * @return the generated bitmap if toDiskOnly == true, otherwise null
 	 */
 	protected Bitmap downloadImage(boolean toDiskOnly) {
 		int timesTried = 1;
 		Bitmap image = null;
-		
+
 		while (timesTried <= numRetries) {
 			try {
 
@@ -287,17 +292,17 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 									imageCache.putToDisk(printedUrl, imageData);
 								} else {
 									imageCache.put(printedUrl, imageData);
-								}								
+								}
 					}
 				} else {
 					break;
 				}
-				
+
 				if(!toDiskOnly) {
 					image = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
 				}
 				break;
-				
+
 			} catch (Throwable e) {
 				Log.w(LOG_TAG, "download for " + imageUrl + " failed (attempt " + timesTried + ")");
 				e.printStackTrace();
@@ -309,8 +314,20 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 		return image;
 	}
 
+
+
 	private HttpClient getHttpClient() {
-		return new DefaultHttpClient();
+        //return new DefaultHttpClient();
+
+        DefaultHttpClient client = new DefaultHttpClient();
+    SSLSocketFactory sslSocketFactory = (SSLSocketFactory) client
+            .getConnectionManager().getSchemeRegistry().getScheme("https")
+            .getSocketFactory();
+    final X509HostnameVerifier delegate = sslSocketFactory.getHostnameVerifier();
+    if(!(delegate instanceof MyVerifier)) {
+        sslSocketFactory.setHostnameVerifier(new MyVerifier(delegate));
+    }
+    return client;
 	}
 
 	/**
@@ -321,6 +338,9 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 	protected byte[] retrieveImageData() throws IOException {
 
 		HttpGet req = new HttpGet(imageUrl);
+
+
+
 		HttpResponse resp = (HttpResponse)getHttpClient().execute(req);
 
 		BufferedHttpEntity bufResponse = new BufferedHttpEntity(resp.getEntity());//buffer the response before it comes back...
@@ -387,5 +407,37 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 		}
 		v.setVisibility(View.VISIBLE);
 	}
+
+
+    class MyVerifier extends AbstractVerifier {
+
+        private final X509HostnameVerifier delegate;
+
+        public MyVerifier(final X509HostnameVerifier delegate) {
+            this.delegate = delegate;
+        }
+
+
+        public void verify(String host, String[] cns, String[] subjectAlts)
+                throws SSLException {
+            // code
+//            boolean ok = false;
+//            try {
+//                delegate.verify(host, cns, subjectAlts);
+//            } catch (SSLException e) {
+//                for (String cn : cns) {
+//                    if (cn.startsWith("*.")) {
+//                        try {
+//                            delegate.verify(host, new String[]{
+//                                    cn.substring(2)}, subjectAlts);
+//                            ok = true;
+//                        } catch (Exception e1) {
+//                        }
+//                    }
+//                }
+//                if (!ok) throw e;
+//            }
+        }
+    }
 
 }
