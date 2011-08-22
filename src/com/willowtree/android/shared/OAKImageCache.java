@@ -1,22 +1,27 @@
 package com.willowtree.android.shared;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Date;
 
 
+import android.app.ActivityManager;
+import android.app.ActivityManager.MemoryInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Process;
 import android.util.Log;
 
 import com.github.droidfu.cachefu.ImageCache;
-
 
 public class OAKImageCache extends ImageCache {
 	public static final String LOG_TAG = OAKImageCache.class.getSimpleName();
 	
 	private HashMap<String, Long> fileAges;
-	private int cacheLimit = 4194304; // 4 MB
+	private int cacheLimit = 8388608; // 8 MB
 	volatile private int cacheAllocated = 0; // also in bytes
 
 	public OAKImageCache(int initialCapacity, long expirationInMinutes,
@@ -33,7 +38,12 @@ public class OAKImageCache extends ImageCache {
         if (imageData == null) {
             return null;
         }
-        return BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
+        //int[] myPid = {Process.myPid()};
+        //if (getImageArea(imageData) < FREE_MEM) {
+        	return BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
+        //} else {
+        	//return null;
+        //}
     }
 	
 	@Override
@@ -112,5 +122,69 @@ public class OAKImageCache extends ImageCache {
 	protected void cacheToDisk(String key, byte[] value) {
 		super.cacheToDisk(key, value);
 	}
+	
+	protected static int getImageArea(byte[] data) {
+		if(data[0] == -1 && data[1] == -40) { //JPG
+			try {
+				return getJPEGArea(data);
+			} catch(Exception e) {
+				return -1;
+			}
+		}
+		if(data[0] == -119 && data[1] == 80 && data[2] == 78 && data[3] == 71) { //PNG
+			int idx = 0;
+			// find IHDR
+			for(int i = 0; i < data.length; i++) {
+				if(data[i] == (byte)'I' && data[i+1] == (byte)'H' && data[i+2] == (byte)'D' && data[i+3] == (byte)'R') {
+					idx = i;
+					break;
+				}
+			}
+			idx += 4;
+			int width = (data[idx] << 24) + (data[idx+1] << 16) + (data[idx+2] << 8) + data[idx+3];
+			int height = (data[idx+4] << 24) + (data[idx+5] << 16) + (data[idx+6] << 8) + data[idx+7];
+			return width * height;
+		}
+		if(data[0] == 71 && data[1] == 73 && data[2] == 70 && data[3] == 56) { // GIF
+			// Java doesn't have unsigned ints. Life is hard, sometimes.
+			int wIdx = 6; 
+			int hIdx = 8;
+			int width = (((int)data[wIdx+1] & 0xFF) << 8) + ((int)data[wIdx] & 0xFF);
+			int height = (((int)data[hIdx+1] & 0xFF) << 8) + data[hIdx];
+			return width * height;
+		}
+		if(data[0] == 66 && data[1] == 77) { //BMP
+			return data.length;
+		}
+		return -1;
+	}
+	
+	private static int getJPEGArea(byte[] data) throws IOException {
+        InputStream bis = new ByteArrayInputStream(data);
+
+        // check for SOI marker
+        if (bis.read() != 255 || bis.read() != 216)
+                throw new RuntimeException("SOI (Start Of Image) marker 0xff 0xd8 missing");
+
+        while (bis.read() == 255) {
+                int marker = bis.read();
+                int len = bis.read() << 8 | bis.read();
+
+                if (marker == 192) {
+                        bis.skip(1);
+
+                        int height = bis.read() << 8 | bis.read();
+                        int width = bis.read() << 8 | bis.read();
+                        
+                        bis.close();
+                        return width * height;
+                }
+
+                bis.skip(len - 2);
+        }
+
+        bis.close();
+        return -1;
+}
 
 }

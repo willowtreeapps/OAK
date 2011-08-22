@@ -110,7 +110,7 @@ public class ImageManagerTestActivity extends ListActivity {
                 droidFuHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        OAKImageLoader.start("http://upload.wikimedia.org/wikipedia/commons/e/e2/Sunflower_as_gif_small.gif", new OAKImageLoaderHandler(imageView, photoItem.getURL()) {
+                        OAKImageLoader.start(photoItem.getURL(), new OAKImageLoaderHandler(imageView, photoItem.getURL()) {
                             @Override
 							public boolean handleImageLoaded(Bitmap bitmap, Message msg) {
                                 boolean didLoad = super.handleImageLoaded(bitmap, msg);
