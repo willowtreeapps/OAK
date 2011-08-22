@@ -107,11 +107,10 @@ public class ImageManagerTestActivity extends ListActivity {
 			if (thumbnailCache.containsKey(photoItem.getURL()) && thumbnailCache.get(photoItem.getURL()) != null) {
                 imageView.setImageBitmap(thumbnailCache.get(photoItem.getURL()));
             } else {
-
                 droidFuHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        OAKImageLoader.start(photoItem.getURL(), new OAKImageLoaderHandler(imageView, photoItem.getURL()) {
+                        OAKImageLoader.start("http://upload.wikimedia.org/wikipedia/commons/e/e2/Sunflower_as_gif_small.gif", new OAKImageLoaderHandler(imageView, photoItem.getURL()) {
                             @Override
 							public boolean handleImageLoaded(Bitmap bitmap, Message msg) {
                                 boolean didLoad = super.handleImageLoaded(bitmap, msg);

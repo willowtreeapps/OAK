@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Date;
 
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import com.github.droidfu.cachefu.ImageCache;
@@ -24,6 +26,15 @@ public class OAKImageCache extends ImageCache {
 		fileAges = new HashMap<String, Long>();
 		
 	}
+	
+	@Override
+	public synchronized Bitmap getBitmap(Object elementKey) {
+        byte[] imageData = super.get(elementKey);
+        if (imageData == null) {
+            return null;
+        }
+        return BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
+    }
 	
 	@Override
 	public synchronized byte[] put(String imageUrl, byte[] data) {
