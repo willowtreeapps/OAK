@@ -1,4 +1,4 @@
-package com.willowtree.android.shared;
+package com.willowtreeapps.android.shared;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -57,6 +57,7 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 	private static boolean safeMode = false;
 	private static int bytesPerPixel = 4; // RGBA8888
 	private static Map<String, Integer> areaMap;
+	private static Context context;
 
 	/**
 	 * This method must be called before any other method is invoked on this class.
@@ -72,6 +73,7 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 	 *			PREFER_SD: Try to use SD, then fall back on internal, then fall back on memory only.<br>
 	 */
 	public static synchronized void initialize(Context context, int cacheType) {
+		OAKImageLoader.context = context;
 		if (executor == null) {
 			executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(DEFAULT_POOL_SIZE);
 		}
@@ -411,6 +413,7 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 	public static void setSafeMode(boolean safeMode, int bytesPerPixel) {
 		OAKImageLoader.safeMode = safeMode;
 		OAKImageLoader.bytesPerPixel = bytesPerPixel;
+		OAKImageLoader.imageCache.setContext(OAKImageLoader.context);
 	}
 
 }

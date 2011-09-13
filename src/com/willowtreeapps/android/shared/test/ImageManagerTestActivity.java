@@ -1,4 +1,4 @@
-package com.willowtree.android.shared.test;
+package com.willowtreeapps.android.shared.test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,12 +16,12 @@ import org.apache.http.util.EntityUtils;
 
 //import com.github.droidfu.imageloader.ImageLoader;
 //import com.github.droidfu.imageloader.ImageLoaderHandler;
-import com.willowtree.android.shared.ImageTransformation;
-import com.willowtree.android.shared.OAKImageLoader;
-import com.willowtree.android.shared.OAKImageLoaderHandler;
 import com.willowtree.android.shared.R;
 import com.willowtree.android.shared.R.id;
 import com.willowtree.android.shared.R.layout;
+import com.willowtreeapps.android.shared.ImageTransformation;
+import com.willowtreeapps.android.shared.OAKImageLoader;
+import com.willowtreeapps.android.shared.OAKImageLoaderHandler;
 //import com.willowtree.android.shared.R.id;
 //import com.willowtree.android.shared.R.layout;
 

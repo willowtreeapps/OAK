@@ -1,4 +1,4 @@
-package com.willowtree.android.shared;
+package com.willowtreeapps.android.shared;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -7,11 +7,11 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Date;
 
-
 import android.app.ActivityManager;
-import android.app.ActivityManager.MemoryInfo;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Debug.MemoryInfo;
 import android.os.Process;
 import android.util.Log;
 
@@ -23,13 +23,19 @@ public class OAKImageCache extends ImageCache {
 	private HashMap<String, Long> fileAges;
 	private int cacheLimit = 8388608; // 8 MB
 	volatile private int cacheAllocated = 0; // also in bytes
+	private Context context;
+	private int[]  pid;
+	private ActivityManager am;
+	private boolean safeMode;
+	private int bytesPerPixel = 4; // RGBA8888
 
 	public OAKImageCache(int initialCapacity, long expirationInMinutes,
 			int maxConcurrentThreads) {
 		
 		super(initialCapacity, expirationInMinutes, maxConcurrentThreads);
 		fileAges = new HashMap<String, Long>();
-		
+		pid = new int[] {Process.myPid()};
+		am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
 	}
 	
 	@Override
@@ -38,12 +44,18 @@ public class OAKImageCache extends ImageCache {
         if (imageData == null) {
             return null;
         }
-        //int[] myPid = {Process.myPid()};
-        //if (getImageArea(imageData) < FREE_MEM) {
-        	return BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
-        //} else {
-        	//return null;
-        //}
+        if (safeMode) {
+        	int memPerProcess = am.getMemoryClass() * 1024 * 1024;
+        	MemoryInfo mi = am.getProcessMemoryInfo(pid)[0];
+        	int usedMem = mi.getTotalPrivateDirty() + mi.getTotalSharedDirty();
+        	Log.d("OAKImageCache", "MemPerProcess: " + memPerProcess);
+        	Log.d("OAKImageCache", "usedMem: " + usedMem);
+        	Log.d("OAKImageCache", "imgSize: " + getImageArea(imageData) * bytesPerPixel);
+        	if(usedMem + getImageArea(imageData) * bytesPerPixel > memPerProcess) {
+        		return null;
+        	}
+        }
+        return BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
     }
 	
 	@Override
@@ -123,7 +135,7 @@ public class OAKImageCache extends ImageCache {
 		super.cacheToDisk(key, value);
 	}
 	
-	protected static int getImageArea(byte[] data) {
+	protected int getImageArea(byte[] data) {
 		if(data[0] == -1 && data[1] == -40) { //JPG
 			try {
 				return getJPEGArea(data);
@@ -159,9 +171,8 @@ public class OAKImageCache extends ImageCache {
 		return -1;
 	}
 	
-	private static int getJPEGArea(byte[] data) throws IOException {
+	private int getJPEGArea(byte[] data) throws IOException {
         InputStream bis = new ByteArrayInputStream(data);
-
         // check for SOI marker
         if (bis.read() != 255 || bis.read() != 216)
                 throw new RuntimeException("SOI (Start Of Image) marker 0xff 0xd8 missing");
@@ -169,22 +180,33 @@ public class OAKImageCache extends ImageCache {
         while (bis.read() == 255) {
                 int marker = bis.read();
                 int len = bis.read() << 8 | bis.read();
-
                 if (marker == 192) {
                         bis.skip(1);
-
                         int height = bis.read() << 8 | bis.read();
                         int width = bis.read() << 8 | bis.read();
-                        
                         bis.close();
                         return width * height;
                 }
-
                 bis.skip(len - 2);
         }
-
         bis.close();
         return -1;
 }
+
+	public Context getContext() {
+		return context;
+	}
+
+	public void setContext(Context context) {
+		this.context = context;
+	}
+
+	public boolean isSafeMode() {
+		return safeMode;
+	}
+
+	public void setSafeMode(boolean safeMode) {
+		this.safeMode = safeMode;
+	}
 
 }

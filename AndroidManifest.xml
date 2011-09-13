@@ -6,7 +6,7 @@
     <uses-sdk android:minSdkVersion="7" />
 
     <application android:icon="@drawable/icon" android:label="@string/app_name">
-        <activity android:name="com.willowtree.android.shared.test.ImageManagerTestActivity"
+        <activity android:name="com.willowtreeapps.android.shared.test.ImageManagerTestActivity"
         		  android:label="@string/app_name"
                   android:screenOrientation="portrait">
             <intent-filter>
