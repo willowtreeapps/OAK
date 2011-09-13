@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.TextView;
+import com.willowtreeapps.android.shared.R;
 
 public class ResizedTextView extends TextView{
 

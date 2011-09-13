@@ -1,4 +1,4 @@
-package com.willowtree.android.shared;
+package com.willowtreeapps.android.shared;
 
 import java.io.BufferedInputStream;
 import java.io.FilterInputStream;

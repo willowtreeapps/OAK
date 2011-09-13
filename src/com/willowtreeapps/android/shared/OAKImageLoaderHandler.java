@@ -1,4 +1,4 @@
-package com.willowtree.android.shared;
+package com.willowtreeapps.android.shared;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
