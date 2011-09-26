@@ -1,0 +1,21 @@
+<ivysettings>
+    <settings defaultResolver="chain"/>
+    <property name="local-maven2-pattern"
+              value="${user.home}/.m2/repository/[organisation]/[module]/[revision]/[module]-[revision](-[classifier]).[ext]"
+              override="false"/>
+    <resolvers>
+
+        <filesystem
+                name="local-maven2"
+                m2compatible="true">
+            <ivy pattern="${local-maven2-pattern}"/>
+            <artifact pattern="${local-maven2-pattern}"/>
+        </filesystem>
+        <chain name="chain">
+            <ibiblio name="willowtreeapps" m2compatible="true"
+                     root="http://birch.willowtreeapps.com:8080/archiva/repository/internal/"/>
+            <ibiblio name="willowtreeapps-snapshot" m2compatible="true"
+                     root="http://birch.willowtreeapps.com:8080/archiva/repository/snapshots/"/>
+        </chain>
+    </resolvers>
+</ivysettings>
