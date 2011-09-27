@@ -3,6 +3,10 @@
 <ivy-module version="2.0">
     <info organisation="com.willowtreeapps" module="testandroid"/>
     <dependencies>
-        <dependency org="com.willowtreeapps" name="oak-library" rev="1.0.1" transitive="false"/>
+        <dependency org="com.willowtreeapps"
+                    name="oak-library"
+                    rev="1.0.4"
+                    transitive="false"
+                    changing="true"/>
     </dependencies>
 </ivy-module>
