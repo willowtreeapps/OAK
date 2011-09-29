@@ -34,8 +34,8 @@ public class OAKImageCache extends ImageCache {
 		
 		super(initialCapacity, expirationInMinutes, maxConcurrentThreads);
 		fileAges = new HashMap<String, Long>();
-		pid = new int[] {Process.myPid()};
-		am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+		//pid = new int[] {Process.myPid()};
+		//am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
 	}
 	
 	@Override
