@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.example.android.apis.tests"
+          android:versionName="1.0.0-SNAPSHOT">
+    <application>
+        <uses-library android:name="android.test.runner"/>
+    </application>
+    <instrumentation android:name="android.test.InstrumentationTestRunner"
+                     android:targetPackage="com.willowtreeapps.android.shared"
+                     android:label="Tests for oak."/>
+</manifest>

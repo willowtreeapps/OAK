@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.willowtreeapps</groupId>
+    <artifactId>oak-project</artifactId>
+    <version>1.0.5-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>OAK Android Kit</name>
+    <description>Shared library for android development.</description>
+    <inceptionYear>2011</inceptionYear>
+
+    <properties>
+        <!-- set a custom format that is guaranteed to grow as a Long number, so it can be used as version code
+        in the AndroidManifest.xml -->
+        <maven.build.timestamp.format>yyMMdddHHmm</maven.build.timestamp.format>
+        <!-- this trick of loading build timestamp into other property is necessary due to
+        http://jira.codehaus.org/browse/MRESOURCES-99 and also more readable -->
+        <versionCode>${maven.build.timestamp}</versionCode>
+
+        <releaseRepo>http://birch.willowtreeapps.com:8080/archiva/repository/internal/</releaseRepo>
+        <snapshotRepo>http://birch.willowtreeapps.com:8080/archiva/repository/snapshots/</snapshotRepo>
+    </properties>
+
+    <ciManagement>
+        <system>teamcity</system>
+        <url>http://birch.willowtreeapps.com/teamcity</url>
+    </ciManagement>
+
+    <licenses>
+        <license>
+            <name>Apache 2.0 License</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Derek Brameyer</name>
+            <organization>WillowTree Apps</organization>
+        </developer>
+        <developer>
+            <name>Ron DuPlain</name>
+            <organization>WillowTree Apps</organization>
+        </developer>
+        <developer>
+            <name>Michael Lake</name>
+            <organization>WillowTree Apps</organization>
+            <roles>
+                <role>General Project Maintainer</role>
+            </roles>
+        </developer>
+        <developer>
+            <name>Jonathan Nye</name>
+            <organization>WillowTree Apps</organization>
+        </developer>
+        <developer>
+            <name>Nate Vogt</name>
+            <organization>WillowTree Apps</organization>
+        </developer>
+        <developer>
+            <name>Woody Zantzinger</name>
+            <organization>WillowTree Apps</organization>
+        </developer>
+    </developers>
+
+    <prerequisites>
+        <maven>2.0</maven>
+    </prerequisites>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/willowtreeapps/OAK/issues</url>
+    </issueManagement>
+    <scm>
+        <url>http://github.com/willowtreeapps/OAK</url>
+        <connection>scm:git:git@github.com:willowtreeapps/OAK.git</connection>
+        <developerConnection>scm:git:git@github.com:willowtreeapps/OAK.git</developerConnection>
+    </scm>
+
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.8</version>
+            </plugin>
+        </plugins>
+    </reporting>
+    <repositories>
+        <repository>
+            <id>wta.internal</id>
+            <name>WillowTree Apps Repository - Internal</name>
+            <url>${releaseRepo}</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>wta.snapshots</id>
+            <name>WillowTree Apps Repository - Snapshots</name>
+            <url>${snapshotRepo}</url>
+            <releases>
+                <enabled>false</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+        </repository>
+
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>wta.internal</id>
+            <name>Internal Release Repository</name>
+            <url>http://birch.willowtreeapps.com:8080/archiva/repository/internal/</url>
+        </repository>
+        <snapshotRepository>
+            <id>wta.snapshots</id>
+            <name>Internal Snapshot Repository</name>
+            <url>http://birch.willowtreeapps.com:8080/archiva/repository/snapshots/</url>
+        </snapshotRepository>
+        <site>
+            <id>oak-website</id>
+            <url>scp://birch.willowtreeapps.com/Library/WebServer/Documents/oak/</url>
+        </site>
+    </distributionManagement>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.8.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.android</groupId>
+                <artifactId>android</artifactId>
+                <version>2.1.2</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.android</groupId>
+                <artifactId>android-test</artifactId>
+                <version>2.1.2</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.2.1</version>
+                <configuration>
+                    <goals>deploy</goals>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.0</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.wagon</groupId>
+                        <artifactId>wagon-ssh</artifactId>
+                        <version>1.0</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <!-- explicitly define maven-deploy-plugin after other to force exec order -->
+                <artifactId>maven-deploy-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>deploy</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>2.8</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.7</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>2.1.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <!-- version 2.3 defaults to java 1.5, so no further configuration needed-->
+                    <version>2.3</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-jarsigner-plugin</artifactId>
+                    <version>1.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>2.4.3</version>
+                    <configuration>
+                        <encoding>UTF-8</encoding>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                    <artifactId>maven-android-plugin</artifactId>
+                    <version>2.8.4</version>
+                    <configuration>
+                        <sdk>
+                            <platform>9</platform>
+                        </sdk>
+                        <emulator>
+                            <avd>23</avd>
+                            <wait>10000</wait>
+                            <!--<options>-no-skin</options>-->
+                        </emulator>
+                        <zipalign>
+                            <verbose>true</verbose>
+                        </zipalign>
+                        <undeployBeforeDeploy>true</undeployBeforeDeploy>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>com.pyx4me</groupId>
+                    <artifactId>proguard-maven-plugin</artifactId>
+                    <version>2.0.4</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>1.5</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>buildnumber-maven-plugin</artifactId>
+                    <version>1.0-beta-4</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <profiles>
+        <profile>
+            <!-- the standard profile runs the instrumentation tests -->
+            <id>standard</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>oak-library</module>
+                <module>oak-examples</module>
+                <module>oak-instrumentation</module>
+            </modules>
+        </profile>
+        <profile>
+            <!-- the release profile does sign, proguard, zipalign ... but does not run instrumentation tests -->
+            <id>release</id>
+            <!-- via this activation the profile is automatically used when the release is done with the maven release
+            plugin -->
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <modules>
+                <module>oak-library</module>
+                <module>oak-examples</module>
+            </modules>
+        </profile>
+    </profiles>
+
+</project>

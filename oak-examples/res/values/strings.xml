@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">oak test app</string>
+    <string name="hello">hi there</string>
+    <string name="mytest">hi there</string>
+</resources>
