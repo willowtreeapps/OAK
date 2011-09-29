@@ -40,7 +40,7 @@ How to configure your environment to build OAK
 * Clone the Source Code
 
 +-------------
-git clone -b oak_project git@github.com:willowtreeapps/OAK.git
+git clone git@github.com:willowtreeapps/OAK.git
 +-------------
 
 
