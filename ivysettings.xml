@@ -9,10 +9,18 @@
             <ibiblio name="willowtreeapps" m2compatible="true"
                      usepoms="true"
                      root="http://birch.willowtreeapps.com:8080/archiva/repository/internal/"/>
-            <ibiblio name="willowtreeapps-snapshot" m2compatible="true" changingPattern=".*-SNAPSHOT"
-                     checkmodified="true" usepoms="true"
+            <ibiblio name="willowtreeapps-snapshot" m2compatible="true"
+                     changingPattern=".*-SNAPSHOT"
+                     usepoms="true"
                      root="http://birch.willowtreeapps.com:8080/archiva/repository/snapshots/"
                      pattern="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"/>
+            <filesystem
+                    name="local-maven2"
+                    checkmodified="true"
+                    m2compatible="true" changingPattern=".*-SNAPSHOT">
+                <ivy pattern="${local-maven2-pattern}"/>
+                <artifact pattern="${local-maven2-pattern}"/>
+            </filesystem>
         </chain>
     </resolvers>
 </ivysettings>

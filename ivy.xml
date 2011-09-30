@@ -7,6 +7,7 @@
                     name="oak-library"
                     rev="1.0.4"
                     transitive="false"
-                    changing="true"/>
+                    changing="true"
+                    />
     </dependencies>
 </ivy-module>
