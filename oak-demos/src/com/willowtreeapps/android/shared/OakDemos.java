@@ -34,13 +34,15 @@ import java.util.List;
 import java.util.Map;
 
 public class OakDemos extends ListActivity {
+    public static final String CATEGORY_OAK = "com.willowtreeapps.android.intent.category.OAK";
+    public static final String PATH_EXTRA = "com.willowtreeapps.android.intent.extra.PATH";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();
-        String path = intent.getStringExtra("com.example.android.apis.Path");
+        String path = intent.getStringExtra(PATH_EXTRA);
 
         if (path == null) {
             path = "";
@@ -56,6 +58,7 @@ public class OakDemos extends ListActivity {
         List<Map<String, Object>> myData = new ArrayList<Map<String, Object>>();
 
         Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+        mainIntent.addCategory(CATEGORY_OAK);
         mainIntent.addCategory(Intent.CATEGORY_SAMPLE_CODE);
 
         PackageManager pm = getPackageManager();
@@ -129,7 +132,7 @@ public class OakDemos extends ListActivity {
     protected Intent browseIntent(String path) {
         Intent result = new Intent();
         result.setClass(this, OakDemos.class);
-        result.putExtra("com.example.android.apis.Path", path);
+        result.putExtra(PATH_EXTRA, path);
         return result;
     }
 

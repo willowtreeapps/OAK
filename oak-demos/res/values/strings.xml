@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">OAK Demos</string>
     <string name="hello">hi there</string>
-    <string name="mytest">hi there</string>
+    <string name="image_manager_activity">Image/ImageLoader</string>
 </resources>
