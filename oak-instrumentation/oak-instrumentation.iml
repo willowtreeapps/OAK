@@ -48,7 +48,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.google.android:android-test:2.1.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: junit:junit:4.8.1" level="project" />
     <orderEntry type="module" module-name="oak-library" />
-    <orderEntry type="module" module-name="oak-examples" scope="PROVIDED" />
+    <orderEntry type="module" module-name="oak-demos" scope="PROVIDED" />
   </component>
 </module>
 

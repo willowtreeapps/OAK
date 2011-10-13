@@ -64,7 +64,7 @@ Configure your IDE
 
  <<File -> New Project -> Import from existing model>>
 
- Edit oak-examples module settings to use <<target/generated-sources/r>>
+ Edit oak-demos module settings to use <<target/generated-sources/r>>
 
 **Import code style settings to IntelliJ
 

@@ -15,7 +15,7 @@
         <option name="CUSTOM_APK_RESOURCE_FOLDER" value="/target/generated-sources/combined-resources/res" />
         <option name="USE_CUSTOM_COMPILER_MANIFEST" value="true" />
         <option name="CUSTOM_COMPILER_MANIFEST" value="/target/filtered-manifest/AndroidManifest.xml" />
-        <option name="APK_PATH" value="/target/oak-examples.apk" />
+        <option name="APK_PATH" value="/target/oak-demos.apk" />
         <option name="LIBRARY_PROJECT" value="false" />
         <option name="RUN_PROCESS_RESOURCES_MAVEN_TASK" value="true" />
         <option name="GENERATE_UNSIGNED_APK" value="false" />
