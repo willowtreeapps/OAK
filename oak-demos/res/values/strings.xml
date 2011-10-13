@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">OAK Demos</string>
+    <string name="image_manager_activity">Image/ImageLoader</string>
+</resources>

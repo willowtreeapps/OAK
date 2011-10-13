@@ -9,9 +9,9 @@
     </parent>
 
     <groupId>com.willowtreeapps</groupId>
-    <artifactId>oak-examples</artifactId>
+    <artifactId>oak-demos</artifactId>
     <packaging>apk</packaging>
-    <name>OAK - Examples</name>
+    <name>OAK - Demos</name>
 
     <properties>
         <environment>development</environment>

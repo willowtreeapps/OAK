@@ -310,7 +310,7 @@
             </activation>
             <modules>
                 <module>oak-library</module>
-                <module>oak-examples</module>
+                <module>oak-demos</module>
                 <module>oak-instrumentation</module>
             </modules>
         </profile>
@@ -327,7 +327,7 @@
             </activation>
             <modules>
                 <module>oak-library</module>
-                <module>oak-examples</module>
+                <module>oak-demos</module>
             </modules>
         </profile>
     </profiles>
