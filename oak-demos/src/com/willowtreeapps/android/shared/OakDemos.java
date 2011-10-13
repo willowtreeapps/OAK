@@ -46,6 +46,9 @@ public class OakDemos extends ListActivity {
 
         if (path == null) {
             path = "";
+            setTitle(R.string.app_name);
+        } else {
+            setTitle(getString(R.string.app_name) + " > " + path);
         }
 
         setListAdapter(new SimpleAdapter(this, getData(path),
