@@ -1,4 +1,6 @@
 
+To create the intelliJ project files, try:
+mvn idea:idea
 
 
 run "mvn site:run" to see the documentation

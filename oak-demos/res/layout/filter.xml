@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+		android:background="#ccc">
+	<EditText
+			android:id="@+id/filter_et"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:hint="Search..."
+			android:textColorHint="#ccc"
+			android:inputType="textFilter"
+			android:imeOptions="actionDone"
+	        android:singleLine="true"
+			/>
+	<com.willowtreeapps.android.shared.lv.AmazingListView
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:layout_below="@id/filter_et"
+			android:id="@+id/amazing_lv"
+			android:fastScrollEnabled="true"
+			android:cacheColorHint="#00000000"
+			android:dividerHeight="1dip"
+			android:divider="#00000000"
+			android:clickable="true"
+			/>
+</RelativeLayout>

@@ -1,0 +1,13 @@
+Please check the oak-examples source code for more..
+
+ * The model that you are populating the listview with must extend <<AbstractSectionable.java>>
+
+%{snippet|id=sectionable|file=oak-demos/src/com/willowtreeapps/android/shared/lv/Person.java}
+
+ * <<SectionTool.java>> is used to re-organize the data for input to <<FilterAdapter>>
+%{snippet|id=sectiontool|file=oak-demos/src/com/willowtreeapps/android/shared/lv/FilterActivity.java}
+
+
+
+
+[filteradapter.png] Filter adapter

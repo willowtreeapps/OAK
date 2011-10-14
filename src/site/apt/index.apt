@@ -8,6 +8,8 @@ What is OAK Android Kit?
 
   * Pinned Header List view - mimic the functionality of the contacts app
 
+  * {{{./filter-adapter.html}FilterAdapter with Pinned Headers}} - Same as above but with search filtering
+
 How is OAK licensed?
 
   OAK is licenced under {{{./license.html}Apache 2.0}}: that means it's free.

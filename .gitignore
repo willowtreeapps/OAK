@@ -9,3 +9,6 @@ local.properties
 design/
 Tests/
 external_data/
+*.iml
+*/target/*
+.gitignore
