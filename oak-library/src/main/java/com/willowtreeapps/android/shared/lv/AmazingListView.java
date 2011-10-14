@@ -11,9 +11,6 @@ import android.widget.ListView;
 /**
  * A ListView that maintains a header pinned at the top of the list. The
  * pinned header can be pushed up and dissolved as needed.
- * <p/>
- * It also supports pagination by setting a custom view as the loading
- * indicator.
  */
 public class AmazingListView extends ListView {
     public static final String TAG = AmazingListView.class.getSimpleName();

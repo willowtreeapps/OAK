@@ -89,7 +89,6 @@ public class FilterActivity extends Activity {
 
     }
 
-
     class PersonAdapter extends FilterAdapter<Person> implements AdapterView.OnItemClickListener {
 
         @Override

@@ -25,6 +25,7 @@ public class Person implements Sectionable{
         return city;
     }
 
+    //models which share the same section are grouped accordingly
     @Override
     public String getSection() {
         return city;
