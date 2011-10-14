@@ -12,11 +12,13 @@ import java.util.List;
  * Date: 5/17/11
  * Time: 11:13 AM
  */
-public abstract class FilterAdapter<T> extends AmazingAdapter implements Filterable {
+public abstract class FilterAdapter<T extends Sectionable> extends AmazingAdapter
+        implements Filterable {
 
     private CustomFilter mFilter;
 
     private List<Pair<String, List<T>>> mObjects;
+
     private ArrayList<Pair<String, List<T>>> mOriginalValues;
 
     /**
@@ -28,38 +30,73 @@ public abstract class FilterAdapter<T> extends AmazingAdapter implements Filtera
 
     private final Object mLock = new Object();
 
-    public void init(List<Pair<String, List<T>>> data) {
-        mObjects = data;
-    }
 
-    public void setData(List<Pair<String, List<T>>> data) {
-        init(data);
+    public void setDataManually(List<Pair<String, List<T>>> data) {
+        mObjects = data;
         notifyDataSetChanged();
     }
 
-    public void clear(){
+    public void setData(List<T> unSectionedList) {
+
+        List<Pair<String, List<T>>> res = new ArrayList<Pair<String, List<T>>>();
+        Pair<String, List<T>> pair;
+        ArrayList<T> subArray = null;
+
+        for (int i = 0; i < unSectionedList.size(); i++) {
+            T currentSectionable = unSectionedList.get(i);
+            String nextSection = "";
+
+            if (subArray == null) {
+                subArray = new ArrayList<T>();
+            }
+
+            if (i + 1 < unSectionedList.size()) {
+                nextSection = unSectionedList.get(i + 1).getSection();
+            }
+            String currentSection = currentSectionable.getSection();
+
+            subArray.add(currentSectionable);
+
+            if (!currentSection.equals(nextSection)) {
+                pair = new Pair<String, List<T>>(currentSection, subArray);
+                res.add(pair);
+                subArray = null;
+            }
+
+        }
+
+        mObjects = res;
+        notifyDataSetChanged();
+    }
+
+    public void clear() {
         mObjects = null;
     }
 
-    public synchronized void replaceDataInSection(String section, List<T> dataForSection){
-        if (mObjects == null) return;
+    public synchronized void replaceDataInSection(String section, List<T> dataForSection) {
+        if (mObjects == null) {
+            return;
+        }
 
-        for (int i = 0;i < mObjects.size(); i++){
-            Pair<String,List<T>> pair = mObjects.get(i);
+        for (int i = 0; i < mObjects.size(); i++) {
+            Pair<String, List<T>> pair = mObjects.get(i);
 
-            if (pair.first.equals(section)){
+            if (pair.first.equals(section)) {
                 mObjects.remove(i);
-                Pair<String,List<T>> newPair = new Pair<String, List<T>>(section, dataForSection);
-                mObjects.add(i,newPair);
+                Pair<String, List<T>> newPair = new Pair<String, List<T>>(section, dataForSection);
+                mObjects.add(i, newPair);
                 break;
             }
         }
         notifyDataSetChanged();
     }
 
+
     @Override
     public int getCount() {
-        if (mObjects == null) return 0;
+        if (mObjects == null) {
+            return 0;
+        }
         int res = 0;
         for (int i = 0; i < mObjects.size(); i++) {
             res += mObjects.get(i).second.size();
@@ -87,8 +124,12 @@ public abstract class FilterAdapter<T> extends AmazingAdapter implements Filtera
 
     @Override
     public int getPositionForSection(int section) {
-        if (section < 0) section = 0;
-        if (section >= mObjects.size()) section = mObjects.size() - 1;
+        if (section < 0) {
+            section = 0;
+        }
+        if (section >= mObjects.size()) {
+            section = mObjects.size() - 1;
+        }
         int c = 0;
         for (int i = 0; i < mObjects.size(); i++) {
             if (section == i) {
@@ -117,7 +158,7 @@ public abstract class FilterAdapter<T> extends AmazingAdapter implements Filtera
     public String[] getSections() {
         String[] res = new String[mObjects.size()];
         for (int i = 0; i < mObjects.size(); i++) {
-            res[i] = mObjects.get(i).first.substring(0,1);
+            res[i] = mObjects.get(i).first.substring(0, 1);
         }
         return res;
     }
@@ -135,7 +176,9 @@ public abstract class FilterAdapter<T> extends AmazingAdapter implements Filtera
         int c = 0;
         for (int i = 0; i < mObjects.size(); i++) {
             if (position >= c && position < c + mObjects.get(i).second.size()) {
-                if (position == c) return true;
+                if (position == c) {
+                    return true;
+                }
             }
             c += mObjects.get(i).second.size();
         }
@@ -146,7 +189,9 @@ public abstract class FilterAdapter<T> extends AmazingAdapter implements Filtera
         int c = 0;
         for (int i = 0; i < mObjects.size(); i++) {
             if (position >= c && position < c + mObjects.get(i).second.size()) {
-                if (position == c + mObjects.get(i).second.size() - 1) return true;
+                if (position == c + mObjects.get(i).second.size() - 1) {
+                    return true;
+                }
             }
             c += mObjects.get(i).second.size();
         }
@@ -174,7 +219,8 @@ public abstract class FilterAdapter<T> extends AmazingAdapter implements Filtera
 
             if (prefix == null || prefix.length() == 0) {
                 synchronized (mLock) {
-                    List<Pair<String, List<T>>> list = new ArrayList<Pair<String, List<T>>>(mOriginalValues);
+                    List<Pair<String, List<T>>> list = new ArrayList<Pair<String, List<T>>>(
+                            mOriginalValues);
                     results.values = list;
                     results.count = list.size();
                 }
@@ -186,7 +232,6 @@ public abstract class FilterAdapter<T> extends AmazingAdapter implements Filtera
 
                 final ArrayList<Pair<String, List<T>>>
                         newValues = new ArrayList<Pair<String, List<T>>>(count);
-
 
                 for (int i = 0; i < count; i++) {
                     String sectionHeader = values.get(i).first;
@@ -222,7 +267,6 @@ public abstract class FilterAdapter<T> extends AmazingAdapter implements Filtera
                     }
 
                 }
-
 
                 results.values = newValues;
                 results.count = newValues.size();

@@ -6,7 +6,7 @@ package com.willowtreeapps.android.shared.lv;
 
 // START SNIPPET: sectionable
 
-public class Person extends AbstractSectionable {
+public class Person implements Sectionable{
 
     private String name;
 

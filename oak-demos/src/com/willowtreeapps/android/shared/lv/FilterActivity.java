@@ -83,9 +83,7 @@ public class FilterActivity extends Activity {
         persons.add(new Person("Tigger", "Hundred Acre Wood"));
         persons.add(new Person("Piglet", "Hundred Acre Wood"));
 
-        SectionTool<Person> sectionTool = new SectionTool<Person>();
-
-        adapter.setData(sectionTool.getSectionedData(persons));
+        adapter.setData(persons);
         adapter.notifyDataSetChanged();
         // END SNIPPET: sectiontool
 
