@@ -1,6 +1,20 @@
 FilterAdapter
 
- Your choice whether to use the search box.
+ Here's what you get with Filter adapter:
+
+ * Pinned headers
+
+ * An easy method of putting your data into sectioned data without the hassle of writing
+ routines to find the position in section, etc.
+
+ * Easily swap out assets depending on whether you're in first of section, end of section, etc.
+ (note the rounded corner backgrounds for the listview items)
+
+ * ListView searching (optional)
+
+ * Support for "fastscroll" if specified in listview
+
+
 
 
 [filteradapter.png] Filter adapter
@@ -9,7 +23,7 @@ FilterAdapter
 
 %{snippet|id=sectionable|file=oak-demos/src/com/willowtreeapps/android/shared/lv/Person.java}
 
- * Simply pass an List of your <<Sectionable>> object model to the adapter..
+ * Simply pass a List of your <<Sectionable>> object model to the adapter..
 
 %{snippet|id=sectiontool|file=oak-demos/src/com/willowtreeapps/android/shared/lv/FilterActivity.java}
 
