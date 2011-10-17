@@ -203,12 +203,12 @@
                             <dependency>
                                 <groupId>net.sf.proguard</groupId>
                                 <artifactId>proguard</artifactId>
-                                <version>4.4</version>
+                                <version>4.5.1</version>
                                 <scope>runtime</scope>
                             </dependency>
                         </dependencies>
                         <configuration>
-                            <proguardVersion>4.4</proguardVersion>
+                            <proguardVersion>4.5.1</proguardVersion>
                             <maxMemory>256m</maxMemory>
                             <injar>android-classes</injar>
                             <libs>
