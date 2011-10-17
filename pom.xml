@@ -89,22 +89,6 @@
     </reporting>
     <repositories>
         <repository>
-            <id>wta.internal</id>
-            <name>WillowTree Apps Repository - Internal</name>
-            <url>${releaseRepo}</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-                <checksumPolicy>warn</checksumPolicy>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-                <updatePolicy>always</updatePolicy>
-                <checksumPolicy>warn</checksumPolicy>
-            </snapshots>
-        </repository>
-
-        <repository>
             <id>wta.snapshots</id>
             <name>WillowTree Apps Repository - Snapshots</name>
             <url>${snapshotRepo}</url>
@@ -120,18 +104,33 @@
             </snapshots>
         </repository>
 
+        <repository>
+            <id>wta.internal</id>
+            <name>WillowTree Apps Repository - Internal</name>
+            <url>${releaseRepo}</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+        </repository>
     </repositories>
 
     <distributionManagement>
         <repository>
             <id>wta.internal</id>
             <name>Internal Release Repository</name>
-            <url>http://birch.willowtreeapps.com:8080/archiva/repository/internal/</url>
+            <url>${releaseRepo}</url>
         </repository>
         <snapshotRepository>
             <id>wta.snapshots</id>
             <name>Internal Snapshot Repository</name>
-            <url>http://birch.willowtreeapps.com:8080/archiva/repository/snapshots/</url>
+            <url>${snapshotRepo}</url>
         </snapshotRepository>
         <site>
             <id>oak-website</id>
