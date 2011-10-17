@@ -4,8 +4,6 @@ What is OAK Android Kit?
 
   * Image caching with transformations (rounded bitmaps? no problem)
 
-  * Auto-resizing TextView - allow your text to automatically grow and shrink within it's boundaries
-
   * Pinned Header List view - mimic the functionality of the contacts app
 
   * {{{./filter-adapter.html}FilterAdapter with Pinned Headers}} - Same as above but with search filtering
