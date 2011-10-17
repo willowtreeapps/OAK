@@ -1,0 +1,7 @@
+
+ResizedTextView
+
+
+[resized_textview.png] Resized Textview
+
+%{snippet|id=resizedtv_layout|file=oak-demos/res/layout/resized_textview_demo.xml}

@@ -10,6 +10,8 @@ What is OAK Android Kit?
 
   * {{{./filter-adapter.html}FilterAdapter with Pinned Headers}} - Same as above but with search filtering
 
+  * {{{./resized_textview.html}ResizedTextView}} - Auto-resizing textview makes long content smaller
+
 How is OAK licensed?
 
   OAK is licenced under {{{./license.html}Apache 2.0}}: that means it's free.

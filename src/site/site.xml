@@ -52,6 +52,7 @@
 		</menu>
 		<menu name="Components">
 			<item name="Filter Adapter" href="filter-adapter.html"/>
+            <item name="Resized TextView" href="resized_textview.html"/>
 		</menu>
 		<menu ref="reports"/>
 	</body>
