@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * User: mlake
- * Date: 5/17/11
- * Time: 11:13 AM
+ * User: mlake Date: 5/17/11 Time: 11:13 AM
  */
 public abstract class FilterAdapter<T extends Sectionable> extends AmazingAdapter
         implements Filterable {
@@ -22,10 +20,9 @@ public abstract class FilterAdapter<T extends Sectionable> extends AmazingAdapte
     private ArrayList<Pair<String, List<T>>> mOriginalValues;
 
     /**
-     * Lock used to modify the content of {@link #mObjects}. Any write operation
-     * performed on the array should be synchronized on this lock. This lock is also
-     * used by the filter (see {@link #getFilter()} to make a synchronized copy of
-     * the original array of data.
+     * Lock used to modify the content of {@link #mObjects}. Any write operation performed on the
+     * array should be synchronized on this lock. This lock is also used by the filter (see {@link
+     * #getFilter()} to make a synchronized copy of the original array of data.
      */
 
     private final Object mLock = new Object();
@@ -207,6 +204,7 @@ public abstract class FilterAdapter<T extends Sectionable> extends AmazingAdapte
     }
 
     private class CustomFilter extends Filter {
+
         @Override
         protected FilterResults performFiltering(CharSequence prefix) {
             FilterResults results = new FilterResults();
@@ -244,19 +242,22 @@ public abstract class FilterAdapter<T extends Sectionable> extends AmazingAdapte
                         final T sectionValue = values.get(i).second.get(k);
                         final String sectionValueText = sectionValue.toString().toLowerCase();
 
-                        if (sectionValueText.startsWith(prefixString)) {
-
+                        if (sectionValue instanceof Queryable && ((Queryable) sectionValue).isQueryMatch(prefix)) {
                             newSectionItems.add(sectionValue);
-
                         } else {
 
-                            final String[] words = sectionValueText.split(" ");
-                            final int wordCount = words.length;
+                            if (sectionValueText.startsWith(prefixString)) {
+                                newSectionItems.add(sectionValue);
+                            } else {
 
-                            for (int j = 0; j < wordCount; j++) {
-                                if (words[j].startsWith(prefixString)) {
-                                    newSectionItems.add(sectionValue);
-                                    break;
+                                final String[] words = sectionValueText.split(" ");
+                                final int wordCount = words.length;
+
+                                for (int j = 0; j < wordCount; j++) {
+                                    if (words[j].startsWith(prefixString)) {
+                                        newSectionItems.add(sectionValue);
+                                        break;
+                                    }
                                 }
                             }
                         }

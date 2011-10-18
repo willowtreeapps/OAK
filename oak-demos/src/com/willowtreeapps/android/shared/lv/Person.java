@@ -25,16 +25,22 @@ public class Person implements Sectionable{
         return city;
     }
 
-    //models which share the same section are grouped accordingly
+    //
     @Override
     public String getSection() {
         return city;
     }
 
-    //when filtering occurs, it is doing a case-insensitive search on toString()
+    /*
+     * when filtering occurs, it is doing a case-insensitive search on toString()
+     * for more complex matching, implement Queryable on your model
+     *
+     */
     @Override
     public String toString() {
         return name + " " + city;
     }
+
+
 }
 // END SNIPPET: sectionable
