@@ -111,6 +111,10 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 
 	}
 
+	public static OAKImageCache getImageCache() {
+		return imageCache;
+	}
+
 	private OAKImageLoader(String imageUrl, String printedUrl, OAKImageLoaderHandler handler, ImageTransformation... transformations) {
 		super(imageUrl, handler);
 		this.imageUrl = imageUrl;
