@@ -240,7 +240,10 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
 		// a pre-cache. We should just download the image, write it to disk,
 		// and *not* inflate a bitmap.
 		if (handler == null) {
-			downloadImage(true);
+			if(!imageCache.containsKey(this.printedUrl)) {
+				// But the downloading only needs to happen if we don't already have the image.
+				downloadImage(true);
+			}
 			return;
 		}
 
