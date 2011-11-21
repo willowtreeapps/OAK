@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.willowtreeapps</groupId>
@@ -19,7 +20,8 @@
         <versionCode>${maven.build.timestamp}</versionCode>
 
         <releaseRepo>http://birch.willowtreeapps.com:8080/archiva/repository/internal/</releaseRepo>
-        <snapshotRepo>http://birch.willowtreeapps.com:8080/archiva/repository/snapshots/</snapshotRepo>
+        <snapshotRepo>http://birch.willowtreeapps.com:8080/archiva/repository/snapshots/
+        </snapshotRepo>
     </properties>
 
     <ciManagement>
@@ -274,10 +276,10 @@
                         <sdk>
                             <platform>9</platform>
                         </sdk>
-                              <emulator>
+                        <emulator>
                             <avd>22</avd>
-                            <wait>10000</wait>
-                            <!--<options>-no-skin</options>-->
+                            <wait>60000</wait>
+                            <options>-wipe-data -noaudio -no-boot-anim</options>
                         </emulator>
                         <undeployBeforeDeploy>true</undeployBeforeDeploy>
                         <zipalign>
