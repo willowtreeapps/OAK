@@ -13,3 +13,5 @@ external_data/
 *.ipr
 */target/*
 .gitignore
+.project
+.classpath
