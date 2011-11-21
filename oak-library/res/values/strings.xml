@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OAK LIBRARY</string>
+    <string name="oak_test">This is from a resource in oak-library.</string>
+</resources>

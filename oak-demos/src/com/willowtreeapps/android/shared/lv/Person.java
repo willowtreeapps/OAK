@@ -1,12 +1,14 @@
 package com.willowtreeapps.android.shared.lv;
 
+import oak.Sectionable;
+
 /**
  * User: mlake Date: 10/13/11 Time: 3:31 PM
  */
 
 // START SNIPPET: sectionable
 
-public class Person implements Sectionable{
+public class Person implements Sectionable {
 
     private String name;
 

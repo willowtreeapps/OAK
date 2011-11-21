@@ -6,7 +6,7 @@
 		android:layout_height="fill_parent"
 		android:orientation="vertical">
 
-	<com.willowtreeapps.android.shared.ResizedTextView
+	<oak.ResizedTextView
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:text="Here is my very very very very long textview"
@@ -14,7 +14,7 @@
             android:background="#44ff0000"
 			/>
 
-    <com.willowtreeapps.android.shared.ResizedTextView
+    <oak.ResizedTextView
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:text="Here is my very very super duper extreme awesome textview"
@@ -23,7 +23,7 @@
             android:background="#4400ff00"
 			/>
     <!-- START SNIPPET: resizedtv_layout -->
-    <com.willowtreeapps.android.shared.ResizedTextView
+    <oak.ResizedTextView
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
             android:gravity="center"
@@ -35,7 +35,7 @@
             android:padding="0dip"
             android:ellipsize="end"
 			/>
-        <com.willowtreeapps.android.shared.ResizedTextView
+        <oak.ResizedTextView
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
             android:gravity="center"

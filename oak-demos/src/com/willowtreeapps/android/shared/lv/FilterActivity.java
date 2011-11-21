@@ -17,6 +17,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import oak.AmazingListView;
+import oak.FilterAdapter;
+
 /**
  * User: mlake Date: 10/13/11 Time: 3:22 PM
  */

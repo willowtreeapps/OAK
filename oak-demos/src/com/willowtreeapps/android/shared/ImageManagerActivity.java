@@ -29,6 +29,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import oak.OAKImageLoader;
+import oak.OAKImageLoaderHandler;
+
 public class ImageManagerActivity extends ListActivity {
 
     private List<PhotoItem> photoItemList;
@@ -111,7 +114,8 @@ public class ImageManagerActivity extends ListActivity {
                                         paint.setColor(0xFF00FF00);
                                         paint.setStrokeWidth(0.1f);
                                         canvas.setBitmap(image);
-                                        canvas.drawCircle(image.getWidth() / 2, image.getHeight() / 2, 5.0f, paint);
+                                        canvas.drawCircle(image.getWidth() / 2,
+                                                image.getHeight() / 2, 5.0f, paint);
                                         return image;
                                     }
 

@@ -10,6 +10,7 @@
     </parent>
     <groupId>com.willowtreeapps</groupId>
     <artifactId>oak-library</artifactId>
+    <packaging>apklib</packaging>
     <name>OAK - Library</name>
     <description>A library for shared android functionality</description>
 
@@ -31,5 +32,14 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+                <extensions>true</extensions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
