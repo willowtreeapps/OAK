@@ -2,6 +2,8 @@ package com.willowtreeapps.android.shared;
 
 import android.test.ActivityInstrumentationTestCase2;
 
+import oak.demo.ImageManagerActivity;
+
 /**
  * User: mlake
  * Date: 9/20/11

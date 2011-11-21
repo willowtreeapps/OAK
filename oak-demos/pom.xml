@@ -143,6 +143,22 @@
                                         <ignore />
                                     </action>
                                 </pluginExecution>
+                                <pluginExecution>
+                                	<pluginExecutionFilter>
+                                		<groupId>
+                                			com.jayway.maven.plugins.android.generation2
+                                		</groupId>
+                                		<artifactId>
+                                			android-maven-plugin
+                                		</artifactId>
+                                		<versionRange>
+                                			[3.0.0-SNAPSHOT,)
+                                		</versionRange>
+                                		<goals>
+                                			<goal>emulator-start</goal>
+                                		</goals>
+                                	</pluginExecutionFilter>
+                                </pluginExecution>
                             </pluginExecutions>
                         </lifecycleMappingMetadata>
                     </configuration>

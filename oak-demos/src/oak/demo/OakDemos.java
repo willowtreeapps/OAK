@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-package com.willowtreeapps.android.shared;
+package oak.demo;
+
+import com.willowtreeapps.android.shared.R;
 
 import android.app.ListActivity;
 import android.content.Intent;

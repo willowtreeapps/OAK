@@ -10,7 +10,6 @@
     </parent>
     <groupId>com.willowtreeapps</groupId>
     <artifactId>oak-library</artifactId>
-    <packaging>apklib</packaging>
     <name>OAK - Library</name>
     <description>A library for shared android functionality</description>
 

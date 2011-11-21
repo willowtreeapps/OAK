@@ -1,4 +1,4 @@
-package com.willowtreeapps.android.shared;
+package oak.demo;
 
 public class PhotoItem {
 

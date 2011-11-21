@@ -1,4 +1,6 @@
-package com.willowtreeapps.android.shared;
+package oak.demo;
+
+import com.willowtreeapps.android.shared.R;
 
 import android.app.Activity;
 import android.content.Context;

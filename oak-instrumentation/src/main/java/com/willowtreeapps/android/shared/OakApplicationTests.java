@@ -4,6 +4,8 @@ import android.test.ApplicationTestCase;
 import android.test.suitebuilder.annotation.MediumTest;
 import android.test.suitebuilder.annotation.SmallTest;
 
+import oak.demo.OakApplication;
+
 /**
  * User: mlake
  * Date: 9/20/11

@@ -10,5 +10,6 @@ design/
 Tests/
 external_data/
 *.iml
+*.ipr
 */target/*
 .gitignore
