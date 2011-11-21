@@ -16,8 +16,6 @@
 
 package oak.demo;
 
-import com.willowtreeapps.android.shared.R;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.content.pm.PackageManager;

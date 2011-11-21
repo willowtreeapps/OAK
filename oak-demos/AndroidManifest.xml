@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="com.willowtreeapps.android.shared"
+      package="oak.demo"
       android:versionCode="1"
       android:versionName="1.0">
-    <uses-sdk android:minSdkVersion="7" />
+    <uses-sdk android:minSdkVersion="8" />
 
     <application android:icon="@drawable/icon" android:label="@string/app_name">
-        <activity android:name="oak.demo.OakDemos"
+        <activity android:name=".OakDemos"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="oak.demo.ImageManagerActivity"
+        <activity android:name=".ImageManagerActivity"
                   android:label="@string/image_manager_activity"
                   android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="com.willowtreeapps.android.intent.category.OAK" />
+                <category android:name="oak.android.intent.category.OAK" />
             </intent-filter>
         </activity>
-	    <activity android:name="oak.demo.FilterActivity"
+	    <activity android:name=".FilterActivity"
                   android:label="@string/filter_activity"
                   android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="com.willowtreeapps.android.intent.category.OAK" />
+                <category android:name="oak.android.intent.category.OAK" />
             </intent-filter>
         </activity>
-        <activity android:name="oak.demo.ResizedTextViewActivity"
+        <activity android:name=".ResizedTextViewActivity"
                   android:label="@string/resized_textview_activity"
                   android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="com.willowtreeapps.android.intent.category.OAK" />
+                <category android:name="oak.android.intent.category.OAK" />
             </intent-filter>
         </activity>
     </application>

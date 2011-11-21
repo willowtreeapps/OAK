@@ -1,4 +1,4 @@
-package com.willowtreeapps.android.shared;
+package oak.test;
 
 import android.test.suitebuilder.TestSuiteBuilder;
 import junit.framework.Test;

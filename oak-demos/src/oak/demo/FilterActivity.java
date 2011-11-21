@@ -1,7 +1,5 @@
 package oak.demo;
 
-import com.willowtreeapps.android.shared.R;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;

@@ -7,5 +7,5 @@ package oak;
  */
 public interface OAK {
 
-     static final String XMLNS = "http://willowtreeapps.com/oak/schema";
+     static final String XMLNS = "http://oak/oak/schema";
 }
