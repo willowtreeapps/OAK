@@ -7,9 +7,9 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.BaseAdapter;
 import android.widget.SectionIndexer;
 
-public abstract class AmazingAdapter extends BaseAdapter
+public abstract class BaseSectionAdapter extends BaseAdapter
         implements SectionIndexer, OnScrollListener {
-	public static final String TAG = AmazingAdapter.class.getSimpleName();
+	public static final String TAG = BaseSectionAdapter.class.getSimpleName();
 
 	
     /**
@@ -54,8 +54,8 @@ public abstract class AmazingAdapter extends BaseAdapter
     
 	@Override
 	public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-		if (view instanceof AmazingListView) {
-			((AmazingListView) view).configureHeaderView(firstVisibleItem);
+		if (view instanceof SectionListView) {
+			((SectionListView) view).configureHeaderView(firstVisibleItem);
 		}
 	}
 

@@ -15,15 +15,15 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import oak.AmazingListView;
-import oak.FilterAdapter;
+import oak.SectionListView;
+import oak.SectionAdapter;
 
 /**
  * User: mlake Date: 10/13/11 Time: 3:22 PM
  */
-public class FilterActivity extends Activity {
+public class SectionActivity extends Activity {
 
-    AmazingListView amazingListView;
+    SectionListView mSectionListView;
 
     private PersonAdapter adapter;
 
@@ -33,15 +33,15 @@ public class FilterActivity extends Activity {
 
         setContentView(R.layout.filter);
 
-        amazingListView = (AmazingListView) findViewById(R.id.amazing_lv);
-        amazingListView.setPinnedHeaderView(
-                LayoutInflater.from(this).inflate(R.layout.filter_header, amazingListView, false));
+        mSectionListView = (SectionListView) findViewById(R.id.amazing_lv);
+        mSectionListView.setPinnedHeaderView(
+                LayoutInflater.from(this).inflate(R.layout.filter_header, mSectionListView, false));
 
-        amazingListView.setAdapter(adapter = new PersonAdapter());
+        mSectionListView.setAdapter(adapter = new PersonAdapter());
 
         populateAdapter();
 
-        amazingListView.setOnItemClickListener(adapter);
+        mSectionListView.setOnItemClickListener(adapter);
 
         ((TextView) findViewById(R.id.filter_et)).addTextChangedListener(new TextWatcher() {
             @Override
@@ -90,7 +90,7 @@ public class FilterActivity extends Activity {
 
     }
 
-    class PersonAdapter extends FilterAdapter<Person> implements AdapterView.OnItemClickListener {
+    class PersonAdapter extends SectionAdapter<Person> implements AdapterView.OnItemClickListener {
 
         @Override
         public View getAmazingView(int position, View convertView, ViewGroup parent) {
@@ -156,7 +156,7 @@ public class FilterActivity extends Activity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-            Toast.makeText(FilterActivity.this, "You tapped on: " + getItem(position).getName(),
+            Toast.makeText(SectionActivity.this, "You tapped on: " + getItem(position).getName(),
                     1000);
         }
     }

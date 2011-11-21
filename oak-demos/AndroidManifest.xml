@@ -22,7 +22,7 @@
                 <category android:name="oak.android.intent.category.OAK" />
             </intent-filter>
         </activity>
-	    <activity android:name=".FilterActivity"
+	    <activity android:name=".SectionActivity"
                   android:label="@string/filter_activity"
                   android:screenOrientation="portrait">
             <intent-filter>

@@ -59,7 +59,7 @@ public class ResizedTextView extends TextView {
          */
 
     private int findTextSize(int lines) {
-        Log.d("OAK", "Finding TextSize with lines: " + lines);
+        //Log.d("OAK", "Finding TextSize with lines: " + lines);
         float textSize = 1;
         this.setTextSize(textSize);
         this.setLines(lines);
@@ -70,7 +70,7 @@ public class ResizedTextView extends TextView {
             this.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
             newWidth = this.getMeasuredWidth();
         }
-        Log.d("OAK", "Best fitting size is: " + (textSize - 4));
+        //Log.d("OAK", "Best fitting size is: " + (textSize - 4));
         if (textSize - 2 < minTextSize) {
             if (lines + 1 > maxLines) {
                 return (int) (minTextSize);

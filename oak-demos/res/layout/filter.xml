@@ -14,7 +14,7 @@
 			android:imeOptions="actionDone"
 	        android:singleLine="true"
 			/>
-	<oak.AmazingListView
+	<oak.SectionListView
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent"
 			android:layout_below="@id/filter_et"

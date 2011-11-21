@@ -12,8 +12,8 @@ import android.widget.ListView;
  * A ListView that maintains a header pinned at the top of the list. The
  * pinned header can be pushed up and dissolved as needed.
  */
-public class AmazingListView extends ListView {
-    public static final String TAG = AmazingListView.class.getSimpleName();
+public class SectionListView extends ListView {
+    public static final String TAG = SectionListView.class.getSimpleName();
 
     private View mHeaderView;
     private boolean mHeaderViewVisible;
@@ -21,7 +21,7 @@ public class AmazingListView extends ListView {
     private int mHeaderViewWidth;
     private int mHeaderViewHeight;
 
-    private AmazingAdapter adapter;
+    private BaseSectionAdapter mAdapter;
 
     public void setPinnedHeaderView(View view) {
         mHeaderView = view;
@@ -59,15 +59,15 @@ public class AmazingListView extends ListView {
             return;
         }
 
-        int state = adapter.getPinnedHeaderState(position);
+        int state = mAdapter.getPinnedHeaderState(position);
         switch (state) {
-            case AmazingAdapter.PINNED_HEADER_GONE: {
+            case BaseSectionAdapter.PINNED_HEADER_GONE: {
                 mHeaderViewVisible = false;
                 break;
             }
 
-            case AmazingAdapter.PINNED_HEADER_VISIBLE: {
-                adapter.configurePinnedHeader(mHeaderView, position, 255);
+            case BaseSectionAdapter.PINNED_HEADER_VISIBLE: {
+                mAdapter.configurePinnedHeader(mHeaderView, position, 255);
                 if (mHeaderView.getTop() != 0) {
                     mHeaderView.layout(0, 0, mHeaderViewWidth, mHeaderViewHeight);
                 }
@@ -75,7 +75,7 @@ public class AmazingListView extends ListView {
                 break;
             }
 
-            case AmazingAdapter.PINNED_HEADER_PUSHED_UP: {
+            case BaseSectionAdapter.PINNED_HEADER_PUSHED_UP: {
                 View firstView = getChildAt(0);
                 if (firstView != null) {
                     int bottom = firstView.getBottom();
@@ -89,7 +89,7 @@ public class AmazingListView extends ListView {
                         y = 0;
                         alpha = 255;
                     }
-                    adapter.configurePinnedHeader(mHeaderView, position, alpha);
+                    mAdapter.configurePinnedHeader(mHeaderView, position, alpha);
                     if (mHeaderView.getTop() != y) {
                         mHeaderView.layout(0, y, mHeaderViewWidth, mHeaderViewHeight + y);
                     }
@@ -109,32 +109,32 @@ public class AmazingListView extends ListView {
     }
 
 
-    public AmazingListView(Context context) {
+    public SectionListView(Context context) {
         super(context);
     }
 
-    public AmazingListView(Context context, AttributeSet attrs) {
+    public SectionListView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public AmazingListView(Context context, AttributeSet attrs, int defStyle) {
+    public SectionListView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
 
     @Override
     public void setAdapter(ListAdapter adapter) {
-        if (!(adapter instanceof AmazingAdapter)) {
-            throw new IllegalArgumentException(AmazingListView.class.getSimpleName() + " must use adapter of type " + AmazingAdapter.class.getSimpleName());
+        if (!(adapter instanceof BaseSectionAdapter)) {
+            throw new IllegalArgumentException(SectionListView.class.getSimpleName() + " must use adapter of type " + BaseSectionAdapter.class.getSimpleName());
         }
 
         // previous adapter
-        if (this.adapter != null) {
+        if (this.mAdapter != null) {
             this.setOnScrollListener(null);
         }
 
-        this.adapter = (AmazingAdapter) adapter;
-        this.setOnScrollListener((AmazingAdapter) adapter);
+        this.mAdapter = (BaseSectionAdapter) adapter;
+        this.setOnScrollListener((BaseSectionAdapter) adapter);
 
         View dummy = new View(getContext());
         super.addFooterView(dummy);
@@ -143,8 +143,8 @@ public class AmazingListView extends ListView {
     }
 
     @Override
-    public AmazingAdapter getAdapter() {
-        return adapter;
+    public BaseSectionAdapter getAdapter() {
+        return mAdapter;
     }
 
 }

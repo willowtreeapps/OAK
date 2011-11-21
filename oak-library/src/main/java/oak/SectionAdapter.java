@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * User: mlake Date: 5/17/11 Time: 11:13 AM
  */
-public abstract class FilterAdapter<T extends Sectionable> extends AmazingAdapter
+public abstract class SectionAdapter<T extends Sectionable> extends BaseSectionAdapter
         implements Filterable {
 
     private CustomFilter mFilter;
