@@ -13,6 +13,6 @@ import oak.demo.ImageManagerActivity;
 public class ImageManagerActivityTest extends ActivityInstrumentationTestCase2<ImageManagerActivity> {
 
     public ImageManagerActivityTest() {
-        super("com.willowtreeapps.android.shared", ImageManagerActivity.class);
+        super("oak.demo", ImageManagerActivity.class);
     }
 }

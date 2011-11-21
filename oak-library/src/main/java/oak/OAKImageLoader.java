@@ -1,7 +1,7 @@
 package oak;
 
-import com.github.droidfu.cachefu.ImageCache;
-import com.github.droidfu.imageloader.ImageLoader;
+import oak.external.com.github.droidfu.cachefu.ImageCache;
+import oak.external.com.github.droidfu.imageloader.ImageLoader;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

@@ -1,6 +1,6 @@
 package oak;
 
-import com.github.droidfu.cachefu.ImageCache;
+import oak.external.com.github.droidfu.cachefu.ImageCache;
 
 import android.app.ActivityManager;
 import android.content.Context;
