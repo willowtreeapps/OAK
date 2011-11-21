@@ -152,7 +152,7 @@
                                 			android-maven-plugin
                                 		</artifactId>
                                 		<versionRange>
-                                			[3.0.0-SNAPSHOT,)
+                                			[3.0.0-alpha-14,)
                                 		</versionRange>
                                 		<goals>
                                 			<goal>emulator-start</goal>
