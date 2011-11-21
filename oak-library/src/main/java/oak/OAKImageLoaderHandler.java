@@ -1,4 +1,4 @@
-package com.willowtreeapps.android.shared;
+package oak;
 
 import com.github.droidfu.imageloader.ImageLoaderHandler;
 
@@ -7,6 +7,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Message;
 import android.widget.ImageView;
+
+import oak.OAKImageLoader;
 
 
 public class OAKImageLoaderHandler extends ImageLoaderHandler {

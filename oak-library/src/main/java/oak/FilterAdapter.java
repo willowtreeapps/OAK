@@ -1,4 +1,7 @@
-package com.willowtreeapps.android.shared.lv;
+package oak;
+
+import com.willowtreeapps.android.shared.lv.Queryable;
+import com.willowtreeapps.android.shared.lv.Sectionable;
 
 import android.util.Pair;
 import android.widget.Filter;
@@ -6,6 +9,8 @@ import android.widget.Filterable;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import oak.AmazingAdapter;
 
 /**
  * User: mlake Date: 5/17/11 Time: 11:13 AM

@@ -1,9 +1,11 @@
-package com.willowtreeapps.android.shared;
+package oak;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.TextView;
+
+import oak.OAK;
 
 public class ResizedTextView extends TextView {
 

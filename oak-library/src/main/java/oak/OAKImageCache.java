@@ -1,4 +1,4 @@
-package com.willowtreeapps.android.shared;
+package oak;
 
 import com.github.droidfu.cachefu.ImageCache;
 
@@ -7,7 +7,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Debug.MemoryInfo;
-import android.os.Process;
 import android.util.Log;
 
 import java.io.ByteArrayInputStream;

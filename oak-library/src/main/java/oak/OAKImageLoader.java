@@ -1,7 +1,8 @@
-package com.willowtreeapps.android.shared;
+package oak;
 
 import com.github.droidfu.cachefu.ImageCache;
 import com.github.droidfu.imageloader.ImageLoader;
+import com.willowtreeapps.android.shared.OAKImageLoaderHandler;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
