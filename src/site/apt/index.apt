@@ -6,9 +6,13 @@ What is OAK Android Kit?
 
   * Pinned Header List view - mimic the functionality of the contacts app
 
-  * {{{./filter-adapter.html}FilterAdapter with Pinned Headers}} - Same as above but with search filtering
+  * {{{./section-adapter.html}SectionAdapter with Pinned Headers}} - Same as above but with search filtering
 
   * {{{./resized_textview.html}ResizedTextView}} - Auto-resizing textview makes long content smaller
+
+Credits
+
+  * OAK contains re-packaged classes from Matthias KŠppler's {{{https://github.com/kaeppler/droid-fu}Droid-Fu}} library.
 
 How is OAK licensed?
 
