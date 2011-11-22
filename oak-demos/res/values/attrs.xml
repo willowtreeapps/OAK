@@ -16,13 +16,12 @@
   -->
 
 <resources>
-	<declare-styleable
-		name="ResizedTextView">
-		<attr
-			name="maxCustomLines"
-			format="integer" />
-		<attr
-			name="minTextSize"
-			format="integer" />
-	</declare-styleable>
+    <declare-styleable name="ResizedTextView">
+        <attr name="maxCustomLines" format="integer"/>
+        <attr name="minTextSize" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="TextViewWithFont">
+        <attr name="font" format="string"/>
+    </declare-styleable>
 </resources>
