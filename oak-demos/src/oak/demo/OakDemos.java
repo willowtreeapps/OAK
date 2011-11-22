@@ -34,8 +34,8 @@ import java.util.List;
 import java.util.Map;
 
 public class OakDemos extends ListActivity {
-    public static final String CATEGORY_OAK = "com.willowtreeapps.android.intent.category.OAK";
-    public static final String PATH_EXTRA = "com.willowtreeapps.android.intent.extra.PATH";
+    public static final String CATEGORY_OAK = "oak.android.intent.category.OAK";
+    public static final String PATH_EXTRA = "oak.android.intent.extra.PATH";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
