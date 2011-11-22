@@ -59,7 +59,7 @@ Quick Start Guide
  (NOTE: To use a different version of OAK, simply change the <<rev>> attribute in your ivy.xml file):
 
 +---
-ant fetch-oak
+ant fetch-dependencies
 +---
 
 

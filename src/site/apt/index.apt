@@ -10,6 +10,8 @@ What is OAK Android Kit?
 
   * {{{./resized_textview.html}ResizedTextView}} - Auto-resizing textview makes long content smaller
 
+  * TextViewWithFont - Drop your fonts in "assets/fonts" and use this handy component to set a custom font
+
 Credits
 
   * OAK contains re-packaged classes from Matthias KŠppler's {{{https://github.com/kaeppler/droid-fu}Droid-Fu}} library.

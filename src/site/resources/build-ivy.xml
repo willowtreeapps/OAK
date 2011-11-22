@@ -33,7 +33,7 @@ ivy is in at least one of ant's lib dir or the local lib dir. -->
         <ivy:settings file="ivysettings.xml"/>
     </target>
 
-    <target name="fetch-oak" depends="init-ivy">
+    <target name="fetch-dependencies" depends="init-ivy">
         <delete>
             <fileset dir="${ivy.lib.dir}" includes="oak-library*"/>
         </delete>
