@@ -27,8 +27,8 @@ How to configure your environment to build OAK
 
 +-------------------------------------------------------------------------------------
  setenv M2_HOME /usr/share/maven
- export ANDROID_HOME=/Users/Michael Lake/sdk/android-sdk-mac_x86
- export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home/
+ setenv ANDROID_HOME /Users/Michael Lake/sdk/android-sdk-mac_x86
+ setenv JAVA_HOME /System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home/
 +--------------------------------------------------------------------------------------
 
  Reboot your computer once you've made the changes, open terminal and verify they're properly set (using <<env>> from terminal)
