@@ -1,7 +1,5 @@
 
-To create the intelliJ project files, try:
-mvn idea:idea
-
+Recommend using IntelliJ IDEA 11 - Open using New Project... -> From External Model
 
 run "mvn site:run" to see the documentation
 

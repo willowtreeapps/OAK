@@ -1,0 +1,6 @@
+CancelEditText
+
+
+[cancel_edit_text.png] CancelEditText
+
+%{snippet|id=canceledittext_layout|file=oak-demos/res/layout/cancel_edit_text_demo.xml}
