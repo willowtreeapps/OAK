@@ -16,6 +16,12 @@
   -->
 
 <resources>
+
+    <declare-styleable name="CancelEditText">
+        <attr name="cancelDrawable" format="reference"/>
+    </declare-styleable>
+
+
     <declare-styleable name="ResizedTextView">
         <attr name="maxCustomLines" format="integer"/>
         <attr name="minTextSize" format="integer"/>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:oak="http://oak/oak/schema"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="The following CancelEditText has a cancel drawable to clear the text (it extends TextViewWithFont, so you can even specify a custom font if you like)"
+            />
+
+    <oak.CancelEditText
+            android:id="@+id/cancel_edit_one"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="this is a cancel edit text"
+            oak:cancelDrawable="@drawable/ic_close"
+            />
+
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="The following EditText is here for comparison"
+            />
+    <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="this is a normal edit text"
+            />
+
+</LinearLayout>

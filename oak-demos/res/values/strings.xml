@@ -20,4 +20,5 @@
     <string name="resized_textview_activity">Widget/ResizedTextView</string>
 	<string name="filter_activity">ListView/Sections with Filter</string>
     <string name="textview_with_font_activity">Widget/TextViewWithFont</string>
+    <string name="cancel_edit_text_activity">Widget/CancelEditText</string>
 </resources>

@@ -36,7 +36,7 @@ public class TextViewWithFont extends TextView {
     private static HashMap<String, Typeface> mFontMap;
 
     public TextViewWithFont(Context context) {
-        this(context, null, 0);
+        this(context, null);
     }
 
     public TextViewWithFont(Context context, AttributeSet attrs) {
