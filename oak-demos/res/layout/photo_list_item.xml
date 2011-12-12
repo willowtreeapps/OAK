@@ -23,7 +23,8 @@
     	android:id="@+id/item_image"
     	android:layout_height="50dp"
     	android:layout_width="50dp"
-    	android:layout_gravity="left|center_vertical">
+    	android:layout_gravity="left|center_vertical"
+        android:scaleType="centerInside">
     </ImageView>
     <TextView
     	android:id="@+id/item_text"

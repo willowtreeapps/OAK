@@ -26,8 +26,6 @@ import org.apache.http.util.EntityUtils;
 import android.app.ListActivity;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Debug;
 import android.os.Handler;
@@ -46,15 +44,12 @@ import java.util.List;
 import java.util.Map;
 
 import oak.OAKImageLoader;
-import oak.OAKImageLoaderHandler;
+import oak.transformation.ImageBorder;
+import oak.transformation.ImageScale;
 
 public class ImageManagerActivity extends ListActivity {
 
     private List<PhotoItem> photoItemList;
-
-    private Handler droidFuHandler;
-
-    private Map<String, Bitmap> thumbnailCache = new HashMap<String, Bitmap>();
 
     /**
      * Called when the activity is first created.
@@ -67,7 +62,6 @@ public class ImageManagerActivity extends ListActivity {
         initializeData();
         OAKImageLoader.initialize(this, OAKImageLoader.PREFER_SD);
         OAKImageLoader.clearCache();
-        droidFuHandler = new Handler();
 
         ListAdapter adapter = new PhotoItemListAdapter(photoItemList, this);
         getListView().setAdapter(adapter);
@@ -106,42 +100,21 @@ public class ImageManagerActivity extends ListActivity {
             final PhotoItem photoItem = photoItemList.get(position);
 
             if (res == null) {
-                res = (LinearLayout) getLayoutInflater().inflate(R.layout.photo_list_item, parent, false);
+                res = (LinearLayout) getLayoutInflater()
+                        .inflate(R.layout.photo_list_item, parent, false);
             }
 
             final ImageView imageView = (ImageView) res.findViewById(R.id.item_image);
 
-            if (thumbnailCache.containsKey(photoItem.getURL()) && thumbnailCache.get(photoItem.getURL()) != null) {
-                imageView.setImageBitmap(thumbnailCache.get(photoItem.getURL()));
-            } else {
-                droidFuHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        OAKImageLoader.start(photoItem.getURL(),
-                                new OAKImageLoaderHandler(imageView, photoItem.getURL()) {
+            OAKImageLoader.start(
+                    photoItem.getURL(),
+                    imageView,
+                    getResources().getDrawable(R.drawable.icon),
+                    null,
+                    new ImageScale(100,50),
+                    new ImageBorder(3, 0xff00ff00)
+                    );
 
-                                    public Bitmap transform(Bitmap image) {
-                                        // Scales the image down to 100x100, draws a
-                                        // green dot in the middle
-                                        // to make it apparent transform is occurring
-                                        image = Bitmap.createScaledBitmap(image, 100, 100, true);
-                                        Canvas canvas = new Canvas();
-                                        Paint paint = new Paint();
-                                        paint.setColor(0xFF00FF00);
-                                        paint.setStrokeWidth(0.1f);
-                                        canvas.setBitmap(image);
-                                        canvas.drawCircle(image.getWidth() / 2,
-                                                image.getHeight() / 2, 5.0f, paint);
-                                        return image;
-                                    }
-
-                                    public String fingerprint() {
-                                        return "scaledot";
-                                    }
-                                });
-                    }
-                });
-            }
 
             TextView tv = (TextView) res.findViewById(R.id.item_text);
             tv.setText(photoItem.getTitle());
@@ -165,7 +138,7 @@ public class ImageManagerActivity extends ListActivity {
     /**
      * Temporary ad-hoc XML parser Scans the HTML String to find attributes requested
      *
-     * @param mainTag      The main tag in HTML. Usually the 'item' tag.
+     * @param mainTag The main tag in HTML. Usually the 'item' tag.
      * @param attributes A list of requested attributes within the main tag.
      */
     public void setData(String mainTag, ArrayList<String> attributes, String HTML) {
@@ -181,7 +154,8 @@ public class ImageManagerActivity extends ListActivity {
             int startMainIndex = HTML.indexOf(startMainTag, mainCursor);
             int stopMainIndex = HTML.indexOf(stopMainTag, mainCursor);
 
-            String HTMLScope = HTML.substring(startMainIndex + startMainTag.length(), stopMainIndex);
+            String HTMLScope = HTML
+                    .substring(startMainIndex + startMainTag.length(), stopMainIndex);
 
             for (String attribute : attributes) {
                 String startAttributeTag = "<" + attribute + ">";
@@ -192,8 +166,9 @@ public class ImageManagerActivity extends ListActivity {
                     int startAttributeIndex = HTMLScope.indexOf(startAttributeTag);
                     int stopAttributeIndex = HTMLScope.indexOf(stopAttributeTag);
 
-                    String attributeValue = HTMLScope.substring(startAttributeIndex + startAttributeTag.length(),
-                            stopAttributeIndex);
+                    String attributeValue = HTMLScope
+                            .substring(startAttributeIndex + startAttributeTag.length(),
+                                    stopAttributeIndex);
                     attributeValue = attributeValue.replace("&amp;", "&").replace("&apos;", "\'");
                     dataMap.put(attribute, attributeValue);
                 }
