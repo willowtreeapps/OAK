@@ -283,7 +283,6 @@
                         <zipalign>
                             <verbose>true</verbose>
                         </zipalign>
-                        <undeployBeforeDeploy>true</undeployBeforeDeploy>
                         <dex>
                             <jvmArguments>
                                 <jvmArgument>-Xms256m</jvmArgument>
