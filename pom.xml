@@ -277,7 +277,7 @@
                         <emulator>
                             <avd>22</avd>
                             <wait>60000</wait>
-                            <options>-wipe-data -noaudio -no-boot-anim</options>
+                            <options>-noaudio -no-boot-anim</options>
                         </emulator>
                         <undeployBeforeDeploy>true</undeployBeforeDeploy>
                         <zipalign>

@@ -46,26 +46,34 @@ public class TextViewWithFont extends TextView {
     public TextViewWithFont(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
-        if (mFontMap == null) {
-            initializeFontMap(context);
+        String fontName = null;
+        if (attrs != null) {
+            fontName = attrs.getAttributeValue(OAK.XMLNS, "font");
         }
 
-        String fontName = null;
-        if (attrs != null) fontName = attrs.getAttributeValue(OAK.XMLNS, "font");
-
         if (fontName != null) {
-            Typeface typeface = mFontMap.get(fontName);
-
-            if (typeface == null) {
-                throw new IllegalArgumentException(
-                        "Font name must match file name in assets/fonts/ directory: " + fontName);
-            }
-            setTypeface(typeface);
+            setTypeface(getStaticTypeFace(context, fontName));
         }
 
     }
 
-    private void initializeFontMap(Context context) {
+    public static Typeface getStaticTypeFace(Context context, String fontFileName) {
+        if (mFontMap == null) {
+            initializeFontMap(context);
+        }
+        
+        Typeface typeface = mFontMap.get(fontFileName);
+
+        if (typeface == null) {
+            throw new IllegalArgumentException(
+                    "Font name must match file name in assets/fonts/ directory: " + fontFileName);
+        }
+
+        return typeface;
+    }
+
+
+    private static void initializeFontMap(Context context) {
         mFontMap = new HashMap<String, Typeface>();
 
         AssetManager assetManager = context.getAssets();
