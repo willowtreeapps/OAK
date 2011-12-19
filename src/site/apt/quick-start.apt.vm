@@ -1,5 +1,8 @@
 Quick Start Guide
 
+ NOTE: You will need to make sure your Android SDK is up to date. Make sure you're using Revision 15 or higher.
+ (To update your tools run the "android" command in your Android SDK and update the SDK from there.)
+
 * Use your existing Android Ant build file
 
  In the root of your Android project, copy the following into a file called <<build-ivy.xml>>
@@ -44,6 +47,7 @@ Quick Start Guide
     <info organisation="com.example" module="examplemodule"/>
     <dependencies>
         <dependency org="com.willowtreeapps" name="oak-library" rev="${project.version}" transitive="false" changing="true"/>
+        <dependency org="com.google.guava" name="guava" rev="10.0.1" transitive="false" changing="false" />
     </dependencies>
 </ivy-module>
 +---
