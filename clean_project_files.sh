@@ -1,5 +1,7 @@
 #/bin/sh
 
+rm -Rf *.ipr
+rm -Rf *.iws
 rm -Rf *.iml
 rm -Rf .idea
 rm -Rf */*.iml

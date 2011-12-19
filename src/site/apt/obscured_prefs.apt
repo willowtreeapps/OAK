@@ -1,0 +1,11 @@
+
+ObscuredSharedPreferences
+
+ Full disclosure: This code was adapted from {{{http://stackoverflow.com/questions/785973/what-is-the-most-appropriate-way-to-store-user-settings-in-android-application/6393502#6393502}Michael Burton's response on StackOverflow}}
+
+
+
+[obscured_shared_prefs.png] Obscured Shared Preferences
+
+
+%{snippet|id=obscured_prefs|file=oak-demos/src/oak/demo/ObscuredPrefsActivity.java}

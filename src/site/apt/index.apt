@@ -15,6 +15,9 @@ What is OAK Android Kit?
 
   * TextViewWithFont - Drop your fonts in "assets/fonts" and use this handy component to set a custom font
 
+  * {{{./obscured_prefs.html}ObscuredSharedPreferences}} - Store your shared preferences with encryption!
+
+
 Credits
 
   * OAK contains re-packaged classes from Matthias KŠppler's {{{https://github.com/kaeppler/droid-fu}Droid-Fu}} library.

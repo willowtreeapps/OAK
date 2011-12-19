@@ -15,35 +15,22 @@
 
 package oak.demo;
 
-public class PhotoItem {
+import android.content.Context;
+import android.content.SharedPreferences;
 
-    private String url;
+import oak.ObscuredSharedPreferences;
 
-    String title;
+/**
+ * User: mlake Date: 12/19/11 Time: 11:16 AM
+ */
+public class EncryptedPreferences extends ObscuredSharedPreferences {
 
-    String description;
-
-    public void setDescription(String desc) {
-        this.description = desc.replace("<![CDATA[", "").replace("]]>", "");
+    public EncryptedPreferences(Context context, SharedPreferences delegate) {
+        super(context, delegate);
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getURL() {
-        return url;
+    @Override
+    protected char[] getSpecialCode() {
+        return "THIS IS MY ENCRYPTING KEY PHRASE@@!".toCharArray();
     }
 }
