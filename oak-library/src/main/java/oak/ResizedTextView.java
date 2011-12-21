@@ -30,7 +30,8 @@ public class ResizedTextView extends TextView {
     private int maxLines;
 
     private float defaultTextWidth;
-    //private boolean tooLarge = false;
+    
+    private String gravity;
 
     public ResizedTextView(Context context) {
         this(context, null);
@@ -42,6 +43,7 @@ public class ResizedTextView extends TextView {
 
     public ResizedTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+
         maxLines = attrs.getAttributeIntValue(
                 "http://schemas.android.com/apk/res/android",
                 "maxLines",
@@ -50,7 +52,9 @@ public class ResizedTextView extends TextView {
         minTextSize = attrs.getAttributeIntValue(
                 OAK.XMLNS,
                 "minTextSize",
-                10);
+                11);
+
+        gravity = new String("" + attrs.getAttributeValue("http://schemas.android.com/apk/res/android", "gravity"));
     }
 
     /*
@@ -75,26 +79,46 @@ public class ResizedTextView extends TextView {
          */
 
     private int findTextSize(int lines) {
-        //Log.d("OAK", "Finding TextSize with lines: " + lines);
         float textSize = 1;
         this.setTextSize(textSize);
         this.setLines(lines);
         this.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
         int newWidth = this.getMeasuredWidth();
+
+
         for (; newWidth / lines < this.defaultTextWidth; textSize++) {
             this.setTextSize(textSize);
             this.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
             newWidth = this.getMeasuredWidth();
         }
-        //Log.d("OAK", "Best fitting size is: " + (textSize - 4));
+
+        //recursive case to determine the number of lines necessary for the text view
         if (textSize - 2 < minTextSize) {
             if (lines + 1 > maxLines) {
                 return (int) (minTextSize);
             } else {
                 return findTextSize(lines + 1);
             }
-        } else {
-            return (int) (textSize - 4);
+        }
+
+        else {
+
+            //after determining the correct number of lines needed to be used these statements
+            //check to see if the gravity is set to center. If it is, then the RTView will be squished
+            //and the text size will have to be reduced a little more than usual
+            if (gravity.equals("0x11") && ((textSize - 20) >= minTextSize))
+            {
+                return (int) (textSize - 20);
+            }
+            else if (gravity.equals("0x11") && ((textSize - 20) <= minTextSize))
+            {
+                this.setLines(lines + 1);
+                return (int) (textSize);
+            }
+            else
+            {
+                return (int) (textSize - 4);
+            }
         }
     }
 }

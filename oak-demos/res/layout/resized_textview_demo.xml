@@ -16,53 +16,49 @@
   -->
 
 <LinearLayout
-		xmlns:android="http://schemas.android.com/apk/res/android"
-		xmlns:oak="http://oak/oak/schema"
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
-		android:orientation="vertical">
-
-	<oak.ResizedTextView
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:text="Here is my very very very very long textview"
-            oak:minTextSize="8"
-            android:background="#44ff0000"
-			/>
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:oak="http://oak/oak/schema"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
 
     <oak.ResizedTextView
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:text="Here is my very very super duper extreme awesome textview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Here is my very very very very long textview"
+            oak:minTextSize="8"
+            android:background="#44ff0000"
+            />
+
+    <oak.ResizedTextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Here is my very very super duper extreme awesome textview"
             android:textSize="12sp"
             oak:minTextSize="11"
             android:background="#4400ff00"
-			/>
+            />
     <!-- START SNIPPET: resizedtv_layout -->
     <oak.ResizedTextView
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Imagine having your app read an RSS article that has a really long title."
+            oak:minTextSize="11"
             android:gravity="center"
-			android:text="Imagine having your app read an RSS article that has a really long title"
-	        oak:minTextSize="11"
-            android:textSize="18sp"
-            android:maxLines="2"
+            android:maxLines="6"
             android:background="#440000ff"
             android:padding="0dip"
-            android:ellipsize="end"
-			/>
-        <oak.ResizedTextView
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-            android:gravity="center"
-			android:text="Same as above, but short"
-	        oak:minTextSize="11"
-            android:textSize="18sp"
+            />
+    <oak.ResizedTextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Same as above, but short"
+            oak:minTextSize="11"
+            android:textSize="12sp"
             android:maxLines="2"
             android:background="#ff666666"
             android:padding="0dip"
-            android:ellipsize="end"
-			/>
+            />
     <!-- END SNIPPET: resizedtv_layout -->
 
 </LinearLayout>

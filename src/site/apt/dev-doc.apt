@@ -3,7 +3,7 @@
  ------
  Michael Lake
  ------
- 2011-09-26
+ 2011-12-20
  ------
 
 
@@ -13,7 +13,7 @@ How to configure your environment to build OAK
 
  *Java 1.6
 
- *Maven 2.0+
+ *Maven 3.0.3+
 
  *Android SDK
 
@@ -43,12 +43,20 @@ How to configure your environment to build OAK
 git clone git@github.com:willowtreeapps/OAK.git
 +-------------
 
+* Clean the source
 
+ Navigate to the OAK folder
+
++------------
+./clean_project_files.sh
++------------
 
 
 Configure your IDE
 
 * Eclipse
+
+ *<<NOTE: As of 2011.12.20 The Eclipse plugins for Maven and Android do not work together with OAK and its demos.>>
 
  Get the {{{http://eclipse.org/m2e/} m2eclipse}} plugin: (plugin site: {{http://download.eclipse.org/technology/m2e/releases}} )
 
@@ -62,9 +70,70 @@ Configure your IDE
 
 * IntelliJ IDEA
 
- <<File -> New Project -> Import from existing model>>
+**Importing OAK into IntelliJ
 
- Edit oak-demos module settings to use <<target/generated-sources/r>>
+ <<File ->Create New Project -> Import project from external model -> Maven>>
+
+ *Ensure that the following settings for the New Project are set
+
+   The Root directory points to the parent OAK directory ie (/Users/yourUserName/OAK)
+
+   <<Check>> 'Search for projects recursively'
+
+   Project format: .idea (directory based)
+
+   <<Check>> 'Import Maven projects automatically'
+
+   <<Check>> 'Create IDEA modules for aggregator projects (with 'pom' packaging)'
+
+   <<Check>> 'Keep source and test folders on reimport'
+
+   <<Check>> 'Use Maven output directories'
+
+   Phase to be used for folders update: 'process-resources'
+ 
+   <<->Next>>
+
+ *For Mac OS X: select mac
+
+ *Assuming other operating systems would just check their OS (untested) 
+
+   <<->Next>>
+
+ *Select the Maven projects to import
+
+   <<->Next>>
+
+ *Specify the project name and the file location
+
+   <<->Finish>>
+
+**Steps after importing to get OAK running
+ 
+
+ *Check the event log and click Configure to add the Android framework to the oak-library
+
+ *Go to the Run menu and Edit Configurations
+
+   Add New Configuration
+
+   Module: oak-demos
+
+   Launch default Activity
+
+   <<Check>> deploy application
+
+   Select your target device
+
+   Before Launch: Make checked
+
+ *Run the newly created Run Configuration
+
+ *If errors exist during compilation, run the clean script again, rebuild project, and make sure the project has been Configured so that all three packages have the Android Framework.
+
+ *Other possible changes
+
+   Edit oak-demos module settings to use <<target/generated-sources/r>>
 
 **Import code style settings to IntelliJ
 
