@@ -56,6 +56,10 @@
             <organization>WillowTree Apps</organization>
         </developer>
         <developer>
+            <name>Chris Thoma</name>
+            <organization>WillowTree Apps</organization>
+        </developer>
+        <developer>
             <name>Nate Vogt</name>
             <organization>WillowTree Apps</organization>
         </developer>
@@ -63,6 +67,7 @@
             <name>Woody Zantzinger</name>
             <organization>WillowTree Apps</organization>
         </developer>
+
     </developers>
 
     <prerequisites>

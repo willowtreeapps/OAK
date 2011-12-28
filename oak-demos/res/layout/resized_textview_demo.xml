@@ -22,41 +22,72 @@
         android:layout_height="fill_parent"
         android:orientation="vertical">
 
+
     <oak.ResizedTextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Here is my very very very very long textview"
-            oak:minTextSize="8"
-            android:background="#44ff0000"
+            android:text="This text is extremely long filled with big words ellipsizable understanding weatherford and a few small ones too although underachieving understanding corresponds with incompetence and ignorance abcdefg hijklmnop qrstuvwxyz thesewords willfill thenextline hopefullyprettyquickly"
+            android:maxLines="3"
+            oak:minTextSize="11"
+            android:background="#4400ff00"
+            />
+    <oak.ResizedTextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Same as above, but shorter"
+            android:maxLines="2"
+            oak:minTextSize="11"
+            android:background="#44AA88AA"
+            />
+
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Imagine having your app read an RSS article that has a really long title."
+            oak:minTextSize="11"
+            android:maxLines="6"
+            android:gravity="center"
+            android:background="#440000ff"
+            android:id="@+id/rtv"
             />
 
     <oak.ResizedTextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Here is my very very super duper extreme awesome textview"
-            android:textSize="12sp"
+            android:text="Even works with different fonts and ellipsing! hopefully this is enough text to cut off."
             oak:minTextSize="11"
-            android:background="#4400ff00"
+            android:maxLines="1"
+            android:gravity="center"
+            android:background="#44ff0000"
+            android:id="@+id/rtv"
+            oak:font="Apple Chancery.ttf"
             />
-    <!-- START SNIPPET: resizedtv_layout -->
     <oak.ResizedTextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Imagine having your app read an RSS article that has a really long title."
             oak:minTextSize="11"
-            android:gravity="center"
-            android:maxLines="6"
+            android:maxLines="1"
             android:background="#440000ff"
-            android:padding="0dip"
+            android:id="@+id/rtv"
+            android:padding="15dip"
             />
     <oak.ResizedTextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Same as above, but short"
+            android:text="shorter text, but not too short"
+            oak:minTextSize="11"
+            android:maxLines="1"
+            android:background="#ff666666"
+            />
+    <oak.ResizedTextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Gypg fg"
             oak:minTextSize="11"
             android:textSize="12sp"
-            android:maxLines="2"
-            android:background="#ff666666"
+            android:maxLines="1"
+            android:background="#ff006600"
             android:padding="0dip"
             />
     <!-- END SNIPPET: resizedtv_layout -->

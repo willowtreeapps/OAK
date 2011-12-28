@@ -17,21 +17,24 @@
 package oak;
 
 import android.content.Context;
+import android.text.Layout;
+import android.text.StaticLayout;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.TextView;
 
-import oak.OAK;
 
-public class ResizedTextView extends TextView {
+public class ResizedTextView extends TextViewWithFont {
 
     private float minTextSize;
-
     private int maxLines;
+    private float maxBoundsWidth;
+    public static final String ELLIPSE = "...";
+    private String theText;
+    private float lineSpacingMultiplier = 2.0f;
+    private Layout textLayout;
+    private int counted;
 
-    private float defaultTextWidth;
-    
-    private String gravity;
+
 
     public ResizedTextView(Context context) {
         this(context, null);
@@ -49,76 +52,129 @@ public class ResizedTextView extends TextView {
                 "maxLines",
                 2);
 
+
         minTextSize = attrs.getAttributeIntValue(
                 OAK.XMLNS,
                 "minTextSize",
                 11);
 
-        gravity = new String("" + attrs.getAttributeValue("http://schemas.android.com/apk/res/android", "gravity"));
+        setEllipsize(null);
+        setMaxLines(maxLines);
+        theText = getText().toString();
+        counted = 0;
     }
 
-    /*
-         * Set TextSize to 1, and expand until the TextView becomes its previous size.
-         */
+    @Override
+    public void setMaxLines(int maximumLines) {
+        super.setMaxLines(maximumLines);
+        maxLines = maximumLines;
+    }
+
 
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
+
         //Get it's current Width, set size to 1, and get that width
-        this.defaultTextWidth = this.getMeasuredWidth();
 
-        this.setTextSize(findTextSize(1)); //We want the last size that didn't break the loop
-        this.setMeasuredDimension((int) this.defaultTextWidth, this.getMeasuredHeight());
-//		if(tooLarge) {this.setEllipsize(getEllipsize());}
+        this.maxBoundsWidth = this.getMeasuredWidth();
+        this.setMeasuredDimension((int) this.maxBoundsWidth, this.getMeasuredHeight());
+        if (counted == 0) {
+            setTextSize(findTextSize(1, 1));
+            counted++;
+        }
+        ellipsizeText();
     }
 
-    /*
-         * Recursive function, that returns the optimal text size, and sets the correct number of lines
-         * param: int lines = The number of lines to start out with. For now, its always 1, but a MinimumLines feature could be added later
-         *
-         * This is not as efficient as it could be, but it seems to work fine.
-         */
 
-    private int findTextSize(int lines) {
-        float textSize = 1;
+    /**
+     * recursive function to find the correct number of lines and the text size.
+     * @param numLines the number of lines the text will use
+     * @param aTextSize a text size that may be the one needed
+     * @return the correct text size to fit
+     */
+    public float findTextSize(int numLines, float aTextSize) {
+        measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
+        int newWidth = getMeasuredWidth();
+        int textSize = (int) aTextSize;
+
+        if (textSize <= 1) {
+            for (; newWidth / numLines <= maxBoundsWidth; textSize++) {
+                this.setTextSize(textSize);
+                this.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
+                newWidth = this.getMeasuredWidth();
+            }
+        }
         this.setTextSize(textSize);
-        this.setLines(lines);
-        this.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
-        int newWidth = this.getMeasuredWidth();
+        textLayout = createWorkingLayout(theText);
 
-
-        for (; newWidth / lines < this.defaultTextWidth; textSize++) {
-            this.setTextSize(textSize);
-            this.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
-            newWidth = this.getMeasuredWidth();
-        }
-
-        //recursive case to determine the number of lines necessary for the text view
-        if (textSize - 2 < minTextSize) {
-            if (lines + 1 > maxLines) {
-                return (int) (minTextSize);
-            } else {
-                return findTextSize(lines + 1);
+        if (textSize > minTextSize) {
+            if (numLines == 1 && ((textLayout.getLineCount() > 1) || (wouldEllipse()))) {
+                return findTextSize(numLines, textSize - 4);
+            }
+            else {
+                return (float) textSize;
             }
         }
-
-        else {
-
-            //after determining the correct number of lines needed to be used these statements
-            //check to see if the gravity is set to center. If it is, then the RTView will be squished
-            //and the text size will have to be reduced a little more than usual
-            if (gravity.equals("0x11") && ((textSize - 20) >= minTextSize))
-            {
-                return (int) (textSize - 20);
+        
+        if (textSize < minTextSize) {
+            if (numLines + 1 > maxLines ) {
+                return minTextSize;
             }
-            else if (gravity.equals("0x11") && ((textSize - 20) <= minTextSize))
-            {
-                this.setLines(lines + 1);
-                return (int) (textSize);
+            else if (textLayout.getLineCount() < numLines) {
+                setLines(numLines + 1);
+                return findTextSize(numLines + 1, minTextSize);
             }
-            else
-            {
-                return (int) (textSize - 4);
+            else {
+                return minTextSize;
             }
         }
+        else if (textSize >  minTextSize) {
+            if (wouldEllipse()) {
+                return findTextSize(numLines + 1, textSize - 4);
+            }
+            else {
+                return (float) textSize;
+            }
+        }
+        return findTextSize(numLines, minTextSize - 4);
     }
+
+    private boolean wouldEllipse() {
+        return textLayout.getLineCount() > maxLines;
+    }
+
+    /**
+     * determines if the the text goes beyond the maximum number of lines allowed and
+     * cuts it off and adds an ellipse if it does.
+     */
+    private void ellipsizeText() {
+            theText = getText().toString();
+            String ellipsedText = theText;
+            textLayout = createWorkingLayout(theText);
+            if (textLayout.getLineCount() > maxLines) {
+                ellipsedText = ellipsedText.substring(0, textLayout.getLineEnd(maxLines)).trim();
+                while (createWorkingLayout(ellipsedText + ELLIPSE).getLineCount() > maxLines) {
+                    int spaceIndex = ellipsedText.lastIndexOf(' ');
+                    if (spaceIndex == -1) {
+                        break;
+                    }
+                    ellipsedText = ellipsedText.substring(0, spaceIndex);
+                }
+                ellipsedText = ellipsedText + ELLIPSE;
+            }
+            if (!ellipsedText.equals(theText)) {
+                try {
+                    setText(ellipsedText);
+                }
+                finally {
+                    //do nothing
+                }
+            }
+        }
+
+    private Layout createWorkingLayout(String workingText) {
+        return new StaticLayout(
+                workingText, getPaint(), getWidth() - getPaddingLeft() - getPaddingRight(), Layout.Alignment.ALIGN_NORMAL, lineSpacingMultiplier, 0.0f, false);
+    }
+
 }
