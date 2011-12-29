@@ -22,7 +22,6 @@
         android:layout_height="fill_parent"
         android:orientation="vertical">
 
-
     <oak.ResizedTextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -116,10 +115,10 @@
                 android:layout_height="wrap_content"
                 android:layout_width="fill_parent"
                 android:layout_toRightOf="@id/label"
-                android:text="107 5th Street SE\nSuit B\nCharlottesville, VA 22902"
+                android:text="107 5th Street SE\nSuite B\nCharlottesville, VA 22902"
                 android:textColor="#ffffff"
                 oak:font="Gotham-Book.ttf"
-                android:maxLines="4"
+                android:maxLines="3"
                 oak:minTextSize="12"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
