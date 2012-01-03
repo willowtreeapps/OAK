@@ -88,7 +88,7 @@ public class ResizedTextView extends TextViewWithFont {
             textLayout2 = textLayout;
             setTextSize(findTextSize(1, 1));
             counted++;
-            Log.d("Final", new String() + getTextSize()  + "text size, " + textLayout.getLineCount()  + "line count" );
+//            Log.d("Final", new String() + getTextSize()  + "text size, " + textLayout.getLineCount()  + "line count" );
 
         }
         ellipsizeText();
@@ -120,7 +120,7 @@ public class ResizedTextView extends TextViewWithFont {
 
 
         if (textSize > minTextSize) {
-            Log.d("HOWMANYLINES - ", new String() + textLayout2.getText().toString() + ", " +  textLayout2.getLineCount() );
+//            Log.d("HOWMANYLINES - ", new String() + textLayout2.getText().toString() + ", " +  textLayout2.getLineCount() );
             if (numLines == 1 && ((textLayout2.getLineCount() > 1) || (wouldEllipse()))) {
                 return findTextSize(numLines, textSize - 4);
             }
@@ -142,14 +142,6 @@ public class ResizedTextView extends TextViewWithFont {
             }
             else {
                 return minTextSize;
-            }
-        }
-        else if (textSize >  minTextSize) {
-            if (wouldEllipse()) {
-                return findTextSize(numLines + 1, textSize - 4);
-            }
-            else {
-                return (float) textSize;
             }
         }
         return findTextSize(numLines, minTextSize - 4);
@@ -198,7 +190,7 @@ public class ResizedTextView extends TextViewWithFont {
             int startLine = 0;
             int endLine = 0;
             CharSequence longestLine = lay.getText().subSequence(startLine, endLine);
-            for (int i = 1; i < lay.getLineCount() - 1; i++)
+            for (int i = 0; i < lay.getLineCount() - 1; i++)
             {
                 startLine = lay.getLineStart(i);
                 endLine = lay.getLineEnd(i);
