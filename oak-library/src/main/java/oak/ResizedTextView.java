@@ -114,13 +114,13 @@ public class ResizedTextView extends TextViewWithFont {
 
         if (textSize > minTextSize) {
             if (numLines == 1 && ((textLayout2.getLineCount() > 1) || (wouldEllipse(numLines)))) {
-                return findTextSize(numLines, textSize - 4);
+                return findTextSize(numLines, textSize - 2);
             }
             else if (numLines == 1 && notChecked && ((textLayout2.getLineCount() > 1) || (wouldEllipse(numLines)))) {
-                return findTextSize(numLines, textSize - 4);
+                return findTextSize(numLines, textSize - 2);
             }
             else if (numLines <= maxLines && (wouldEllipse(numLines) || textLayout2.getLineCount() > numLines)) {
-                return findTextSize(numLines, textSize - 4);
+                return findTextSize(numLines, textSize - 2);
             }
             else {
                 return (float) textSize;
@@ -144,7 +144,7 @@ public class ResizedTextView extends TextViewWithFont {
                 return minTextSize;
             }
         }
-        return findTextSize(numLines, minTextSize - 4);
+        return findTextSize(numLines, minTextSize - 2);
     }
 
     private boolean wouldEllipse(int numLines) {
@@ -159,14 +159,12 @@ public class ResizedTextView extends TextViewWithFont {
             theText = getText().toString();
             String ellipsedText = theText;
             textLayout = createWorkingLayout(theText);
+            int lastChar = textLayout.getLineEnd(maxLines);
             if (textLayout.getLineCount() > maxLines) {
-                ellipsedText = ellipsedText.substring(0, textLayout.getLineEnd(maxLines)).trim();
+                ellipsedText = ellipsedText.substring(0, textLayout.getLineEnd(maxLines) - 1);
                 while (createWorkingLayout(ellipsedText + ELLIPSE).getLineCount() > maxLines) {
-                    int spaceIndex = ellipsedText.lastIndexOf(' ');
-                    if (spaceIndex == -1) {
-                        break;
-                    }
-                    ellipsedText = ellipsedText.substring(0, spaceIndex);
+                    lastChar--;
+                    ellipsedText = ellipsedText.substring(0, lastChar);
                 }
                 ellipsedText = ellipsedText + ELLIPSE;
             }
@@ -201,7 +199,6 @@ public class ResizedTextView extends TextViewWithFont {
                     notChecked = false;
                 }
             }
-
         }
     }
 
