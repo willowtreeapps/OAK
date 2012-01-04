@@ -16,15 +16,11 @@
 
 package oak;
 
-import android.R;
 import android.content.Context;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.text.Layout;
-import android.widget.TextView;
-
 
 public class ResizedTextView extends TextViewWithFont {
 
@@ -75,7 +71,7 @@ public class ResizedTextView extends TextViewWithFont {
         maxLines = maximumLines;
     }
 
-
+    @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
 
@@ -88,8 +84,6 @@ public class ResizedTextView extends TextViewWithFont {
             textLayout2 = textLayout;
             setTextSize(findTextSize(1, 1));
             counted++;
-//            Log.d("Final", new String() + getTextSize()  + "text size, " + textLayout.getLineCount()  + "line count" );
-
         }
         ellipsizeText();
     }
@@ -114,27 +108,33 @@ public class ResizedTextView extends TextViewWithFont {
             }
 
         }
-        this.setTextSize(textSize);
+        setTextSize(textSize);
         textLayout = createWorkingLayout(theText);
         findAndSet(textLayout);
 
-
         if (textSize > minTextSize) {
-//            Log.d("HOWMANYLINES - ", new String() + textLayout2.getText().toString() + ", " +  textLayout2.getLineCount() );
-            if (numLines == 1 && ((textLayout2.getLineCount() > 1) || (wouldEllipse()))) {
+            if (numLines == 1 && ((textLayout2.getLineCount() > 1) || (wouldEllipse(numLines)))) {
                 return findTextSize(numLines, textSize - 4);
             }
-            else if (numLines == 1 && notChecked && ((textLayout.getLineCount() > 1) || (wouldEllipse()))) {
+            else if (numLines == 1 && notChecked && ((textLayout2.getLineCount() > 1) || (wouldEllipse(numLines)))) {
+                return findTextSize(numLines, textSize - 4);
+            }
+            else if (numLines <= maxLines && (wouldEllipse(numLines) || textLayout2.getLineCount() > numLines)) {
                 return findTextSize(numLines, textSize - 4);
             }
             else {
                 return (float) textSize;
             }
         }
-        
+
         if (textSize < minTextSize) {
             if (numLines + 1 > maxLines ) {
                 return minTextSize;
+            }
+            else if (numLines < maxLines)
+            {
+                setLines(numLines + 1);
+                return findTextSize(numLines + 1, 1);
             }
             else if (textLayout.getLineCount() < numLines) {
                 setLines(numLines + 1);
@@ -147,8 +147,8 @@ public class ResizedTextView extends TextViewWithFont {
         return findTextSize(numLines, minTextSize - 4);
     }
 
-    private boolean wouldEllipse() {
-        return textLayout.getLineCount() > maxLines;
+    private boolean wouldEllipse(int numLines) {
+        return textLayout.getLineCount() > numLines;
     }
 
     /**
