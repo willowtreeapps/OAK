@@ -114,13 +114,10 @@ public class ResizedTextView extends TextViewWithFont {
 
         if (textSize > minTextSize) {
             if (numLines == 1 && ((textLayout2.getLineCount() > 1) || (wouldEllipse(numLines)))) {
-                return findTextSize(numLines, textSize - 2);
-            }
-            else if (numLines == 1 && notChecked && ((textLayout2.getLineCount() > 1) || (wouldEllipse(numLines)))) {
-                return findTextSize(numLines, textSize - 2);
+                return findTextSize(numLines, textSize - 4);
             }
             else if (numLines <= maxLines && (wouldEllipse(numLines) || textLayout2.getLineCount() > numLines)) {
-                return findTextSize(numLines, textSize - 2);
+                return findTextSize(numLines, textSize - 4);
             }
             else {
                 return (float) textSize;
