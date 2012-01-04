@@ -166,6 +166,7 @@ public class ResizedTextView extends TextViewWithFont {
                     lastChar--;
                     ellipsedText = ellipsedText.substring(0, lastChar);
                 }
+
                 if (lastChar >= 3) {
                     ellipsedText = ellipsedText.substring(0, lastChar - 3) + ELLIPSE;
                 }
