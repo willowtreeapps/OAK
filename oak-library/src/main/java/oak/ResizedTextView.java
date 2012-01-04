@@ -160,13 +160,15 @@ public class ResizedTextView extends TextViewWithFont {
             if (textLayout.getLineCount() > maxLines) {
                 ellipsedText = ellipsedText.substring(0, textLayout.getLineEnd(maxLines) - 1);
                 while (createWorkingLayout(ellipsedText + ELLIPSE).getLineCount() > maxLines) {
-                    lastChar--;
-                    ellipsedText = ellipsedText.substring(0, lastChar);
                     if (lastChar == 0) {
                         break;
                     }
+                    lastChar--;
+                    ellipsedText = ellipsedText.substring(0, lastChar);
                 }
-                ellipsedText = ellipsedText + ELLIPSE;
+                if (lastChar >= 3) {
+                    ellipsedText = ellipsedText.substring(0, lastChar - 3) + ELLIPSE;
+                }
             }
             if (!ellipsedText.equals(theText)) {
                 try {
