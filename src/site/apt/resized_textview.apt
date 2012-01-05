@@ -13,8 +13,7 @@ Things to note when using Resized Text View
 
  * Works with specified fonts as well as long as they're included in the res folder and specified in the XML the same way they are in TextViewWithFont.
 
- * If you want to break the lines at specific points in the text and know how many lines you want it to be, set the max lines value in the XML
-   to avoid the text spilling into extra lines than necessary.
+ * If you want to break the lines at specific points in the text and know how many lines you want it to be, then set the max lines value in the XML to that number.
 
 [resized_textview.png] Resized Textview
 
