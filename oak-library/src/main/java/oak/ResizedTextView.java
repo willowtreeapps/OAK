@@ -33,6 +33,7 @@ public class ResizedTextView extends TextViewWithFont {
     private Layout textLayout;
     private Layout textLayout2;
     private int counted;
+    private int numLines = 0;
     private boolean notChecked;
 
 
@@ -79,29 +80,31 @@ public class ResizedTextView extends TextViewWithFont {
 
         this.maxBoundsWidth = this.getMeasuredWidth();
         this.setMeasuredDimension((int) this.maxBoundsWidth, this.getMeasuredHeight());
-        if (counted == 0) {
+        if (counted %2 == 0) {
             textLayout = createWorkingLayout(theText);
             textLayout2 = textLayout;
             setTextSize(findTextSize(1, 1));
-            counted++;
+            setLines(numLines);
         }
+        counted++;
         ellipsizeText();
     }
 
 
     /**
      * recursive function to find the correct number of lines and the text size.
-     * @param numLines the number of lines the text will use
+     * @param curLines the number of lines the text will use
      * @param aTextSize a text size that may be the one needed
      * @return the correct text size to fit
      */
-    public float findTextSize(int numLines, float aTextSize) {
+    public float findTextSize(int curLines, float aTextSize) {
+        numLines = curLines;
         measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
         int newWidth = getMeasuredWidth();
         int textSize = (int) aTextSize;
 
         if (textSize <= 1) {
-            for (; newWidth / numLines <= maxBoundsWidth; textSize++) {
+            for (; newWidth / curLines <= maxBoundsWidth; textSize++) {
                 this.setTextSize(textSize);
                 this.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
                 newWidth = this.getMeasuredWidth();
@@ -113,11 +116,11 @@ public class ResizedTextView extends TextViewWithFont {
         findAndSet(textLayout);
 
         if (textSize > minTextSize) {
-            if (numLines == 1 && ((textLayout2.getLineCount() > 1) || (wouldEllipse(numLines)))) {
-                return findTextSize(numLines, textSize - 4);
+            if (curLines == 1 && ((textLayout2.getLineCount() > 1) || (wouldEllipse(curLines)))) {
+                return findTextSize(curLines, textSize - 4);
             }
-            else if (numLines <= maxLines && (wouldEllipse(numLines) || textLayout2.getLineCount() > numLines)) {
-                return findTextSize(numLines, textSize - 4);
+            else if (curLines <= maxLines && (wouldEllipse(curLines) || textLayout2.getLineCount() > curLines)) {
+                return findTextSize(curLines, textSize - 4);
             }
             else {
                 return (float) textSize;
@@ -125,27 +128,29 @@ public class ResizedTextView extends TextViewWithFont {
         }
 
         if (textSize < minTextSize) {
-            if (numLines + 1 > maxLines ) {
+            if (curLines + 1 > maxLines ) {
                 return minTextSize;
             }
-            else if (numLines < maxLines)
+            else if (curLines < maxLines)
             {
-                setLines(numLines + 1);
-                return findTextSize(numLines + 1, 1);
+                setLines(curLines + 1);
+                this.numLines++;
+                return findTextSize(curLines + 1, 1);
             }
-            else if (textLayout.getLineCount() < numLines) {
-                setLines(numLines + 1);
-                return findTextSize(numLines + 1, minTextSize);
+            else if (textLayout.getLineCount() < curLines) {
+                setLines(curLines + 1);
+                this.numLines++;
+                return findTextSize(curLines + 1, minTextSize);
             }
             else {
                 return minTextSize;
             }
         }
-        return findTextSize(numLines, minTextSize - 2);
+        return findTextSize(curLines, minTextSize - 2);
     }
 
-    private boolean wouldEllipse(int numLines) {
-        return textLayout.getLineCount() > numLines;
+    private boolean wouldEllipse(int curLines) {
+        return textLayout.getLineCount() > curLines;
     }
 
     /**
