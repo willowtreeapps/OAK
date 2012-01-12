@@ -16,7 +16,11 @@
 package oak.demo;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.RelativeLayout;
 
 /**
  * User: Michael Lake Date: 11/21/11 Time: 5:33 PM
@@ -29,5 +33,15 @@ public class TextViewWithFontActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.textview_with_font_demo);
+
+        RelativeLayout attr = (RelativeLayout)findViewById(R.id.attribution);
+        attr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse("http://www.willowtreeapps.com"));
+                startActivity(i);
+            }
+        });
     }
 }

@@ -17,10 +17,13 @@ package oak.demo;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.RelativeLayout;
+import android.content.Intent;
 
 /**
  * User: mlake Date: 12/19/11 Time: 9:17 AM
@@ -41,6 +44,16 @@ public class ObscuredPrefsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.obscured_prefs_demo);
 
+        RelativeLayout attr = (RelativeLayout)findViewById(R.id.attribution);
+        attr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse("http://www.willowtreeapps.com"));
+                startActivity(i);
+            }
+        });
+        
         mEditText = (EditText) findViewById(R.id.my_edittext);
         mTextView = (TextView) findViewById(R.id.saved_content);
 

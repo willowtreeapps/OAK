@@ -135,5 +135,5 @@
 
 
     <!-- END SNIPPET: resizedtv_layout -->
-
+    <include android:id="@+id/attribution" layout="@layout/attribution" />
 </LinearLayout>

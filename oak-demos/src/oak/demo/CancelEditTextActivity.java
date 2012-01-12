@@ -16,9 +16,14 @@
 package oak.demo;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import oak.CancelEditText;
@@ -33,6 +38,15 @@ public class CancelEditTextActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cancel_edit_text_demo);
 
+        RelativeLayout attr = (RelativeLayout)findViewById(R.id.attribution);
+        attr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse("http://www.willowtreeapps.com"));
+                startActivity(i);
+            }
+        });
         final CancelEditText cancelEditText = (CancelEditText) findViewById(R.id.cancel_edit_one);
 
         

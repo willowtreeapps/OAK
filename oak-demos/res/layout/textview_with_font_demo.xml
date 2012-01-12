@@ -40,5 +40,5 @@
             oak:font="Apple Chancery.ttf"
             />
 
-
+    <include android:id="@+id/attribution" layout="@layout/attribution" />
 </LinearLayout>

@@ -52,5 +52,5 @@
             android:layout_width="fill_parent"
             />
 
-
+    <include android:id="@+id/attribution" layout="@layout/attribution" />
 </LinearLayout>
