@@ -282,7 +282,7 @@
                         </sdk>
                         <emulator>
                             <avd>22</avd>
-                            <wait>60000</wait>
+                            <wait>6000</wait>
                             <options>-noaudio -no-boot-anim</options>
                         </emulator>
                         <undeployBeforeDeploy>true</undeployBeforeDeploy>

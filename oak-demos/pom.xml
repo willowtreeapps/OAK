@@ -14,10 +14,6 @@
 
     <properties>
         <environment>development</environment>
-        <sign.keystore>examples_keystore</sign.keystore>
-        <sign.alias>examplealias</sign.alias>
-        <sign.keypass>example</sign.keypass>
-        <sign.storepass>example</sign.storepass>
     </properties>
 
     <dependencies>
@@ -200,14 +196,14 @@
                             <dependency>
                                 <groupId>net.sf.proguard</groupId>
                                 <artifactId>proguard</artifactId>
-                                <version>4.5.1</version>
+                                <version>4.4</version>
                                 <scope>runtime</scope>
                             </dependency>
                         </dependencies>
                         <configuration>
-                            <proguardVersion>4.5.1</proguardVersion>
+                            <proguardVersion>4.4</proguardVersion>
                             <maxMemory>256m</maxMemory>
-                            <injar>android-classes</injar>
+                            <injar>classes</injar>
                             <libs>
                                 <lib>${rt.jar.path}</lib>
                                 <lib>${jsse.jar.path}</lib>
