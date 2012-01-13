@@ -179,6 +179,47 @@
             </activation>
             <build>
                 <plugins>
+                    <plugin>
+                        <!-- Sets the AndroidManifest.xml Version Name to the projects version number -->
+                        <groupId>org.codehaus.groovy.maven</groupId>
+                        <artifactId>gmaven-plugin</artifactId>
+                        <version>1.0</version>
+                        <executions>
+                            <execution>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <source>
+                                        try {
+                                            def baseDir = project.basedir.absolutePath.replace('\\','/')
+                                            def manifestFile = new File( baseDir + "/AndroidManifest.xml")
+                                            def ns = new groovy.xml.Namespace(
+                                                "http://schemas.android.com/apk/res/android", "ns")
+                                            def parser = new groovy.util.XmlParser(false, true)
+                                            def rootNode = parser.parse(manifestFile)
+                                            def attributes = rootNode.attributes()
+                                            attributes[ns.versionName] = "${project.version}"
+                                            attributes[ns.versionCode] = attributes[ns.versionCode].toInteger() + 1;
+                                            def writer = new groovy.io.GroovyPrintWriter(manifestFile)
+                                            writer.println('&lt;?xml version="1.0" encoding="UTF-8"?&gt;')
+                                            def xmlWriter = new groovy.util.XmlNodePrinter(writer)
+                                            xmlWriter.setPreserveWhitespace(false)
+                                            xmlWriter.setNamespaceAware(true)
+                                            xmlWriter.print(rootNode)
+                                            println('AndroidManifest.xml Version updated')
+                                        } catch (FileNotFoundException e)
+                                        {
+                                            println('No AndroidManifest.xml file found. Skipping version update.')
+                                            println('Probably not an Android project, but a library.')
+                                            println('Skipping version update.')
+                                        }
+                                    </source>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
                     <!-- proguard can shrink the source classes and remove unused classes and more.. -->
                     <plugin>
                         <groupId>com.pyx4me</groupId>
