@@ -1,0 +1,76 @@
+Quick Start Guide
+
+ NOTE: You will need to make sure your Android SDK is up to date. Make sure you're using Revision 15 or higher.
+ (To update your tools run the "android" command in your Android SDK and update the SDK from there.)
+
+* Download the .jar
+
+ Download the newest .jar {{{http://birch.willowtreeapps.com:8080/archiva/repository/internal/com/willowtreeapps/oak-library/} here.}}
+
+* Use your existing Android Ant build file
+
+ In the root of your Android project, copy the following into a file called <<build-ivy.xml>>
+
+
+%{snippet|url=file:src/site/resources/build-ivy.xml}
+
+ In the same directory create a file called <<ivysettings.xml>> and copy in the following:
+
++---
+<ivysettings>
+    <settings defaultResolver="chain"/>
+    <property name="local-maven2-pattern"
+              value="${user.home}/.m2/repository/[organisation]/[module]/[revision]/[module]-[revision](-[classifier]).[ext]"
+              override="false"/>
+
+    <resolvers>
+        <chain name="chain">
+            <ibiblio name="willowtreeapps" m2compatible="true"
+                     usepoms="true"
+                     root="${releaseRepo}"/>
+            <ibiblio name="willowtreeapps-snapshot" m2compatible="true" changingPattern=".*-SNAPSHOT"
+                     checkmodified="true" usepoms="true"
+                     root="${snapshotRepo}"
+                     pattern="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"/>
+            <filesystem
+                    name="local-maven2"
+                    checkmodified="true"
+                    m2compatible="true" changingPattern=".*-SNAPSHOT">
+                <ivy pattern="${local-maven2-pattern}"/>
+                <artifact pattern="${local-maven2-pattern}"/>
+            </filesystem>
+        </chain>
+    </resolvers>
+</ivysettings>
++---
+ Create another file called <<ivy.xml>> and copy in the following:
+
++---
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0">
+    <info organisation="com.example" module="examplemodule"/>
+    <dependencies>
+        <dependency org="com.willowtreeapps" name="oak-library" rev="${project.version}" transitive="false" changing="true"/>
+        <dependency org="com.google.guava" name="guava" rev="10.0.1" transitive="false" changing="false" />
+    </dependencies>
+</ivy-module>
++---
+
+ Modify your existing <<build.xml>> file to include the following:
+
++---
+<import file="build-ivy.xml"/>
++---
+
+ Run the following command to automatically fetch the library from server
+
+ (NOTE: To use a different version of OAK, simply change the <<rev>> attribute in your ivy.xml file):
+
++---
+ant fetch-dependencies
++---
+
+
+
+
+

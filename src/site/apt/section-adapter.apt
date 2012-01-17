@@ -1,0 +1,29 @@
+SectionAdapter
+
+ Here's what you get with Filter adapter:
+
+ * Pinned headers
+
+ * An easy method of putting your data into sectioned data without the hassle of writing
+ routines to find the position in section, etc.
+
+ * Easily swap out assets depending on whether you're in first of section, end of section, etc.
+ (note the rounded corner backgrounds for the listview items)
+
+ * ListView searching (optional)
+
+ * Support for "fastscroll" if specified in listview
+
+
+
+
+[sectionadapter.png] Section adapter
+
+ * The model that you are populating the listview with must implement <<Sectionable.java>>
+
+%{snippet|id=sectionable|file=oak-demos/src/oak/demo/Person.java}
+
+ * Simply pass a List of your <<Sectionable>> object model to the adapter..
+
+%{snippet|id=sectiontool|file=oak-demos/src/oak/demo/SectionActivity.java}
+

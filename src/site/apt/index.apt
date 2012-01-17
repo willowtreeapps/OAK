@@ -1,0 +1,37 @@
+What is OAK Android Kit?
+
+ OAK is a powerful kit of tools and components to use in your Android project (Compatible with API Level 8+)
+
+  * Image caching with transformations (rounded bitmaps? no problem)
+
+  * Pinned Header List view - mimic the functionality of the contacts app
+
+  * {{{./section-adapter.html}SectionAdapter with Pinned Headers}} - Same as above but with search filtering
+
+  * {{{./resized_textview.html}ResizedTextView}} - Auto-resizing textview makes long content smaller
+
+  * {{{./cancel_edit_text.html}CancelEditText}} - An EditText that lets you specify a tappable drawable
+  to clear the field
+
+  * TextViewWithFont - Drop your fonts in "assets/fonts" and use this handy component to set a custom font
+
+  * {{{./obscured_prefs.html}ObscuredSharedPreferences}} - Store your shared preferences with encryption!
+
+
+Credits
+
+  * OAK contains re-packaged classes from Matthias K\u00e4ppler's {{{https://github.com/kaeppler/droid-fu}Droid-Fu}} library.
+
+How is OAK licensed?
+
+  OAK is licenced under {{{./license.html}Apache 2.0}}: that means it's free.
+
+How do I get started using OAK?
+
+ Have a look at the {{{./quick-start.html}quick-start guide}}. Simply drop the jar into your android libs dir, or use
+ your existing Ant or Maven2 build setup to auto-fetch sources and documentation, as well as <<bleeding edge snapshots>>.
+
+How can I contribute?
+
+ OAK development is meant to be easy for both Eclipse and IntelliJ users. See the {{{./dev-doc.html} developer docs}}
+  to see how you can make OAK even better.

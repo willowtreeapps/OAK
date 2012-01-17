@@ -1,0 +1,20 @@
+
+ResizedTextView
+
+Things to note when using Resized Text View
+
+* XML notes
+
+ * Default minimum text size is 11. Use oak:minTextSize="textSizeNumber" to declare a minimum text size.
+
+ * Defualt maximum number of lines is 2. So if you want more than that include android:maxLines="numberOfLines".
+
+ * If the text at the minimum text size cannot fit in the view, the last 3 characters in the maximum line will be ellipsed. Currently there is no way to override this.
+
+ * Works with specified fonts as well as long as they're included in the res folder and specified in the XML the same way they are in TextViewWithFont.
+
+ * If you want to break the lines at specific points in the text and know how many lines you want it to be, then set the max lines value in the XML to that number.
+
+[resized_textview.png] Resized Textview
+
+%{snippet|id=resizedtv_layout|file=oak-demos/res/layout/resized_textview_demo.xml}

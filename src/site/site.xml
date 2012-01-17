@@ -1,0 +1,60 @@
+<project xmlns="http://maven.apache.org/DECORATION/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/DECORATION/1.1.0 http://maven.apache.org/xsd/decoration-1.1.0.xsd"
+         name="OAK Android Kit">
+
+	<publishDate position="right" format="yyyy-MM-dd HH:mm:ss"/>
+	<version position="right"/>
+	<bannerLeft>
+		<name>OAK Android Kit</name>
+		<height>120</height>
+		<width>403</width>
+		<src>banner_left.png</src>
+		<href>http://birch.willowtreeapps.com/oak/</href>
+	</bannerLeft>
+
+	<bannerRight>
+		<name>WillowTree Apps</name>
+		<height>120</height>
+		<width>140</width>
+		<src>banner_right.png</src>
+		<href>http://www.willowtreeapps.com/</href>
+	</bannerRight>
+	<body>
+		<head>
+			<script type="text/javascript">
+
+				var _gaq = _gaq || [];
+				_gaq.push(['_setAccount', 'UA-4616861-3']);
+				_gaq.push(['_trackPageview']);
+
+				(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async =
+				true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') +
+				'.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga,
+				s);
+				})();
+
+			</script>
+		</head>
+		<links>
+			<item name="WillowTree Apps" href="http://www.willowtreeapps.com"/>
+		</links>
+
+		<menu name="Main">
+			<item name="Introduction" href="index.html"/>
+			<item name="Quick Start" href="quick-start.html"/>
+			<item name="User Guide" href="user-doc.html"/>
+            <item name="Download OAK" href="http://birch.willowtreeapps.com:8080/archiva/repository/internal/com/willowtreeapps/oak-library/"/>
+
+			<item name="Developer Guide" href="dev-doc.html"/>
+			<item name="JavaDoc" href="apidocs/"/>
+		</menu>
+		<menu name="Components">
+			<item name="Filter Adapter" href="filter-adapter.html"/>
+            <item name="Resized TextView" href="resized_textview.html"/>
+		</menu>
+		<menu ref="reports"/>
+	</body>
+</project>

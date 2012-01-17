@@ -1,0 +1,243 @@
+ ------
+ OAK: Developer documentation
+ ------
+ Michael Lake
+ ------
+ 2011-12-20
+ ------
+
+
+How to configure your environment to build OAK
+
+* Install Required Tools
+
+ *Java 1.6
+
+ *Maven 3.0.3+
+
+ *Android SDK
+
+* Set Your Environment Variables
+
+** Mac OS X
+
+ Set up your environment variables <(the M2_HOME one is very important for IntelliJ users, specifying in your ~/.bash_profile won't do)>
+
+ <<sudo nano /etc/launchd.conf>>
+
++-------------------------------------------------------------------------------------
+ setenv M2_HOME /usr/share/maven
+ setenv ANDROID_HOME /Users/Michael Lake/sdk/android-sdk-mac_x86
+ setenv JAVA_HOME /System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home/
++--------------------------------------------------------------------------------------
+
+ Reboot your computer once you've made the changes, open terminal and verify they're properly set (using <<env>> from terminal)
+
+** Windows
+
+** Linux
+
+* Clone the Source Code
+
++-------------
+git clone git@github.com:willowtreeapps/OAK.git
++-------------
+
+* Clean the source
+
+ Navigate to the OAK folder
+
++------------
+./clean_project_files.sh
++------------
+
+
+Configure your IDE
+
+* Eclipse
+
+ *<<NOTE: As of 2011.12.20 The Eclipse plugins for Maven and Android do not work together with OAK and its demos.>>
+
+ Get the {{{http://eclipse.org/m2e/} m2eclipse}} plugin: (plugin site: {{http://download.eclipse.org/technology/m2e/releases}} )
+
+ You should then be able to open the poject using <<File -> Import... -> Existing maven projects>>
+
+**Import code style settings to Eclipse
+
+ Preferences -> Java -> Code Style -> Formatter
+
+ Click on "Import..." and grab <(oak-project)><</src/development/eclipse/willowtree-codestyle-eclipse.xml>>
+
+* IntelliJ IDEA
+
+**Importing OAK into IntelliJ
+
+ <<File ->Create New Project -> Import project from external model -> Maven>>
+
+ *Ensure that the following settings for the New Project are set
+
+   The Root directory points to the parent OAK directory ie (/Users/yourUserName/OAK)
+
+   <<Check>> 'Search for projects recursively'
+
+   Project format: .idea (directory based)
+
+   <<Check>> 'Import Maven projects automatically'
+
+   <<Check>> 'Create IDEA modules for aggregator projects (with 'pom' packaging)'
+
+   <<Check>> 'Keep source and test folders on reimport'
+
+   <<Check>> 'Use Maven output directories'
+
+   Phase to be used for folders update: 'process-resources'
+ 
+   <<->Next>>
+
+ *For Mac OS X: select mac
+
+ *Assuming other operating systems would just check their OS (untested) 
+
+   <<->Next>>
+
+ *Select the Maven projects to import
+
+   <<->Next>>
+
+ *Specify the project name and the file location
+
+   <<->Finish>>
+
+**Steps after importing to get OAK running
+ 
+
+ *Check the event log and click Configure to add the Android framework to the oak-library
+
+ *Go to the Run menu and Edit Configurations
+
+   Add New Configuration
+
+   Module: oak-demos
+
+   Launch default Activity
+
+   <<Check>> deploy application
+
+   Select your target device
+
+   Before Launch: Make checked
+
+ *Run the newly created Run Configuration
+
+ *If errors exist during compilation, run the clean script again, rebuild project, and make sure the project has been Configured so that all three packages have the Android Framework.
+
+ *Other possible changes
+
+   Edit oak-demos module settings to use <<target/generated-sources/r>>
+
+**Import code style settings to IntelliJ
+
+ Copy the <(oak-project)><</src/development/intellij/willowtree-codestyle-intellij.xml>> to one of the following directories:
+
+ *Mac OS X: ~/Library/Preferences/<product-name>/codestyles/
+
+ *Linux: ~/.<product-name>/config/codeStyles/
+
+ *Windows: <User home>\.<product-name>\config\codeStyles\
+
+
+Maintainers Only: How to Perform a Release
+
+ Performing a release will:
+
+  *update poms to "release" version (sans "-SNAPSHOT")
+
+  *automatically create a tag in git with the version number
+
+  *run a build
+
+  *deploy to internal repo (as opposed to snapshot repo)
+
+  *update and commit the poms for the next SNAPSHOT version(i,e. 1.0.2-SNAPSHOT, becomes 1.0.2, becomes 1.0.3-SNAPSHOT)
+
+
+* Configure username and password for deployment
+
+ Make sure your <<~/.m2/settings.xml>> file has something like the following:
+
++-----------------------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/POM/4.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <!-- username and password are those created on archiva -->
+    <servers>
+        <server>
+            <id>wta.internal</id>
+            <username>michael.lake</username>
+            <password>mysecretpassword</password>
+        </server>
+        <server>
+            <id>wta.snapshots</id>
+            <username>michael.lake</username>
+            <password>mysecretpassword</password>
+        </server>
+    </servers>
+
+    <!-- optional section which *should* be used by internal developers to ensure
+         that our internal repo is properly caching dependencies fetched from potentially
+         flakey public servers where jars may come and go
+
+    <mirrors>
+        <mirror>
+            <id>wta.internal</id>
+            <mirrorOf>*</mirrorOf>
+            <url>http://birch.willowtreeapps.com:8080/archiva/repository/internal/</url>
+        </mirror>
+    </mirrors>
+    -->
+</settings>
++-----------------------------------------------------------------------
+
+* Perform the Release
+
+ Ensure the build is good:
+
++---
+mvn clean install
++---
+
+ The following updates all the versions to "release" makes a commit to tags, pushes to origin, updates versions again to SNAPSHOT, then pushes again to origin
+
++---
+mvn release:prepare -Dresume=false
++---
+
+ Make absolutely sure you're JAVA_HOME environment variable is set(or else proguard will fail):
+
++---
+export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/
++---
+
+ Actually deploy the project to the repository (Note: Archiva has a feature which will <prevent you from deploying
+ artifacts that have already been deployed.> The error for this is not so obvious should it happen)
+
++---
+mvn release:perform -DperformRelease=true
++---
+
+Update Documentation
+
+ Edit the files under <<src/site>> using the {{{http://maven.apache.org/doxia/references/apt-format.html}APT format}}
+
+ Use the following command which starts the site up, rendering documents as requested for faster editing Jetty as the web server
+
++---
+mvn site:run
++---
+
+ Which updates can be seen and refreshed from {{http://localhost:8080/}}
+
+ Commit the changes to git and the continuous integration server will automatically deploy the website.

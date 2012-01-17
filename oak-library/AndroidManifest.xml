@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest package="oak" android:versionCode="1" xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0.7-SNAPSHOT" xsi:schemaLocation="http://schemas.android.com/apk/res/android" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <application android:label="@string/app_name" android:icon="@drawable/icon">
+    <activity android:name="ACTIVITY_ENTRY_NAME" android:label="@string/app_name">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+    </activity>
+  </application>
+</manifest>

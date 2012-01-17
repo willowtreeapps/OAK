@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2011. WillowTree Apps
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:oak="http://oak/oak/schema"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+    <oak.ResizedTextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="This text is extremely long filled with big words ellipsizable understanding weatherford and a few small ones too although underachieving understanding corresponds with incompetence and ignorance abcdefg hijklmnop qrstuvwxyz thesewords willfill thenextline hopefullyprettyquickly"
+            android:maxLines="3"
+            oak:minTextSize="11"
+            android:background="#4400ff00"
+            />
+    <oak.ResizedTextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Same as above, but shorter"
+            android:maxLines="2"
+            oak:minTextSize="11"
+            android:background="#44AA88AA"
+            />
+
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Imagine having your app read an RSS article that has a really long title."
+            oak:minTextSize="11"
+            android:maxLines="6"
+            android:gravity="center"
+            android:background="#440000ff"
+            android:id="@+id/rtv"
+            />
+
+    <oak.ResizedTextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Even works with different fonts and ellipsing! hopefully this is enough text to cut off."
+            oak:minTextSize="11"
+            android:maxLines="1"
+            android:gravity="center"
+            android:background="#44ff0000"
+            android:id="@+id/rtv"
+            oak:font="Apple Chancery.ttf"
+            />
+    <oak.ResizedTextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Imagine having your app read an RSS article that has a really long title."
+            oak:minTextSize="11"
+            android:maxLines="1"
+            android:background="#440000ff"
+            android:id="@+id/rtv"
+            android:padding="15dip"
+            />
+    <oak.ResizedTextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="shorter text, but not too short"
+            oak:minTextSize="11"
+            android:maxLines="1"
+            android:background="#ff666666"
+            />
+    <oak.ResizedTextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Gypg fg"
+            oak:minTextSize="11"
+            android:textSize="12sp"
+            android:maxLines="1"
+            android:background="#ff006600"
+            android:padding="0dip"
+            />
+
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#99ffffff"
+            >
+
+        <oak.TextViewWithFont
+                android:id="@+id/label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                oak:minTextSize="11"
+                android:textSize="13sp"
+                android:padding="0dip"
+                oak:font="Gotham-Book.ttf"
+                android:text="address goes here"
+                android:textColor="#000000"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:paddingLeft="0dip"
+                />
+
+        <oak.ResizedTextView
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_toRightOf="@id/label"
+                android:text="Michael Farfunkenberger \nmichael.lake+23452342@willowtreeapps.com"
+                android:textColor="#ffffff"
+                oak:font="Gotham-Book.ttf"
+                android:maxLines="2"
+                oak:minTextSize="8"
+                android:textSize="13sp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="right"
+                android:background="#330000ff"
+                android:paddingBottom="0dip"
+                android:paddingRight="14dip"
+                android:paddingLeft="14dip"
+                android:paddingTop="0dip"
+                />
+
+    </RelativeLayout>
+
+
+    <!-- END SNIPPET: resizedtv_layout -->
+    <include android:id="@+id/attribution" layout="@layout/attribution" />
+</LinearLayout>
