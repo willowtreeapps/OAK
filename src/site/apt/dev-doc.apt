@@ -22,7 +22,7 @@ How to configure your environment to build OAK
 ** Mac OS X
 
  Set up your environment variables <(the M2_HOME one is very important for IntelliJ users, specifying in your ~/.bash_profile won't do)>
-
+                                         †
  <<sudo nano /etc/launchd.conf>>
 
 +-------------------------------------------------------------------------------------

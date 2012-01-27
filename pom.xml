@@ -194,6 +194,9 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
                 <version>3.0</version>
+                <configuration>
+                    <outputEncoding>UTF-8</outputEncoding>
+                </configuration>
                 <dependencies>
                     <dependency>
                         <groupId>org.apache.maven.wagon</groupId>
@@ -286,8 +289,8 @@
                             <platform>9</platform>
                         </sdk>
                         <emulator>
-                            <avd>22</avd>
-                            <wait>6000</wait>
+                            <avd>23</avd>
+                            <wait>60000</wait>
                             <options>-noaudio -no-boot-anim</options>
                         </emulator>
                         <undeployBeforeDeploy>true</undeployBeforeDeploy>
@@ -315,7 +318,7 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>buildnumber-maven-plugin</artifactId>
-                    <version>1.0-beta-4</version>
+                    <version>1.0</version>
                 </plugin>
             </plugins>
         </pluginManagement>

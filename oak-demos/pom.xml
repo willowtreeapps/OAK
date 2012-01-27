@@ -201,7 +201,7 @@
                                             def rootNode = parser.parse(manifestFile)
                                             def attributes = rootNode.attributes()
                                             attributes[ns.versionName] = "${project.version}"
-                                            attributes[ns.versionCode] = attributes[ns.versionCode].toInteger() + 1;
+                                            attributes[ns.versionCode] = "${maven.build.timestamp}"
                                             def writer = new groovy.io.GroovyPrintWriter(manifestFile)
                                             writer.println('&lt;?xml version="1.0" encoding="UTF-8"?&gt;')
                                             def xmlWriter = new groovy.util.XmlNodePrinter(writer)

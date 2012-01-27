@@ -3,6 +3,10 @@ Quick Start Guide
  NOTE: You will need to make sure your Android SDK is up to date. Make sure you're using Revision 15 or higher.
  (To update your tools run the "android" command in your Android SDK and update the SDK from there.)
 
+* Download the .jar
+
+ Download the newest .jar {{{http://birch.willowtreeapps.com:8080/archiva/repository/internal/com/willowtreeapps/oak-library/} here.}}
+
 * Use your existing Android Ant build file
 
  In the root of your Android project, copy the following into a file called <<build-ivy.xml>>

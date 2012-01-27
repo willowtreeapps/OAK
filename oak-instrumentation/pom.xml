@@ -13,6 +13,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.willowtreeapps</groupId>
+            <artifactId>oak-library</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.google.android</groupId>
             <artifactId>android</artifactId>
             <scope>provided</scope>
@@ -21,12 +26,6 @@
             <groupId>com.google.android</groupId>
             <artifactId>android-test</artifactId>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.willowtreeapps</groupId>
-            <artifactId>oak-demos</artifactId>
-            <version>${project.version}</version>
-            <type>apk</type>
         </dependency>
         <dependency>
             <groupId>com.willowtreeapps</groupId>
