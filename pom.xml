@@ -299,8 +299,9 @@
                         </zipalign>
                         <dex>
                             <jvmArguments>
+                                <jvmArgument>--launcher.XXMaxPermSize256m</jvmArgument>
                                 <jvmArgument>-Xms256m</jvmArgument>
-                                <jvmArgument>-Xmx512m</jvmArgument>
+                                <jvmArgument>-Xmx1024m</jvmArgument>
                             </jvmArguments>
                         </dex>
                     </configuration>
