@@ -44,7 +44,7 @@
                 <artifactId>android-maven-plugin</artifactId>
                 <configuration>
                     <test>
-                        <skip>false</skip>
+                        <skip>${skipTests}</skip>
                     </test>
                 </configuration>
                 <extensions>true</extensions>

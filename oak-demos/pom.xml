@@ -94,13 +94,6 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <id>startEmulator</id>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>emulator-start</goal>
-                        </goals>
-                    </execution>
-                    <execution>
                         <id>alignApk</id>
                         <phase>package</phase>
                         <goals>
@@ -165,6 +158,46 @@
                 <deployment.stage>In Production</deployment.stage>
                 <android.debuggable>false</android.debuggable>
             </properties>
+        </profile>
+        <profile>
+            <id>testing</id>
+            <activation>
+                <property>
+                    <name>skipTests</name>
+                    <value>false</value>
+                </property>
+            </activation>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                        <artifactId>android-maven-plugin</artifactId>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <androidManifestFile>${project.build.directory}/filtered-manifest/AndroidManifest.xml
+                            </androidManifestFile>
+                            <resourceDirectory>${project.basedir}/res</resourceDirectory>
+                        </configuration>
+                        <executions>
+                            <!--<execution>-->
+                            <!--<id>startEmulator</id>-->
+                            <!--<phase>initialize</phase>-->
+                            <!--<goals>-->
+                            <!--<goal>emulator-start</goal>-->
+                            <!--</goals>-->
+                            <!--</execution>-->
+                            <execution>
+                                <id>alignApk</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>zipalign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
         <profile>
             <id>release</id>
