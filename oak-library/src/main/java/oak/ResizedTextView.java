@@ -1,216 +1,115 @@
-/*
- * Copyright (c) 2011. WillowTree Apps
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package oak;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.text.Layout;
 import android.text.StaticLayout;
+import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;
 
-public class ResizedTextView extends TextViewWithFont {
-
-    private float minTextSize;
-    private int maxLines;
-    private float maxBoundsWidth;
-    public static final String ELLIPSE = "...";
-    private String theText;
-    private float lineSpacingMultiplier = 2.0f;
-    private Layout textLayout;
-    private Layout textLayout2;
-    private int counted;
-    private int numLines = 0;
-    private boolean notChecked;
-
-
-    public ResizedTextView(Context context) {
+/**
+ * Created by IntelliJ IDEA.
+ * User: Woody
+ * Date: 2/2/12
+ * Time: 8:24 PM
+ * To change this template use File | Settings | File Templates.
+ */
+public class ResizedTextView2 extends TextViewWithFont {
+    
+    private int numMaxLines; //Maximum number of lines, default is 2 if not set in XML
+    private int numMinTextSize; //Minimum text size, default is 11 if not set in XML
+    private int numLines; // Hold the current number of lines
+    private int numTextSize; //Hold the current text size
+    
+    private final Canvas resizeCanvas = new Canvas();
+    
+    public ResizedTextView2(Context context) {
         this(context, null);
     }
 
-    public ResizedTextView(Context context, AttributeSet attrs) {
+    public ResizedTextView2(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public ResizedTextView(Context context, AttributeSet attrs, int defStyle) {
+    public ResizedTextView2(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
-        maxLines = attrs.getAttributeIntValue(
+        this.numMaxLines = attrs.getAttributeIntValue(
                 "http://schemas.android.com/apk/res/android",
                 "maxLines",
                 2);
 
 
-        minTextSize = attrs.getAttributeIntValue(
+        this.numMinTextSize = attrs.getAttributeIntValue(
                 OAK.XMLNS,
                 "minTextSize",
                 11);
-
-        setEllipsize(null);
-        setMaxLines(maxLines);
-        theText = getText().toString();
-        counted = 0;
-        notChecked = true;
     }
 
     @Override
-    public void setMaxLines(int maximumLines) {
-        super.setMaxLines(maximumLines);
-        maxLines = maximumLines;
+    public void setTextSize(float size) {
+        super.setTextSize(size);
+        this.numTextSize = (int)size;
     }
 
-    @Override
-    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        super.onLayout(changed, left, top, right, bottom);
+    @Override 
+    protected  void onLayout(boolean  changed, int left, int top, int right, int bottom) {
+        if(changed) {
+            //Get the max height and width our text view can occupy.
+            int maxWidth = (right - left) - getCompoundPaddingLeft() - getCompoundPaddingRight();
+            int maxHeight = (bottom - top) - getCompoundPaddingTop() - getCompoundPaddingBottom();
+            
+            //Get the current text, and a canvas to draw onto
+            CharSequence text = this.getText();
+            TextPaint textPaint = this.getPaint();
+            
+            //Starting at the minimum text size, keep increasing until we can no longer keep the height, or we hit the max number of lines
+            int textHeight = getTextHeight(text, textPaint, maxWidth, this.numMinTextSize);
 
-        //Get it's current Width, set size to 1, and get that width
-
-        this.maxBoundsWidth = this.getMeasuredWidth();
-        this.setMeasuredDimension((int) this.maxBoundsWidth, this.getMeasuredHeight());
-        if (counted %2 == 0) {
-            textLayout = createWorkingLayout(theText);
-            textLayout2 = textLayout;
-            setTextSize(findTextSize(1, 1));
-            setLines(numLines);
-        }
-        counted++;
-        ellipsizeText();
-    }
-
-
-    /**
-     * recursive function to find the correct number of lines and the text size.
-     * @param curLines the number of lines the text will use
-     * @param aTextSize a text size that may be the one needed
-     * @return the correct text size to fit
-     */
-    public float findTextSize(int curLines, float aTextSize) {
-        numLines = curLines;
-        measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
-        int newWidth = getMeasuredWidth();
-        int textSize = (int) aTextSize;
-
-        if (textSize <= 1) {
-            for (; newWidth / curLines <= maxBoundsWidth; textSize++) {
-                this.setTextSize(textSize);
-                this.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
-                newWidth = this.getMeasuredWidth();
+            while(textHeight < maxHeight && this.numLines <= this.numMaxLines) {
+                Log.d("OAK", "Trying text size: " + (this.numTextSize + 1));
+                textHeight = getTextHeight(text, textPaint, maxWidth, this.numTextSize + 1);
+                Log.d("OAK", "Numlines: " + this.numLines);
+                Log.d("OAK", "Height is: " + textHeight + " Of " + maxHeight);
             }
 
-        }
-        setTextSize(textSize);
-        textLayout = createWorkingLayout(theText);
-        findAndSet(textLayout);
+            //numTextSize now contains the maximum text size, or the largest size without going over the maxLines
+            //So test if we should Elipsize (AKA we hit maxLines)
 
-        if (textSize > minTextSize) {
-            if (curLines == 1 && ((textLayout2.getLineCount() > 1) || (wouldEllipse(curLines)))) {
-                return findTextSize(curLines, textSize - 4);
-            }
-            else if (curLines <= maxLines && (wouldEllipse(curLines) || textLayout2.getLineCount() > curLines)) {
-                return findTextSize(curLines, textSize - 4);
-            }
-            else {
-                return (float) textSize;
-            }
-        }
-
-        if (textSize < minTextSize) {
-            if (curLines + 1 > maxLines ) {
-                return minTextSize;
-            }
-            else if (curLines < maxLines)
-            {
-                setLines(curLines + 1);
-                this.numLines++;
-                return findTextSize(curLines + 1, 1);
-            }
-            else if (textLayout.getLineCount() < curLines) {
-                setLines(curLines + 1);
-                this.numLines++;
-                return findTextSize(curLines + 1, minTextSize);
-            }
-            else {
-                return minTextSize;
-            }
-        }
-        return findTextSize(curLines, minTextSize - 2);
-    }
-
-    private boolean wouldEllipse(int curLines) {
-        return textLayout.getLineCount() > curLines;
-    }
-
-    /**
-     * determines if the the text goes beyond the maximum number of lines allowed and
-     * cuts it off and adds an ellipse if it does.
-     */
-    private void ellipsizeText() {
-            theText = getText().toString();
-            String ellipsedText = theText;
-            textLayout = createWorkingLayout(theText);
-            if (textLayout.getLineCount() > maxLines) {
-                int lastChar = textLayout.getLineEnd(maxLines);
-                ellipsedText = ellipsedText.substring(0, textLayout.getLineEnd(maxLines) - 1);
-                while (createWorkingLayout(ellipsedText + ELLIPSE).getLineCount() > maxLines) {
-                    if (lastChar == 0) {
-                        break;
-                    }
-                    lastChar--;
-                    ellipsedText = ellipsedText.substring(0, lastChar);
+            if(this.numLines > this.numMaxLines) {
+                //We hit the max number of lines, so cut off some of the text
+                textPaint.setTextSize(this.numTextSize);
+                StaticLayout tempLayout = createWorkingLayout(text, textPaint ,maxWidth);
+                tempLayout.draw(resizeCanvas);
+                //EndOfLine is the position of the last element of the 2nd to last line
+                int EndOfLine = tempLayout.getLineEnd(this.numLines - 1);
+                //If it still doesn't fit take away a character, and try again
+                while(createWorkingLayout(text.subSequence(0, EndOfLine - 4) + "...", textPaint, maxWidth).getLineCount() > this.numMaxLines) {
+                    EndOfLine--;
                 }
+                Log.d("OAK", "Text was: \"" + text + "\" now is: " + text.subSequence(0, EndOfLine - 4) + "...");
+                setText(text.subSequence(0, EndOfLine - 4) + "...");
+            }
 
-                if (lastChar >= 3) {
-                    ellipsedText = ellipsedText.substring(0, lastChar - 3) + ELLIPSE;
-                }
-            }
-            if (!ellipsedText.equals(theText)) {
-                try {
-                    setText(ellipsedText);
-                }
-                finally {
-                    //do nothing
-                }
-            }
+            //Set the text size
+            textPaint.setTextSize(this.numTextSize);
+            setLineSpacing(0.0f, 1.0f);
         }
-
-    private Layout createWorkingLayout(String workingText) {
-        return new StaticLayout(
-                workingText, getPaint(), getWidth() - getPaddingLeft() - getPaddingRight(), Layout.Alignment.ALIGN_NORMAL, lineSpacingMultiplier, 0.0f, false);
+        super.onLayout(changed, left, right, top, bottom);    
     }
     
-    private void findAndSet(Layout lay) {
-        if (notChecked) {
-            int startLine = 0;
-            int endLine = 0;
-            CharSequence longestLine = lay.getText().subSequence(startLine, endLine);
-            for (int i = 0; i < lay.getLineCount() - 1; i++)
-            {
-                startLine = lay.getLineStart(i);
-                endLine = lay.getLineEnd(i);
-                CharSequence nLongestLine = lay.getText().subSequence(startLine, endLine);
-                if (nLongestLine.length() > longestLine.length()) {
-                    longestLine = nLongestLine;
-                    textLayout2 = createWorkingLayout(longestLine.toString());
-                    notChecked = false;
-                }
-            }
-        }
+    private int getTextHeight(CharSequence text, TextPaint paint, int width, int textSize) {
+        //Draw the Text behind the scenes to get the height
+        paint.setTextSize(textSize);
+        this.numTextSize = textSize;
+        StaticLayout tempLayout = createWorkingLayout(text, paint, width);
+        tempLayout.draw(resizeCanvas);
+        this.numLines = tempLayout.getLineCount();
+        return tempLayout.getHeight();
     }
-
-
+    
+    private StaticLayout createWorkingLayout(CharSequence text, TextPaint paint, int width) {
+        return new StaticLayout(text, paint, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
+    }
 }
-
-
