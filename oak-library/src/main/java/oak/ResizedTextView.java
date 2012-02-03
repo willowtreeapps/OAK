@@ -15,7 +15,7 @@ import android.util.Log;
  * Time: 8:24 PM
  * To change this template use File | Settings | File Templates.
  */
-public class ResizedTextView2 extends TextViewWithFont {
+public class ResizedTextView extends TextViewWithFont {
     
     private int numMaxLines; //Maximum number of lines, default is 2 if not set in XML
     private int numMinTextSize; //Minimum text size, default is 11 if not set in XML
@@ -24,15 +24,15 @@ public class ResizedTextView2 extends TextViewWithFont {
     
     private final Canvas resizeCanvas = new Canvas();
     
-    public ResizedTextView2(Context context) {
+    public ResizedTextView(Context context) {
         this(context, null);
     }
 
-    public ResizedTextView2(Context context, AttributeSet attrs) {
+    public ResizedTextView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public ResizedTextView2(Context context, AttributeSet attrs, int defStyle) {
+    public ResizedTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
         this.numMaxLines = attrs.getAttributeIntValue(
