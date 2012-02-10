@@ -16,15 +16,20 @@
 
 package oak.test;
 
-import android.net.Uri;
+import android.graphics.Bitmap;
+import android.os.Message;
 import android.test.ActivityInstrumentationTestCase2;
+import android.widget.ImageView;
 
+import java.util.Date;
+
+import oak.ImageTransformation;
+import oak.OAKImageLoader;
+import oak.OAKImageLoaderHandler;
 import oak.demo.ImageLoaderActivity;
 
 /**
- * User: Michael Lake
- * Date: 9/20/11
- * Time: 10:58 AM
+ * User: Michael Lake Date: 9/20/11 Time: 10:58 AM
  */
 
 public class ImageLoaderActivityTest extends ActivityInstrumentationTestCase2<ImageLoaderActivity> {
@@ -33,9 +38,4 @@ public class ImageLoaderActivityTest extends ActivityInstrumentationTestCase2<Im
         super("oak.demo", ImageLoaderActivity.class);
     }
 
-
-    public void testUnderScoreIssue(){
-        Uri uri = Uri.parse("http://sprint_center.s3.amazonaws.com/img/exterior_night2.jpg");
-
-    }
 }

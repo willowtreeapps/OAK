@@ -16,11 +16,34 @@
 
 package oak.test;
 
+import org.apache.http.HttpHost;
+import org.apache.http.HttpRequest;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.conn.ssl.AbstractVerifier;
+import org.apache.http.conn.ssl.SSLSocketFactory;
+import org.apache.http.conn.ssl.X509HostnameVerifier;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHttpRequest;
+
+import android.graphics.Bitmap;
+import android.os.Message;
 import android.test.ApplicationTestCase;
 import android.test.suitebuilder.annotation.MediumTest;
 import android.test.suitebuilder.annotation.SmallTest;
+import android.widget.ImageView;
 
+import java.net.URI;
+import java.net.URL;
+import java.util.Date;
+
+import javax.net.ssl.SSLException;
+
+import oak.OAKImageLoader;
+import oak.OAKImageLoaderHandler;
 import oak.demo.OakApplication;
+import oak.external.com.github.droidfu.http.CachedHttpResponse;
 
 /**
  * User: Michael Lake
@@ -57,5 +80,43 @@ public class OakApplicationTests extends ApplicationTestCase<OakApplication> {
 
           assertEquals("testMessage",getApplication().getMessage());
       }
+
+    public void testUnderScoreIssue() throws Exception {
+
+        final String _URL =  "http://sprint_center.s3.amazonaws.com/img/exterior_night2.jpg";
+
+        String unique = String.valueOf(new Date().getTime());
+        final String URL =
+                //"http://www.gravatar.com/avatar/2a1c55a7e1649a045761547925c4149e?s=512&blah="
+                _URL + "?blah="
+                        + unique;
+
+        OAKImageLoader.initialize(getContext(),OAKImageLoader.PREFER_SD);
+
+        ImageView imageView = new ImageView(getContext());
+
+        final Holder<Boolean> loaded = new Holder<Boolean>();
+        loaded.value = false;
+
+        OAKImageLoaderHandler oakHandler = new OAKImageLoaderHandler(imageView, URL) {
+            @Override
+            public boolean handleImageLoaded(Bitmap bitmap, Message msg) {
+                loaded.value = true;
+                return super.handleImageLoaded(bitmap, msg);
+            }
+        };
+
+        OAKImageLoader.start(URL, oakHandler);
+
+        Thread.sleep(90000);
+
+        assertTrue("Image from domain with underscore not loaded", loaded.value);
+
+    }
+
+    public class Holder<T> {
+
+        public T value;
+    }
 
 }

@@ -15,6 +15,8 @@
 
 package oak;
 
+import org.apache.http.HttpHost;
+import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -23,6 +25,7 @@ import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.entity.BufferedHttpEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHttpRequest;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -43,6 +46,7 @@ import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -375,13 +379,25 @@ public class OAKImageLoader extends ImageLoader implements Runnable {
      * loaded. New version 8/11/11 by cceckman to try to fix 2.3 issues.
      */
     protected byte[] retrieveImageData() throws IOException {
+        HttpResponse response;
+        URL url = new URL(imageUrl);
+        if (url.getAuthority().contains("_")){
 
-        HttpGet req = new HttpGet(imageUrl);
-
-        HttpResponse resp = (HttpResponse) getHttpClient().execute(req);
+            HttpHost httpHost;
+            if (url.getPort() == -1){
+                httpHost = new HttpHost(url.getHost(), 80, url.getProtocol());
+            } else {
+                httpHost = new HttpHost(url.getHost(), url.getPort(), url.getProtocol());
+            }
+            HttpRequest httpRequest = new BasicHttpRequest("GET", imageUrl);
+            response = getHttpClient().execute(httpHost, httpRequest);
+        } else{
+            HttpGet req = new HttpGet(imageUrl);
+            response =  getHttpClient().execute(req);
+        }
 
         BufferedHttpEntity bufResponse = new BufferedHttpEntity(
-                resp.getEntity());//buffer the response before it comes back...
+                response.getEntity());//buffer the response before it comes back...
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bufResponse.writeTo(baos);

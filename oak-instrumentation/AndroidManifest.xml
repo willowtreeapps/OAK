@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="oak.test"
           android:versionName="1.0.0-SNAPSHOT">
+    <uses-sdk android:minSdkVersion="7" />
     <application>
         <uses-library android:name="android.test.runner"/>
     </application>

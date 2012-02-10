@@ -78,6 +78,5 @@ public class OAKImageLoaderHandler extends ImageLoaderHandler {
 
         return false;
     }
-    
 
 }
