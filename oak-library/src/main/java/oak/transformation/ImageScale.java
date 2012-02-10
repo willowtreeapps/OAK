@@ -37,7 +37,7 @@ public class ImageScale implements ImageTransformation {
         int resultWidth = 0;
         int resultHeight = 0;
 
-        if (image.getWidth() > image.getHeight() && image.getWidth() > mMaxWidth) {
+        if (image.getWidth() >= image.getHeight() && image.getWidth() > mMaxWidth) {
             //we're wider than we are taller
             resultWidth = mMaxWidth;
             float ratio = (float) mMaxWidth / (float) image.getWidth();

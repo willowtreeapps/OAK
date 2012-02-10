@@ -17,11 +17,10 @@
 package oak;
 
 /**
- * User: Michael Lake
- * Date: 10/17/11
- * Time: 12:19 PM
+ * User: Michael Lake Date: 10/17/11 Time: 12:19 PM
  */
 public interface OAK {
 
-     static final String XMLNS = "http://oak/oak/schema";
+    static final String XMLNS = "http://oak/oak/schema";
+    static final String LOGTAG = "OAK";
 }

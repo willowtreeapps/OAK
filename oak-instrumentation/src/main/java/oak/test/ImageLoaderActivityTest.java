@@ -16,9 +16,10 @@
 
 package oak.test;
 
+import android.net.Uri;
 import android.test.ActivityInstrumentationTestCase2;
 
-import oak.demo.ImageManagerActivity;
+import oak.demo.ImageLoaderActivity;
 
 /**
  * User: Michael Lake
@@ -26,9 +27,15 @@ import oak.demo.ImageManagerActivity;
  * Time: 10:58 AM
  */
 
-public class ImageManagerActivityTest extends ActivityInstrumentationTestCase2<ImageManagerActivity> {
+public class ImageLoaderActivityTest extends ActivityInstrumentationTestCase2<ImageLoaderActivity> {
 
-    public ImageManagerActivityTest() {
-        super("oak.demo", ImageManagerActivity.class);
+    public ImageLoaderActivityTest() {
+        super("oak.demo", ImageLoaderActivity.class);
+    }
+
+
+    public void testUnderScoreIssue(){
+        Uri uri = Uri.parse("http://sprint_center.s3.amazonaws.com/img/exterior_night2.jpg");
+
     }
 }

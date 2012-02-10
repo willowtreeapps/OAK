@@ -21,16 +21,6 @@ public class PhotoItem {
 
     String title;
 
-    String description;
-
-    public void setDescription(String desc) {
-        this.description = desc.replace("<![CDATA[", "").replace("]]>", "");
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
     public void setTitle(String title) {
         this.title = title;
     }

@@ -22,5 +22,31 @@
     <string name="textview_with_font_activity">Widget/TextViewWithFont</string>
     <string name="cancel_edit_text_activity">Widget/CancelEditText</string>
     <string name="encrypted_prefs_activity">Other/Encrypted Preferences</string>
-    <string name="disclaimer">Although MODE_PRIVATE in SharedPreferences should isolate your saved data to be viewable by only your application, a compromised android device(read \'rooted\') would be able to view all shared preferences which are generally just in plain text. By using oak.ObscuredSharedPreferences, all your data is saved through a layer of encryption which offers considerable more protection should your device fall into the wrong hands. That said, nothing is bulletproof when it comes to computer security.</string>
+    <string name="disclaimer">Although MODE_PRIVATE in SharedPreferences should isolate your saved
+        data to be viewable by only your application, a compromised android device(read \'rooted\')
+        would be able to view all shared preferences which are generally just in plain text. By
+        using oak.ObscuredSharedPreferences, all your data is saved through a layer of encryption
+        which offers considerable more protection should your device fall into the wrong hands. That
+        said, nothing is bulletproof when it comes to computer security.
+    </string>
+
+
+    <string-array name="names">
+        <item>^mlake</item>
+        <item>jjnye</item>
+        <item>rduplain</item>
+        <item>eric</item>
+        <item>nate</item>
+        <item>dbrameyer</item>
+        <item>george</item>
+    </string-array>
+    <string-array name="emails">
+        <item>michael.lake</item>
+        <item>jonathan.nye</item>
+        <item>ron.duplain</item>
+        <item>eric.richardson</item>
+        <item>nate.vogt</item>
+        <item>derek.brameyer</item>
+        <item>george.delmonte</item>
+    </string-array>
 </resources>
