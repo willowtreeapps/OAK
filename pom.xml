@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.willowtreeapps</groupId>
     <artifactId>oak-project</artifactId>
@@ -10,6 +12,9 @@
     <inceptionYear>2011</inceptionYear>
 
     <properties>
+        <!--this will update the version of the latest stable, update after release -->
+        <latestStableVersion>1.0.7</latestStableVersion>
+
         <skipTests>true</skipTests>
         <!-- set a custom format that is guaranteed to grow as a Long number, so it can be used as version code
         in the AndroidManifest.xml -->
@@ -17,7 +22,7 @@
         <!-- this trick of loading build timestamp into other property is necessary due to
         http://jira.codehaus.org/browse/MRESOURCES-99 and also more readable -->
         <versionCode>${maven.build.timestamp}</versionCode>
-
+        <site.downloads.dir>${project.basedir}/src/site/resources/downloads/</site.downloads.dir>
         <releaseRepo>http://birch.willowtreeapps.com:8080/archiva/repository/internal/</releaseRepo>
         <snapshotRepo>http://birch.willowtreeapps.com:8080/archiva/repository/snapshots/
         </snapshotRepo>
@@ -206,7 +211,6 @@
                     </dependency>
                 </dependencies>
             </plugin>
-
             <plugin>
                 <artifactId>maven-source-plugin</artifactId>
                 <executions>
@@ -355,6 +359,62 @@
                 <module>oak-demos</module>
                 <module>oak-distribution</module>
             </modules>
+        </profile>
+
+        <profile>
+            <id>website</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>2.4</version>
+                        <inherited>false</inherited>
+                        <executions>
+                            <execution>
+                                <id>copy</id>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.willowtreeapps</groupId>
+                                    <artifactId>oak-distribution</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>zip</type>
+                                    <classifier>bin</classifier>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${site.downloads.dir}</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.willowtreeapps</groupId>
+                                    <artifactId>oak-distribution</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>tar.gz</type>
+                                    <classifier>bin</classifier>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${site.downloads.dir}</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.willowtreeapps</groupId>
+                                    <artifactId>oak-distribution</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>tar.bz2</type>
+                                    <classifier>bin</classifier>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${site.downloads.dir}</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                            <overWriteReleases>true</overWriteReleases>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 

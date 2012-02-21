@@ -234,6 +234,8 @@ Update Documentation
 
  Use the following command which starts the site up, rendering documents as requested for faster editing Jetty as the web server
 
+ Update the downloads page to use the latest stable release.
+
 +---
 mvn site:run
 +---
