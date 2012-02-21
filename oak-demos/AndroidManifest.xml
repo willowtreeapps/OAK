@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest package="oak.demo" android:versionCode="1202092158" xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0.8-SNAPSHOT">
-  <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="14"/>
-  <application android:icon="@drawable/icon" android:label="@string/app_name">
-    <activity android:name=".OakDemos" android:label="@string/app_name">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1202211068" android:versionName="1.0.8-SNAPSHOT" package="oak.demo">
+  <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="14"/>
+  <application android:debuggable="true" android:icon="@drawable/icon" android:label="@string/app_name">
+    <activity android:label="@string/app_name" android:name=".OakDemos">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
-    <activity android:name=".ImageLoaderActivity" android:label="@string/image_manager_activity" android:screenOrientation="portrait">
+    <activity android:label="@string/image_manager_activity" android:name=".ImageLoaderActivity" android:screenOrientation="portrait">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
         <category android:name="android.intent.category.SAMPLE_CODE"/>
         <category android:name="oak.android.intent.category.OAK"/>
       </intent-filter>
     </activity>
-    <activity android:name=".SectionActivity" android:label="@string/filter_activity" android:screenOrientation="portrait">
+    <activity android:label="@string/filter_activity" android:name=".SectionActivity" android:screenOrientation="portrait">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
         <category android:name="android.intent.category.SAMPLE_CODE"/>
         <category android:name="oak.android.intent.category.OAK"/>
       </intent-filter>
     </activity>
-    <activity android:name=".ResizedTextViewActivity" android:label="@string/resized_textview_activity" android:screenOrientation="portrait">
+    <activity android:label="@string/resized_textview_activity" android:name=".ResizedTextViewActivity" android:screenOrientation="portrait">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
         <category android:name="android.intent.category.SAMPLE_CODE"/>
         <category android:name="oak.android.intent.category.OAK"/>
       </intent-filter>
     </activity>
-    <activity android:name=".TextViewWithFontActivity" android:label="@string/textview_with_font_activity" android:screenOrientation="portrait">
+    <activity android:label="@string/textview_with_font_activity" android:name=".TextViewWithFontActivity" android:screenOrientation="portrait">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
         <category android:name="android.intent.category.SAMPLE_CODE"/>
         <category android:name="oak.android.intent.category.OAK"/>
       </intent-filter>
     </activity>
-    <activity android:name=".CancelEditTextActivity" android:label="@string/cancel_edit_text_activity" android:screenOrientation="portrait">
+    <activity android:label="@string/cancel_edit_text_activity" android:name=".CancelEditTextActivity" android:screenOrientation="portrait">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
         <category android:name="android.intent.category.SAMPLE_CODE"/>
         <category android:name="oak.android.intent.category.OAK"/>
       </intent-filter>
     </activity>
-    <activity android:name=".ObscuredPrefsActivity" android:label="@string/encrypted_prefs_activity" android:screenOrientation="portrait">
+    <activity android:label="@string/encrypted_prefs_activity" android:name=".ObscuredPrefsActivity" android:screenOrientation="portrait">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
         <category android:name="android.intent.category.SAMPLE_CODE"/>
