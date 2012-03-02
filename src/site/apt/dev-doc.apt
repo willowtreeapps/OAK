@@ -194,7 +194,7 @@ Maintainers Only: How to Perform a Release
         <mirror>
             <id>wta.internal</id>
             <mirrorOf>*</mirrorOf>
-            <url>http://birch.willowtreeapps.com:8080/archiva/repository/internal/</url>
+            <url>http://repo.willowtreeapps.com/repository/internal/</url>
         </mirror>
     </mirrors>
     -->
