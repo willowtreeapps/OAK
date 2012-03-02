@@ -23,8 +23,8 @@
         http://jira.codehaus.org/browse/MRESOURCES-99 and also more readable -->
         <versionCode>${maven.build.timestamp}</versionCode>
         <site.downloads.dir>${project.basedir}/src/site/resources/downloads/</site.downloads.dir>
-        <releaseRepo>http://repo.willowtreeapps.com/repository/internal/</releaseRepo>
-        <snapshotRepo>http://repo.willowtreeapps.com/repository/snapshots/</snapshotRepo>
+        <releaseRepo>http://maven.willowtreeapps.com/repository/internal/</releaseRepo>
+        <snapshotRepo>http://maven.willowtreeapps.com/repository/snapshots/</snapshotRepo>
     </properties>
 
     <ciManagement>

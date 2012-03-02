@@ -190,14 +190,52 @@ Maintainers Only: How to Perform a Release
          that our internal repo is properly caching dependencies fetched from potentially
          flakey public servers where jars may come and go
 
-    <mirrors>
-        <mirror>
-            <id>wta.internal</id>
-            <mirrorOf>*</mirrorOf>
-            <url>http://repo.willowtreeapps.com/repository/internal/</url>
-        </mirror>
-    </mirrors>
-    -->
+	<mirrors>
+		<mirror>
+			<id>wta.internal</id>
+			<mirrorOf>*</mirrorOf>
+			<url>http://maven.willowtreeapps.com/repository/internal/</url>
+		</mirror>
+		<mirror>
+			<id>wta.snapshots.mirror</id>
+			<mirrorOf>wta.snapshots</mirrorOf>
+			<url>http://maven.willowtreeapps.com/repository/snapshots/</url>
+		</mirror>
+	</mirrors>
+
+	<profiles>
+		<profile>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<repositories>
+				<repository>
+					<id>wta.snapshots</id>
+					<name>WillowTree Snapshot Repository</name>
+					<url>http://maven.willowtreeapps.com/repository/snapshots/</url>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+				<repository>
+					<id>wta.internal</id>
+					<name>WillowTree Internal Repository</name>
+					<url>http://maven.willowtreeapps.com/repository/internal/</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
+		</profile>
+	</profiles>
+
+	    -->
 </settings>
 +-----------------------------------------------------------------------
 
