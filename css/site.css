@@ -1,1 +1,34 @@
-/* You can override this file with your own styles */
+
+#banner {
+    background-image: url("../banner_background.png");
+}
+
+#breadcrumbs {
+    background-color: #333333;
+}
+
+#breadcrumbs {
+    color: #fff;
+}
+
+#breadcrumbs a:link a:visited {
+    color:#fff;
+}
+
+h2 {
+    background: none;
+    border: none;
+    color: #666666;
+}
+
+a:link {
+    color: #70b3b8;
+}
+body {
+    margin: 0px;
+}
+
+#navcolumn li {
+    margin: 4px;
+
+}
