@@ -143,6 +143,10 @@
             <name>Internal Snapshot Repository</name>
             <url>${snapshotRepo}</url>
         </snapshotRepository>
+        <site>
+            <id>oak-website</id>
+            <url>scp://birch.willowtreeapps.com/Library/WebServer/Documents/oak/</url>
+        </site>
     </distributionManagement>
 
     <dependencyManagement>
