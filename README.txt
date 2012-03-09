@@ -1,6 +1,6 @@
 
 Full site and documentation:
-http://birch.willowtreeapps.com/oak/
+http://willowtreeapps.github.com/OAK/
 
 run "mvn site:run" to view the docs on your local computer
 

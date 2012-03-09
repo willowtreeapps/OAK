@@ -9,7 +9,7 @@
 		<height>120</height>
 		<width>403</width>
 		<src>banner_left.png</src>
-		<href>http://birch.willowtreeapps.com/oak/</href>
+		<href>http://willowtreeapps.github.com/OAK/</href>
 	</bannerLeft>
 
 	<bannerRight>
@@ -52,7 +52,7 @@
 			<item name="JavaDoc" href="apidocs/"/>
 		</menu>
 		<menu name="Components">
-			<item name="Filter Adapter" href="filter-adapter.html"/>
+			<item name="Section Adapter" href="section-adapter.html"/>
             <item name="Resized TextView" href="resized_textview.html"/>
 		</menu>
 		<menu ref="reports"/>
