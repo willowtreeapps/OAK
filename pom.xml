@@ -18,7 +18,7 @@
 
     <properties>
         <!--this will update the version of the latest stable, update after release -->
-        <latestStableVersion>1.0.7</latestStableVersion>
+        <latestStableVersion>1.0.8</latestStableVersion>
 
         <skipTests>true</skipTests>
         <!-- set a custom format that is guaranteed to grow as a Long number, so it can be used as version code
