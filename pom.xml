@@ -139,7 +139,7 @@
         <!--</repository>-->
     <!--</repositories>-->
 
-    <!--<distributionManagement>-->
+    <distributionManagement>
         <!--<repository>-->
             <!--<id>wta.internal</id>-->
             <!--<name>Internal Release Repository</name>-->
@@ -150,7 +150,11 @@
             <!--<name>Internal Snapshot Repository</name>-->
             <!--<url>${snapshotRepo}</url>-->
         <!--</snapshotRepository>-->
-    <!--</distributionManagement>-->
+        <site>
+            <id>oak-website</id>
+            <url>scp://birch.willowtreeapps.com/Library/WebServer/Documents/oak/</url>
+        </site>
+    </distributionManagement>
 
     <dependencyManagement>
         <dependencies>
