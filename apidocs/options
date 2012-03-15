@@ -15,10 +15,10 @@
 -docencoding
 'UTF-8'
 -doctitle
-'OAK Android Kit 1.0.8-SNAPSHOT API'
+'OAK Android Kit 1.0.9-SNAPSHOT API'
 -linkoffline
 'http://download.oracle.com/javase/6/docs/api' '/Applications/buildAgent/work/6966526b0c4a98dd/target/javadoc-bundle-options'
 -use
 -version
 -windowtitle
-'OAK Android Kit 1.0.8-SNAPSHOT API'
+'OAK Android Kit 1.0.9-SNAPSHOT API'
