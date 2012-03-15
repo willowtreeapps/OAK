@@ -10,6 +10,13 @@
     <name>OAK Android Kit</name>
     <description>Shared library for android development.</description>
     <inceptionYear>2011</inceptionYear>
+	<url>http://willowtreeapps.github.com/OAK/</url>
+
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>7</version>
+	</parent>
 
     <properties>
         <!--this will update the version of the latest stable, update after release -->
@@ -98,52 +105,52 @@
             </plugin>
         </plugins>
     </reporting>
-    <repositories>
-        <repository>
-            <id>wta.snapshots</id>
-            <name>WillowTree Apps Repository - Snapshots</name>
-            <url>${snapshotRepo}</url>
-            <releases>
-                <enabled>false</enabled>
-                <updatePolicy>always</updatePolicy>
-                <checksumPolicy>warn</checksumPolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-                <checksumPolicy>warn</checksumPolicy>
-            </snapshots>
-        </repository>
+    <!--<repositories>-->
+        <!--<repository>-->
+            <!--<id>wta.snapshots</id>-->
+            <!--<name>WillowTree Apps Repository - Snapshots</name>-->
+            <!--<url>${snapshotRepo}</url>-->
+            <!--<releases>-->
+                <!--<enabled>false</enabled>-->
+                <!--<updatePolicy>always</updatePolicy>-->
+                <!--<checksumPolicy>warn</checksumPolicy>-->
+            <!--</releases>-->
+            <!--<snapshots>-->
+                <!--<enabled>true</enabled>-->
+                <!--<updatePolicy>always</updatePolicy>-->
+                <!--<checksumPolicy>warn</checksumPolicy>-->
+            <!--</snapshots>-->
+        <!--</repository>-->
 
-        <repository>
-            <id>wta.internal</id>
-            <name>WillowTree Apps Repository - Internal</name>
-            <url>${releaseRepo}</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-                <checksumPolicy>warn</checksumPolicy>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-                <updatePolicy>always</updatePolicy>
-                <checksumPolicy>warn</checksumPolicy>
-            </snapshots>
-        </repository>
-    </repositories>
+        <!--<repository>-->
+            <!--<id>wta.internal</id>-->
+            <!--<name>WillowTree Apps Repository - Internal</name>-->
+            <!--<url>${releaseRepo}</url>-->
+            <!--<releases>-->
+                <!--<enabled>true</enabled>-->
+                <!--<updatePolicy>always</updatePolicy>-->
+                <!--<checksumPolicy>warn</checksumPolicy>-->
+            <!--</releases>-->
+            <!--<snapshots>-->
+                <!--<enabled>false</enabled>-->
+                <!--<updatePolicy>always</updatePolicy>-->
+                <!--<checksumPolicy>warn</checksumPolicy>-->
+            <!--</snapshots>-->
+        <!--</repository>-->
+    <!--</repositories>-->
 
-    <distributionManagement>
-        <repository>
-            <id>wta.internal</id>
-            <name>Internal Release Repository</name>
-            <url>${releaseRepo}</url>
-        </repository>
-        <snapshotRepository>
-            <id>wta.snapshots</id>
-            <name>Internal Snapshot Repository</name>
-            <url>${snapshotRepo}</url>
-        </snapshotRepository>
-    </distributionManagement>
+    <!--<distributionManagement>-->
+        <!--<repository>-->
+            <!--<id>wta.internal</id>-->
+            <!--<name>Internal Release Repository</name>-->
+            <!--<url>${releaseRepo}</url>-->
+        <!--</repository>-->
+        <!--<snapshotRepository>-->
+            <!--<id>wta.snapshots</id>-->
+            <!--<name>Internal Snapshot Repository</name>-->
+            <!--<url>${snapshotRepo}</url>-->
+        <!--</snapshotRepository>-->
+    <!--</distributionManagement>-->
 
     <dependencyManagement>
         <dependencies>
@@ -402,6 +409,23 @@
                     <value>true</value>
                 </property>
             </activation>
+	        <build>
+		        <plugins>
+			        <plugin>
+				        <groupId>org.apache.maven.plugins</groupId>
+				        <artifactId>maven-gpg-plugin</artifactId>
+				        <executions>
+					        <execution>
+						        <id>sign-artifacts</id>
+						        <phase>verify</phase>
+						        <goals>
+							        <goal>sign</goal>
+						        </goals>
+					        </execution>
+				        </executions>
+			        </plugin>
+		        </plugins>
+	        </build>
             <modules>
                 <module>oak-library</module>
                 <module>oak-demos</module>
