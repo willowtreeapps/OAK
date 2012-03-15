@@ -431,7 +431,6 @@
 	        </build>
             <modules>
                 <module>oak-library</module>
-                <module>oak-distribution</module>
             </modules>
         </profile>
     </profiles>
