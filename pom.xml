@@ -381,6 +381,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <modules>
+	            <module>oak-archetype</module>
                 <module>oak-library</module>
                 <module>oak-demos</module>
                 <module>oak-instrumentation</module>
@@ -417,6 +418,7 @@
 		        </plugins>
 	        </build>
             <modules>
+	            <module>oak-archetype</module>
                 <module>oak-library</module>
             </modules>
         </profile>

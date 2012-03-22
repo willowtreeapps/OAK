@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:text="Ever wanted to specify a font in XML?"
             android:textSize="18sp"
-            oak:font="Gotham-Book.ttf"
+            oak:font="Once_upon_a_time.ttf"
             />
 
     <oak.TextViewWithFont
