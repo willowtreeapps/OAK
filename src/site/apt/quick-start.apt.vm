@@ -5,7 +5,7 @@ Quick Start Guide
 
 * Use Maven
 
- mvn archetype:generate -DarchetypeGroupId=com.willowtreeapps -DarchetypeArtifactId=oak-archetype -DarchetypeVersion=${project.version}
+ mvn archetype:generate -DarchetypeGroupId=com.willowtreeapps -DarchetypeArtifactId=oak-archetype -DarchetypeVersion=${project.version} -Dmaven.repo.remote=${distributionManagement.snapshotRepository.url}
 
 
 * Use your existing Android Ant build file
