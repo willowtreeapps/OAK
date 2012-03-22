@@ -45,7 +45,7 @@
                   <div class="xright">                    <a href="http://www.willowtreeapps.com" class="externalLink" title="WillowTree Apps">WillowTree Apps</a>
               
                 
-                &nbsp;| <span id="publishDate">Last Published: 2012-03-22 12:57:07</span>
+                &nbsp;| <span id="publishDate">Last Published: 2012-03-22 13:00:31</span>
               &nbsp;| <span id="projectVersion">Version: 1.0.9-SNAPSHOT</span>
             </div>
       <div class="clear">
@@ -104,7 +104,7 @@
     </div>
     <div id="bodyColumn">
       <div id="contentBox">
-        <div class="section"><h2>Quick Start Guide<a name="Quick_Start_Guide"></a></h2><p>NOTE: You will need to make sure your Android SDK is up to date. Make sure you're using Revision 15 or higher. (To update your tools run the &quot;android&quot; command in your Android SDK and update the SDK from there.)</p><div class="section"><h3>Use Maven<a name="Use_Maven"></a></h3><p>mvn archetype:generate -DarchetypeGroupId=com.willowtreeapps -DarchetypeArtifactId=oak-archetype -DarchetypeVersion=1.0.9-SNAPSHOT -Dmaven.repo.remote=$<a name="distributionManagement.snapshotRepository.url">distributionManagement.snapshotRepository.url</a></p></div><div class="section"><h3>Use your existing Android Ant build file<a name="Use_your_existing_Android_Ant_build_file"></a></h3><p>In the root of your Android project, copy the following into a file called <b>build-ivy.xml</b></p><div class="source"><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+        <div class="section"><h2>Quick Start Guide<a name="Quick_Start_Guide"></a></h2><p>NOTE: You will need to make sure your Android SDK is up to date. Make sure you're using Revision 15 or higher. (To update your tools run the &quot;android&quot; command in your Android SDK and update the SDK from there.)</p><div class="section"><h3>Use Maven<a name="Use_Maven"></a></h3><div class="source"><pre> mvn archetype:generate -DarchetypeGroupId=com.willowtreeapps -DarchetypeArtifactId=oak-archetype -DarchetypeVersion=1.0.9-SNAPSHOT -Dmaven.repo.remote=${distributionManagement.snapshotRepository.url}</pre></div></div><div class="section"><h3>Use your existing Android Ant build file<a name="Use_your_existing_Android_Ant_build_file"></a></h3><p>In the root of your Android project, copy the following into a file called <b>build-ivy.xml</b></p><div class="source"><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;project name=&quot;ivyimported&quot; basedir=&quot;.&quot; xmlns:ivy=&quot;antlib:org.apache.ivy.ant&quot;&gt;
 
     &lt;property name=&quot;ivy.install.version&quot; value=&quot;2.2.0&quot;/&gt;
