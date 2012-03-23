@@ -21,6 +21,8 @@
 	</bannerRight>
 	<body>
 		<head>
+			<title>Oak Android Kit: Open source widgets and tools for Android development</title>
+
 			<script type="text/javascript">
 
 				var _gaq = _gaq || [];
