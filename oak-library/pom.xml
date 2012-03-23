@@ -23,6 +23,12 @@
             <artifactId>android</artifactId>
             <scope>provided</scope>
         </dependency>
+	    <dependency>
+		    <groupId>org.roboguice</groupId>
+		    <artifactId>roboguice</artifactId>
+		    <version>2.0-RC1</version>
+		    <scope>provided</scope>
+	    </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

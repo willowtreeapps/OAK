@@ -15,13 +15,20 @@
         <category android:name="oak.android.intent.category.OAK"/>
       </intent-filter>
     </activity>
-    <activity android:label="@string/filter_activity" android:name=".SectionActivity" android:screenOrientation="portrait">
+    <activity android:label="@string/asynctool_activity" android:name=".AsyncToolActivity" android:screenOrientation="portrait">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
         <category android:name="android.intent.category.SAMPLE_CODE"/>
         <category android:name="oak.android.intent.category.OAK"/>
       </intent-filter>
     </activity>
+	  <activity android:label="@string/filter_activity" android:name=".SectionActivity" android:screenOrientation="portrait">
+		  <intent-filter>
+			  <action android:name="android.intent.action.MAIN"/>
+			  <category android:name="android.intent.category.SAMPLE_CODE"/>
+			  <category android:name="oak.android.intent.category.OAK"/>
+		  </intent-filter>
+	  </activity>
     <activity android:label="@string/resized_textview_activity" android:name=".ResizedTextViewActivity" android:screenOrientation="portrait">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
