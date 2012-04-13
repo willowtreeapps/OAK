@@ -3,7 +3,7 @@ Quick Start Guide
  NOTE: You will need to make sure your Android SDK is up to date. Make sure you're using Revision 15 or higher.
  (To update your tools run the "android" command in your Android SDK and update the SDK from there.)
 
-* Use Maven
+* Just Use Maven (recommmended)
 
  Simple copy-paste the following two commands to get up-and-running with template project.
 
@@ -14,11 +14,22 @@ mvn org.apache.maven.plugins:maven-dependency-plugin:2.1:get \
 +---
 
 +---
- mvn archetype:generate -DarchetypeGroupId=com.willowtreeapps -DarchetypeArtifactId=oak-archetype \
+mvn archetype:generate -DarchetypeGroupId=com.willowtreeapps -DarchetypeArtifactId=oak-archetype \
                         -DarchetypeVersion=${project.version}
 +---
 
-* Use your existing Android Ant build file
+ Run the following inside the newly created subdirectory.
+
++---
+
+mvn clean install
+
++---
+
+ Then, if you're using IntelliJ, you can just open the created pom.xml file via (File -> Open Project...)
+
+
+* Or use your existing Android Ant build file...(not as quick..)
 
  In the root of your Android project, copy the following into a file called <<build-ivy.xml>>
 
