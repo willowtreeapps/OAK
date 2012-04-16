@@ -5,17 +5,12 @@ Quick Start Guide
 
 * Just Use Maven (recommmended)
 
- Simple copy-paste the following two commands to get up-and-running with template project.
+ Simple copy-paste the following command to get up-and-running with a template project.
 
 +---
-mvn org.apache.maven.plugins:maven-dependency-plugin:2.1:get \
-    -DrepoUrl=${project.distributionManagement.snapshotRepository.url} \
-    -Dartifact=com.willowtreeapps:oak-archetype:${project.version}
-+---
-
-+---
-mvn archetype:generate -DarchetypeGroupId=com.willowtreeapps -DarchetypeArtifactId=oak-archetype \
-                        -DarchetypeVersion=${project.version}
+ mvn archetype:generate -DarchetypeGroupId=com.willowtreeapps -DarchetypeArtifactId=oak-archetype \
+                        -DarchetypeVersion=${project.version} \
+                        -DarchetypeRepository=${project.distributionManagement.snapshotRepository.url}
 +---
 
  Run the following inside the newly created subdirectory.
