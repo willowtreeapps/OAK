@@ -44,6 +44,13 @@
 		</dependency>
 
 	    <dependency>
+		    <groupId>com.google.android</groupId>
+		    <artifactId>android-test</artifactId>
+		    <version>\${platform.version}</version>
+		    <scope>test</scope>
+	    </dependency>
+
+	    <dependency>
 		    <groupId>com.willowtreeapps</groupId>
 		    <artifactId>oak-library</artifactId>
 		    <version>${project.parent.version}</version>
