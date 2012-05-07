@@ -66,7 +66,7 @@ public class MaskedImageView extends ImageView {
         }
     }
 
-    private void setFillColor(int color) {
+    public void setFillColor(int color) {
         mFillColor = color;
     }
 
