@@ -12,7 +12,7 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:text="@string/hello"
-		android:textSize="18dp"
+		android:textSize="24dp"
 		oak:font="Once_upon_a_time.ttf"
 		/>
 
