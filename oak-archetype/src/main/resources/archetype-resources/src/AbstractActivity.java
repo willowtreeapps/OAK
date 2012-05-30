@@ -11,8 +11,8 @@ public abstract class AbstractActivity extends RoboFragmentActivity {
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
         Window window = getWindow();
+
         // Eliminates color banding
         window.setFormat(PixelFormat.RGBA_8888);
-
     }
 }
