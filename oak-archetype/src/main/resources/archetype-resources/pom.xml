@@ -81,9 +81,9 @@
 	    </dependency>
 
         <dependency>
-            <groupId>com.github.rtyley</groupId>
-            <artifactId>roboguice-sherlock</artifactId>
-            <version>1.5-SNAPSHOT</version>
+          <groupId>com.github.rtyley</groupId>
+          <artifactId>roboguice-sherlock</artifactId>
+          <version>1.4</version>
         </dependency>
     </dependencies>
 
