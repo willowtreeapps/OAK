@@ -85,6 +85,14 @@
           <artifactId>roboguice-sherlock</artifactId>
           <version>1.4</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.actionbarsherlock</groupId>
+            <artifactId>library</artifactId>
+            <version>4.0.2</version>
+            <type>jar</type>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
