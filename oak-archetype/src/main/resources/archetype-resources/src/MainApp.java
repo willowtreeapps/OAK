@@ -10,7 +10,7 @@ import android.util.Log;
 import oak.OAKImageLoader;
 import roboguice.RoboGuice;
 
-
+z
 public class MainApp extends Application {
 
     public static String TAG = "${artifactId}";

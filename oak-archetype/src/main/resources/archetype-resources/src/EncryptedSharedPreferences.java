@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import oak.ObscuredSharedPreferences;
 
 /**
- * Generated from archetype
+ * Generated from archetypezz
  */
 
 public final class EncryptedSharedPreferences extends ObscuredSharedPreferences{

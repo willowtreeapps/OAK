@@ -9,14 +9,9 @@
     <name>\${artifactId}</name>
 
     <properties>
-        <platform.version>#if(${platform} == 3) 1.5_r4
-            #elseif(${platform} == 4) 1.6_r2
-            #elseif(${platform} == 7) 2.1.2
-            #elseif(${platform} == 8) 2.2.1
-            #elseif(${platform} == 9) 2.3.1
-            #elseif(${platform} == 10) 2.3.3
-            #{else} 4.0.1.2
-            #end</platform.version>
+        <platform.version>
+            4.0.1.2
+        </platform.version>
     </properties>
 
 	<repositories>
@@ -57,12 +52,6 @@
 	    </dependency>
 
 	    <dependency>
-		    <groupId>com.google.android</groupId>
-		    <artifactId>support-v4</artifactId>
-		    <version>r7</version>
-	    </dependency>
-
-	    <dependency>
 		    <groupId>com.google.code.gson</groupId>
 		    <artifactId>gson</artifactId>
 		    <version>2.1</version>
@@ -90,6 +79,13 @@
             <groupId>com.actionbarsherlock</groupId>
             <artifactId>library</artifactId>
             <version>4.0.2</version>
+            <type>apklib</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.actionbarsherlock</groupId>
+            <artifactId>library</artifactId>
+            <version>4.0.2</version>
             <type>jar</type>
             <scope>provided</scope>
         </dependency>
@@ -109,7 +105,7 @@
                     <resourceDirectory>\${project.basedir}/res</resourceDirectory>
                     <nativeLibrariesDirectory>\${project.basedir}/src/main/native</nativeLibrariesDirectory>
                     <sdk>
-                        <platform>\${platform}</platform>
+                        <platform>14</platform>
                     </sdk>
                     #if(${emulator} != "not-specified")
                     <emulator>
