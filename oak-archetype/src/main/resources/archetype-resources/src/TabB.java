@@ -7,21 +7,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * User: aelorix Date: 6/1/12 Time: 11:40 AM
- */
+import oak.TextViewWithFont;
+import roboguice.inject.InjectResource;
+import roboguice.inject.InjectView;
+
 public class TabB extends RoboSherlockFragment {
+
+    @InjectView(R.id.display_text)
+        private TextViewWithFont displayText;
+    @InjectResource(R.color.custom_green)
+        private int customGreen;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 
         View newView = inflater.inflate(R.layout.tab_template,container,false);
-        oak.TextViewWithFont text = (oak.TextViewWithFont)newView.findViewById(R.id.display_text);
-
-        text.setText("Here's tab B");
-        text.setTextColor(getResources().getColor(R.color.custom_green));
-
         return newView;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //Injection occurs in onViewCreated
+
+        displayText.setText("Here's tab B");
+        displayText.setTextColor(customGreen);
     }
 }
