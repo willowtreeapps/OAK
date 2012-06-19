@@ -340,7 +340,7 @@
                     <version>3.2.0</version>
                     <configuration>
                         <sdk>
-                            <platform>9</platform>
+                            <platform>8</platform>
                         </sdk>
                         <emulator>
                             <avd>22</avd>
