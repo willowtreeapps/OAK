@@ -47,8 +47,8 @@
                   <div class="xright">                    <a href="http://www.willowtreeapps.com" class="externalLink" title="WillowTree Apps">WillowTree Apps</a>
               
                 
-                &nbsp;| <span id="publishDate">Last Published: 2012-06-22 13:05:40</span>
-              &nbsp;| <span id="projectVersion">Version: 1.1-SNAPSHOT</span>
+                &nbsp;| <span id="publishDate">Last Published: 2012-06-22 13:09:33</span>
+              &nbsp;| <span id="projectVersion">Version: 1.0.9</span>
             </div>
       <div class="clear">
         <hr/>
@@ -107,7 +107,7 @@
     <div id="bodyColumn">
       <div id="contentBox">
         <div class="section"><h2>Quick Start Guide<a name="Quick_Start_Guide"></a></h2><p>NOTE: You will need to make sure your Android SDK is up to date. Make sure you're using Revision 15 or higher. (To update your tools run the &quot;android&quot; command in your Android SDK and update the SDK from there.)</p><div class="section"><h3>Just Use Maven (recommmended)<a name="Just_Use_Maven_recommmended"></a></h3><p>Simple copy-paste the following command to get up-and-running with a template project.</p><div class="source"><pre> mvn archetype:generate -DarchetypeGroupId=com.willowtreeapps -DarchetypeArtifactId=oak-archetype \
-                        -DarchetypeVersion=1.1-SNAPSHOT \
+                        -DarchetypeVersion=1.0.9 \
                         -DarchetypeRepository=https://oss.sonatype.org/content/repositories/snapshots/</pre></div><p>Run the following inside the newly created subdirectory.</p><div class="source"><pre>
 mvn clean install
 </pre></div><p>Then, if you're using IntelliJ, you can just open the created pom.xml file via (File -&gt; Open Project...)</p></div><div class="section"><h3>Or use your existing Android Ant build file...(not as quick..)<a name="Or_use_your_existing_Android_Ant_build_file...not_as_quick.."></a></h3><p>In the root of your Android project, copy the following into a file called <b>build-ivy.xml</b></p><div class="source"><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
@@ -180,7 +180,7 @@ ivy is in at least one of ant's lib dir or the local lib dir. --&gt;
 &lt;ivy-module version=&quot;2.0&quot;&gt;
     &lt;info organisation=&quot;com.example&quot; module=&quot;examplemodule&quot;/&gt;
     &lt;dependencies&gt;
-        &lt;dependency org=&quot;com.willowtreeapps&quot; name=&quot;oak-library&quot; rev=&quot;1.1-SNAPSHOT&quot; transitive=&quot;false&quot; changing=&quot;true&quot;/&gt;
+        &lt;dependency org=&quot;com.willowtreeapps&quot; name=&quot;oak-library&quot; rev=&quot;1.0.9&quot; transitive=&quot;false&quot; changing=&quot;true&quot;/&gt;
         &lt;dependency org=&quot;com.google.guava&quot; name=&quot;guava&quot; rev=&quot;10.0.1&quot; transitive=&quot;false&quot; changing=&quot;false&quot; /&gt;
     &lt;/dependencies&gt;
 &lt;/ivy-module&gt;</pre></div><p>Modify your existing <b>build.xml</b> file to include the following:</p><div class="source"><pre>&lt;import file=&quot;build-ivy.xml&quot;/&gt;</pre></div><p>Run the following command to automatically fetch the library from server</p><p>(NOTE: To use a different version of OAK, simply change the <b>rev</b> attribute in your ivy.xml file):</p><div class="source"><pre>ant fetch-dependencies</pre></div></div></div>
