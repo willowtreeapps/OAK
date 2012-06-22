@@ -34,7 +34,7 @@
 
     <ciManagement>
         <system>teamcity</system>
-        <url>http://birch.willowtreeapps.com/teamcity</url>
+        <url>http://ci.willowtreeapps.com/</url>
     </ciManagement>
 
     <licenses>
