@@ -13,7 +13,7 @@ What is OAK Android Kit?
   * {{{./cancel_edit_text.html}CancelEditText}} - An EditText that lets you specify a tappable drawable
   to clear the field
 
-  * TextViewWithFont - Drop your fonts in "assets/fonts" and use this handy component to set a custom font
+  * TextViewWithFont - Drop your fonts in "assets/fonts" and use this handy widget to set a custom font in your xml layout
 
   * {{{./obscured_prefs.html}ObscuredSharedPreferences}} - Store your shared preferences with encryption!
 
