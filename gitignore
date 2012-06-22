@@ -9,9 +9,9 @@ local.properties
 design/
 Tests/
 external_data/
+out/
 *.iml
 *.ipr
-*/target/*
-.gitignore
+target/
 .project
 .classpath
