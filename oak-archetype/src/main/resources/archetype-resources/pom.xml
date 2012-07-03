@@ -10,7 +10,7 @@
 
     <properties>
         <platform.version>
-            4.0.3_r3
+            4.0.1.2
         </platform.version>
     </properties>
 
@@ -32,14 +32,14 @@
 
     <dependencies>
 		<dependency>
-		    <groupId>android</groupId>
+		    <groupId>com.google.android</groupId>
 		    <artifactId>android</artifactId>
 		    <version>\${platform.version}</version>
 		    <scope>provided</scope>
 		</dependency>
 
 	    <dependency>
-		    <groupId>android</groupId>
+		    <groupId>com.google.android</groupId>
 		    <artifactId>android-test</artifactId>
 		    <version>\${platform.version}</version>
 		    <scope>test</scope>
@@ -78,14 +78,14 @@
         <dependency>
             <groupId>com.actionbarsherlock</groupId>
             <artifactId>library</artifactId>
-            <version>4.0.2</version>
+            <version>4.1.0</version>
             <type>apklib</type>
         </dependency>
 
         <dependency>
             <groupId>com.actionbarsherlock</groupId>
             <artifactId>library</artifactId>
-            <version>4.0.2</version>
+            <version>4.1.0</version>
             <type>jar</type>
             <scope>provided</scope>
         </dependency>
