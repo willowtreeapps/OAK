@@ -25,6 +25,9 @@ public class SwankyGallery extends FrameLayout {
             HI_RES_OPTIONS = new BitmapFactory.Options();
     private float xPosPrev;
     private float mMaxZoom = 2.5f;
+    private OnGalleryPageSelectedListener mPageSelectedListener = null;
+
+    // unused
     static { LO_RES_OPTIONS.inSampleSize = 2; HI_RES_OPTIONS.inSampleSize = 1; }
 
     public SwankyGallery(Context context) {
@@ -66,6 +69,10 @@ public class SwankyGallery extends FrameLayout {
 
     public void setOffscreenPageLimit(int limit) {
         mViewPager.setOffscreenPageLimit(limit);
+    }
+
+    public void setOnGalleryPageSelectedListener(OnGalleryPageSelectedListener listener) {
+        mPageSelectedListener = listener;
     }
 
     /**
@@ -180,6 +187,9 @@ public class SwankyGallery extends FrameLayout {
                     }
                 }
                 currentItem = i;
+                if (mPageSelectedListener != null) {
+                    mPageSelectedListener.onPageSelected(i);
+                }
             }
         };
 
@@ -202,5 +212,9 @@ public class SwankyGallery extends FrameLayout {
         public final SwankyImageView getCurrentView() {
             return (SwankyImageView) findViewWithTag(getCurrentItem());
         }
+    }
+
+    public static interface OnGalleryPageSelectedListener {
+        public void onPageSelected(int index);
     }
 }
