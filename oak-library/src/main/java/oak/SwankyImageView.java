@@ -407,9 +407,10 @@ public class SwankyImageView extends ImageView {
                             matrix.postTranslate(-x, 0);
                         }
                     }
-                    if (!isCenterInside) {
-                        matrix.postTranslate(-x - right / 2, bottom / 2 - y);
-                    }
+                    // why was this here again?  removing for now.
+//                  if (!isCenterInside) {
+//                      matrix.postTranslate(-x - right / 2, bottom / 2 - y);
+//                  }
                 }
             } else {
                 matrix.postScale(mScaleFactor, mScaleFactor, detector.getFocusX(),
@@ -542,9 +543,10 @@ public class SwankyImageView extends ImageView {
                             matrix.postTranslate(-x, 0);
                         }
                     }
-                    if (!isCenterInside) {
-                        matrix.postTranslate(-x - right / 2, bottom / 2 - y);
-                    }
+                    // why was this here again?  removing for now.
+//                  if (!isCenterInside) {
+//                      matrix.postTranslate(-x - right / 2, bottom / 2 - y);
+//                  }
                 }
             } else {
                 matrix.postScale(scaleFactor, scaleFactor, centerX, centerY);
