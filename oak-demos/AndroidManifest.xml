@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1202211071" android:versionName="1.1-SNAPSHOT" package="oak.demo">
   <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="14"/>
-  <application android:icon="@drawable/icon" android:label="@string/app_name">
+  <application android:debuggable="true" android:icon="@drawable/icon" android:label="@string/app_name">
     <activity android:label="@string/app_name" android:name=".OakDemos">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
@@ -51,6 +51,13 @@
       </intent-filter>
     </activity>
     <activity android:label="@string/encrypted_prefs_activity" android:name=".ObscuredPrefsActivity" android:screenOrientation="portrait">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+        <category android:name="android.intent.category.SAMPLE_CODE"/>
+        <category android:name="oak.android.intent.category.OAK"/>
+      </intent-filter>
+    </activity>
+    <activity android:label="@string/swanky_gallery_activity" android:name=".SwankyGalleryActivity" android:screenOrientation="portrait">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
         <category android:name="android.intent.category.SAMPLE_CODE"/>
