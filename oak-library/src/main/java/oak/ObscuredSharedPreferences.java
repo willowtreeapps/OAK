@@ -177,8 +177,7 @@ public abstract class ObscuredSharedPreferences implements SharedPreferences {
             SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("PBEWithMD5AndDES");
             SecretKey key = keyFactory.generateSecret(new PBEKeySpec(getSpecialCode()));
             Cipher pbeCipher = Cipher.getInstance("PBEWithMD5AndDES");
-            pbeCipher.init(Cipher.ENCRYPT_MODE, key, new PBEParameterSpec(Settings.Secure
-                    .getString(context.getContentResolver(), Settings.System.ANDROID_ID)
+            pbeCipher.init(Cipher.ENCRYPT_MODE, key, new PBEParameterSpec(getAndroidId()
                     .getBytes(UTF8), 20));
             return new String(Base64.encode(pbeCipher.doFinal(bytes), Base64.NO_WRAP), UTF8);
 
@@ -188,14 +187,21 @@ public abstract class ObscuredSharedPreferences implements SharedPreferences {
 
     }
 
+    private String getAndroidId() {
+        String androidId = Settings.Secure
+                .getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+        //doing this to ease unit testing in mock environments where shadowed contentresolver returns null
+        if (androidId == null) androidId = "01234567";
+        return androidId;
+    }
+
     protected String decrypt(String value) {
         try {
             final byte[] bytes = value != null ? Base64.decode(value, Base64.DEFAULT) : new byte[0];
             SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("PBEWithMD5AndDES");
             SecretKey key = keyFactory.generateSecret(new PBEKeySpec(getSpecialCode()));
             Cipher pbeCipher = Cipher.getInstance("PBEWithMD5AndDES");
-            pbeCipher.init(Cipher.DECRYPT_MODE, key, new PBEParameterSpec(Settings.Secure
-                    .getString(context.getContentResolver(), Settings.System.ANDROID_ID)
+            pbeCipher.init(Cipher.DECRYPT_MODE, key, new PBEParameterSpec(getAndroidId()
                     .getBytes(UTF8), 20));
             return new String(pbeCipher.doFinal(bytes), UTF8);
 
