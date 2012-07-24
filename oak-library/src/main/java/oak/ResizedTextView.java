@@ -68,10 +68,10 @@ public class ResizedTextView extends TextViewWithFont {
             int textHeight = getTextHeight(text, textPaint, maxWidth, this.numMinTextSize);
 
             while(textHeight < maxHeight && this.numLines <= this.numMaxLines) {
-                Log.d("OAK", "Trying text size: " + (this.numTextSize + 1));
+                //Log.d("OAK", "Trying text size: " + (this.numTextSize + 1));
                 textHeight = getTextHeight(text, textPaint, maxWidth, this.numTextSize + 1);
-                Log.d("OAK", "Numlines: " + this.numLines);
-                Log.d("OAK", "Height is: " + textHeight + " Of " + maxHeight);
+                //Log.d("OAK", "Numlines: " + this.numLines);
+                //Log.d("OAK", "Height is: " + textHeight + " Of " + maxHeight);
             }
 
             //numTextSize now contains the maximum text size, or the largest size without going over the maxLines
@@ -88,7 +88,7 @@ public class ResizedTextView extends TextViewWithFont {
                 while(createWorkingLayout(text.subSequence(0, EndOfLine - 4) + "...", textPaint, maxWidth).getLineCount() > this.numMaxLines) {
                     EndOfLine--;
                 }
-                Log.d("OAK", "Text was: \"" + text + "\" now is: " + text.subSequence(0, EndOfLine - 4) + "...");
+                //Log.d("OAK", "Text was: \"" + text + "\" now is: " + text.subSequence(0, EndOfLine - 4) + "...");
                 setText(text.subSequence(0, EndOfLine - 4) + "...");
             }
 
