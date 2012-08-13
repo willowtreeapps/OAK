@@ -3,6 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>\${groupId}</groupId>
+    <!--ideally, we'd like this to follow the format of "PROJECTNAME-android"-->
     <artifactId>\${artifactId}</artifactId>
     <version>\${version}</version>
     <packaging>apk</packaging>
@@ -14,7 +15,13 @@
         </platform.version>
     </properties>
 
-	<repositories>
+    <scm>
+        <!--The following is needed for auto-tagging for "mvn release:prepare"-->
+        <!--<developerConnection>scm:git:git@github.com:willowtreeapps/PROJECT_NAME.git</developerConnection>-->
+    </scm>
+
+
+    <repositories>
 		<repository>
 			<id>sonatype-nexus-snapshots</id>
 			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
