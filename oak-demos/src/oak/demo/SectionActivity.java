@@ -172,7 +172,7 @@ public class SectionActivity extends Activity {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
             Toast.makeText(SectionActivity.this, "You tapped on: " + getItem(position).getName(),
-                    1000);
+                    1000).show();
         }
     }
 }
