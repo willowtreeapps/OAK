@@ -11,6 +11,14 @@
     <name>OAK - Library</name>
     <description>A library for shared android functionality</description>
 
+
+    <repositories>
+        <repository>
+            <name></name>
+        </repository>
+    </repositories>
+
+
     <dependencies>
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -40,7 +48,7 @@
         <dependency>
             <groupId>com.integralblue</groupId>
             <artifactId>httpresponsecache</artifactId>
-            <version>1.1</version>
+            <version>1.2</version>
         </dependency>
 
         <dependency>
