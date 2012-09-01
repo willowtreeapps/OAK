@@ -11,14 +11,6 @@
     <name>OAK - Library</name>
     <description>A library for shared android functionality</description>
 
-
-    <repositories>
-        <repository>
-            <name></name>
-        </repository>
-    </repositories>
-
-
     <dependencies>
         <dependency>
             <groupId>com.google.guava</groupId>
