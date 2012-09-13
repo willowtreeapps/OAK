@@ -10,7 +10,6 @@ public class Datastore {
 
     private static final String DEVICE_VERSION = "DeviceVersion";
 
-
     @Inject EncryptedSharedPreferences encryptedSharedPreferences;
 
     private SharedPreferences.Editor getEditor() {
@@ -20,14 +19,11 @@ public class Datastore {
     private SharedPreferences getPrefs() {
         return encryptedSharedPreferences;
     }
-
-
-    public String getVersion() {
-        return getPrefs().getString(DEVICE_VERSION, null);
+    public int getVersion() {
+        return getPrefs().getInt(DEVICE_VERSION, 0);
     }
-    public void persistVersion(String version) {
-        getEditor().putString(DEVICE_VERSION, version).commit();
+    public void persistVersion(int version) {
+        getEditor().putInt(DEVICE_VERSION, version).commit();
     }
-
 }
 
