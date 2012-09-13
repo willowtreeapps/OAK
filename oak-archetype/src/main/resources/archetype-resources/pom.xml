@@ -81,6 +81,20 @@
 		    <version>2.0</version>
 	    </dependency>
 
+        <dependency>
+            <groupId>com.pivotallabs</groupId>
+            <artifactId>robolectric</artifactId>
+            <version>1.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.2</version>
+            <scope>test</scope>
+        </dependency>
+
 	    <dependency>
 		    <groupId>com.google.guava</groupId>
 		    <artifactId>guava</artifactId>
@@ -130,7 +144,7 @@
                         <avd>\${emulator}</avd>
                     </emulator>
                     #end
-                    <undeployBeforeDeploy>true</undeployBeforeDeploy>
+                                        <undeployBeforeDeploy>true</undeployBeforeDeploy>
                 </configuration>
                 <extensions>true</extensions>
             </plugin>
