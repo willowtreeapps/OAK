@@ -5,18 +5,17 @@ package oak;
  */
 
 
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.provider.Settings;
-
-import java.util.Map;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Warning, this gives a false sense of security.  If an attacker has enough access to acquire your
@@ -25,9 +24,9 @@ import javax.crypto.spec.PBEParameterSpec;
  * passwords, and thereby may prevent undesired negative publicity.
  */
 
-/** This code originally posted by Michael Burton on StackOverflow
- *  http://stackoverflow.com/questions/785973/what-is-the-most-appropriate-way-to-store-user-settings-in-android-application/6393502#6393502
- *
+/**
+ * This code originally posted by Michael Burton on StackOverflow
+ * http://stackoverflow.com/questions/785973/what-is-the-most-appropriate-way-to-store-user-settings-in-android-application/6393502#6393502
  */
 
 
@@ -45,6 +44,7 @@ public abstract class ObscuredSharedPreferences implements SharedPreferences {
 
     /**
      * Implement this method to supply your char array with your password
+     *
      * @return
      */
 
@@ -88,6 +88,11 @@ public abstract class ObscuredSharedPreferences implements SharedPreferences {
             return this;
         }
 
+        @Override
+        public SharedPreferences.Editor putStringSet(String s, Set<String> strings) {
+            return null;  //To change body of implemented methods use File | Settings | File Templates.
+        }
+
 //      commented out for 2.1 compatibility
 //        @Override
 //        public void apply() {
@@ -103,6 +108,11 @@ public abstract class ObscuredSharedPreferences implements SharedPreferences {
         @Override
         public boolean commit() {
             return delegate.commit();
+        }
+
+        @Override
+        public void apply() {
+            //To change body of implemented methods use File | Settings | File Templates.
         }
 
         @Override
