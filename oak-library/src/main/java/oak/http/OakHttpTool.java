@@ -73,7 +73,6 @@ public class OakHttpTool {
         }
     }
 
-
     public void setDefaultHeaders(Map<String, String> defaultHeaders) {
         mDefaultHeaders = defaultHeaders;
     }
