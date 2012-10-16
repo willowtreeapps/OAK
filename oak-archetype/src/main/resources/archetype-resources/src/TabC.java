@@ -31,7 +31,7 @@ public class TabC extends RoboSherlockFragment {
         super.onViewCreated(view, savedInstanceState);
         //Injection occurs in onViewCreated
 
-        displayText.setText("And then there's tab C");
+        displayText.setText("And then there is tab C");
         displayText.setTextColor(customBlue);
     }
 }

@@ -12,6 +12,6 @@
         android:text=" "
         android:textSize="48dp"
         android:layout_gravity="center_horizontal"
-        oak:font="CrashLandingBB.ttf"
+        oak:font="readoutcondenseditalic.ttf"
         />
 </LinearLayout>
