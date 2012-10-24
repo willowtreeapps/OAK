@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1202211071" android:versionName="1.1.1-SNAPSHOT" package="oak.demo">
-  <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="14"/>
+  <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="16"/>
   <application android:debuggable="true" android:icon="@drawable/icon" android:label="@string/app_name">
     <activity android:label="@string/app_name" android:name=".OakDemos">
       <intent-filter>

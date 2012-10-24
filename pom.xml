@@ -66,6 +66,10 @@
             <organization>WillowTree Apps</organization>
         </developer>
         <developer>
+            <name>Eric Richardson</name>
+            <organization>WillowTree Apps</organization>
+        </developer>
+        <developer>
             <name>Chris Thoma</name>
             <organization>WillowTree Apps</organization>
         </developer>
@@ -345,7 +349,7 @@
                     <version>3.2.0</version>
                     <configuration>
                         <sdk>
-                            <platform>8</platform>
+                            <platform>16</platform>
                         </sdk>
                         <emulator>
                             <avd>22</avd>

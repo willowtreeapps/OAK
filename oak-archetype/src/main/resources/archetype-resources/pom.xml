@@ -11,7 +11,7 @@
 
     <properties>
         <platform.version>
-            4.0.1.2
+            4.1.1.4
         </platform.version>
 
         <!-- you'll need to generate a keystore and put it at the root of your project and change these -->
@@ -137,7 +137,7 @@
                     <resourceDirectory>\${project.basedir}/res</resourceDirectory>
                     <nativeLibrariesDirectory>\${project.basedir}/src/main/native</nativeLibrariesDirectory>
                     <sdk>
-                        <platform>15</platform>
+                        <platform>16</platform>
                     </sdk>
                     #if(${emulator} != "not-specified")
                     <emulator>

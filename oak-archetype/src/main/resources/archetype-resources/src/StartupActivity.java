@@ -1,7 +1,9 @@
 package ${package};
 
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.github.rtyley.android.sherlock.roboguice.activity.RoboSherlockFragmentActivity;
 
 import android.graphics.PixelFormat;
@@ -10,8 +12,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.Window;
+import roboguice.inject.InjectView;
 
-public class StartupActivity extends RoboSherlockFragmentActivity {
+public class StartupActivity extends RoboSherlockFragmentActivity implements ActionBar.TabListener, ViewPager.OnPageChangeListener {
+    @InjectView(R.id.pager)ViewPager pager;
+    ActionBar bar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -19,19 +24,44 @@ public class StartupActivity extends RoboSherlockFragmentActivity {
         Log.i(MainApp.TAG, "onCreate");
         setContentView(R.layout.startup_tabs);
 
-        ActionBar bar = getSupportActionBar();
-
+        bar = getSupportActionBar();
+        bar.addTab(bar.newTab().setText("Tab A").setTabListener(this).setTag(TabA.class.getName()));
+        bar.addTab(bar.newTab().setText("Tab B").setTabListener(this).setTag(TabB.class.getName()));
+        bar.addTab(bar.newTab().setText("Tab C").setTabListener(this).setTag(TabC.class.getName()));
         bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         bar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
+        bar.setSelectedNavigationItem(0);
+        pager.setAdapter(new OakAdapter(getSupportFragmentManager()));
+        pager.setOnPageChangeListener(this);
 
-        ActionBar.Tab firstTab = bar.newTab().setText("Tab A")
-                .setTabListener(new TabListener<TabA>(this, "Tab A", TabA.class));
-        bar.addTab(firstTab);
-        bar.addTab(bar.newTab().setText("Tab B")
-                .setTabListener(new TabListener<TabB>(this, "Tab B", TabB.class)));
-        bar.addTab(bar.newTab().setText("Tab C")
-                .setTabListener(new TabListener<TabC>(this, "Tab C", TabC.class)));
-        bar.selectTab(firstTab);
+    }
+
+    @Override
+    public void onPageScrolled(int i, float v, int i1) {}
+
+    @Override
+    public void onPageSelected(int i) {
+        bar.setSelectedNavigationItem(i);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int i) {}
+
+    private class OakAdapter extends FragmentPagerAdapter{
+
+        public OakAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int i) {
+            return Fragment.instantiate(StartupActivity.this, bar.getTabAt(i).getTag().toString(), null);
+        }
+
+        @Override
+        public int getCount() {
+            return bar.getTabCount();
+        }
     }
 
     @Override
@@ -43,60 +73,16 @@ public class StartupActivity extends RoboSherlockFragmentActivity {
         window.setFormat(PixelFormat.RGBA_8888);
     }
 
-    public static class TabListener<T extends Fragment> implements ActionBar.TabListener {
-
-        private final SherlockFragmentActivity mActivity;
-        private final String mTag;
-        private final Class<T> mClass;
-        private final Bundle mArgs;
-        private Fragment mFragment;
-
-        public TabListener(SherlockFragmentActivity activity, String tag, Class<T> clz) {
-            this(activity, tag, clz, null);
-        }
-
-        public TabListener(SherlockFragmentActivity activity, String tag, Class<T> clz, Bundle args) {
-            mActivity = activity;
-            mTag = tag;
-            mClass = clz;
-            mArgs = args;
-
-            // Check to see if we already have a fragment for this tab, probably
-            // from a previously saved state.  If so, deactivate it, because our
-            // initial state is that a tab isn't shown.
-            mFragment = mActivity.getSupportFragmentManager().findFragmentByTag(mTag);
-            if (mFragment != null && !mFragment.isDetached()) {
-                FragmentTransaction ft = mActivity.getSupportFragmentManager().beginTransaction();
-                ft.detach(mFragment);
-                ft.commit();
-            }
-        }
-
-        public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
-            T preInitializedFragment = (T) mActivity.getSupportFragmentManager().findFragmentByTag(mTag);
-
-            // Check if the fragment is already initialized
-            if (mFragment == null && preInitializedFragment == null) {
-                mFragment = Fragment.instantiate(mActivity, mClass.getName(), mArgs);
-                ft.add(android.R.id.content, mFragment, mTag);
-            } else if (mFragment != null) {
-                // If it exists, simply attach it in order to show it
-                ft.attach(mFragment);
-            } else if (preInitializedFragment != null) {
-                ft.attach(preInitializedFragment);
-                mFragment = preInitializedFragment;
-            }
-        }
-
-        public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
-            if (mFragment != null) {
-                ft.detach(mFragment);
-            }
-        }
-
-        public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
-
-        }
+    @Override
+    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+        pager.setCurrentItem(tab.getPosition());
     }
+
+    @Override
+    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {}
+
+    @Override
+    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {}
+
 }
 
