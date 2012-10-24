@@ -116,8 +116,8 @@
 
         <dependency>
             <groupId>com.actionbarsherlock</groupId>
-            <artifactId>library</artifactId>
-            <version>4.1.0</version>
+            <artifactId>actionbarsherlock</artifactId>
+            <version>4.2.0</version>
             <type>jar</type>
             <scope>provided</scope>
         </dependency>
