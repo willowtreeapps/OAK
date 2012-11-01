@@ -28,11 +28,11 @@ public class OakConnection {
         return mHttpUrlConnection;
     }
 
-    public BufferedReader getBufferedResponseReader() throws Exception {
+    public BufferedReader getBufferedResponseReader() throws IOException {
         return new BufferedReader(new InputStreamReader(getInputStream()));
     }
 
-    public InputStream getInputStream() throws Exception {
+    public InputStream getInputStream() throws IOException {
         try {
             return mHttpUrlConnection.getInputStream();
 
