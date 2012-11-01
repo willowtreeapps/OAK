@@ -7,6 +7,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.integralblue.httpresponsecache.HttpResponseCache;
 import oak.Base64;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.message.BasicNameValuePair;
 import roboguice.util.Ln;
 
@@ -135,26 +136,16 @@ public class OakHttpTool {
 
     public OakConnection post(String url, List<BasicNameValuePair> params) throws IOException {
         URL typedUrl = new URL(url);
-        HttpURLConnection httpURLConnection = (HttpURLConnection)typedUrl.openConnection();
+        HttpsURLConnection httpURLConnection = (HttpsURLConnection)typedUrl.openConnection();
         configureDefaults(httpURLConnection);
         httpURLConnection.setRequestMethod("POST");
         httpURLConnection.setDoInput(true);
         httpURLConnection.setDoOutput(true);
         OutputStream out = httpURLConnection.getOutputStream();
-        out.write(getQueryParams(params));
+        UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params);
+        entity.writeTo(out);
         out.close();
         return new OakConnection(httpURLConnection);
-    }
-
-    private byte[] getQueryParams(List<BasicNameValuePair> params) throws IOException{
-        StringBuilder sb = new StringBuilder();
-        for(BasicNameValuePair pair: params){
-            if(sb.length() != 0){
-                sb.append("&");
-            }
-            sb.append(pair.getName()).append("=").append(pair.getValue());
-        }
-        return URLEncoder.encode(sb.toString(), "UTF-8").getBytes();
     }
 
     public void setCertValidationDisabled(boolean isDisabled) {
