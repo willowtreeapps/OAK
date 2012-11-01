@@ -7,15 +7,16 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.integralblue.httpresponsecache.HttpResponseCache;
 import oak.Base64;
+import org.apache.http.message.BasicNameValuePair;
 import roboguice.util.Ln;
 
 import javax.net.ssl.*;
 import java.io.File;
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
+import java.io.OutputStream;
+import java.net.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -130,6 +131,30 @@ public class OakHttpTool {
         configureDefaults(httpURLConnection);
         httpURLConnection.setRequestMethod("GET");
         return new OakConnection(httpURLConnection);
+    }
+
+    public OakConnection post(String url, List<BasicNameValuePair> params) throws IOException {
+        URL typedUrl = new URL(url);
+        HttpURLConnection httpURLConnection = (HttpURLConnection)typedUrl.openConnection();
+        configureDefaults(httpURLConnection);
+        httpURLConnection.setRequestMethod("POST");
+        httpURLConnection.setDoInput(true);
+        httpURLConnection.setDoOutput(true);
+        OutputStream out = httpURLConnection.getOutputStream();
+        out.write(getQueryParams(params));
+        out.close();
+        return new OakConnection(httpURLConnection);
+    }
+
+    private byte[] getQueryParams(List<BasicNameValuePair> params) throws IOException{
+        StringBuilder sb = new StringBuilder();
+        for(BasicNameValuePair pair: params){
+            if(sb.length() != 0){
+                sb.append("&");
+            }
+            sb.append(pair.getName()).append("=").append(pair.getValue());
+        }
+        return URLEncoder.encode(sb.toString(), "UTF-8").getBytes();
     }
 
     public void setCertValidationDisabled(boolean isDisabled) {
