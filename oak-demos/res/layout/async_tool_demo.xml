@@ -15,25 +15,17 @@
   ~ limitations under the License.
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-	android:orientation="vertical">
-
-	<TextView
-		android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:text="@string/async_tool_description"
-	    android:textColor="#fff"
-	    />
-	
-	<Button
-		android:layout_gravity="center_horizontal"
-		android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:text="Try Me!"
-	    android:onClick="tryMeClicked"
-	    />
-
-	<include android:id="@+id/attribution" layout="@layout/attribution" />
+<LinearLayout
+        style="@style/Fill"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical">
+    <TextView
+            style="@style/FillWidth"
+            android:text="@string/async_tool_description"
+            android:textColor="#fff"/>
+    <Button
+            style="@style/Wrap"
+            android:layout_gravity="center_horizontal"
+            android:text="Try Me!"
+            android:onClick="tryMeClicked"/>
 </LinearLayout>

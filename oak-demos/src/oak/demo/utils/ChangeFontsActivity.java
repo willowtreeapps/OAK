@@ -15,13 +15,9 @@
 
 package oak.demo.utils;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.RelativeLayout;
 
+import oak.demo.OakDemoActivity;
 import oak.demo.R;
 import oak.util.OakUtils;
 
@@ -30,7 +26,7 @@ import oak.util.OakUtils;
  */
 
 
-public class ChangeFontsActivity extends Activity {
+public class ChangeFontsActivity extends OakDemoActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +34,5 @@ public class ChangeFontsActivity extends Activity {
         setContentView(R.layout.change_fonts_demo);
 
         OakUtils.changeFonts(findViewById(R.id.root), this, "LiberationMono-Regular.ttf");
-
-        RelativeLayout attr = (RelativeLayout) findViewById(R.id.attribution);
-        attr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse("http://www.willowtreeapps.com"));
-                startActivity(i);
-            }
-        });
     }
 }

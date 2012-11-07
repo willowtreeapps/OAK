@@ -15,7 +15,6 @@
 
 package oak.demo.other;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -23,12 +22,13 @@ import android.widget.Toast;
 import java.util.Date;
 
 import oak.AsyncTool;
+import oak.demo.OakDemoActivity;
 import oak.demo.R;
 
 /**
  * User: mlake Date: 3/23/12 Time: 1:46 PM
  */
-public class AsyncToolActivity extends Activity {
+public class AsyncToolActivity extends OakDemoActivity {
 
     AsyncTool mAsyncTool;
 
@@ -46,6 +46,7 @@ public class AsyncToolActivity extends Activity {
         //noinspection unchecked
         new AsyncTool.SimpleTask(mAsyncTool) {
             String someReturnValue;
+
             @Override
             public void exceptionalLabor() throws Exception {
                 publishProgress("Watering " + someArgument + "...");
@@ -57,6 +58,7 @@ public class AsyncToolActivity extends Activity {
                 }
                 someReturnValue = "ha ha, just kidding - everything's okay.";
             }
+
             @Override
             public void onPostExecute(Void unused) {
                 super.onPostExecute(unused);

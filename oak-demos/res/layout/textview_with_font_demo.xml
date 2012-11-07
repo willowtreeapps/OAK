@@ -32,5 +32,4 @@
             android:text="Using TextViewWithFont, you can!"
             android:textSize="20sp"
             oak:font="Apple Chancery.ttf"/>
-    <include android:id="@+id/attribution" layout="@layout/attribution"/>
 </LinearLayout>

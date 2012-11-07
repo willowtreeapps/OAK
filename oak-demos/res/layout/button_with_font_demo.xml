@@ -52,5 +52,4 @@
             android:text="font family!"
             android:textSize="20sp"
             oak:font="Roboto-Thin.ttf"/>
-    <include android:id="@+id/attribution" layout="@layout/attribution"/>
 </LinearLayout>

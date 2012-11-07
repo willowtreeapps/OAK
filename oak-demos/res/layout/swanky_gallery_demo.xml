@@ -16,15 +16,8 @@
   ~ limitations under the License.
   -->
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<oak.widget.SwankyGallery
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
-
-    <oak.widget.SwankyGallery
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/swanky_gallery" />
-
-    <include android:id="@+id/attribution" layout="@layout/attribution" />
-
-</FrameLayout>
+        android:layout_height="fill_parent"
+        android:id="@+id/swanky_gallery"/>

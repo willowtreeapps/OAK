@@ -15,50 +15,35 @@
 
 package oak.demo.other;
 
-import android.app.Activity;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.RelativeLayout;
-import android.content.Intent;
 
 import oak.demo.EncryptedPreferences;
+import oak.demo.OakDemoActivity;
 import oak.demo.R;
+import roboguice.inject.InjectView;
 
 /**
  * User: mlake Date: 12/19/11 Time: 9:17 AM
  */
 
 // START SNIPPET: obscured_prefs
-public class ObscuredPrefsActivity extends Activity {
+public class ObscuredPrefsActivity extends OakDemoActivity {
 
     private static final String MY_APP_PREFENCES_NAME = "my_app_prefences_name";
 
     private SharedPreferences mNormalSharedPreferences;
     private EncryptedPreferences mEncryptedPreferences;
-    private EditText mEditText;
-    private TextView mTextView;
+    @InjectView(R.id.my_edittext) private EditText mEditText;
+    @InjectView(R.id.saved_content) private TextView mTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.obscured_prefs_demo);
-
-        RelativeLayout attr = (RelativeLayout)findViewById(R.id.attribution);
-        attr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse("http://www.willowtreeapps.com"));
-                startActivity(i);
-            }
-        });
-        
-        mEditText = (EditText) findViewById(R.id.my_edittext);
-        mTextView = (TextView) findViewById(R.id.saved_content);
 
         mNormalSharedPreferences = getSharedPreferences(MY_APP_PREFENCES_NAME, MODE_PRIVATE);
 

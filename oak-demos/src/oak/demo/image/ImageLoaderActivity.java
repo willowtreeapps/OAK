@@ -15,7 +15,6 @@
 
 package oak.demo.image;
 
-import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Debug;
@@ -37,12 +36,16 @@ import java.util.List;
 
 import oak.OAK;
 import oak.OAKImageLoader;
+import oak.demo.OakDemoActivity;
 import oak.demo.R;
 import oak.demo.model.PhotoItem;
 import oak.transformation.ImageBorder;
 import oak.transformation.ImageScale;
+import roboguice.inject.InjectView;
 
-public class ImageLoaderActivity extends Activity {
+public class ImageLoaderActivity extends OakDemoActivity {
+
+    @InjectView(R.id.image_loader_lv) ListView listView;
 
     private static final String GRAVATAR_URL = "http://www.gravatar.com/avatar/%s?s=512";
 
@@ -72,8 +75,6 @@ public class ImageLoaderActivity extends Activity {
             photoItemList.add(photoItem);
         }
         ListAdapter adapter = new PhotoItemListAdapter(photoItemList);
-
-        ListView listView = (ListView) findViewById(R.id.image_loader_lv);
         listView.setAdapter(adapter);
     }
 

@@ -36,5 +36,4 @@
     <EditText
             style="@style/FillWidth"
             android:text="this is a normal edit text"/>
-    <include android:id="@+id/attribution" layout="@layout/attribution"/>
 </LinearLayout>

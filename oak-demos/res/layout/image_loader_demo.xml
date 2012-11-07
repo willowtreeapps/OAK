@@ -15,45 +15,30 @@
   ~ limitations under the License.
   -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+<RelativeLayout
+        style="@style/Fill"
+        xmlns:android="http://schemas.android.com/apk/res/android">
     <RelativeLayout
-        android:id="@+id/footer"
-        android:layout_width="fill_parent"
-        android:layout_height="100dip"
-        android:layout_alignParentBottom="true"
-        >
+            android:id="@+id/footer"
+            android:layout_width="fill_parent"
+            android:layout_height="100dip"
+            android:layout_alignParentBottom="true">
         <Button
-            android:id="@+id/clear_cache_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="40dip"
-            android:text="Clear Cache"
-            android:onClick="clearCacheClicked"            
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dip"
-            />
-
-        <include android:id="@+id/attribution"
-                 layout="@layout/attribution"
-                 android:layout_below="@id/clear_cache_btn"
-            android:layout_alignParentBottom="true"/>
-
-        
-
+                android:id="@+id/clear_cache_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="40dip"
+                android:text="Clear Cache"
+                android:onClick="clearCacheClicked"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dip"/>
     </RelativeLayout>
     <ListView
-        android:id="@+id/image_loader_lv"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentTop="true"
-        android:layout_above="@id/footer"
-        android:background="#333333"
-        android:divider="#111111"
-        android:dividerHeight="4dip"
-        />
-
-
-
+            style="@style/Fill"
+            android:id="@+id/image_loader_lv"
+            android:layout_alignParentTop="true"
+            android:layout_above="@id/footer"
+            android:background="#333333"
+            android:divider="#111111"
+            android:dividerHeight="4dip"/>
 </RelativeLayout>

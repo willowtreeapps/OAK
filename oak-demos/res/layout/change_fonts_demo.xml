@@ -53,5 +53,4 @@
             style="@style/Wrap"
             android:text="It works for every view that has a TextView component, and it works on all nested views as well."
             android:textSize="14sp"/>
-    <include android:id="@+id/attribution" layout="@layout/attribution"/>
 </LinearLayout>

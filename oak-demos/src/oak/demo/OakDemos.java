@@ -15,7 +15,9 @@
 
 package oak.demo;
 
-import android.app.ListActivity;
+import com.actionbarsherlock.view.MenuItem;
+import com.github.rtyley.android.sherlock.roboguice.activity.RoboSherlockListActivity;
+
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -32,7 +34,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class OakDemos extends ListActivity {
+public class OakDemos extends RoboSherlockListActivity {
+
     public static final String CATEGORY_OAK = "oak.android.intent.category.OAK";
     public static final String PATH_EXTRA = "oak.android.intent.extra.PATH";
 
@@ -47,12 +50,14 @@ public class OakDemos extends ListActivity {
             path = "";
             setTitle(R.string.app_name);
         } else {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
             setTitle(getString(R.string.app_name) + " > " + path);
         }
 
         setListAdapter(new SimpleAdapter(this, getData(path),
-                android.R.layout.simple_list_item_1, new String[] { "title" },
-                new int[] { android.R.id.text1 }));
+                android.R.layout.simple_list_item_1, new String[]{"title"},
+                new int[]{android.R.id.text1}));
         getListView().setTextFilterEnabled(true);
     }
 
@@ -117,13 +122,13 @@ public class OakDemos extends ListActivity {
     }
 
     private final static Comparator<Map<String, Object>> sDisplayNameComparator =
-        new Comparator<Map<String, Object>>() {
-            private final Collator collator = Collator.getInstance();
+            new Comparator<Map<String, Object>>() {
+                private final Collator collator = Collator.getInstance();
 
-            public int compare(Map<String, Object> map1, Map<String, Object> map2) {
-                return collator.compare(map1.get("title"), map2.get("title"));
-            }
-        };
+                public int compare(Map<String, Object> map1, Map<String, Object> map2) {
+                    return collator.compare(map1.get("title"), map2.get("title"));
+                }
+            };
 
     protected Intent activityIntent(String pkg, String componentName) {
         Intent result = new Intent();
@@ -152,5 +157,15 @@ public class OakDemos extends ListActivity {
 
         Intent intent = (Intent) map.get("intent");
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

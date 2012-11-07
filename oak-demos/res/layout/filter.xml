@@ -16,29 +16,25 @@
   ~ limitations under the License.
   -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-		android:background="#ccc">
-	<EditText
-			android:id="@+id/filter_et"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:hint="Search..."
-			android:textColorHint="#ccc"
-			android:inputType="textFilter"
-			android:imeOptions="actionDone"
-	        android:singleLine="true"
-			/>
-	<oak.widget.SectionListView
-			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
-			android:layout_below="@id/filter_et"
-			android:id="@+id/amazing_lv"
-			android:fastScrollEnabled="true"
-			android:cacheColorHint="#00000000"
-			android:dividerHeight="1dip"
-			android:divider="#00000000"
-			android:clickable="true"
-			/>
+<RelativeLayout
+        style="@style/Fill"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="#ccc">
+    <EditText
+            style="@style/FillWidth"
+            android:id="@+id/filter_et"
+            android:hint="Search..."
+            android:textColorHint="#ccc"
+            android:inputType="textFilter"
+            android:imeOptions="actionDone"
+            android:singleLine="true"/>
+    <oak.widget.SectionListView
+            style="@style/Fill"
+            android:layout_below="@id/filter_et"
+            android:id="@+id/amazing_lv"
+            android:fastScrollEnabled="true"
+            android:cacheColorHint="#00000000"
+            android:dividerHeight="1dip"
+            android:divider="#00000000"
+            android:clickable="true"/>
 </RelativeLayout>

@@ -15,7 +15,6 @@
 
 package oak.demo.listview;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -30,17 +29,19 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import oak.widget.SectionListView;
 import oak.SectionAdapter;
+import oak.demo.OakDemoActivity;
 import oak.demo.R;
 import oak.demo.model.Person;
+import oak.widget.SectionListView;
+import roboguice.inject.InjectView;
 
 /**
  * User: Michael Lake Date: 10/13/11 Time: 3:22 PM
  */
-public class SectionActivity extends Activity {
+public class SectionActivity extends OakDemoActivity {
 
-    SectionListView mSectionListView;
+    @InjectView(R.id.amazing_lv) SectionListView mSectionListView;
 
     private PersonAdapter adapter;
 
@@ -50,7 +51,6 @@ public class SectionActivity extends Activity {
 
         setContentView(R.layout.filter);
 
-        mSectionListView = (SectionListView) findViewById(R.id.amazing_lv);
         mSectionListView.setPinnedHeaderView(
                 LayoutInflater.from(this).inflate(R.layout.filter_header, mSectionListView, false));
 

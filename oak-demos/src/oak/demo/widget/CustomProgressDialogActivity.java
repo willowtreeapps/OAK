@@ -15,23 +15,23 @@
 
 package oak.demo.widget;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 
+import oak.demo.OakDemoActivity;
 import oak.demo.R;
 import oak.widget.CustomProgressDialog;
+import roboguice.inject.InjectView;
 
 /**
  * User: Michael Lake Date: 11/21/11 Time: 5:33 PM
  */
 
 
-public class CustomProgressDialogActivity extends Activity {
+public class CustomProgressDialogActivity extends OakDemoActivity {
+
+    @InjectView(R.id.show_dialog) Button showDialog;
 
     private final int[] mProgressDrawables = {
             R.drawable.loading_00,
@@ -64,8 +64,6 @@ public class CustomProgressDialogActivity extends Activity {
 
         mCpd = new CustomProgressDialog(this, mProgressDrawables);
 
-        Button showDialog = (Button) findViewById(R.id.show_dialog);
-
         showDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,16 +72,6 @@ public class CustomProgressDialogActivity extends Activity {
                 } else {
                     mCpd.show();
                 }
-            }
-        });
-
-        RelativeLayout attr = (RelativeLayout)findViewById(R.id.attribution);
-        attr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse("http://www.willowtreeapps.com"));
-                startActivity(i);
             }
         });
     }

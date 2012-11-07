@@ -15,13 +15,9 @@
 
 package oak.demo.widget;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.RelativeLayout;
 
+import oak.demo.OakDemoActivity;
 import oak.demo.R;
 
 /**
@@ -29,21 +25,11 @@ import oak.demo.R;
  */
 
 
-public class ButtonWithFontActivity extends Activity{
+public class ButtonWithFontActivity extends OakDemoActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.button_with_font_demo);
-
-        RelativeLayout attr = (RelativeLayout)findViewById(R.id.attribution);
-        attr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse("http://www.willowtreeapps.com"));
-                startActivity(i);
-            }
-        });
     }
 }
