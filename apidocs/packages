@@ -8,3 +8,4 @@ oak.http.exception
 oak.http
 oak.transformation
 oak.util
+oak.widget
