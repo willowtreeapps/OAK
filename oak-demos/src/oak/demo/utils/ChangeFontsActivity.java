@@ -23,18 +23,21 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import oak.demo.R;
+import oak.util.OakUtils;
 
 /**
  * User: Michael Lake Date: 11/21/11 Time: 5:33 PM
  */
 
 
-public class ChangeFontActivity extends Activity {
+public class ChangeFontsActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.textview_with_font_demo);
+        setContentView(R.layout.change_fonts_demo);
+
+        OakUtils.changeFonts(findViewById(R.id.root), this, "LiberationMono-Regular.ttf");
 
         RelativeLayout attr = (RelativeLayout) findViewById(R.id.attribution);
         attr.setOnClickListener(new View.OnClickListener() {

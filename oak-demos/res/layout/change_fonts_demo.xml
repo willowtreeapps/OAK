@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (c) 2011. WillowTree Apps
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS, 
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and 
+  ~ limitations under the License.
+  -->
+
+<LinearLayout
+        style="@style/Fill"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:oak="http://oak/oak/schema"
+        android:id="@+id/root"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+    <TextView
+            style="@style/Wrap"
+            android:text="Ever wanted to specify a font for all of your Activity's views, no matter what?"
+            android:textSize="18sp"/>
+    <Button
+            style="@style/FillWidth"
+            android:text="Using OakUtils, you can!"
+            android:textSize="20sp"
+            oak:font="Apple Chancery.ttf"/>
+    <TextView
+            style="@style/Wrap"
+            android:text="Add an android:id to your root layout View."
+            android:textSize="14sp"/>
+    <TextView
+            style="@style/Wrap"
+            android:text="Then call OakUtils.changeFonts() after you've set your content and pass in the rootView, a Context, and a String with your font title!"
+            android:textSize="14sp"/>
+    <CheckBox
+            style="@style/Wrap"
+            android:text="It works for CheckBoxes!"/>
+    <RadioButton
+            style="@style/Wrap"
+            android:text="And RadioButtons!"/>
+    <ToggleButton
+            style="@style/Wrap"
+            android:text="And ToggleButtons!"/>
+    <TextView
+            style="@style/Wrap"
+            android:text="It works for every view that has a TextView component, and it works on all nested views as well."
+            android:textSize="14sp"/>
+    <include android:id="@+id/attribution" layout="@layout/attribution"/>
+</LinearLayout>

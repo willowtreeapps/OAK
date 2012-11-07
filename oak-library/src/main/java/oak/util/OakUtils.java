@@ -1,6 +1,6 @@
 package oak.util;
 
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Typeface;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,15 +13,14 @@ import oak.widget.TextViewWithFont;
  */
 public class OakUtils {
 
-    public static void changeFonts(ViewGroup root, Activity a, String typeface) {
-        Typeface tf = TextViewWithFont.getStaticTypeFace(a, typeface);
+    public static void changeFonts(View root, Context ctx, String typeface) {
+        Typeface tf = TextViewWithFont.getStaticTypeFace(ctx, typeface);
 
-        for (int i = 0; i < root.getChildCount(); i++) {
-            View v = root.getChildAt(i);
-            if (v instanceof TextView) {
-                ((TextView) v).setTypeface(tf);
-            } else if (v instanceof ViewGroup) {
-                changeFonts((ViewGroup) v, a, typeface);
+        if (root instanceof TextView) {
+            ((TextView) root).setTypeface(tf);
+        } else if (root instanceof ViewGroup) {
+            for (int i = 0; i < ((ViewGroup) root).getChildCount(); i++) {
+                changeFonts(((ViewGroup) root).getChildAt(i), ctx, typeface);
             }
         }
     }
