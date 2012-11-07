@@ -103,6 +103,14 @@
                 <category android:name="oak.android.intent.category.OAK"/>
             </intent-filter>
         </activity>
+        <activity android:label="@string/is_package_installed_activity" android:name=".utils.IsPackageInstalledActivity"
+                  android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
+            </intent-filter>
+        </activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>

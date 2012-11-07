@@ -1,6 +1,8 @@
 package oak.util;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,15 @@ public class OakUtils {
             for (int i = 0; i < ((ViewGroup) root).getChildCount(); i++) {
                 changeFonts(((ViewGroup) root).getChildAt(i), ctx, typeface);
             }
+        }
+    }
+
+    public static boolean isPackageInstalled(Context ctx, String packageName) {
+        try {
+            ApplicationInfo info = ctx.getPackageManager().getApplicationInfo(packageName, 0);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
         }
     }
 }
