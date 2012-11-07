@@ -49,6 +49,9 @@
         <developer>
             <name>Derek Brameyer</name>
             <organization>WillowTree Apps</organization>
+            <roles>
+                <role>General Project Maintainer</role>
+            </roles>
         </developer>
         <developer>
             <name>Ron DuPlain</name>
@@ -57,9 +60,6 @@
         <developer>
             <name>Michael Lake</name>
             <organization>WillowTree Apps</organization>
-            <roles>
-                <role>General Project Maintainer</role>
-            </roles>
         </developer>
         <developer>
             <name>Jonathan Nye</name>
@@ -78,10 +78,13 @@
             <organization>WillowTree Apps</organization>
         </developer>
         <developer>
+            <name>Frank Doyle</name>
+            <organization>WillowTree Apps</organization>
+        </developer>
+        <developer>
             <name>Woody Zantzinger</name>
             <organization>WillowTree Apps</organization>
         </developer>
-
     </developers>
 
     <prerequisites>
@@ -97,7 +100,6 @@
         <connection>scm:git:git@github.com:willowtreeapps/OAK.git</connection>
         <developerConnection>scm:git:git@github.com:willowtreeapps/OAK.git</developerConnection>
     </scm>
-
 
     <reporting>
         <plugins>

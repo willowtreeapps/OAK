@@ -8,4 +8,4 @@ ObscuredSharedPreferences
 [obscured_shared_prefs.png] Obscured Shared Preferences
 
 
-%{snippet|id=obscured_prefs|file=oak-demos/src/oak/demo/ObscuredPrefsActivity.java}
+%{snippet|id=obscured_prefs|file=oak-demos/src/oak/demo/other/ObscuredPrefsActivity.java}

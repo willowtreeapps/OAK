@@ -21,9 +21,9 @@ SectionAdapter
 
  * The model that you are populating the listview with must implement <<Sectionable.java>>
 
-%{snippet|id=sectionable|file=oak-demos/src/oak/demo/Person.java}
+%{snippet|id=sectionable|file=oak-demos/src/oak/demo/model/Person.java}
 
  * Simply pass a List of your <<Sectionable>> object model to the adapter..
 
-%{snippet|id=sectiontool|file=oak-demos/src/oak/demo/SectionActivity.java}
+%{snippet|id=sectiontool|file=oak-demos/src/oak/demo/listview/SectionActivity.java}
 
