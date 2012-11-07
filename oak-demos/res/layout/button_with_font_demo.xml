@@ -22,15 +22,35 @@
         xmlns:oak="http://oak/oak/schema"
         android:orientation="vertical"
         android:gravity="center_horizontal">
-    <oak.widget.TextViewWithFont
+    <oak.widget.ButtonWithFont
             style="@style/FillWidth"
-            android:text="Ever wanted to specify a font in XML?"
+            android:text="Fonts on Buttons"
             android:textSize="18sp"
             oak:font="Once_upon_a_time.ttf"/>
-    <oak.widget.TextViewWithFont
+    <oak.widget.ButtonWithFont
             style="@style/FillWidth"
-            android:text="Using TextViewWithFont, you can!"
+            android:text="Using ButtonWithFont!"
             android:textSize="20sp"
             oak:font="Apple Chancery.ttf"/>
+    <oak.widget.ButtonWithFont
+            style="@style/Wrap"
+            android:text="Really useful"
+            android:textSize="20sp"
+            oak:font="Roboto-Bold.ttf"/>
+    <oak.widget.ButtonWithFont
+            style="@style/Wrap"
+            android:text="for the new"
+            android:textSize="20sp"
+            oak:font="Roboto.ttf"/>
+    <oak.widget.ButtonWithFont
+            style="@style/Wrap"
+            android:text="Roboto"
+            android:textSize="20sp"
+            oak:font="Roboto-Light.ttf"/>
+    <oak.widget.ButtonWithFont
+            style="@style/Wrap"
+            android:text="font family!"
+            android:textSize="20sp"
+            oak:font="Roboto-Thin.ttf"/>
     <include android:id="@+id/attribution" layout="@layout/attribution"/>
 </LinearLayout>

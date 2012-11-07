@@ -15,3 +15,7 @@ out/
 target/
 .project
 .classpath
+target/
+classes/
+gen-external-apklibs/
+tmp/

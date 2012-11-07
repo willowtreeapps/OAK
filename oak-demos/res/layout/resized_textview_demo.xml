@@ -22,7 +22,7 @@
         android:layout_height="fill_parent"
         android:orientation="vertical">
 
-    <oak.ResizedTextView
+    <oak.widget.ResizedTextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Finally, Android developers have an automatically resizing TextView which will scale the text down to a minimum size and will ellipsize when it's too long."
@@ -31,7 +31,7 @@
             oak:minTextSize="11"
             android:background="#4400ff00"
             />
-    <oak.ResizedTextView
+    <oak.widget.ResizedTextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="This ResizedTextView has less text"
@@ -41,7 +41,7 @@
             android:background="#44AA88AA"
             />
 
-    <oak.ResizedTextView
+    <oak.widget.ResizedTextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Imagine having your really long article title automatically shrunk to fit on-screen"
@@ -52,7 +52,7 @@
             android:id="@+id/rtv"
             />
 
-    <oak.ResizedTextView
+    <oak.widget.ResizedTextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Even works with different fonts! Those developers at WillowTree Apps are genius!"
@@ -64,7 +64,7 @@
             android:id="@+id/rtv"
             oak:font="Apple Chancery.ttf"
             />
-    <oak.ResizedTextView
+    <oak.widget.ResizedTextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Ofcourse it works with padding, why wouldn't it!"
@@ -75,7 +75,7 @@
             android:padding="15dip"
             />
 
-    <oak.ResizedTextView
+    <oak.widget.ResizedTextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Take note of the linebreak below"
@@ -92,7 +92,7 @@
             android:background="#99ffffff"
             >
 
-        <oak.TextViewWithFont
+        <oak.widget.TextViewWithFont
                 android:id="@+id/label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -106,7 +106,7 @@
                 android:layout_alignParentTop="true"
                 />
 
-        <oak.ResizedTextView
+        <oak.widget.ResizedTextView
                 android:layout_height="wrap_content"
                 android:layout_width="fill_parent"
                 android:layout_toRightOf="@id/label"

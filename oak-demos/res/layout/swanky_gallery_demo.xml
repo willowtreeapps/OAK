@@ -20,7 +20,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 
-    <oak.SwankyGallery
+    <oak.widget.SwankyGallery
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:id="@+id/swanky_gallery" />

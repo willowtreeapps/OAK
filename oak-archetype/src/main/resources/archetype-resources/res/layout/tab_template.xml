@@ -5,13 +5,12 @@
               android:orientation="vertical"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent">
-    <oak.TextViewWithFont
-        android:id="@+id/display_text"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text=" "
-        android:textSize="48dp"
-        android:layout_gravity="center_horizontal"
-        oak:font="readoutcondenseditalic.ttf"
-        />
+    <oak.widget.TextViewWithFont
+            android:id="@+id/display_text"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text=" "
+            android:textSize="48dp"
+            android:layout_gravity="center_horizontal"
+            oak:font="readoutcondenseditalic.ttf"/>
 </LinearLayout>

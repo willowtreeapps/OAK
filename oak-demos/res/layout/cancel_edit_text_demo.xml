@@ -15,40 +15,26 @@
   ~ limitations under the License.
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:oak="http://oak/oak/schema"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:orientation="vertical">
-
+<LinearLayout
+        style="@style/Fill"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:oak="http://oak/oak/schema"
+        android:orientation="vertical">
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="The following CancelEditText has a cancel drawable to clear the text (it extends TextViewWithFont, so you can even specify a custom font if you like)"
-            />
+            style="@style/Wrap"
+            android:text="The following CancelEditText has a cancel drawable to clear the text (it extends TextViewWithFont, so you can even specify a custom font if you like)"/>
     <!-- START SNIPPET: canceledittext_layout -->
-
-
-    <oak.CancelEditText
+    <oak.widget.CancelEditText
+            style="@style/FillWidth"
             android:id="@+id/cancel_edit_one"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
             android:text="this is a cancel edit text"
-            oak:cancelDrawable="@drawable/ic_close"
-            />
-
+            oak:cancelDrawable="@drawable/ic_close"/>
     <!-- END SNIPPET: canceledittext_layout -->
-
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="The following EditText is here for comparison"
-            />
+            style="@style/Wrap"
+            android:text="The following EditText is here for comparison"/>
     <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="this is a normal edit text"
-            />
-
-    <include android:id="@+id/attribution" layout="@layout/attribution" />
+            style="@style/FillWidth"
+            android:text="this is a normal edit text"/>
+    <include android:id="@+id/attribution" layout="@layout/attribution"/>
 </LinearLayout>

@@ -16,21 +16,17 @@
   ~ limitations under the License.
   -->
 
-<LinearLayout
-        style="@style/Fill"
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:oak="http://oak/oak/schema"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:orientation="vertical"
         android:gravity="center_horizontal">
-    <oak.widget.TextViewWithFont
-            style="@style/FillWidth"
-            android:text="Ever wanted to specify a font in XML?"
-            android:textSize="18sp"
-            oak:font="Once_upon_a_time.ttf"/>
-    <oak.widget.TextViewWithFont
-            style="@style/FillWidth"
-            android:text="Using TextViewWithFont, you can!"
-            android:textSize="20sp"
-            oak:font="Apple Chancery.ttf"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:id="@+id/show_dialog"
+            android:text="Show Dialog"/>
     <include android:id="@+id/attribution" layout="@layout/attribution"/>
-</LinearLayout>
+</RelativeLayout>

@@ -23,6 +23,8 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.BaseAdapter;
 import android.widget.SectionIndexer;
 
+import oak.widget.SectionListView;
+
 public abstract class BaseSectionAdapter extends BaseAdapter
         implements SectionIndexer, OnScrollListener {
 	public static final String TAG = BaseSectionAdapter.class.getSimpleName();

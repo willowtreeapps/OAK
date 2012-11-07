@@ -30,7 +30,7 @@
 			android:imeOptions="actionDone"
 	        android:singleLine="true"
 			/>
-	<oak.SectionListView
+	<oak.widget.SectionListView
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent"
 			android:layout_below="@id/filter_et"

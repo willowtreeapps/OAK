@@ -1,73 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1202211071" android:versionName="1.1.1-SNAPSHOT" package="oak.demo">
-  <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="16"/>
-  <application android:debuggable="true" android:icon="@drawable/icon" android:label="@string/app_name">
-    <activity android:label="@string/app_name" android:name=".OakDemos">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
-        <category android:name="android.intent.category.LAUNCHER"/>
-      </intent-filter>
-    </activity>
-    <activity android:label="@string/image_manager_activity" android:name=".ImageLoaderActivity" android:screenOrientation="portrait">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
-        <category android:name="android.intent.category.SAMPLE_CODE"/>
-        <category android:name="oak.android.intent.category.OAK"/>
-      </intent-filter>
-    </activity>
-    <activity android:label="@string/asynctool_activity" android:name=".AsyncToolActivity" android:screenOrientation="portrait">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
-        <category android:name="android.intent.category.SAMPLE_CODE"/>
-        <category android:name="oak.android.intent.category.OAK"/>
-      </intent-filter>
-    </activity>
-	  <activity android:label="@string/filter_activity" android:name=".SectionActivity" android:screenOrientation="portrait">
-		  <intent-filter>
-			  <action android:name="android.intent.action.MAIN"/>
-			  <category android:name="android.intent.category.SAMPLE_CODE"/>
-			  <category android:name="oak.android.intent.category.OAK"/>
-		  </intent-filter>
-	  </activity>
-    <activity android:label="@string/resized_textview_activity" android:name=".ResizedTextViewActivity" android:screenOrientation="portrait">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
-        <category android:name="android.intent.category.SAMPLE_CODE"/>
-        <category android:name="oak.android.intent.category.OAK"/>
-      </intent-filter>
-    </activity>
-    <activity android:label="@string/textview_with_font_activity" android:name=".TextViewWithFontActivity" android:screenOrientation="portrait">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
-        <category android:name="android.intent.category.SAMPLE_CODE"/>
-        <category android:name="oak.android.intent.category.OAK"/>
-      </intent-filter>
-    </activity>
-    <activity android:label="@string/cancel_edit_text_activity" android:name=".CancelEditTextActivity" android:screenOrientation="portrait">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
-        <category android:name="android.intent.category.SAMPLE_CODE"/>
-        <category android:name="oak.android.intent.category.OAK"/>
-      </intent-filter>
-    </activity>
-    <activity android:label="@string/encrypted_prefs_activity" android:name=".ObscuredPrefsActivity" android:screenOrientation="portrait">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
-        <category android:name="android.intent.category.SAMPLE_CODE"/>
-        <category android:name="oak.android.intent.category.OAK"/>
-      </intent-filter>
-    </activity>
-    <activity android:label="@string/swanky_gallery_activity" android:name=".SwankyGalleryActivity" android:screenOrientation="portrait">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
-        <category android:name="android.intent.category.SAMPLE_CODE"/>
-        <category android:name="oak.android.intent.category.OAK"/>
-      </intent-filter>
-    </activity>
-  </application>
-  <uses-permission android:name="android.permission.INTERNET"/>
-  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-  <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1202211071"
+          android:versionName="1.1.1-SNAPSHOT" package="oak.demo">
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="16"/>
+    <application android:debuggable="true" android:icon="@drawable/icon" android:label="@string/app_name">
+        <activity android:label="@string/app_name" android:name=".OakDemos">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/image_manager_activity" android:name=".image.ImageLoaderActivity"
+                  android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/asynctool_activity" android:name=".other.AsyncToolActivity"
+                  android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/filter_activity" android:name=".listview.SectionActivity"
+                  android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/resized_textview_activity" android:name=".widget.ResizedTextViewActivity"
+                  android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/textview_with_font_activity" android:name=".widget.TextViewWithFontActivity"
+                  android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/cancel_edit_text_activity" android:name=".widget.CancelEditTextActivity"
+                  android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/encrypted_prefs_activity" android:name=".other.ObscuredPrefsActivity"
+                  android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/swanky_gallery_activity" android:name=".image.SwankyGalleryActivity"
+                  android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/custom_progress_dialog_activity" android:name=".widget.CustomProgressDialogActivity"
+                  android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/button_with_font_activity" android:name=".widget.ButtonWithFontActivity"
+                  android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
+            </intent-filter>
+        </activity>
+    </application>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 </manifest>
