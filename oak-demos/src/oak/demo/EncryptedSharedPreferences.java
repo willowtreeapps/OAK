@@ -17,4 +17,9 @@ public final class EncryptedSharedPreferences extends ObscuredSharedPreferences 
     protected char[] getSpecialCode() {
         return "y0urPa$$w0rdH3r3".toCharArray();
     }
+
+    @Override
+    public Set<String> getStringSet(String s, Set<String> strings) {
+        return null;
+    }
 }

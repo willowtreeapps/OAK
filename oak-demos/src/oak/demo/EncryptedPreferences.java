@@ -18,6 +18,8 @@ package oak.demo;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.Set;
+
 import oak.ObscuredSharedPreferences;
 
 /**
@@ -32,5 +34,10 @@ public class EncryptedPreferences extends ObscuredSharedPreferences {
     @Override
     protected char[] getSpecialCode() {
         return "THIS IS MY ENCRYPTING KEY PHRASE@@!".toCharArray();
+    }
+
+    @Override
+    public Set<String> getStringSet(String s, Set<String> strings) {
+        return null;
     }
 }
