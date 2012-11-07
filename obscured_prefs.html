@@ -47,7 +47,7 @@
                   <div class="xright">                    <a href="http://www.willowtreeapps.com" class="externalLink" title="WillowTree Apps">WillowTree Apps</a>
               
                 
-                &nbsp;| <span id="publishDate">Last Published: 2012-11-07 11:05:09</span>
+                &nbsp;| <span id="publishDate">Last Published: 2012-11-07 14:49:45</span>
               &nbsp;| <span id="projectVersion">Version: 1.1.1-SNAPSHOT</span>
             </div>
       <div class="clear">
@@ -106,32 +106,19 @@
     </div>
     <div id="bodyColumn">
       <div id="contentBox">
-        <div class="section"><h2>ObscuredSharedPreferences<a name="ObscuredSharedPreferences"></a></h2><p>Full disclosure: This code was adapted from <a class="externalLink" href="http://stackoverflow.com/questions/785973/what-is-the-most-appropriate-way-to-store-user-settings-in-android-application/6393502#6393502">Michael Burton's response on StackOverflow</a></p><img src="obscured_shared_prefs.png" alt="Obscured Shared Preferences" /><div class="source"><pre>public class ObscuredPrefsActivity extends Activity {
+        <div class="section"><h2>ObscuredSharedPreferences<a name="ObscuredSharedPreferences"></a></h2><p>Full disclosure: This code was adapted from <a class="externalLink" href="http://stackoverflow.com/questions/785973/what-is-the-most-appropriate-way-to-store-user-settings-in-android-application/6393502#6393502">Michael Burton's response on StackOverflow</a></p><img src="obscured_shared_prefs.png" alt="Obscured Shared Preferences" /><div class="source"><pre>public class ObscuredPrefsActivity extends OakDemoActivity {
 
     private static final String MY_APP_PREFENCES_NAME = &quot;my_app_prefences_name&quot;;
 
     private SharedPreferences mNormalSharedPreferences;
     private EncryptedPreferences mEncryptedPreferences;
-    private EditText mEditText;
-    private TextView mTextView;
+    @InjectView(R.id.my_edittext) private EditText mEditText;
+    @InjectView(R.id.saved_content) private TextView mTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.obscured_prefs_demo);
-
-        RelativeLayout attr = (RelativeLayout)findViewById(R.id.attribution);
-        attr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(&quot;http://www.willowtreeapps.com&quot;));
-                startActivity(i);
-            }
-        });
-        
-        mEditText = (EditText) findViewById(R.id.my_edittext);
-        mTextView = (TextView) findViewById(R.id.saved_content);
 
         mNormalSharedPreferences = getSharedPreferences(MY_APP_PREFENCES_NAME, MODE_PRIVATE);
 
