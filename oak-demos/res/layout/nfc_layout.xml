@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+        >
+    <LinearLayout android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/linearLayout1">
+        <Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/write_tag" android:text="Write Text To Tag"></Button>
+        <Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/mainMenu" android:text="Go Back to the Menu"></Button>
+    </LinearLayout>
+    <EditText android:layout_width="fill_parent" android:id="@+id/note" android:layout_height="fill_parent" android:gravity="top" android:hint="Text to be written to a tag, or if text already exists it will be displayed here."></EditText>
+</LinearLayout>

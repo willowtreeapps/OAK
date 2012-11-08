@@ -28,6 +28,7 @@
     <string name="custom_progress_dialog_activity">Widget/CustomProgressDialog</string>
     <string name="change_font_activity">Utils/OakUtils.changeFonts()</string>
     <string name="is_package_installed_activity">Utils/OakUtils.isPackageInstalled()</string>
+    <string name="tag_writer_activity">Nfc/Nfc TagWriter</string>
     <string name="disclaimer">Although MODE_PRIVATE in SharedPreferences should isolate your saved
         data to be viewable by only your application, a compromised android device(read \'rooted\')
         would be able to view all shared preferences which are generally just in plain text. By
