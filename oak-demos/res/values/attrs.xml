@@ -16,18 +16,34 @@
   -->
 
 <resources>
-
-    <declare-styleable name="CancelEditText">
-        <attr name="cancelDrawable" format="reference"/>
+    <declare-styleable
+            name="CancelEditText">
+        <attr
+                name="cancelDrawable"
+                format="reference"/>
     </declare-styleable>
 
-
-    <declare-styleable name="ResizedTextView">
-        <attr name="maxCustomLines" format="integer"/>
-        <attr name="minTextSize" format="integer"/>
+    <declare-styleable
+            name="ResizedTextView">
+        <attr
+                name="maxCustomLines"
+                format="integer"/>
+        <attr
+                name="minTextSize"
+                format="integer"/>
     </declare-styleable>
 
-    <declare-styleable name="TextViewWithFont">
-        <attr name="font" format="string"/>
+    <declare-styleable
+            name="TextViewWithFont">
+        <attr
+                name="font"
+                format="string"/>
+    </declare-styleable>
+
+    <declare-styleable
+            name="CustomCircularProgressBar">
+        <attr
+                name="progressBarDrawable"
+                format="reference"/>
     </declare-styleable>
 </resources>
