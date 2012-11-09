@@ -28,7 +28,7 @@
             style="@style/FillWidth"
             android:id="@+id/cancel_edit_one"
             android:text="this is a cancel edit text"
-            oak:cancelDrawable="@drawable/ic_close"/>
+            oak:cancelDrawable="@drawable/oak_ic_cancel"/>
     <!-- END SNIPPET: canceledittext_layout -->
     <TextView
             style="@style/Wrap"

@@ -21,6 +21,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -33,6 +34,7 @@ import oak.SectionAdapter;
 import oak.demo.OakDemoActivity;
 import oak.demo.R;
 import oak.demo.model.Person;
+import oak.widget.CancelEditText;
 import oak.widget.SectionListView;
 import roboguice.inject.InjectView;
 
@@ -42,6 +44,7 @@ import roboguice.inject.InjectView;
 public class SectionActivity extends OakDemoActivity {
 
     @InjectView(R.id.amazing_lv) SectionListView mSectionListView;
+    @InjectView(R.id.filter_et) CancelEditText mFilter;
 
     private PersonAdapter adapter;
 
@@ -60,7 +63,7 @@ public class SectionActivity extends OakDemoActivity {
 
         mSectionListView.setOnItemClickListener(adapter);
 
-        ((TextView) findViewById(R.id.filter_et)).addTextChangedListener(new TextWatcher() {
+        mFilter.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
@@ -83,20 +86,46 @@ public class SectionActivity extends OakDemoActivity {
 
         persons.add(new Person("Kermit the Frog", "Chicago"));
         persons.add(new Person("Miss Piggy", "Chicago"));
+        persons.add(new Person("Miss Piggy", "Chicago"));
+        persons.add(new Person("Miss Piggy", "Chicago"));
+        persons.add(new Person("Miss Piggy", "Chicago"));
+        persons.add(new Person("Miss Piggy", "Chicago"));
+        persons.add(new Person("Miss Piggy", "Chicago"));
         persons.add(new Person("Gonzo", "Chicago"));
+
+        persons.add(new Person("Mister Rogers", "Pittsburgh"));
 
         persons.add(new Person("Leonardo", "New York"));
         persons.add(new Person("Michelangelo", "New York"));
+        persons.add(new Person("Michelangelo", "New York"));
         persons.add(new Person("Donatello", "New York"));
         persons.add(new Person("Raphael", "New York"));
-
-        persons.add(new Person("Mister Rogers", "Pittsburgh"));
+        persons.add(new Person("Michelangelo", "New York"));
+        persons.add(new Person("Donatello", "New York"));
+        persons.add(new Person("Raphael", "New York"));
+        persons.add(new Person("Michelangelo", "New York"));
+        persons.add(new Person("Donatello", "New York"));
+        persons.add(new Person("Raphael", "New York"));
+        persons.add(new Person("Michelangelo", "New York"));
+        persons.add(new Person("Donatello", "New York"));
+        persons.add(new Person("Raphael", "New York"));
+        persons.add(new Person("Donatello", "New York"));
+        persons.add(new Person("Raphael", "New York"));
 
         persons.add(new Person("Captain Crunch", "Orlando"));
         persons.add(new Person("Soggies", "Orlando"));
 
         persons.add(new Person("Pooh Bear", "Hundred Acre Wood"));
         persons.add(new Person("Eor", "Hundred Acre Wood"));
+        persons.add(new Person("Owl", "Hundred Acre Wood"));
+        persons.add(new Person("Tigger", "Hundred Acre Wood"));
+        persons.add(new Person("Piglet", "Hundred Acre Wood"));
+        persons.add(new Person("Owl", "Hundred Acre Wood"));
+        persons.add(new Person("Tigger", "Hundred Acre Wood"));
+        persons.add(new Person("Piglet", "Hundred Acre Wood"));
+        persons.add(new Person("Owl", "Hundred Acre Wood"));
+        persons.add(new Person("Tigger", "Hundred Acre Wood"));
+        persons.add(new Person("Piglet", "Hundred Acre Wood"));
         persons.add(new Person("Owl", "Hundred Acre Wood"));
         persons.add(new Person("Tigger", "Hundred Acre Wood"));
         persons.add(new Person("Piglet", "Hundred Acre Wood"));
@@ -151,6 +180,23 @@ public class SectionActivity extends OakDemoActivity {
             lName.setText(text);
 
             return res;
+        }
+
+        @Override
+        public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            super.onScroll(view, firstVisibleItem, visibleItemCount, totalItemCount);
+            if (view.getChildAt(0) != null) {
+                View header = view.getChildAt(0).findViewById(R.id.header);
+                if (header != null && header.getVisibility() == View.VISIBLE) {
+                    header.setVisibility(View.INVISIBLE);
+                }
+            }
+            if (view.getChildAt(1) != null) {
+                View header = view.getChildAt(1).findViewById(R.id.header);
+                if (header != null && header.getVisibility() == View.INVISIBLE) {
+                    header.setVisibility(View.VISIBLE);
+                }
+            }
         }
 
         @Override
