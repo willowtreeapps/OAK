@@ -119,9 +119,17 @@
                 <category android:name="oak.android.intent.category.OAK"/>
             </intent-filter>
             <intent-filter>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="application/oaktagwriter" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="application/oaktagwriter"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/beast_view_pager_activity" android:name=".widget.BeastViewPagerActivity"
+                  android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
             </intent-filter>
         </activity>
     </application>

@@ -26,6 +26,7 @@
     <string name="button_with_font_activity">Widget/ButtonWithFont</string>
     <string name="encrypted_prefs_activity">Other/Encrypted Preferences</string>
     <string name="custom_progress_dialog_activity">Widget/CustomProgressDialog</string>
+    <string name="beast_view_pager_activity">Widget/BeastViewPager</string>
     <string name="change_font_activity">Utils/OakUtils.changeFonts()</string>
     <string name="is_package_installed_activity">Utils/OakUtils.isPackageInstalled()</string>
     <string name="tag_writer_activity">Nfc/Nfc TagWriter</string>

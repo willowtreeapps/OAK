@@ -1,0 +1,69 @@
+package oak.widget;
+
+import android.content.Context;
+import android.support.v4.view.ViewPager;
+import android.util.AttributeSet;
+import android.view.MotionEvent;
+import android.view.ViewConfiguration;
+
+/**
+ * User: derek Date: 7/12/12 Time: 2:57 PM
+ */
+public class BeastViewPager extends ViewPager {
+
+    private float mCurrX = 0.0f;
+    private float mCurrY = 0.0f;
+    private int mTouchSlop;
+
+    public BeastViewPager(Context context) {
+        super(context);
+        init();
+    }
+
+    public BeastViewPager(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init();
+    }
+
+    private void init() {
+        ViewConfiguration viewConfiguration = ViewConfiguration.get(getContext());
+        mTouchSlop = (viewConfiguration.getScaledTouchSlop());
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent event) {
+        final int action = event.getAction();
+        if (action == MotionEvent.ACTION_DOWN) {
+            mCurrX = event.getX();
+            mCurrY = event.getY();
+            getParent().requestDisallowInterceptTouchEvent(true);
+        } else if (action == MotionEvent.ACTION_MOVE) {
+            // Shouldn't need to do anything
+        } else if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
+            getParent().requestDisallowInterceptTouchEvent(false);
+        } else {
+            getParent().requestDisallowInterceptTouchEvent(true);
+        }
+        return super.onInterceptTouchEvent(event);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        final int action = event.getAction();
+        if (action == MotionEvent.ACTION_DOWN) {
+            //mCurrX = event.getX();
+        } else if (action == MotionEvent.ACTION_MOVE) {
+            if (getCurrentItem() == 0 && ((event.getX() - mCurrX) > mTouchSlop)) {
+                // User moved finger to the right and is on the leftmost ViewGroup
+                getParent().requestDisallowInterceptTouchEvent(false);
+            } else if (getCurrentItem() == (getAdapter().getCount() - 1) && ((mCurrX - event.getX()) > mTouchSlop)) {
+                // User moved finger to the left and is on the rightmost ViewGroup
+                getParent().requestDisallowInterceptTouchEvent(false);
+            } else if (Math.abs(event.getY() - mCurrY) > Math.abs(event.getX() - mCurrX)) {
+                // User scrolled vertically
+                getParent().requestDisallowInterceptTouchEvent(false);
+            }
+        }
+        return super.onTouchEvent(event);
+    }
+}
