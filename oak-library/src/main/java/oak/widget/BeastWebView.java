@@ -11,9 +11,10 @@ public class BeastWebView extends WebView {
     private float mCurrX = 0.0f;
     private float mCurrY = 0.0f;
     private int mTouchSlop;
-    private float oldX;
+    private boolean overScrollTop = false;
     private boolean overScrollLeft = false;
     private boolean overScrollRight = false;
+    private boolean overScrollBottom = false;
     private boolean isScrolling = false;
 
     public BeastWebView(Context context) {
@@ -54,17 +55,17 @@ public class BeastWebView extends WebView {
         // width of the vertical scrollbar
         int scrollBarWidth = getVerticalScrollbarWidth();
 
-        // width of the view depending of you set in the layout
+        // width of the view
         int viewWidth = computeHorizontalScrollExtent();
 
-        // width of the webpage depending of the zoom
+        // width of the webpage depending on the zoom
         int innerWidth = computeHorizontalScrollRange();
 
         // position of the left side of the horizontal scrollbar
         int scrollBarLeftPos = computeHorizontalScrollOffset();
 
         // position of the right side of the horizontal scrollbar, the width of scroll is the width of view minus the width of vertical scrollbar
-        int scrollBarRightPos = scrollBarLeftPos + viewWidth - scrollBarWidth;
+        int scrollBarRightPos = scrollBarLeftPos + viewWidth + scrollBarWidth;
 
         // if left pos of scroll bar is 0 left over scrolling is true
         if (scrollBarLeftPos == 0) {
@@ -80,32 +81,49 @@ public class BeastWebView extends WebView {
             overScrollRight = false;
         }
 
+        // height of the horizontal scrollbar
+        int scrollBarHeight = getHorizontalScrollbarHeight();
+
+        // height of the view
+        int viewHeight = computeVerticalScrollExtent();
+
+        // height of the webpage depending on the zoom
+        int innerHeight = computeVerticalScrollRange();
+
+        // position of the top side of the vertical scrollbar
+        int scrollBarTopPos = computeVerticalScrollOffset();
+
+        // position of the bottom of the vertical scrollbar, the height of scroll is the height of the view
+        int scrollBarBottomPos = scrollBarTopPos + viewHeight + scrollBarHeight;
+
+        // if top pos of scroll bar is 0 top over scrollling is true
+        if (scrollBarTopPos == 0) {
+            overScrollTop = true;
+        } else {
+            overScrollTop = false;
+        }
+
+        // if bottom pos of scroll bar is superior to webpage height: bottom over scrolling is true
+        if (scrollBarBottomPos >= innerHeight) {
+            overScrollBottom = true;
+        } else {
+            overScrollBottom = false;
+        }
+
         final int action = event.getAction();
-        if (action == MotionEvent.ACTION_DOWN) {
-            // if scrollbar is the most left or right
-            if (overScrollLeft || overScrollRight) {
-                isScrolling = false;
-            } else {
-                isScrolling = true;
-            }
-            oldX = event.getX();
-        } else if (action == MotionEvent.ACTION_MOVE) {
+        if (action == MotionEvent.ACTION_MOVE) {
             if (!isScrolling) {
-                if (event.getX() > oldX && overScrollLeft) {
+                if (((event.getX() - mCurrX) > mTouchSlop) && overScrollLeft) {
+                    // User moved finger to the right
                     getParent().requestDisallowInterceptTouchEvent(false);
-                }
-
-                if (event.getX() < oldX && overScrollRight) {
+                } else if (((mCurrX - event.getX()) > mTouchSlop) && overScrollRight) {
+                    // User moved finger to the left
                     getParent().requestDisallowInterceptTouchEvent(false);
-                }
-            }
-        } else if (action == MotionEvent.ACTION_UP) {
-            if (!isScrolling) {
-                if (event.getX() > oldX && overScrollLeft) {
+                } else if (((event.getY() - mCurrY) > mTouchSlop) && overScrollTop) {
+                    // User moved finger to the bottom
                     getParent().requestDisallowInterceptTouchEvent(false);
-                }
-
-                if (event.getX() < oldX && overScrollRight) {
+                } else if (((mCurrY - event.getY()) > mTouchSlop) && overScrollBottom) {
+                    // User moved finger to the top
                     getParent().requestDisallowInterceptTouchEvent(false);
                 }
             }
