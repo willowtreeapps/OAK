@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.util.zip.GZIPInputStream;
 
 /**
  * User: mlake
@@ -34,8 +35,11 @@ public class OakConnection {
 
     public InputStream getInputStream() throws IOException {
         try {
-            return mHttpUrlConnection.getInputStream();
-
+            InputStream is = mHttpUrlConnection.getInputStream();
+            if("gzip".equals(mHttpUrlConnection.getContentEncoding())){
+                is = new GZIPInputStream(is);
+            }
+            return is;
         } catch (IOException e) {
             e.printStackTrace();
             mHttpUrlConnection.disconnect();
