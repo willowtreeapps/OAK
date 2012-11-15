@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import oak.TextViewWithFont;
+import oak.widget.TextViewWithFont;
 import roboguice.inject.InjectResource;
 import roboguice.inject.InjectView;
 

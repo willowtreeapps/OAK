@@ -1,40 +1,39 @@
 package ${package};
 
-
-import com.google.inject.Inject;
-
-import com.github.rtyley.android.sherlock.roboguice.fragment.RoboSherlockFragment;
+import com.github.rtyley.android.sherlock.roboguice.fragment.RoboSherlockListFragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
-import oak.TextViewWithFont;
+import oak.widget.TextViewWithFont;
 import roboguice.inject.InjectResource;
 import roboguice.inject.InjectView;
 
-public class TabA extends RoboSherlockFragment {
+public class TabA extends RoboSherlockListFragment {
 
-    @InjectView(R.id.display_text)
-        private TextViewWithFont displayText;
-    @InjectResource(R.color.custom_red)
-        private int customRed;
+    private String[] dataArray = new String[]{"This", "Is", "An", "Android", "App!"};
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-        View newView = inflater.inflate(R.layout.tab_template,container,false);
-        return newView;
+        ListAdapter listAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, dataArray);
+        setListAdapter(listAdapter);
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        //Injection occurs in onViewCreated
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.simple_list_fragment, container, false);
+    }
 
-        displayText.setText("This is tab A");
-        displayText.setTextColor(customRed);
+    @Override
+    public void onListItemClick(ListView list, View v, int position, long id) {
+        Toast.makeText(getSherlockActivity(), getListView().getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
     }
 }
