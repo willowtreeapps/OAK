@@ -49,7 +49,7 @@
                   <div class="xright">                    <a href="http://www.willowtreeapps.com" class="externalLink" title="WillowTree Apps">WillowTree Apps</a>
               
                 
-                &nbsp;| <span id="publishDate">Last Published: 2012-11-15 15:59:20</span>
+                &nbsp;| <span id="publishDate">Last Published: 2012-11-15 16:06:02</span>
               &nbsp;| <span id="projectVersion">Version: 1.1.1-SNAPSHOT</span>
             </div>
       <div class="clear">
@@ -192,7 +192,10 @@ Close gedit
 
 source /etc/bash.bashrc</pre></div><p>Install GPG tools and follow instructions here: https://docs.sonatype.org/display/Repository/How+To+Generate+PGP+Signatures+With+Maven Actually deploy the project to the repository</p><div class="source"><pre>mvn release:clean
 mvn release:prepare
-mvn release:perform -DperformRelease=true -Dsign.storepass=&lt;checkPassPack&gt; -Dsign.keypass=&lt;checkPassPack&gt; -Dgpg.passphrase=&lt;yourgpgpassphrase&gt; -Dgpg.executable=/usr/local/bin/gpg</pre></div></div></div><div class="section"><h2>Update Documentation<a name="Update_Documentation"></a></h2><p>Edit the files under <b>src/site</b> using the <a class="externalLink" href="http://maven.apache.org/doxia/references/apt-format.html">APT format</a></p><p>Use the following command which starts the site up, rendering documents as requested for faster editing Jetty as the web server</p><p>Update the downloads page to use the latest stable release.</p><div class="source"><pre>mvn site:run</pre></div><p>Which updates can be seen and refreshed from <a class="externalLink" href="http://localhost:8080/">http://localhost:8080/</a></p><p>Commit the changes to git and the continuous integration server will automatically deploy the website.</p></div>
+mvn release:perform -DperformRelease=true -Dsign.storepass=&lt;checkPassPack&gt; -Dsign.keypass=&lt;checkPassPack&gt; -Dgpg.passphrase=&lt;yourgpgpassphrase&gt; -Dgpg.executable=/usr/local/bin/gpg
+
+On Ubuntu/Linux -Dgpg.executable will be:
+/usr/bin/gpg</pre></div></div></div><div class="section"><h2>Update Documentation<a name="Update_Documentation"></a></h2><p>Edit the files under <b>src/site</b> using the <a class="externalLink" href="http://maven.apache.org/doxia/references/apt-format.html">APT format</a></p><p>Use the following command which starts the site up, rendering documents as requested for faster editing Jetty as the web server</p><p>Update the downloads page to use the latest stable release.</p><div class="source"><pre>mvn site:run</pre></div><p>Which updates can be seen and refreshed from <a class="externalLink" href="http://localhost:8080/">http://localhost:8080/</a></p><p>Commit the changes to git and the continuous integration server will automatically deploy the website.</p></div>
       </div>
     </div>
     <div class="clear">
