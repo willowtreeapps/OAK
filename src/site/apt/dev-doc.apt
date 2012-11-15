@@ -282,6 +282,9 @@ source /etc/bash.bashrc
 mvn release:clean
 mvn release:prepare
 mvn release:perform -DperformRelease=true -Dsign.storepass=<checkPassPack> -Dsign.keypass=<checkPassPack> -Dgpg.passphrase=<yourgpgpassphrase> -Dgpg.executable=/usr/local/bin/gpg
+
+On Ubuntu/Linux -Dgpg.executable will be:
+/usr/bin/gpg
 +---
 
 Update Documentation
