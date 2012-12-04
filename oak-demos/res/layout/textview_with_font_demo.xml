@@ -32,4 +32,9 @@
             android:text="Using TextViewWithFont, you can!"
             android:textSize="20sp"
             oak:font="Apple Chancery.ttf"/>
+    <oak.widget.TextViewWithFont
+            style="@style/FillWidth"
+            android:text="Even supports strings from res!"
+            android:textSize="20sp"
+            oak:font="@string/default_font"/>
 </LinearLayout>

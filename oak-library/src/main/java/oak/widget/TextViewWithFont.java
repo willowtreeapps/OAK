@@ -50,20 +50,33 @@ public class TextViewWithFont extends TextView {
 
         String fontName = null;
         if (attrs != null) {
-            fontName = attrs.getAttributeValue(OAK.XMLNS, "font");
-        }
+            try {
+                fontName = attrs.getAttributeValue(OAK.XMLNS, "font");
 
-        if (fontName != null) {
-            setTypeface(getStaticTypeFace(context, fontName));
+                if (fontName != null) {
+                    setTypeface(getStaticTypeFace(context, fontName));
+                }
+            } catch (IllegalArgumentException e) {
+                try {
+                    int fontNameRes = attrs.getAttributeResourceValue(OAK.XMLNS, "font", -1);
+                    if (fontNameRes != -1) {
+                        fontName = context.getString(fontNameRes);
+                        if (fontName != null) {
+                            setTypeface(getStaticTypeFace(context, fontName));
+                        }
+                    }
+                } catch (IllegalArgumentException f) {
+                    f.printStackTrace();
+                }
+            }
         }
-
     }
 
     public static Typeface getStaticTypeFace(Context context, String fontFileName) {
         if (mFontMap == null) {
             initializeFontMap(context);
         }
-        
+
         Typeface typeface = mFontMap.get(fontFileName);
 
         if (typeface == null) {
