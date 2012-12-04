@@ -48,11 +48,25 @@ public class ButtonWithFont extends Button {
     private void setFont(Context context, AttributeSet attrs) {
         String fontName = null;
         if (attrs != null) {
-            fontName = attrs.getAttributeValue(OAK.XMLNS, "font");
-        }
+            try {
+                fontName = attrs.getAttributeValue(OAK.XMLNS, "font");
 
-        if (fontName != null) {
-            setTypeface(TextViewWithFont.getStaticTypeFace(context, fontName));
+                if (fontName != null) {
+                    setTypeface(TextViewWithFont.getStaticTypeFace(context, fontName));
+                }
+            } catch (IllegalArgumentException e) {
+                try {
+                    int fontNameRes = attrs.getAttributeResourceValue(OAK.XMLNS, "font", -1);
+                    if (fontNameRes != -1) {
+                        fontName = context.getString(fontNameRes);
+                        if (fontName != null) {
+                            setTypeface(TextViewWithFont.getStaticTypeFace(context, fontName));
+                        }
+                    }
+                } catch (IllegalArgumentException f) {
+                    f.printStackTrace();
+                }
+            }
         }
     }
 }
