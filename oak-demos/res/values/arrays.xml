@@ -1,0 +1,14 @@
+<resources>
+    <string-array name="gradientColors">
+        <item>#ffffff</item>
+        <item>#0000ff</item>
+        <item>#ff0000</item>
+        <item>#00ff00</item>
+    </string-array>
+    <string-array name="gradientPositions">
+        <item>0.0</item>
+        <item>0.5</item>
+        <item>0.51</item>
+        <item>1.0</item>
+    </string-array>
+</resources>
