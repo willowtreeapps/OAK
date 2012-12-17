@@ -8,6 +8,7 @@ import com.google.inject.Singleton;
 import com.integralblue.httpresponsecache.HttpResponseCache;
 import oak.Base64;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.message.BasicNameValuePair;
 import roboguice.util.Ln;
 
@@ -16,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.*;
+import java.security.cert.X509Certificate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -177,8 +179,22 @@ public class OakHttpTool {
             }
 
             // Create all-trusting host name verifier
-            HostnameVerifier allHostsValid = new HostnameVerifier() {
-                public boolean verify(String hostname, SSLSession session) {
+            HostnameVerifier allHostsValid = new X509HostnameVerifier() {
+                @Override
+                public void verify(String s, SSLSocket sslSocket) throws IOException {
+                }
+
+                @Override
+                public void verify(String s, X509Certificate x509Certificate) throws SSLException {
+                }
+
+                @Override
+                public void verify(String s, String[] strings, String[] strings1)
+                        throws SSLException {
+                }
+
+                @Override
+                public boolean verify(String s, SSLSession sslSession) {
                     return true;
                 }
             };
