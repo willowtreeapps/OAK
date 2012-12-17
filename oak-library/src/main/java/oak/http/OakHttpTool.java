@@ -158,11 +158,9 @@ public class OakHttpTool {
                         public java.security.cert.X509Certificate[] getAcceptedIssuers() {
                             return null;
                         }
-
                         public void checkClientTrusted(
                                 java.security.cert.X509Certificate[] certs, String authType) {
                         }
-
                         public void checkServerTrusted(
                                 java.security.cert.X509Certificate[] certs, String authType) {
                         }
@@ -172,6 +170,59 @@ public class OakHttpTool {
             // Install the all-trusting trust manager
             try {
                 SSLContext sc = SSLContext.getInstance("SSL");
+                sc.init(null, trustAllCerts, new java.security.SecureRandom());
+                HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+            } catch (Exception e) {
+                Ln.e(e);
+            }
+
+            // Create all-trusting host name verifier
+            HostnameVerifier allHostsValid = new X509HostnameVerifier() {
+                @Override
+                public void verify(String s, SSLSocket sslSocket) throws IOException {
+                }
+
+                @Override
+                public void verify(String s, X509Certificate x509Certificate) throws SSLException {
+                }
+
+                @Override
+                public void verify(String s, String[] strings, String[] strings1)
+                        throws SSLException {
+                }
+
+                @Override
+                public boolean verify(String s, SSLSession sslSession) {
+                    return true;
+                }
+            };
+
+            // Install the all-trusting host verifier
+            HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
+        }
+
+    }
+
+    public void setTLSCertValidationDisabled(boolean isDisabled) {
+
+        if (isDisabled) {
+            TrustManager[] trustAllCerts = new TrustManager[]{
+                    new X509TrustManager() {
+                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                            return null;
+                        }
+                        public void checkClientTrusted(
+                                java.security.cert.X509Certificate[] certs, String authType) {
+                        }
+                        public void checkServerTrusted(
+                                java.security.cert.X509Certificate[] certs, String authType) {
+                        }
+                    }
+            };
+
+            // Install the all-trusting trust manager
+            try {
+                SSLContext sc = SSLContext.getInstance("TLS");
                 sc.init(null, trustAllCerts, new java.security.SecureRandom());
                 HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
             } catch (Exception e) {
