@@ -138,16 +138,21 @@ public class OakHttpTool {
 
     public OakConnection post(String url, List<BasicNameValuePair> params) throws IOException {
         URL typedUrl = new URL(url);
-        HttpsURLConnection httpURLConnection = (HttpsURLConnection)typedUrl.openConnection();
-        configureDefaults(httpURLConnection);
-        httpURLConnection.setRequestMethod("POST");
-        httpURLConnection.setDoInput(true);
-        httpURLConnection.setDoOutput(true);
-        OutputStream out = httpURLConnection.getOutputStream();
+        HttpURLConnection connection;
+        if(url.contains("https://")){
+            connection = (HttpsURLConnection)typedUrl.openConnection();
+        }else{
+            connection = (HttpURLConnection)typedUrl.openConnection();
+        }
+        configureDefaults(connection);
+        connection.setRequestMethod("POST");
+        connection.setDoInput(true);
+        connection.setDoOutput(true);
+        OutputStream out = connection.getOutputStream();
         UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params);
         entity.writeTo(out);
         out.close();
-        return new OakConnection(httpURLConnection);
+        return new OakConnection(connection);
     }
 
     public void setCertValidationDisabled(boolean isDisabled) {
