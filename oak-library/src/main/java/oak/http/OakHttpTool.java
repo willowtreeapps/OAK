@@ -138,12 +138,9 @@ public class OakHttpTool {
 
     public OakConnection post(String url, List<BasicNameValuePair> params) throws IOException {
         URL typedUrl = new URL(url);
-        HttpURLConnection connection;
-        if(url.contains("https://")){
-            connection = (HttpsURLConnection)typedUrl.openConnection();
-        }else{
-            connection = (HttpURLConnection)typedUrl.openConnection();
-        }
+        HttpURLConnection connection = (HttpsURLConnection)typedUrl.openConnection();
+        connection.setReadTimeout(3000);
+        connection.setConnectTimeout(3000);
         configureDefaults(connection);
         connection.setRequestMethod("POST");
         connection.setDoInput(true);
