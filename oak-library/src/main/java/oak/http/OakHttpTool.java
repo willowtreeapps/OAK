@@ -145,8 +145,8 @@ public class OakHttpTool {
         connection.setRequestMethod("POST");
         connection.setDoInput(true);
         connection.setDoOutput(true);
-        OutputStream out = connection.getOutputStream();
         UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params);
+        OutputStream out = connection.getOutputStream();
         entity.writeTo(out);
         out.close();
         return new OakConnection(connection);
