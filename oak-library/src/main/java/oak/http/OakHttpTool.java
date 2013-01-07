@@ -17,6 +17,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.*;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.HashMap;
 import java.util.List;
@@ -139,8 +141,8 @@ public class OakHttpTool {
     public OakConnection post(String url, List<BasicNameValuePair> params) throws IOException {
         URL typedUrl = new URL(url);
         HttpURLConnection connection = (HttpsURLConnection)typedUrl.openConnection();
-        connection.setReadTimeout(3000);
-        connection.setConnectTimeout(3000);
+        connection.setReadTimeout(8000);
+        connection.setConnectTimeout(8000);
         configureDefaults(connection);
         connection.setRequestMethod("POST");
         connection.setDoInput(true);
@@ -148,6 +150,27 @@ public class OakHttpTool {
         UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params);
         OutputStream out = connection.getOutputStream();
         entity.writeTo(out);
+        out.close();
+        return new OakConnection(connection);
+    }
+
+    public OakConnection post(String url, String json) throws IOException {
+        URL typedUrl = new URL(url);
+        HttpURLConnection connection;
+        if(url.startsWith("https")){
+            connection = (HttpsURLConnection)typedUrl.openConnection();
+        }else{
+            connection = (HttpURLConnection)typedUrl.openConnection();
+        }
+        connection.setReadTimeout(8000);
+        connection.setConnectTimeout(8000);
+        configureDefaults(connection);
+        connection.setRequestMethod("POST");
+        connection.setDoInput(true);
+        connection.setDoOutput(true);
+        byte[] entity = json.getBytes();
+        OutputStream out = connection.getOutputStream();
+        out.write(entity);
         out.close();
         return new OakConnection(connection);
     }
@@ -203,6 +226,28 @@ public class OakHttpTool {
             HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
         }
 
+    }
+
+    public void trustEveryone() {
+        try {
+            HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier(){
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }});
+            SSLContext context = SSLContext.getInstance("TLS");
+            context.init(null, new X509TrustManager[]{new X509TrustManager(){
+                public void checkClientTrusted(X509Certificate[] chain,
+                                               String authType) throws CertificateException {}
+                public void checkServerTrusted(X509Certificate[] chain,
+                                               String authType) throws CertificateException {}
+                public X509Certificate[] getAcceptedIssuers() {
+                    return new X509Certificate[0];
+                }}}, new SecureRandom());
+            HttpsURLConnection.setDefaultSSLSocketFactory(
+                    context.getSocketFactory());
+        } catch (Exception e) { // should never happen
+            e.printStackTrace();
+        }
     }
 
     public void setTLSCertValidationDisabled(boolean isDisabled) {
