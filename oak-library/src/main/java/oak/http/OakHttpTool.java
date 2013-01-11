@@ -9,6 +9,7 @@ import com.integralblue.httpresponsecache.HttpResponseCache;
 import oak.Base64;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.conn.ssl.X509HostnameVerifier;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.message.BasicNameValuePair;
 import roboguice.util.Ln;
 
@@ -154,7 +155,7 @@ public class OakHttpTool {
         return new OakConnection(connection);
     }
 
-    public OakConnection post(String url, String json) throws IOException {
+    public OakConnection post(String url, StringEntity json) throws IOException {
         URL typedUrl = new URL(url);
         HttpURLConnection connection;
         if(url.startsWith("https")){
@@ -168,9 +169,9 @@ public class OakHttpTool {
         connection.setRequestMethod("POST");
         connection.setDoInput(true);
         connection.setDoOutput(true);
-        byte[] entity = json.getBytes();
+
         OutputStream out = connection.getOutputStream();
-        out.write(entity);
+        json.writeTo(out);
         out.close();
         return new OakConnection(connection);
     }
