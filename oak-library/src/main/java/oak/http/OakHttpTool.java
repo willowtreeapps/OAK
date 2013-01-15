@@ -141,7 +141,12 @@ public class OakHttpTool {
 
     public OakConnection post(String url, List<BasicNameValuePair> params) throws IOException {
         URL typedUrl = new URL(url);
-        HttpURLConnection connection = (HttpsURLConnection)typedUrl.openConnection();
+        HttpURLConnection connection;
+        if(url.startsWith("https")){
+            connection = (HttpsURLConnection)typedUrl.openConnection();
+        }else{
+            connection = (HttpURLConnection)typedUrl.openConnection();
+        }
         connection.setReadTimeout(8000);
         connection.setConnectTimeout(8000);
         configureDefaults(connection);
@@ -169,7 +174,6 @@ public class OakHttpTool {
         connection.setRequestMethod("POST");
         connection.setDoInput(true);
         connection.setDoOutput(true);
-
         OutputStream out = connection.getOutputStream();
         json.writeTo(out);
         out.close();
@@ -249,59 +253,6 @@ public class OakHttpTool {
         } catch (Exception e) { // should never happen
             e.printStackTrace();
         }
-    }
-
-    public void setTLSCertValidationDisabled(boolean isDisabled) {
-
-        if (isDisabled) {
-            TrustManager[] trustAllCerts = new TrustManager[]{
-                    new X509TrustManager() {
-                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                            return null;
-                        }
-                        public void checkClientTrusted(
-                                java.security.cert.X509Certificate[] certs, String authType) {
-                        }
-                        public void checkServerTrusted(
-                                java.security.cert.X509Certificate[] certs, String authType) {
-                        }
-                    }
-            };
-
-            // Install the all-trusting trust manager
-            try {
-                SSLContext sc = SSLContext.getInstance("TLS");
-                sc.init(null, trustAllCerts, new java.security.SecureRandom());
-                HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-            } catch (Exception e) {
-                Ln.e(e);
-            }
-
-            // Create all-trusting host name verifier
-            HostnameVerifier allHostsValid = new X509HostnameVerifier() {
-                @Override
-                public void verify(String s, SSLSocket sslSocket) throws IOException {
-                }
-
-                @Override
-                public void verify(String s, X509Certificate x509Certificate) throws SSLException {
-                }
-
-                @Override
-                public void verify(String s, String[] strings, String[] strings1)
-                        throws SSLException {
-                }
-
-                @Override
-                public boolean verify(String s, SSLSession sslSession) {
-                    return true;
-                }
-            };
-
-            // Install the all-trusting host verifier
-            HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
-        }
-
     }
 
     public void resetCache() {
