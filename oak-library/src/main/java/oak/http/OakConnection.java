@@ -69,6 +69,11 @@ public class OakConnection {
         return this;
     }
 
+    public OakConnection followRedirects(boolean followRedirects){
+        mHttpUrlConnection.setInstanceFollowRedirects(followRedirects);
+        return this;
+    }
+
     public void disconnect() {
         mHttpUrlConnection.disconnect();
     }
