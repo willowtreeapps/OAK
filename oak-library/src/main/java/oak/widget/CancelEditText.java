@@ -84,10 +84,18 @@ public class CancelEditText extends TextViewWithFont {
 
     private void setCancelVisible(boolean visible) {
         if (visible) {
-            setCompoundDrawablesWithIntrinsicBounds(null, null, mDrawable, null);
+            setCompoundDrawablesWithIntrinsicBounds(
+                    getCompoundDrawables()[0],
+                    getCompoundDrawables()[1],
+                    mDrawable,
+                    getCompoundDrawables()[3]);
 
         } else {
-            setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+            setCompoundDrawablesWithIntrinsicBounds(
+                    getCompoundDrawables()[0],
+                    getCompoundDrawables()[1],
+                    getCompoundDrawables()[2],
+                    getCompoundDrawables()[3]);
         }
     }
 
