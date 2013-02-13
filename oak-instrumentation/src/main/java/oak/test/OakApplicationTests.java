@@ -16,34 +16,15 @@
 
 package oak.test;
 
-import org.apache.http.HttpHost;
-import org.apache.http.HttpRequest;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.conn.ssl.AbstractVerifier;
-import org.apache.http.conn.ssl.SSLSocketFactory;
-import org.apache.http.conn.ssl.X509HostnameVerifier;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicHttpRequest;
-
-import android.graphics.Bitmap;
-import android.os.Message;
 import android.test.ApplicationTestCase;
 import android.test.suitebuilder.annotation.MediumTest;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.widget.ImageView;
 
-import java.net.URI;
-import java.net.URL;
 import java.util.Date;
 
-import javax.net.ssl.SSLException;
 
-import oak.OAKImageLoader;
-import oak.OAKImageLoaderHandler;
 import oak.demo.OakApplication;
-import oak.external.com.github.droidfu.http.CachedHttpResponse;
 
 /**
  * User: Michael Lake
@@ -91,22 +72,11 @@ public class OakApplicationTests extends ApplicationTestCase<OakApplication> {
                 _URL + "?blah="
                         + unique;
 
-        OAKImageLoader.initialize(getContext(),OAKImageLoader.PREFER_SD);
-
         ImageView imageView = new ImageView(getContext());
 
         final Holder<Boolean> loaded = new Holder<Boolean>();
         loaded.value = false;
 
-        OAKImageLoaderHandler oakHandler = new OAKImageLoaderHandler(imageView, URL) {
-            @Override
-            public boolean handleImageLoaded(Bitmap bitmap, Message msg) {
-                loaded.value = true;
-                return super.handleImageLoaded(bitmap, msg);
-            }
-        };
-
-        OAKImageLoader.start(URL, oakHandler);
 
         Thread.sleep(90000);
 

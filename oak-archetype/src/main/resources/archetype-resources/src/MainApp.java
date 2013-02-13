@@ -1,4 +1,8 @@
-package ${package};
+package $
+
+import com.apple.eawt.Application;
+
+{package};
 
 
 import com.google.inject.Inject;
@@ -8,23 +12,21 @@ import android.app.Application;
 import android.content.pm.PackageManager;
 import android.util.Log;
 
-import oak.OAKImageLoader;
 import roboguice.RoboGuice;
 
 public class MainApp extends Application {
 
     public static String TAG = "${artifactId}";
 
-    @Inject Datastore mDataStore;
+    @Inject $.Datastore mDataStore;
 
 
     @Override
     public void onCreate() {
         super.onCreate();
         Log.i(TAG, "onCreate");
-        OAKImageLoader.initialize(this, OAKImageLoader.PREFER_SD);
         Injector i = RoboGuice.getBaseApplicationInjector(this);
-        mDataStore = i.getInstance(Datastore.class);
+        mDataStore = i.getInstance($.Datastore.class);
         try {
             int newVersionCode = getPackageManager()
                     .getPackageInfo(getPackageName(), 0).versionCode;
