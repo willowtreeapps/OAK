@@ -1,9 +1,4 @@
 oak
-oak.external.com.github.droidfu.cachefu
-oak.external.com.github.droidfu.http
-oak.external.com.github.droidfu.http.ssl
-oak.external.com.github.droidfu.imageloader
-oak.external.com.github.droidfu.support
 oak.http.exception
 oak.http
 oak.nfc
