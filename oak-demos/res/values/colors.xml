@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffffff</color>
+    <color name="black">#ff000000</color>
+    <color name="gray">#ff333333</color>
+    <color name="outer_shadow">#ff0088ff</color>
+    <color name="stroke_color">#ffff0000</color>
+</resources>
