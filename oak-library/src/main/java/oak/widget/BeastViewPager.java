@@ -13,6 +13,7 @@ public class BeastViewPager extends ViewPager {
 
     private float mCurrX = 0.0f;
     private float mCurrY = 0.0f;
+    private float mStartX, mStartY;
     private int mTouchSlop;
 
     public BeastViewPager(Context context) {
@@ -32,11 +33,17 @@ public class BeastViewPager extends ViewPager {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
+        super.onInterceptTouchEvent(event);
         final int action = event.getAction();
         if (action == MotionEvent.ACTION_DOWN) {
             mCurrX = event.getX();
             mCurrY = event.getY();
+            mStartX = event.getX();
+            mStartY = event.getY();
             getParent().requestDisallowInterceptTouchEvent(true);
+        } else if (Math.abs(event.getY() - mStartY) > Math.abs(event.getX() - mStartX)) {
+            // User scrolled vertically
+            getParent().requestDisallowInterceptTouchEvent(false);
         } else if (action == MotionEvent.ACTION_MOVE) {
             // Shouldn't need to do anything
         } else if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
