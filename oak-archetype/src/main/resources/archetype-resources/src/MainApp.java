@@ -1,9 +1,6 @@
 package $
 
-import com.apple.eawt.Application;
-
 {package};
-
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
@@ -18,7 +15,7 @@ public class MainApp extends Application {
 
     public static String TAG = "${artifactId}";
 
-    @Inject $.Datastore mDataStore;
+    @Inject Datastore mDataStore;
 
 
     @Override
@@ -26,7 +23,7 @@ public class MainApp extends Application {
         super.onCreate();
         Log.i(TAG, "onCreate");
         Injector i = RoboGuice.getBaseApplicationInjector(this);
-        mDataStore = i.getInstance($.Datastore.class);
+        mDataStore = i.getInstance(Datastore.class);
         try {
             int newVersionCode = getPackageManager()
                     .getPackageInfo(getPackageName(), 0).versionCode;
