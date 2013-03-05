@@ -118,6 +118,13 @@
                 <category android:name="oak.android.intent.category.OAK"/>
             </intent-filter>
         </activity>
+        <activity android:label="@string/check_box_with_font_activity" android:name=".widget.CheckBoxWithFontActivity" android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
+            </intent-filter>
+        </activity>
         <activity android:label="@string/beast_text_view_activity" android:name=".widget.BeastTextViewActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
