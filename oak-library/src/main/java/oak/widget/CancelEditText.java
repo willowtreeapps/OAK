@@ -28,7 +28,6 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 import oak.OAK;
-import oak.widget.TextViewWithFont;
 
 /**
  * User: mlake Date: 12/8/11 Time: 11:01 AM
@@ -36,6 +35,7 @@ import oak.widget.TextViewWithFont;
 public class CancelEditText extends TextViewWithFont {
 
     private Drawable mDrawable;
+    private Drawable[] mCompoundDrawables;
 
     public CancelEditText(Context context) {
         this(context, null);
@@ -83,19 +83,22 @@ public class CancelEditText extends TextViewWithFont {
     }
 
     private void setCancelVisible(boolean visible) {
+        if (mCompoundDrawables == null) {
+            mCompoundDrawables = getCompoundDrawables();
+        }
         if (visible) {
             setCompoundDrawablesWithIntrinsicBounds(
-                    getCompoundDrawables()[0],
-                    getCompoundDrawables()[1],
+                    mCompoundDrawables[0],
+                    mCompoundDrawables[1],
                     mDrawable,
-                    getCompoundDrawables()[3]);
+                    mCompoundDrawables[3]);
 
         } else {
             setCompoundDrawablesWithIntrinsicBounds(
-                    getCompoundDrawables()[0],
-                    getCompoundDrawables()[1],
-                    getCompoundDrawables()[2],
-                    getCompoundDrawables()[3]);
+                    mCompoundDrawables[0],
+                    mCompoundDrawables[1],
+                    mCompoundDrawables[2],
+                    mCompoundDrawables[3]);
         }
     }
 
@@ -132,8 +135,7 @@ public class CancelEditText extends TextViewWithFont {
     }
 
     /**
-     * Convenience for {@link android.text.Selection#setSelection(android.text.Spannable, int,
-     * int)}.
+     * Convenience for {@link android.text.Selection#setSelection(android.text.Spannable, int, int)}.
      */
     public void setSelection(int start, int stop) {
         Selection.setSelection(getText(), start, stop);

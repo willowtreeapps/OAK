@@ -29,6 +29,13 @@
             android:id="@+id/cancel_edit_one"
             android:text="this is a cancel edit text"
             oak:cancelDrawable="@drawable/oak_ic_cancel"/>
+    <oak.widget.CancelEditText
+            style="@style/FillWidth"
+            android:id="@+id/cancel_edit_two"
+            android:text="this one has drawables"
+            android:drawableLeft="@drawable/ic_menu_search"
+            android:drawableRight="@drawable/ic_menu_my_calendar"
+            oak:cancelDrawable="@drawable/oak_ic_cancel"/>
     <!-- END SNIPPET: canceledittext_layout -->
     <TextView
             style="@style/Wrap"
