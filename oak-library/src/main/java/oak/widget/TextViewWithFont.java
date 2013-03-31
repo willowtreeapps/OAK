@@ -18,6 +18,7 @@ package oak.widget;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -47,6 +48,7 @@ public class TextViewWithFont extends TextView {
 
     public TextViewWithFont(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        setPaintFlags(getPaintFlags() | Paint.SUBPIXEL_TEXT_FLAG);
 
         String fontName = null;
         if (attrs != null) {
