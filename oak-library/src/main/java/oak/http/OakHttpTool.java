@@ -180,6 +180,27 @@ public class OakHttpTool {
         return new OakConnection(connection);
     }
 
+    public OakConnection put(String url, List<BasicNameValuePair> params) throws IOException {
+        URL typedUrl = new URL(url);
+        HttpURLConnection connection;
+        if(url.startsWith("https")){
+            connection = (HttpsURLConnection)typedUrl.openConnection();
+        }else{
+            connection = (HttpURLConnection)typedUrl.openConnection();
+        }
+        connection.setReadTimeout(8000);
+        connection.setConnectTimeout(8000);
+        configureDefaults(connection);
+        connection.setRequestMethod("PUT");
+        connection.setDoInput(true);
+        connection.setDoOutput(true);
+        UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params);
+        OutputStream out = connection.getOutputStream();
+        entity.writeTo(out);
+        out.close();
+        return new OakConnection(connection);
+    }
+
     public void setCertValidationDisabled(boolean isDisabled) {
 
         if (isDisabled) {
