@@ -68,6 +68,9 @@
         <developer>
             <name>Eric Richardson</name>
             <organization>WillowTree Apps</organization>
+            <roles>
+                <role>General Project Maintainer</role>
+            </roles>
         </developer>
         <developer>
             <name>Chris Thoma</name>

@@ -17,10 +17,12 @@ What is OAK Android Kit?
 
   * {{{./obscured_prefs.html}ObscuredSharedPreferences}} - Store your shared preferences with encryption!
 
+  * BeastViewPager - ViewPager built to work with SlideMenu or inside a ListView Header
 
-Credits
+  * OakHttpTool - Painless UrlConnection wrapper
 
-  * OAK contains re-packaged classes from Matthias K\u00e4ppler's {{{https://github.com/kaeppler/droid-fu}Droid-Fu}} library.
+  * SwankyImageView - Pinch and Zoom on ImageViews made easy
+
 
 How is OAK licensed?
 
