@@ -78,7 +78,12 @@ public class CancelEditText extends TextViewWithFont {
 
     }
 
-    private void showOrHideCancel() {
+    /**
+     * We expose this method as public because calling setError(null) on Gingerbread devices will hide
+     * the cancel (and other) drawables. You can call showOrHideCancel() after you call setError(null)
+     * to reset the drawables.
+     */
+    public void showOrHideCancel() {
         setCancelVisible(getText().length() > 0);
     }
 
