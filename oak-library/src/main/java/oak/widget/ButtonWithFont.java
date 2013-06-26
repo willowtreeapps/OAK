@@ -17,6 +17,7 @@
 package oak.widget;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.widget.Button;
 
@@ -31,16 +32,19 @@ public class ButtonWithFont extends Button {
 
     public ButtonWithFont(Context context) {
         super(context);
+        setPaintFlags(getPaintFlags() | Paint.SUBPIXEL_TEXT_FLAG);
     }
 
     public ButtonWithFont(Context context, AttributeSet attrs) {
         super(context, attrs);
+        setPaintFlags(getPaintFlags() | Paint.SUBPIXEL_TEXT_FLAG);
 
         setFont(context, attrs);
     }
 
     public ButtonWithFont(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        setPaintFlags(getPaintFlags() | Paint.SUBPIXEL_TEXT_FLAG);
 
         setFont(context, attrs);
     }

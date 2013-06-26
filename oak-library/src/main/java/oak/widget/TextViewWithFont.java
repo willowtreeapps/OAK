@@ -40,10 +40,12 @@ public class TextViewWithFont extends TextView {
 
     public TextViewWithFont(Context context) {
         this(context, null);
+        setPaintFlags(getPaintFlags() | Paint.SUBPIXEL_TEXT_FLAG);
     }
 
     public TextViewWithFont(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
+        setPaintFlags(getPaintFlags() | Paint.SUBPIXEL_TEXT_FLAG);
     }
 
     public TextViewWithFont(Context context, AttributeSet attrs, int defStyle) {
