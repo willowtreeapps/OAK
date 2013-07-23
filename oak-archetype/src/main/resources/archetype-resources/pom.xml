@@ -201,6 +201,7 @@
                                 <debug>false</debug>
                             </sign>
                             <zipalign>
+                                <skip>false</skip>
                                 <verbose>true</verbose>
                                 <inputApk>${project.build.directory}/${project.build.finalName}.apk</inputApk>
                                 <outputApk>${project.build.directory}/${project.build.finalName}-signed-aligned.apk
