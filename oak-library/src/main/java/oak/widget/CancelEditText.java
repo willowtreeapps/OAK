@@ -17,6 +17,9 @@ package oak.widget;
 
 import android.R;
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.Selection;
@@ -25,29 +28,37 @@ import android.text.TextWatcher;
 import android.text.method.ArrowKeyMovementMethod;
 import android.text.method.MovementMethod;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
+import android.widget.EditText;
+
+import java.io.IOException;
+import java.util.HashMap;
 
 import oak.OAK;
 
 /**
  * User: mlake Date: 12/8/11 Time: 11:01 AM
  */
-public class CancelEditText extends TextViewWithFont {
-
+public class CancelEditText extends EditText {
     private Drawable mDrawable;
     private Drawable[] mCompoundDrawables;
 
+
     public CancelEditText(Context context) {
         this(context, null);
+        setPaintFlags(getPaintFlags() | Paint.SUBPIXEL_TEXT_FLAG);
     }
 
     public CancelEditText(Context context, AttributeSet attrs) {
         this(context, attrs, R.attr.editTextStyle);
+        setPaintFlags(getPaintFlags() | Paint.SUBPIXEL_TEXT_FLAG);
     }
 
     public CancelEditText(Context context, AttributeSet attrs,
             int defStyle) {
         super(context, attrs, defStyle);
+        setPaintFlags(getPaintFlags() | Paint.SUBPIXEL_TEXT_FLAG);
 
         int cancelDrawableId = 0;
         if (attrs != null) {
@@ -74,6 +85,29 @@ public class CancelEditText extends TextViewWithFont {
                 }
             });
             showOrHideCancel();
+        }
+
+        String fontName = null;
+        if (attrs != null) {
+            try {
+                fontName = attrs.getAttributeValue(OAK.XMLNS, "font");
+
+                if (fontName != null) {
+                    setTypeface(TextViewWithFont.getStaticTypeFace(context, fontName));
+                }
+            } catch (IllegalArgumentException e) {
+                try {
+                    int fontNameRes = attrs.getAttributeResourceValue(OAK.XMLNS, "font", -1);
+                    if (fontNameRes != -1) {
+                        fontName = context.getString(fontNameRes);
+                        if (fontName != null) {
+                            setTypeface(TextViewWithFont.getStaticTypeFace(context, fontName));
+                        }
+                    }
+                } catch (IllegalArgumentException f) {
+                    f.printStackTrace();
+                }
+            }
         }
 
     }
