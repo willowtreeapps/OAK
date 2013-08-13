@@ -38,6 +38,7 @@ public class OakUtils {
         }
     }
 
+
     private static final Pattern EMAIL_ADDRESS_PATTERN = Pattern.compile(
             "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
                     "\\@" +
@@ -47,11 +48,19 @@ public class OakUtils {
                     "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
                     ")+"
     );
+
+    /**
+     * Method to determine whether string is a valid email address
+     */
     public static boolean isValidEmail(String email){
         return EMAIL_ADDRESS_PATTERN.matcher(email).matches();
     }
 
     private static final Pattern PHONE_NUMBER = Pattern.compile("/(?:(?:\\+?1\\s*(?:[.-]\\s*)?)?(?:(\\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]‌​)\\s*)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\\s*(?:[.-]\\s*)?)([2-9]1[02-9]‌​|[2-9][02-9]1|[2-9][02-9]{2})\\s*(?:[.-]\\s*)?([0-9]{4})/");
+
+    /**
+     * Method to determine whether string is a valid phone number
+     */
     public static boolean isValidPhone(String phone) {
         return PHONE_NUMBER.matcher(phone).matches();
     }
