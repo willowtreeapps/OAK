@@ -3,23 +3,54 @@ package oak.util;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.regex.Pattern;
-
-import oak.widget.TextViewWithFont;
 
 /**
  * User: derek Date: 8/7/12 Time: 10:06 AM
  */
 public class OakUtils {
+    private static final String TAG = OakUtils.class.getSimpleName();
+
+    private static HashMap<String, Typeface> mFontMap;
+
+    public static Typeface getStaticTypeFace(Context context, String fontFileName) {
+        if (mFontMap == null) {
+            initializeFontMap(context);
+        }
+        Typeface typeface = mFontMap.get(fontFileName);
+        if (typeface == null) {
+            throw new IllegalArgumentException(
+                    "Font name must match file name in assets/fonts/ directory: " + fontFileName);
+        }
+        return typeface;
+    }
+
+    private static void initializeFontMap(Context context) {
+        mFontMap = new HashMap<String, Typeface>();
+        AssetManager assetManager = context.getAssets();
+        try {
+            String[] fontFileNames = assetManager.list("fonts");
+            for (String fontFileName : fontFileNames) {
+                Log.d(TAG, "Found font in assets: " + fontFileName);
+                Typeface typeface = Typeface.createFromAsset(assetManager, "fonts/" + fontFileName);
+                mFontMap.put(fontFileName, typeface);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static void changeFonts(View root, Context ctx, String typeface) {
-        Typeface tf = TextViewWithFont.getStaticTypeFace(ctx, typeface);
-
+        Typeface tf = getStaticTypeFace(ctx, typeface);
         if (root instanceof TextView) {
             ((TextView) root).setTypeface(tf);
         } else if (root instanceof ViewGroup) {

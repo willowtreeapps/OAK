@@ -17,9 +17,7 @@ package oak.widget;
 
 import android.R;
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.Selection;
@@ -28,14 +26,11 @@ import android.text.TextWatcher;
 import android.text.method.ArrowKeyMovementMethod;
 import android.text.method.MovementMethod;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.EditText;
 
-import java.io.IOException;
-import java.util.HashMap;
-
 import oak.OAK;
+import oak.util.OakUtils;
 
 /**
  * User: mlake Date: 12/8/11 Time: 11:01 AM
@@ -93,7 +88,7 @@ public class CancelEditText extends EditText {
                 fontName = attrs.getAttributeValue(OAK.XMLNS, "font");
 
                 if (fontName != null) {
-                    setTypeface(TextViewWithFont.getStaticTypeFace(context, fontName));
+                    setTypeface(OakUtils.getStaticTypeFace(context, fontName));
                 }
             } catch (IllegalArgumentException e) {
                 try {
@@ -101,7 +96,7 @@ public class CancelEditText extends EditText {
                     if (fontNameRes != -1) {
                         fontName = context.getString(fontNameRes);
                         if (fontName != null) {
-                            setTypeface(TextViewWithFont.getStaticTypeFace(context, fontName));
+                            setTypeface(OakUtils.getStaticTypeFace(context, fontName));
                         }
                     }
                 } catch (IllegalArgumentException f) {

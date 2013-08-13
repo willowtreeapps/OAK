@@ -22,6 +22,7 @@ import android.util.AttributeSet;
 import android.widget.Button;
 
 import oak.OAK;
+import oak.util.OakUtils;
 
 /**
  * User: Michael Lake Date: 11/21/11 Time: 5:36 PM
@@ -56,7 +57,7 @@ public class ButtonWithFont extends Button {
                 fontName = attrs.getAttributeValue(OAK.XMLNS, "font");
 
                 if (fontName != null) {
-                    setTypeface(TextViewWithFont.getStaticTypeFace(context, fontName));
+                    setTypeface(OakUtils.getStaticTypeFace(context, fontName));
                 }
             } catch (IllegalArgumentException e) {
                 try {
@@ -64,7 +65,7 @@ public class ButtonWithFont extends Button {
                     if (fontNameRes != -1) {
                         fontName = context.getString(fontNameRes);
                         if (fontName != null) {
-                            setTypeface(TextViewWithFont.getStaticTypeFace(context, fontName));
+                            setTypeface(OakUtils.getStaticTypeFace(context, fontName));
                         }
                     }
                 } catch (IllegalArgumentException f) {
