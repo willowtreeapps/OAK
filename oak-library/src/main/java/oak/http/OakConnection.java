@@ -14,7 +14,10 @@ import java.util.zip.GZIPInputStream;
  * User: mlake
  * Date: 8/9/12
  * Time: 9:28 AM
+ *
+ * Deprecated: Use OkHttp
  */
+@Deprecated
 public class OakConnection {
 
     private HttpURLConnection mHttpUrlConnection;

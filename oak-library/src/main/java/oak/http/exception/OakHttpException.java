@@ -4,7 +4,10 @@ package oak.http.exception;
  * User: mlake
  * Date: 8/9/12
  * Time: 1:37 PM
+ *
+ * Deprecated: Use OkHttp
  */
+@Deprecated
 public class OakHttpException extends RuntimeException {
 
     private int responseCode;

@@ -8,7 +8,11 @@ import oak.ImageTransformation;
 
 /**
  * User: mlake Date: 12/9/11 Time: 5:09 PM
+ *
+ *
+ * Deprecated: Use InsetDrawable
  */
+@Deprecated
 public class ImageBorder implements ImageTransformation {
 
 

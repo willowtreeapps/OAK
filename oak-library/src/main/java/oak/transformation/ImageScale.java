@@ -6,7 +6,12 @@ import oak.ImageTransformation;
 
 /**
  * User: mlake Date: 12/9/11 Time: 5:54 PM
+ *
+ *
+ *
+ * Deprecated: Use Picasso instead
  */
+@Deprecated
 public class ImageScale implements ImageTransformation {
 
     private int mMaxWidth;

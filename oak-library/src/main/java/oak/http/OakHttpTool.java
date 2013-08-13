@@ -29,8 +29,10 @@ import java.util.Map;
  * User: mlake
  * Date: 8/9/12
  * Time: 9:17 AM
+ *
+ * Deprecated: Use OkHttp
  */
-
+@Deprecated
 @Singleton
 public class OakHttpTool {
 
