@@ -1,7 +1,8 @@
+oak.widget
 oak
-oak.http.exception
+oak.image
 oak.http
-oak.nfc
+oak.http.exception
 oak.transformation
 oak.util
-oak.widget
+oak.nfc

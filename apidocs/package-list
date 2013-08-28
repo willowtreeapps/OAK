@@ -1,6 +1,7 @@
 oak
 oak.http
 oak.http.exception
+oak.image
 oak.nfc
 oak.transformation
 oak.util
