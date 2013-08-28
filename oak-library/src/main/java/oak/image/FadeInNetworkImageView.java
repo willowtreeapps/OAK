@@ -1,13 +1,11 @@
 package oak.image;
 
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
-import android.os.Build;
 import android.util.AttributeSet;
 
 import com.android.volley.toolbox.NetworkImageView;
@@ -33,17 +31,11 @@ public class FadeInNetworkImageView extends NetworkImageView {
 
     @Override
     public void setImageBitmap(Bitmap bm) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-            TransitionDrawable td = new TransitionDrawable(new Drawable[]{
-                    new ColorDrawable(android.R.color.transparent),
-                    new BitmapDrawable(getContext().getResources(), bm)
-            });
-            setImageDrawable(td);
-            td.startTransition(FADE_IN_TIME_MS);
-        } else {
-            this.setAlpha(0.0f);
-            setImageDrawable(new BitmapDrawable(getContext().getResources(), bm));
-            ObjectAnimator.ofFloat(this, "alpha", 1f);
-        }
+        TransitionDrawable td = new TransitionDrawable(new Drawable[]{
+                new ColorDrawable(android.R.color.transparent),
+                new BitmapDrawable(getContext().getResources(), bm)
+        });
+        setImageDrawable(td);
+        td.startTransition(FADE_IN_TIME_MS);
     }
 }
