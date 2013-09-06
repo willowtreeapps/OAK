@@ -19,6 +19,7 @@
     <string name="default_font">Once_upon_a_time.ttf</string>
     <string name="image_manager_activity">Image/ImageLoader</string>
     <string name="swanky_gallery_activity">Image/SwankyGallery</string>
+    <string name="volley_activity">Image/VolleyImageViewActivity</string>
     <string name="resized_textview_activity">Widget/ResizedTextView</string>
     <string name="filter_activity">ListView/Sections with Filter</string>
     <string name="asynctool_activity">Other/AsyncTool</string>
