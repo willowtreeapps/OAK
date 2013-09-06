@@ -16,8 +16,6 @@
 package oak;
 
 
-import com.google.inject.Inject;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -25,6 +23,8 @@ import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.view.Gravity;
 import android.widget.Toast;
+
+import com.google.inject.Inject;
 
 import roboguice.inject.ContextSingleton;
 
@@ -39,6 +39,7 @@ public class AsyncTool {
 
     private ProgressDialog mProgressDialog;
     private AlertDialog mAlertDialog;
+
     private static final int ERROR_DURATION = 1000;
 
     public AsyncTool() {
