@@ -10,7 +10,7 @@
     <name>OAK Android Kit</name>
     <description>Shared library for android development.</description>
     <inceptionYear>2011</inceptionYear>
-    <url>http://willowtreeapps.github.com/OAK/</url>
+	<url>http://willowtreeapps.github.com/OAK/</url>
 
     <parent>
         <groupId>org.sonatype.oss</groupId>
@@ -357,7 +357,7 @@
                     <version>3.6.0</version>
                     <configuration>
                         <sdk>
-                            <platform>18</platform>
+                            <platform>16</platform>
                         </sdk>
                         <emulator>
                             <avd>22</avd>
@@ -365,7 +365,6 @@
                             <options>-noaudio -no-boot-anim</options>
                         </emulator>
                         <zipalign>
-                            <skip>false</skip>
                             <verbose>true</verbose>
                         </zipalign>
                         <undeployBeforeDeploy>true</undeployBeforeDeploy>
