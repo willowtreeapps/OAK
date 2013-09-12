@@ -354,10 +354,10 @@
                 <plugin>
                     <groupId>com.jayway.maven.plugins.android.generation2</groupId>
                     <artifactId>android-maven-plugin</artifactId>
-                    <version>3.6.0</version>
+                    <version>3.6.1</version>
                     <configuration>
                         <sdk>
-                            <platform>16</platform>
+                            <platform>18</platform>
                         </sdk>
                         <emulator>
                             <avd>22</avd>
