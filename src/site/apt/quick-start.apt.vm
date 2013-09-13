@@ -1,11 +1,13 @@
 Quick Start Guide
 
- NOTE: You will need to make sure your Android SDK is up to date. Make sure you're using Revision 15 or higher.
+ NOTE: You will need to make sure your Android SDK is up to date. Make sure you're using Revision 18 or higher.
  (To update your tools run the "android" command in your Android SDK and update the SDK from there.)
 
-* Just Use Maven (recommmended)
+* Just Use Maven (recommended)
 
- Simple copy-paste the following command to get up-and-running with a template project.
+* Archetype with Roboguice
+
+ Simple copy-paste the following command to get up-and-running with a template project using Roboguice and ActionBarSherlock.
 
 +---
  mvn archetype:generate -DarchetypeGroupId=com.willowtreeapps -DarchetypeArtifactId=oak-archetype \
@@ -22,6 +24,27 @@ mvn clean install
 +---
 
  Then, if you're using IntelliJ, you can just open the created pom.xml file via (File -> Open Project...)
+
+* Archetype with Dagger
+
+Like above, copy and paste the following command to get started with a project using Dagger and ActionBarSherlock
+
++---
+ mvn archetype:generate -DarchetypeGroupId=com.willowtreeapps -DarchetypeArtifactId=oak-dagger-archetype \
+                        -DarchetypeVersion=${project.version} \
+                        -DarchetypeRepository=${project.distributionManagement.snapshotRepository.url}
++---
+
+Run the following inside the newly created subdirectory.
+
++---
+
+mvn clean install
+
++---
+
+ Then, if you're using IntelliJ, you can just open the created pom.xml file via (File -> Open Project...)
+
 
 
 
