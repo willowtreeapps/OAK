@@ -1,10 +1,13 @@
 package ${package};
 
-import android.app.Application;
+        import android.content.Context;
+
+        import android.app.Application;
 import android.content.pm.PackageManager;
 import android.util.Log;
+        import android.content.Context;
 
-import javax.inject.Inject;
+        import javax.inject.Inject;
 import dagger.ObjectGraph;
 import ${package}.dagger.AppModule;
 import ${package}.dagger.IObjectGraph;
@@ -13,6 +16,7 @@ public class MainApp extends Application implements IObjectGraph {
 
     public static String TAG = "${artifactId}";
     private static ObjectGraph applicationGraph;
+    private static Context sContext;
 
     @Inject Datastore mDataStore;
 

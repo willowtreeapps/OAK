@@ -1,6 +1,8 @@
-package ${package};
+package $
 
-import ${package}.dagger.annotations.ForApplication;
+{package}.dagger;
+
+        import ${package}.dagger.annotations.ForApplication;
 
 public class AppModule {
     private final Application application;

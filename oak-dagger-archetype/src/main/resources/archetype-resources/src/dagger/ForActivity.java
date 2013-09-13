@@ -1,6 +1,8 @@
-package ${package};
+package $
 
-import java.lang.annotation.Retention;
+{package}.dagger;
+
+        import java.lang.annotation.Retention;
 
 import javax.inject.Qualifier;
 

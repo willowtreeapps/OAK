@@ -1,6 +1,8 @@
-package ${package};
+package $
 
-import android.content.Context;
+{package}.dagger;
+
+        import android.content.Context;
 
 /**
  * User: evantatarka Date: 7/30/13 Time: 4:30 PM

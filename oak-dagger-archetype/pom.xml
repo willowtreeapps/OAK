@@ -28,7 +28,7 @@
     <artifactId>oak-dagger-archetype</artifactId>
     <packaging>jar</packaging>
 
-    <name>OAK Android Archetype</name>
+    <name>OAK Android Dagger Archetype</name>
 
     <build>
         <extensions>
