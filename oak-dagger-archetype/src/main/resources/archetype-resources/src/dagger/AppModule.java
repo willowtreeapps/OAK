@@ -16,7 +16,7 @@ import dagger.Provides;
 
 @Module(injects = {
         Injector.class,
-        MainApplication.class,
+        MainApp.class,
 }, library = true, complete = true)
 public class AppModule {
     private final Application application;
