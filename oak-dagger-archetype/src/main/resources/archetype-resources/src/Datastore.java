@@ -1,4 +1,9 @@
-package ${package};
+package $
+
+import android.app.Application;
+import android.preference.PreferenceManager;
+
+{package};
 
 import javax.inject.Singleton;
 
@@ -10,6 +15,11 @@ public class Datastore {
     private static final String DEVICE_VERSION = "DeviceVersion";
 
     EncryptedSharedPreferences encryptedSharedPreferences;
+
+    public Datastore(Application app) {
+        encryptedSharedPreferences = new EncryptedSharedPreferences(app,
+                PreferenceManager.getDefaultSharedPreferences(app));
+    }
 
     private SharedPreferences.Editor getEditor() {
         return encryptedSharedPreferences.edit();

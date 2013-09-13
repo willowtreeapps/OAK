@@ -48,7 +48,7 @@ public class AppModule {
 
     @Provides
     @Singleton
-    IDatastore providesDatastore() {
+    Datastore providesDatastore() {
         return new Datastore(application);
     }
 
