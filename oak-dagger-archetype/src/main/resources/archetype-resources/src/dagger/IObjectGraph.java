@@ -1,8 +1,6 @@
-package $
+package ${package}.dagger;
 
-{package}.dagger;
-
-        import dagger.ObjectGraph;
+import dagger.ObjectGraph;
 
 /**
  * Created by Archetype
