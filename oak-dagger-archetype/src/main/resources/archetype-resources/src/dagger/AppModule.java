@@ -2,8 +2,10 @@ package ${package}.dagger;
 
 import android.app.Application;
 import android.content.Context;
+import dagger.Module;
 
 import ${package}.Datastore;
+import ${package}.MainApp;
 import com.squareup.okhttp.OkHttpClient;
 
 import java.net.URL;
@@ -12,6 +14,10 @@ import javax.inject.Singleton;
 
 import dagger.Provides;
 
+@Module(injects = {
+        Injector.class,
+        MainApplication.class,
+}, library = true, complete = false)
 public class AppModule {
     private final Application application;
     private final Injector injector;
