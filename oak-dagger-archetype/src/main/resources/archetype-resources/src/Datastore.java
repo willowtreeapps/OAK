@@ -1,9 +1,7 @@
-package $
+package ${package};
 
 import android.app.Application;
 import android.preference.PreferenceManager;
-
-{package};
 
 import javax.inject.Singleton;
 
