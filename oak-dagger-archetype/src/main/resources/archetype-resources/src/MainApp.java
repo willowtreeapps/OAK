@@ -5,7 +5,6 @@ import android.content.Context;
 import android.app.Application;
 import android.content.pm.PackageManager;
 import android.util.Log;
-import android.content.Context;
 
 import javax.inject.Inject;
 import dagger.ObjectGraph;
