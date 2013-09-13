@@ -1,6 +1,16 @@
 package ${package}.dagger;
 
-import ${package}.dagger.annotations.ForApplication;
+import android.app.Application;
+import android.content.Context;
+
+import ${package}.Datastore;
+import com.squareup.okhttp.OkHttpClient;
+
+import java.net.URL;
+
+import javax.inject.Singleton;
+
+import dagger.Provides;
 
 public class AppModule {
     private final Application application;
