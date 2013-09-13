@@ -206,7 +206,7 @@
                                     <archiveDirectory />
                                     <includes>
                                         <include>
-                                            ${project.build.directory}/${project.build.finalName}.apk
+                                            \${project.build.directory}/${project.build.finalName}.apk
                                         </include>
                                     </includes>
                                     <keystore>\${sign.keystore}</keystore>
@@ -230,10 +230,10 @@
                                 <skip>false</skip>
                                 <verbose>true</verbose>
                                 <inputApk>
-                                    \${project.build.directory}/${project.build.finalName}.apk
+                                    \${project.build.directory}/\${project.build.finalName}.apk
                                 </inputApk>
                                 <outputApk>
-                                    \${project.build.directory}/${project.build.finalName}-signed-aligned.apk
+                                    \${project.build.directory}/\${project.build.finalName}-signed-aligned.apk
                                 </outputApk>
                             </zipalign>
                             <manifest>

@@ -27,7 +27,7 @@ mvn clean install
 
 * Archetype with Dagger
 
-Like above, copy and paste the following command to get started with a project using Dagger and ActionBarSherlock
+ Like above, copy and paste the following command to get started with a project using Dagger and ActionBarSherlock
 
 +---
  mvn archetype:generate -DarchetypeGroupId=com.willowtreeapps -DarchetypeArtifactId=oak-dagger-archetype \
@@ -35,7 +35,7 @@ Like above, copy and paste the following command to get started with a project u
                         -DarchetypeRepository=${project.distributionManagement.snapshotRepository.url}
 +---
 
-Run the following inside the newly created subdirectory.
+ Run the following inside the newly created subdirectory.
 
 +---
 
