@@ -48,7 +48,10 @@ public class CheckBoxWithFont extends CheckBox {
     }
 
     private void setFont(Context context, AttributeSet attrs) {
+        if (isInEditMode()) return;
+
         String fontName = null;
+
         if (attrs != null) {
             try {
                 fontName = attrs.getAttributeValue(OAK.XMLNS, "font");

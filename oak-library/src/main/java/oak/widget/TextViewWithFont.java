@@ -44,6 +44,8 @@ public class TextViewWithFont extends TextView {
         super(context, attrs, defStyle);
         setPaintFlags(getPaintFlags() | Paint.SUBPIXEL_TEXT_FLAG);
 
+        if (isInEditMode()) return;
+
         String fontName = null;
         if (attrs != null) {
             try {
