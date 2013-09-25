@@ -10,5 +10,5 @@
         android:gravity="center_vertical"
         android:layout_gravity="center_horizontal"
         android:text="Built by WillowTree Apps, Inc."
-        android:textColor="#FFF"
+        android:textColor="#000"
         android:layout_centerHorizontal="true"/>

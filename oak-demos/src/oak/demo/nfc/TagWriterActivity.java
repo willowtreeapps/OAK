@@ -81,7 +81,7 @@ public class TagWriterActivity extends OakDemoActivity{
     protected void onResume() {
         super.onResume();
         mResumed = true;
-        if(mNfcAdapter != null & mNfcAdapter.isEnabled()){
+        if(mNfcAdapter != null && mNfcAdapter.isEnabled()){
             // Sticky notes received from Android
             if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(getIntent().getAction())) {
                 mTagWriter.getNdefMessages(getIntent());
@@ -96,7 +96,7 @@ public class TagWriterActivity extends OakDemoActivity{
     protected void onPause() {
         super.onPause();
         mResumed = false;
-        if(mNfcAdapter != null & mNfcAdapter.isEnabled())
+        if(mNfcAdapter != null && mNfcAdapter.isEnabled())
             mTagWriter.disableNdefExchangeMode();
     }
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:padding="16dp"
+    android:layout_height="match_parent">
+    <TextView android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:text="Ever wanted to set a custom font in an Action Bar Title? Or anywhere? Now you can, easily!"/>
+    <Button android:id="@+id/font_button"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Switch ActionBar Font"/>
+</LinearLayout>
