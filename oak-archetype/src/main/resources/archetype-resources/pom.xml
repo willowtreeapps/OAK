@@ -181,12 +181,12 @@
                                     <removeExistingSignatures>true</removeExistingSignatures>
                                     <archiveDirectory />
                                     <includes>
-                                        <include>${project.build.directory}/${project.build.finalName}.apk</include>
+                                        <include>\${project.build.directory}/\${project.build.finalName}.apk</include>
                                     </includes>
                                     <keystore>${sign.keystore}</keystore>
                                     <alias>${sign.keyalias}</alias>
-                                    <storepass>${sign.storepass}</storepass>
-                                    <keypass>${sign.keypass}</keypass>
+                                    <storepass>\${sign.storepass}</storepass>
+                                    <keypass>\${sign.keypass}</keypass>
                                     <verbose>true</verbose>
                                 </configuration>
                             </execution>
