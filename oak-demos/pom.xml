@@ -16,6 +16,7 @@
         <environment>development</environment>
         <sign.keystore>${project.basedir}/demos_keystore</sign.keystore>
         <sign.alias>oak-demos</sign.alias>
+        <app.versioncode>9999</app.versioncode>
     </properties>
 
     <dependencies>
@@ -195,7 +196,9 @@
                             </zipalign>
                             <manifest>
                                 <debuggable>false</debuggable>
-                                <versionCodeAutoIncrement>true</versionCodeAutoIncrement>
+                                <versionCode>${app.versioncode}</versionCode>
+                                <versionName>${project.version}</versionName>
+                                <versionCodeAutoIncrement>false</versionCodeAutoIncrement>
                             </manifest>
                             <proguard>
                                 <skip>true</skip>
