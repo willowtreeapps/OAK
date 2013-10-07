@@ -1,224 +1,161 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="1202211071"
-    android:versionName="1.1.8-SNAPSHOT"
-    package="oak.demo">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1202211071" android:versionName="1.1.8" package="oak.demo">
 
-    <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="16" />
-    <application
-        android:debuggable="true"
-        android:icon="@drawable/icon"
-        android:label="@string/app_name"
-        android:name=".OakApplication"
-        android:theme="@style/Theme.Sherlock.Light.DarkActionBar">
-        <activity
-            android:label="@string/app_name"
-            android:name=".OakDemos">
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="16"/>
+    <application android:debuggable="true" android:icon="@drawable/icon" android:label="@string/app_name" android:name=".OakApplication" android:theme="@style/Theme.Sherlock.Light.DarkActionBar">
+        <activity android:label="@string/app_name" android:name=".OakDemos">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-            android:label="@string/filter_activity"
-            android:name=".listview.SectionActivity"
-            android:screenOrientation="portrait">
+        <activity android:label="@string/filter_activity" android:name=".listview.SectionActivity" android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
             </intent-filter>
         </activity>
-        <activity
-            android:label="@string/resized_textview_activity"
-            android:name=".widget.ResizedTextViewActivity"
-            android:screenOrientation="portrait">
+        <activity android:label="@string/resized_textview_activity" android:name=".widget.ResizedTextViewActivity" android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
             </intent-filter>
         </activity>
-        <activity
-            android:label="@string/textview_with_font_activity"
-            android:name=".widget.TextViewWithFontActivity"
-            android:screenOrientation="portrait">
+        <activity android:label="@string/textview_with_font_activity" android:name=".widget.TextViewWithFontActivity" android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
             </intent-filter>
         </activity>
-        <activity
-            android:label="@string/cancel_edit_text_activity"
-            android:name=".widget.CancelEditTextActivity"
-            android:screenOrientation="portrait">
+        <activity android:label="@string/cancel_edit_text_activity" android:name=".widget.CancelEditTextActivity" android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
             </intent-filter>
         </activity>
-        <activity
-            android:label="@string/encrypted_prefs_activity"
-            android:name=".other.ObscuredPrefsActivity"
-            android:screenOrientation="portrait">
+        <activity android:label="@string/encrypted_prefs_activity" android:name=".other.ObscuredPrefsActivity" android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
             </intent-filter>
         </activity>
-        <activity
-            android:label="@string/swanky_gallery_activity"
-            android:name=".image.SwankyGalleryActivity"
-            android:screenOrientation="portrait">
+        <activity android:label="@string/swanky_gallery_activity" android:name=".image.SwankyGalleryActivity" android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
             </intent-filter>
         </activity>
-        <activity
-            android:label="@string/custom_progress_dialog_activity"
-            android:name=".widget.CustomProgressDialogActivity"
-            android:screenOrientation="portrait">
+        <activity android:label="@string/custom_progress_dialog_activity" android:name=".widget.CustomProgressDialogActivity" android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
             </intent-filter>
         </activity>
-        <activity
-            android:label="@string/button_with_font_activity"
-            android:name=".widget.ButtonWithFontActivity"
-            android:screenOrientation="portrait">
+        <activity android:label="@string/button_with_font_activity" android:name=".widget.ButtonWithFontActivity" android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
             </intent-filter>
         </activity>
-        <activity
-            android:label="@string/change_font_activity"
-            android:name=".utils.ChangeFontsActivity"
-            android:screenOrientation="portrait">
+        <activity android:label="@string/change_font_activity" android:name=".utils.ChangeFontsActivity" android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
             </intent-filter>
         </activity>
-        <activity
-            android:label="@string/is_package_installed_activity"
-            android:name=".utils.IsPackageInstalledActivity"
-            android:screenOrientation="portrait">
+        <activity android:label="@string/is_package_installed_activity" android:name=".utils.IsPackageInstalledActivity" android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
             </intent-filter>
         </activity>
-        <activity
-            android:label="@string/tag_writer_activity"
-            android:name=".nfc.TagWriterActivity"
-            android:screenOrientation="portrait">
+        <activity android:label="@string/tag_writer_activity" android:name=".nfc.TagWriterActivity" android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
             </intent-filter>
             <intent-filter>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="application/oaktagwriter" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="application/oaktagwriter"/>
             </intent-filter>
         </activity>
-        <activity
-            android:label="@string/beast_view_pager_activity"
-            android:name=".widget.BeastViewPagerActivity"
-            android:screenOrientation="portrait">
+        <activity android:label="@string/beast_view_pager_activity" android:name=".widget.BeastViewPagerActivity" android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
             </intent-filter>
         </activity>
-        <activity
-            android:label="@string/beast_web_view_activity"
-            android:name=".widget.BeastWebViewActivity"
-            android:screenOrientation="portrait">
+        <activity android:label="@string/beast_web_view_activity" android:name=".widget.BeastWebViewActivity" android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
             </intent-filter>
         </activity>
-        <activity
-            android:label="@string/custom_circular_progress_bar_activity"
-            android:name=".widget.CustomCircularProgressBarActivity"
-            android:screenOrientation="portrait">
+        <activity android:label="@string/custom_circular_progress_bar_activity" android:name=".widget.CustomCircularProgressBarActivity" android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
             </intent-filter>
         </activity>
-        <activity
-            android:label="@string/check_box_with_font_activity"
-            android:name=".widget.CheckBoxWithFontActivity"
-            android:screenOrientation="portrait">
+        <activity android:label="@string/check_box_with_font_activity" android:name=".widget.CheckBoxWithFontActivity" android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
             </intent-filter>
         </activity>
-        <activity
-            android:label="@string/beast_text_view_activity"
-            android:name=".widget.BeastTextViewActivity"
-            android:screenOrientation="portrait">
+        <activity android:label="@string/beast_text_view_activity" android:name=".widget.BeastTextViewActivity" android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
             </intent-filter>
         </activity>
-        <activity
-            android:label="@string/font_span_activity"
-            android:name=".utils.FontTypeFaceSpanActivity"
-            android:screenOrientation="portrait">
+        <activity android:label="@string/font_span_activity" android:name=".utils.FontTypeFaceSpanActivity" android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
             </intent-filter>
         </activity>
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.NFC"/>
 </manifest>
