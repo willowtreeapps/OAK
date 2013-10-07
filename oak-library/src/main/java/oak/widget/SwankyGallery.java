@@ -15,7 +15,7 @@ import android.widget.FrameLayout;
  * Gallery-esque ViewPager that supports zoom gestures.
  */
 public class SwankyGallery extends FrameLayout {
-
+    private boolean hasBeenZooming;
     private Context mContext;
     private SwankyViewPager mViewPager;
     private SwankyAdapter mAdapter;
@@ -108,31 +108,39 @@ public class SwankyGallery extends FrameLayout {
         SwankyImageView currentView = mViewPager.getCurrentView();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
+                hasBeenZooming = false;
                 mViewPager.onInterceptTouchEvent(event); // required to initiate ViewPager behavior
                 mViewPager.onTouchEvent(event);
                 currentView.onTouchEvent(event);
                 break;
             case MotionEvent.ACTION_POINTER_DOWN:
                 currentView.onTouchEvent(event);
+                hasBeenZooming = true;
                 break;
             case MotionEvent.ACTION_POINTER_UP:
                 currentView.onTouchEvent(event);
                 break;
             case MotionEvent.ACTION_MOVE:
-                if (event.getPointerCount() > 1) {
+                if (event.getPointerCount() >= 2) {
                     currentView.onTouchEvent(event);
-                } else if (currentView.getCurrentScale() == 1) {
+                } else if (currentView.getCurrentScale() == 1 && !hasBeenZooming) {
                     mViewPager.onTouchEvent(event);
                 } else {
                     mViewPager.getCurrentView().onTouchEvent(event);
-                    if ((xPosPrev < event.getX() && !mViewPager.getCurrentView().canScrollLeft()) ||
-                            (xPosPrev > event.getX() && !mViewPager.getCurrentView().canScrollRight())) {
-                        mViewPager.onTouchEvent(event);
+                    if (!hasBeenZooming) {
+                        if ((xPosPrev < event.getX() && !mViewPager.getCurrentView()
+                                .canScrollLeft()) ||
+                                (xPosPrev > event.getX() && !mViewPager.getCurrentView()
+                                        .canScrollRight())) {
+                            mViewPager.onTouchEvent(event);
+                        }
                     }
                 }
                 break;
             default:
-                mViewPager.onTouchEvent(event);
+                if (!hasBeenZooming) {
+                    mViewPager.onTouchEvent(event);
+                }
                 mViewPager.getCurrentView().onTouchEvent(event);
         }
         xPosPrev = event.getX();
@@ -215,4 +223,5 @@ public class SwankyGallery extends FrameLayout {
     public static interface OnGalleryPageSelectedListener {
         public void onPageSelected(int index);
     }
+
 }

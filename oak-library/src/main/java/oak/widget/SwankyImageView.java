@@ -137,18 +137,13 @@ public class SwankyImageView extends ImageView {
         float x = m[Matrix.MTRANS_X];
         float y = m[Matrix.MTRANS_Y];
         PointF curr = new PointF(event.getX(), event.getY());
-
         switch (event.getAction() & MotionEvent.ACTION_MASK) {
             case MotionEvent.ACTION_DOWN:
-                if (mFlingTask != null) {
-                    mFlingTask.cancel(true);
-                }
                 last.set(event.getX(), event.getY());
                 start.set(last);
                 mode = DRAG;
                 break;
             case MotionEvent.ACTION_MOVE:
-//			log("x = "+x+", y = "+y+", bottom = "+bottom+", right = "+right);
                 timeOfLastMoveEvent = System.currentTimeMillis();
                 if (mode == DRAG) {
                     float deltaX = curr.x - last.x;
@@ -197,6 +192,7 @@ public class SwankyImageView extends ImageView {
                 break;
             case MotionEvent.ACTION_UP:
                 mode = NONE;
+                break;
         }
         setImageMatrix(matrix);
         invalidate();
