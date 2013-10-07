@@ -32,7 +32,8 @@ public class FontTypeFaceSpanActivity extends OakDemoActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.font_span);
-        title = getSupportActionBar().getTitle().toString();
+        title = "Custom Title Fonts!";
+        getSupportActionBar().setTitle(title);
         findViewById(R.id.font_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
