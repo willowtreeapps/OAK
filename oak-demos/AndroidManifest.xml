@@ -150,6 +150,16 @@
                 <category android:name="oak.android.intent.category.OAK"/>
             </intent-filter>
         </activity>
+        <activity android:screenOrientation="portrait"
+            android:name=".widget.RatioLinearLayoutActivity"
+            android:label="@string/ratio_linear_layout_activity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
+            </intent-filter>
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"/>

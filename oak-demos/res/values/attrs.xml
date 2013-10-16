@@ -46,4 +46,14 @@
                 name="progressBarDrawable"
                 format="reference"/>
     </declare-styleable>
+
+    <declare-styleable
+        name="RatioLinearLayout">
+        <attr
+            name="ratioWidth"
+            format="integer"/>
+        <attr
+            name="ratioHeight"
+            format="integer"/>
+    </declare-styleable>
 </resources>

@@ -34,6 +34,7 @@
     <string name="beast_text_view_activity">Widget/BeastTextView</string>
     <string name="font_span_activity">Utils/FontTypefaceSpan</string>
     <string name="check_box_with_font_activity">Widget/CheckBoxWithFont</string>
+    <string name="ratio_linear_layout_activity">Widget/RatioLinearLayout</string>
     <string name="change_font_activity">Utils/OakUtils.changeFonts()</string>
     <string name="is_package_installed_activity">Utils/OakUtils.isPackageInstalled()</string>
     <string name="tag_writer_activity">Nfc/Nfc TagWriter</string>
