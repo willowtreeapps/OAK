@@ -2,3 +2,4 @@ oak
 oak.nfc
 oak.util
 oak.widget
+oak.widget.StickySpreadSheet
