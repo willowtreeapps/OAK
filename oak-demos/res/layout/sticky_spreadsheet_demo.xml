@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+        >
+
+    <oak.widget.StickySpreadSheet.StickySpreadSheet
+            android:id="@+id/spreadsheet_table"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight = ".5"
+            />
+
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Increase or decrease stickiness:"
+            android:id="@+id/spreadsheet_incStickyText"/>
+    <LinearLayout
+            android:layout_height="0dp"
+            android:layout_weight = ".08"
+            android:layout_width ="fill_parent"
+            android:orientation="horizontal">
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="-"
+                android:id="@+id/spreadsheet_dec_sticky"/>
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="+"
+                android:id="@+id/spreadsheet_inc_sticky"/>
+
+
+    </LinearLayout>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hide or display footer:"
+            android:id="@+id/spreadsheet_incStickyText"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hide"
+            android:id="@+id/spreadsheet_hide_footer"/>
+
+
+</LinearLayout>
+

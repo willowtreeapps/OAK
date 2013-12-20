@@ -32,6 +32,7 @@
     <string name="beast_view_pager_activity">Widget/BeastViewPager</string>
     <string name="beast_web_view_activity">Widget/BeastWebView</string>
     <string name="beast_text_view_activity">Widget/BeastTextView</string>
+    <string name="sticky_spreadsheet_activity">Widget/StickySpreadSheetView</string>
     <string name="font_span_activity">Utils/FontTypefaceSpan</string>
     <string name="check_box_with_font_activity">Widget/CheckBoxWithFont</string>
     <string name="ratio_linear_layout_activity">Widget/RatioLinearLayout</string>
