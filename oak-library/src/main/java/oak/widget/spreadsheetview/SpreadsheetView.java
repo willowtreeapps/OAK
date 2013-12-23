@@ -16,20 +16,12 @@ import java.util.Comparator;
 
 public class SpreadsheetView extends View implements GestureDetector.OnGestureListener {
 
-
     private GestureDetector gestureDetector;
-
     private Scroller scroller;
-
     private OnHeaderClickListener headerListener;
-
     private OnFooterClickListener footerListener;
-
     private OnCellClickListener cellListener;
-
     private OnFooterChangedListener footerChangedListener;
-
-
 
     private final static int SCALE = -2;
 
@@ -47,8 +39,8 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     private final float DEFAULT_CELL_WIDTH = 150;
     private final float DEFAULT_CELL_HEIGHT = 150;
     private final float DEFAULT_STICKY_FOOTER_HEIGHT = 100;
-    private final float DEFAULT_STICKY_HEADER_HEIGHT= 100;
-    private final float DEFAULT_STICKY_COLUMN_WIDTH =150;
+    private final float DEFAULT_STICKY_HEADER_HEIGHT = 100;
+    private final float DEFAULT_STICKY_COLUMN_WIDTH = 150;
     private final float DEFAULT_HORIZONTAL_BORDER_WIDTH = 2;
     private final int DEFAULT_TEXT_SIZE = 32;
 
@@ -86,11 +78,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     private SpreadsheetCell leftFootCornerCell;
     private SpreadsheetCell leftHeadCornerCell;
 
-
-
-
-
-    public SpreadsheetView(Context context){
+    public SpreadsheetView(Context context) {
         super(context);
         init(context);
         defaultCells();
@@ -111,7 +99,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         defaultDimensions();
     }
 
-    private void defaultCells(){
+    private void defaultCells() {
         Paint stickyColumnPaint = new Paint();
         stickyColumnPaint.setColor(Color.DKGRAY);
         stickyColumnPaint.setStyle(Paint.Style.FILL);
@@ -158,23 +146,24 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
 
         Paint cellBorderPaint = new Paint(stickyColumnBorderPaint);
 
-        SpreadsheetCell stickyColumnCell = new SpreadsheetCell(this,stickyColumnPaint,stickyColumnTextPaint,
-                stickyColumnBorderPaint,DEFAULT_HORIZONTAL_BORDER_WIDTH, DEFAULT_HORIZONTAL_BORDER_WIDTH);
+        SpreadsheetCell stickyColumnCell = new SpreadsheetCell(this, stickyColumnPaint, stickyColumnTextPaint,
+                stickyColumnBorderPaint, DEFAULT_HORIZONTAL_BORDER_WIDTH, DEFAULT_HORIZONTAL_BORDER_WIDTH);
 
-        SpreadsheetCell stickyHeaderCell = new SpreadsheetCell(this,stickyHeaderPaint,stickyHeaderTextPaint,
-                stickyHeaderBorderPaint,DEFAULT_HORIZONTAL_BORDER_WIDTH, DEFAULT_HORIZONTAL_BORDER_WIDTH);
+        SpreadsheetCell stickyHeaderCell = new SpreadsheetCell(this, stickyHeaderPaint, stickyHeaderTextPaint,
+                stickyHeaderBorderPaint, DEFAULT_HORIZONTAL_BORDER_WIDTH, DEFAULT_HORIZONTAL_BORDER_WIDTH);
 
-        SpreadsheetCell stickyFooterCell = new SpreadsheetCell(this,stickyFooterPaint,stickyFooterTextPaint,
-                stickyFooterBorderPaint,DEFAULT_HORIZONTAL_BORDER_WIDTH, DEFAULT_HORIZONTAL_BORDER_WIDTH);
+        SpreadsheetCell stickyFooterCell = new SpreadsheetCell(this, stickyFooterPaint, stickyFooterTextPaint,
+                stickyFooterBorderPaint, DEFAULT_HORIZONTAL_BORDER_WIDTH, DEFAULT_HORIZONTAL_BORDER_WIDTH);
 
-        SpreadsheetCell dataCell = new SpreadsheetCell(this,cellPaint,cellTextPaint,cellBorderPaint,DEFAULT_HORIZONTAL_BORDER_WIDTH,
+        SpreadsheetCell dataCell = new SpreadsheetCell(this, cellPaint, cellTextPaint, cellBorderPaint,
+                DEFAULT_HORIZONTAL_BORDER_WIDTH,
                 DEFAULT_HORIZONTAL_BORDER_WIDTH);
 
-        SpreadsheetCell leftHeadCornerCell = new SpreadsheetCell(this,leftHeadCornerPaint,leftHeadCornerTextPaint,
-                leftHeadCornerBorderPaint,DEFAULT_HORIZONTAL_BORDER_WIDTH, DEFAULT_HORIZONTAL_BORDER_WIDTH);
+        SpreadsheetCell leftHeadCornerCell = new SpreadsheetCell(this, leftHeadCornerPaint, leftHeadCornerTextPaint,
+                leftHeadCornerBorderPaint, DEFAULT_HORIZONTAL_BORDER_WIDTH, DEFAULT_HORIZONTAL_BORDER_WIDTH);
 
-        SpreadsheetCell leftFootCornerCell = new SpreadsheetCell(this,leftFootCornerPaint,leftFootCornerTextPaint,
-                leftFootCornerBorderPaint,DEFAULT_HORIZONTAL_BORDER_WIDTH, DEFAULT_HORIZONTAL_BORDER_WIDTH);
+        SpreadsheetCell leftFootCornerCell = new SpreadsheetCell(this, leftFootCornerPaint, leftFootCornerTextPaint,
+                leftFootCornerBorderPaint, DEFAULT_HORIZONTAL_BORDER_WIDTH, DEFAULT_HORIZONTAL_BORDER_WIDTH);
 
         setStickyHeaderCell(stickyHeaderCell);
         setStickyFooterCell(stickyFooterCell);
@@ -184,14 +173,14 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         setDataCell(dataCell);
     }
 
-    private void defaultDimensions(){
+    private void defaultDimensions() {
         stickyColumnWidths = new float[1];
         setNumberStickyColumns(1);
         headers = new String[1];
         headers[0] = "EMPTY";
         footers = new String[1];
         footers[0] = "EMPTY";
-        dataSizeValues =1;
+        dataSizeValues = 1;
         dataSizeObjects = 0;
         sorted = new int[1];
         sorted[0] = SORTED_UNSORTED;
@@ -207,8 +196,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         getLeftFootCornerCell().getTextPaint().setTextSize(DEFAULT_TEXT_SIZE);
     }
 
-    private void init(Context context){
-
+    private void init(Context context) {
         gestureDetector = new GestureDetector(context, this);
         scroller = new Scroller(context);
         windowScrollX = 0f;
@@ -224,16 +212,16 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         super.onSizeChanged(width, height, oldwidth, oldheight);
     }
 
-    private void adjustTable(){
-        this.activeDataWindowHeight = this.stickyTableHeight-this.stickyHeaderHeight-this.stickyFooterHeight;
-        this.activeDataWindowWidth = this.stickyTableWidth-this.stickyColumnWidth;
+    private void adjustTable() {
+        this.activeDataWindowHeight = this.stickyTableHeight - this.stickyHeaderHeight - this.stickyFooterHeight;
+        this.activeDataWindowWidth = this.stickyTableWidth - this.stickyColumnWidth;
         this.maxWindowScrollX = (dataSizeValues - numberStickyColumns) * dataCellWidth - activeDataWindowWidth;
-        if (this.maxWindowScrollX < 0){
+        if (this.maxWindowScrollX < 0) {
             this.maxWindowScrollX = 0;
         }
 
         this.maxWindowScrollY = dataSizeObjects * dataCellHeight - activeDataWindowHeight;
-        if (this.maxWindowScrollY < 0){
+        if (this.maxWindowScrollY < 0) {
             this.maxWindowScrollY = 0;
         }
         scroll(0, 0); //to invalidate and make sure clamp bounds
@@ -246,83 +234,81 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         return true;
     }
 
-    private void processClick(float x, float y){
-        if (y <stickyHeaderHeight){
-            if (headerListener!=null){
-            headerListener.headerClick(getValueDataCellIndex(x));
-            invalidate();
+    private void processClick(float x, float y) {
+        if (y < stickyHeaderHeight) {
+            if (headerListener != null) {
+                headerListener.headerClick(getValueDataCellIndex(x));
+                invalidate();
             }
-        }
-
-        else if (y < stickyHeaderHeight + activeDataWindowHeight){
-            if (cellListener!=null){
-            cellListener.cellClick(getObjectDataCellIndex(y), getValueDataCellIndex(x));
-            invalidate();
+        } else if (y < stickyHeaderHeight + activeDataWindowHeight) {
+            if (cellListener != null) {
+                cellListener.cellClick(getObjectDataCellIndex(y), getValueDataCellIndex(x));
+                invalidate();
             }
-        }
-
-
-        else if(x <stickyTableWidth && y <  stickyTableHeight){
-            if (footerListener!=null){
-            footerListener.footerClick(getValueDataCellIndex(x));
-            invalidate();
+        } else if (x < stickyTableWidth && y < stickyTableHeight) {
+            if (footerListener != null) {
+                footerListener.footerClick(getValueDataCellIndex(x));
+                invalidate();
             }
         }
     }
 
-    public interface OnFooterChangedListener{
+    public interface OnFooterChangedListener {
+
         public void updateFooter(int valueIndex);
     }
 
-    public void setFooterChangedListener(OnFooterChangedListener listener){
+    public void setFooterChangedListener(OnFooterChangedListener listener) {
         this.footerChangedListener = listener;
     }
 
-    public interface OnHeaderClickListener{
+    public interface OnHeaderClickListener {
+
         public void headerClick(int valueIndex);
     }
 
-    public void setOnHeaderClickListener(OnHeaderClickListener listener){
+    public void setOnHeaderClickListener(OnHeaderClickListener listener) {
         this.headerListener = listener;
     }
 
-    public interface OnFooterClickListener{
+    public interface OnFooterClickListener {
+
         public void footerClick(int valueIndex);
     }
 
-    public void setOnFooterClickListener(OnFooterClickListener listener){
+    public void setOnFooterClickListener(OnFooterClickListener listener) {
         this.footerListener = listener;
     }
 
-    public interface OnCellClickListener{
+    public interface OnCellClickListener {
+
         public void cellClick(int objectIndex, int valueIndex);
     }
 
-    public void setOnCellClickListener(OnCellClickListener listener){
+    public void setOnCellClickListener(OnCellClickListener listener) {
         this.cellListener = listener;
     }
 
 
-    public void sortDataAscBy(final int headerIndex, Comparator<SpreadsheetRow> comparator){
+    public void sortDataAscBy(final int headerIndex, Comparator<SpreadsheetRow> comparator) {
         Arrays.sort(objectData, comparator);
     }
 
-    public void sortDataDescBy(final int headerIndex, Comparator<SpreadsheetRow> comparator){
-        Arrays.sort(objectData,comparator);
+    public void sortDataDescBy(final int headerIndex, Comparator<SpreadsheetRow> comparator) {
+        Arrays.sort(objectData, comparator);
     }
 
-    public void setData(SpreadsheetRow[] data, String[] headers){
-
+    public void setData(SpreadsheetRow[] data, String[] headers) {
         this.objectData = data;
         this.headers = headers;
         this.footers = new String[headers.length];
         this.sorted = new int[headers.length];
-        if (headers.length > stickyColumnWidths.length){
+        if (headers.length > stickyColumnWidths.length) {
             float[] tempArray = new float[headers.length];
-            for (int i = 0; i < headers.length; i++){
-                if (i < stickyColumnWidths.length){
+            for (int i = 0; i < headers.length; i++) {
+                if (i < stickyColumnWidths.length) {
                     tempArray[i] = stickyColumnWidths[i];
-                } else{
+                } else {
                     tempArray[i] = DEFAULT_STICKY_COLUMN_WIDTH;
                 }
             }
@@ -335,7 +321,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         dataSizeObjects = data.length;
         dataSizeValues = headers.length;
 
-        for (int i = 0; i < dataSizeValues; i ++){
+        for (int i = 0; i < dataSizeValues; i++) {
             footers[i] = "";
             updateFooter(i);
             sorted[i] = SORTED_UNSORTED;
@@ -345,77 +331,70 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         adjustTable();
     }
 
-    private int getValueDataCellIndex(float x){
-
-
-        if ((x)<stickyColumnWidth){
+    private int getValueDataCellIndex(float x) {
+        if ((x) < stickyColumnWidth) {
             float widthSearched = 0f;
-            for (int i = 0; i < numberStickyColumns; i ++){
-                widthSearched+=stickyColumnWidths[i];
-                if ((x)<widthSearched){
+            for (int i = 0; i < numberStickyColumns; i++) {
+                widthSearched += stickyColumnWidths[i];
+                if ((x) < widthSearched) {
                     return i;
                 }
             }
         }
         int startValuesIndex;
 
-        if (windowScrollX == 0f){
+        if (windowScrollX == 0f) {
             startValuesIndex = numberStickyColumns;
-        } else{
-            startValuesIndex = (int) (numberStickyColumns+windowScrollX/dataCellWidth);
+        } else {
+            startValuesIndex = (int) (numberStickyColumns + windowScrollX / dataCellWidth);
         }
 
-        float xOffset = windowScrollX%dataCellWidth;
+        float xOffset = windowScrollX % dataCellWidth;
 
-        float xInto = x-stickyColumnWidth;
-        int indexOffsetX = (int) ((xInto+xOffset)/dataCellWidth);
-        return indexOffsetX+startValuesIndex;
-
+        float xInto = x - stickyColumnWidth;
+        int indexOffsetX = (int) ((xInto + xOffset) / dataCellWidth);
+        return indexOffsetX + startValuesIndex;
     }
 
-    private int getObjectDataCellIndex(float y){
-
-
+    private int getObjectDataCellIndex(float y) {
         int startObjectsIndex;
 
-        if (windowScrollY == 0f){
+        if (windowScrollY == 0f) {
             startObjectsIndex = 0;
-        } else{
-            startObjectsIndex = (int) (windowScrollY/dataCellHeight);
+        } else {
+            startObjectsIndex = (int) (windowScrollY / dataCellHeight);
         }
 
-        float yOffset = windowScrollY%dataCellHeight;
+        float yOffset = windowScrollY % dataCellHeight;
 
-        float yInto = y-stickyHeaderHeight;
-        int indexOffsetY = (int) ((yInto+yOffset)/dataCellHeight);
+        float yInto = y - stickyHeaderHeight;
+        int indexOffsetY = (int) ((yInto + yOffset) / dataCellHeight);
 
-        return indexOffsetY+startObjectsIndex;
-
+        return indexOffsetY + startObjectsIndex;
     }
- 
 
-    
-    private void updateFooter(int valueIndex){
-        if (footerChangedListener!=null){
+
+    private void updateFooter(int valueIndex) {
+        if (footerChangedListener != null) {
             updateFooter(valueIndex);
         }
     }
 
 
-    public void scroll(float x, float y){
-        windowScrollX = windowScrollX+ x;
-        if (windowScrollX < 0){
-            windowScrollX =0;
+    public void scroll(float x, float y) {
+        windowScrollX = windowScrollX + x;
+        if (windowScrollX < 0) {
+            windowScrollX = 0;
         }
-        if (windowScrollX >= maxWindowScrollX){
+        if (windowScrollX >= maxWindowScrollX) {
             windowScrollX = maxWindowScrollX;
         }
 
         windowScrollY = windowScrollY + y;
-        if (windowScrollY <0){
+        if (windowScrollY < 0) {
             windowScrollY = 0;
         }
-        if (windowScrollY >= maxWindowScrollY){
+        if (windowScrollY >= maxWindowScrollY) {
             windowScrollY = maxWindowScrollY;
         }
 
@@ -423,243 +402,225 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     }
 
 
-
-
     @Override
-    protected void onDraw(Canvas canvas){
+    protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        if (!dataSet){
+        if (!dataSet) {
             return;
         }
 
-        if (scroller.computeScrollOffset()){
-            scroll(scroller.getCurrX() - windowScrollX,scroller.getCurrY() - windowScrollY);
+        if (scroller.computeScrollOffset()) {
+            scroll(scroller.getCurrX() - windowScrollX, scroller.getCurrY() - windowScrollY);
         }
         drawDataCells(canvas);
         drawStickyColumn(canvas);
         drawStickyHeader(canvas);
         drawStickyFooter(canvas);
         drawCornerCells(canvas);
-        canvas.drawLine(stickyColumnWidth,0f,stickyColumnWidth,stickyTableHeight, vertDividingPaint);
-        canvas.drawLine(0f,stickyHeaderHeight,stickyTableWidth,stickyHeaderHeight,horzDividingPaint);
-
-
-
-
+        canvas.drawLine(stickyColumnWidth, 0f, stickyColumnWidth, stickyTableHeight, vertDividingPaint);
+        canvas.drawLine(0f, stickyHeaderHeight, stickyTableWidth, stickyHeaderHeight, horzDividingPaint);
     }
 
-    private void drawCornerCells(Canvas canvas){
+    private void drawCornerCells(Canvas canvas) {
         //top left
         float leftX = 0f;
         float topY = 0f;
 
-        if (headers!=null){
-        for (int i = 0; i <numberStickyColumns; i++){
+        if (headers != null) {
+            for (int i = 0; i < numberStickyColumns; i++) {
 
-            if (leftHeadCornerCell!=null && stickyHeaderHeight>0f &&stickyColumnWidths[i]>0f){
-                leftHeadCornerCell.draw(canvas,headers[i],leftX,topY,stickyColumnWidths[i],stickyHeaderHeight);
+                if (leftHeadCornerCell != null && stickyHeaderHeight > 0f && stickyColumnWidths[i] > 0f) {
+                    leftHeadCornerCell.draw(canvas, headers[i], leftX, topY, stickyColumnWidths[i], stickyHeaderHeight);
+                }
+                leftX += stickyColumnWidths[i];
             }
-            leftX +=stickyColumnWidths[i];
-        }
         }
 
         //bottom left
-
-        if (footers!=null){
-        leftX = 0f;
-        topY = 0f + stickyHeaderHeight+activeDataWindowHeight;
-        for (int i = 0; i <numberStickyColumns; i++){
-            if (leftFootCornerCell!=null && stickyFooterHeight>0f &&stickyColumnWidths[i]>0f){
-            leftFootCornerCell.draw(canvas,footers[i],leftX,topY,stickyColumnWidths[i],stickyFooterHeight);
+        if (footers != null) {
+            leftX = 0f;
+            topY = 0f + stickyHeaderHeight + activeDataWindowHeight;
+            for (int i = 0; i < numberStickyColumns; i++) {
+                if (leftFootCornerCell != null && stickyFooterHeight > 0f && stickyColumnWidths[i] > 0f) {
+                    leftFootCornerCell.draw(canvas, footers[i], leftX, topY, stickyColumnWidths[i], stickyFooterHeight);
+                }
+                leftX += stickyColumnWidths[i];
             }
-            leftX +=stickyColumnWidths[i];
         }
-        }
-
-
     }
 
 
-
-
-
-    protected void drawStickyColumn(Canvas canvas){
-
-        if (dataCellHeight == 0f || stickyColumnWidth == 0f || stickyColumnCell == null || objectData == null){
+    protected void drawStickyColumn(Canvas canvas) {
+        if (dataCellHeight == 0f || stickyColumnWidth == 0f || stickyColumnCell == null || objectData == null) {
             return;
         }
 
         int startIndex;
 
-        if (windowScrollY == 0f){
+        if (windowScrollY == 0f) {
             startIndex = 0;
-        } else{
-            startIndex = (int) (windowScrollY/dataCellHeight);
+        } else {
+            startIndex = (int) (windowScrollY / dataCellHeight);
         }
 
-        float yOffset = windowScrollY%dataCellHeight;
+        float yOffset = windowScrollY % dataCellHeight;
 
-        int numberCellsDown= (int) (activeDataWindowHeight/dataCellHeight +2);
-        if (numberCellsDown+ startIndex > dataSizeObjects){
+        int numberCellsDown = (int) (activeDataWindowHeight / dataCellHeight + 2);
+        if (numberCellsDown + startIndex > dataSizeObjects) {
             numberCellsDown = dataSizeObjects - startIndex;
         }
 
         float currentLeftX = 0f;
-        for (int i = 0; i < numberStickyColumns; i++){
-        for (int j = 0; j<numberCellsDown; j++){
+        for (int i = 0; i < numberStickyColumns; i++) {
+            for (int j = 0; j < numberCellsDown; j++) {
 
+                float topY = stickyHeaderHeight + j * dataCellHeight - yOffset;
 
-            float topY = stickyHeaderHeight+j*dataCellHeight-yOffset;
-
-            if (topY < stickyHeaderHeight+activeDataWindowHeight && objectData[startIndex+j]!=null){
-                stickyColumnCell.draw(canvas,objectData[startIndex+j].getValueAt(i), currentLeftX, topY, stickyColumnWidths[i], dataCellHeight);
+                if (topY < stickyHeaderHeight + activeDataWindowHeight && objectData[startIndex + j] != null) {
+                    stickyColumnCell.draw(canvas, objectData[startIndex + j].getValueAt(i), currentLeftX, topY,
+                            stickyColumnWidths[i], dataCellHeight);
+                }
             }
-        }
-            currentLeftX +=stickyColumnWidths[i];
+            currentLeftX += stickyColumnWidths[i];
         }
     }
 
-    protected void drawStickyHeader(Canvas canvas){
-
-        if (dataCellWidth == 0f || stickyHeaderHeight ==0f || stickyHeaderCell == null || headers == null){
+    protected void drawStickyHeader(Canvas canvas) {
+        if (dataCellWidth == 0f || stickyHeaderHeight == 0f || stickyHeaderCell == null || headers == null) {
             return;
         }
 
         int startIndex;
 
-        if (windowScrollX == 0f){
+        if (windowScrollX == 0f) {
             startIndex = numberStickyColumns;
-        } else{
-            startIndex = (int) (numberStickyColumns + windowScrollX/dataCellWidth);
+        } else {
+            startIndex = (int) (numberStickyColumns + windowScrollX / dataCellWidth);
         }
 
-        float xOffset = windowScrollX%dataCellWidth;
+        float xOffset = windowScrollX % dataCellWidth;
 
-        int numberCellsAcross = (int)(activeDataWindowWidth/dataCellWidth+2);
+        int numberCellsAcross = (int) (activeDataWindowWidth / dataCellWidth + 2);
 
-        if (numberCellsAcross+startIndex > dataSizeValues){
+        if (numberCellsAcross + startIndex > dataSizeValues) {
             numberCellsAcross = dataSizeValues - startIndex;
         }
 
         float leftX;
         float topY;
 
-        for (int i = 0; i<numberCellsAcross; i++){
+        for (int i = 0; i < numberCellsAcross; i++) {
 
-            leftX = stickyColumnWidth+i*dataCellWidth-xOffset;
+            leftX = stickyColumnWidth + i * dataCellWidth - xOffset;
             topY = 0f;
 
-            if (leftX<stickyColumnWidth+activeDataWindowWidth){
-                stickyHeaderCell.draw(canvas,headers[startIndex+i], leftX, topY, dataCellWidth, stickyHeaderHeight);
+            if (leftX < stickyColumnWidth + activeDataWindowWidth) {
+                stickyHeaderCell.draw(canvas, headers[startIndex + i], leftX, topY, dataCellWidth, stickyHeaderHeight);
             }
         }
     }
 
 
-
-    protected void drawStickyFooter(Canvas canvas){
-
-        if (dataCellWidth <= 0f || stickyFooterHeight <= 0f || stickyFooterCell == null || footers == null){
+    protected void drawStickyFooter(Canvas canvas) {
+        if (dataCellWidth <= 0f || stickyFooterHeight <= 0f || stickyFooterCell == null || footers == null) {
             return;
         }
 
         int startIndex;
 
-        if (windowScrollX == 0f){
+        if (windowScrollX == 0f) {
             startIndex = numberStickyColumns;
-        } else{
-            startIndex = (int) (numberStickyColumns+windowScrollX/dataCellWidth);
+        } else {
+            startIndex = (int) (numberStickyColumns + windowScrollX / dataCellWidth);
         }
 
-        float xOffset = windowScrollX%dataCellWidth;
+        float xOffset = windowScrollX % dataCellWidth;
 
-        int numberCellsAcross = (int)(activeDataWindowWidth/dataCellWidth+2);
-        if (numberCellsAcross+ startIndex > dataSizeValues){
+        int numberCellsAcross = (int) (activeDataWindowWidth / dataCellWidth + 2);
+        if (numberCellsAcross + startIndex > dataSizeValues) {
             numberCellsAcross = dataSizeValues - startIndex;
         }
-
 
         float leftX;
         float topY;
 
-        for (int i = 0; i<numberCellsAcross; i++){
+        for (int i = 0; i < numberCellsAcross; i++) {
 
-            leftX = stickyColumnWidth+i*dataCellWidth - xOffset;
-            topY = stickyHeaderHeight+activeDataWindowHeight;
+            leftX = stickyColumnWidth + i * dataCellWidth - xOffset;
+            topY = stickyHeaderHeight + activeDataWindowHeight;
 
-            if (leftX<stickyColumnWidth+activeDataWindowWidth){
-                 stickyFooterCell.draw(canvas, ""+footers[startIndex+i], leftX,topY, dataCellWidth,stickyFooterHeight);
+            if (leftX < stickyColumnWidth + activeDataWindowWidth) {
+                stickyFooterCell
+                        .draw(canvas, "" + footers[startIndex + i], leftX, topY, dataCellWidth, stickyFooterHeight);
             }
         }
     }
 
 
-
-    private void drawDataCells(Canvas canvas){
-
-        if (dataCellWidth == 0f || dataCellHeight == 0f || dataCell == null || objectData == null){
+    private void drawDataCells(Canvas canvas) {
+        if (dataCellWidth == 0f || dataCellHeight == 0f || dataCell == null || objectData == null) {
             return;
         }
 
         int startValuesIndex;
 
-        if (windowScrollX == 0f){
+        if (windowScrollX == 0f) {
             startValuesIndex = numberStickyColumns;
-        } else{
-            startValuesIndex = (int) (numberStickyColumns+windowScrollX/dataCellWidth);
+        } else {
+            startValuesIndex = (int) (numberStickyColumns + windowScrollX / dataCellWidth);
         }
 
-        float xOffset = windowScrollX%dataCellWidth;
-
+        float xOffset = windowScrollX % dataCellWidth;
 
         int startObjectsIndex;
 
-
-        if (windowScrollY == 0f){
+        if (windowScrollY == 0f) {
             startObjectsIndex = 0;
-        } else{
-            startObjectsIndex = (int) (windowScrollY/dataCellHeight);
+        } else {
+            startObjectsIndex = (int) (windowScrollY / dataCellHeight);
         }
 
-        float yOffset = windowScrollY%dataCellHeight;
+        float yOffset = windowScrollY % dataCellHeight;
 
-        int numberCellsDown= (int) (activeDataWindowHeight/dataCellHeight +2);
-        if (numberCellsDown+ startObjectsIndex > dataSizeObjects){
+        int numberCellsDown = (int) (activeDataWindowHeight / dataCellHeight + 2);
+        if (numberCellsDown + startObjectsIndex > dataSizeObjects) {
             numberCellsDown = dataSizeObjects - startObjectsIndex;
         }
-        int numberCellsAcross = (int)(activeDataWindowWidth/dataCellWidth+2);
-        if (numberCellsAcross+ startValuesIndex > dataSizeValues){
+        int numberCellsAcross = (int) (activeDataWindowWidth / dataCellWidth + 2);
+        if (numberCellsAcross + startValuesIndex > dataSizeValues) {
             numberCellsAcross = dataSizeValues - startValuesIndex;
         }
 
-        for (int i =0; i<numberCellsAcross; i++){
-            for (int j = 0; j < numberCellsDown; j++){
-                float leftX = stickyColumnWidth+i*dataCellWidth - xOffset;
-                float topY  = stickyHeaderHeight+j*dataCellHeight - yOffset;
-                if (leftX < stickyColumnWidth+activeDataWindowWidth && topY < stickyHeaderHeight+activeDataWindowHeight){
-                    if (objectData[startObjectsIndex+j] != null){
-                        dataCell.draw(canvas,""+objectData[startObjectsIndex+j].getValueAt(startValuesIndex+i), leftX,topY, dataCellWidth, dataCellHeight);
+        for (int i = 0; i < numberCellsAcross; i++) {
+            for (int j = 0; j < numberCellsDown; j++) {
+                float leftX = stickyColumnWidth + i * dataCellWidth - xOffset;
+                float topY = stickyHeaderHeight + j * dataCellHeight - yOffset;
+                if (leftX < stickyColumnWidth + activeDataWindowWidth
+                        && topY < stickyHeaderHeight + activeDataWindowHeight) {
+                    if (objectData[startObjectsIndex + j] != null) {
+                        dataCell.draw(canvas, "" + objectData[startObjectsIndex + j].getValueAt(startValuesIndex + i),
+                                leftX, topY, dataCellWidth, dataCellHeight);
                     }
                 }
             }
         }
     }
 
-    public float getStickyTableWidth(){
-        float width = stickyColumnWidth+activeDataWindowWidth;
+    public float getStickyTableWidth() {
+        float width = stickyColumnWidth + activeDataWindowWidth;
         return width;
     }
 
-    public float getStickyTableHeight(){
-        float height = stickyHeaderHeight+activeDataWindowHeight+stickyFooterHeight;
+    public float getStickyTableHeight() {
+        float height = stickyHeaderHeight + activeDataWindowHeight + stickyFooterHeight;
         return height;
     }
 
     @Override
     public boolean onDown(MotionEvent e) {
-       // Log.d(ScrollActivity.DEBUG,"Gesture DOWN");
-        if (!scroller.isFinished()){
+        // Log.d(ScrollActivity.DEBUG,"Gesture DOWN");
+        if (!scroller.isFinished()) {
             scroller.forceFinished(true);
         }
         return false;
@@ -667,7 +628,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
 
     @Override
     public void onShowPress(MotionEvent e) {
-       // Log.d(ScrollActivity.DEBUG,"Gesture SHOWPRESS");
+        // Log.d(ScrollActivity.DEBUG,"Gesture SHOWPRESS");
 
     }
 
@@ -685,29 +646,27 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
 
     @Override
     public void onLongPress(MotionEvent e) {
-
     }
 
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        int velX = (int) (velocityX / SCALE);
 
+        int velY = (int) (velocityY / SCALE);
 
-        int velX = (int)(velocityX/SCALE);
-
-        int velY = (int)(velocityY/SCALE);
-
-        scroller.fling((int)windowScrollX, (int)windowScrollY, velX, velY, 0, (int)(maxWindowScrollX), 0 , (int)(maxWindowScrollY));
+        scroller.fling((int) windowScrollX, (int) windowScrollY, velX, velY, 0, (int) (maxWindowScrollX), 0,
+                (int) (maxWindowScrollY));
         postInvalidate();
         return false;
     }
 
 
-    public int getNumberStickyColumns(){
+    public int getNumberStickyColumns() {
         return this.numberStickyColumns;
     }
 
-    public void setStickyColumnWidth(int columnIndex, float width){
-        if (this.stickyColumnWidths==null || columnIndex +1>stickyColumnWidths.length){
+    public void setStickyColumnWidth(int columnIndex, float width) {
+        if (this.stickyColumnWidths == null || columnIndex + 1 > stickyColumnWidths.length) {
             return;
         }
         this.stickyColumnWidths[columnIndex] = width;
@@ -715,18 +674,18 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         adjustTable();
     }
 
-    public float getStickyColumnWidth(int columnIndex){
-        if (columnIndex+1>stickyColumnWidths.length){
+    public float getStickyColumnWidth(int columnIndex) {
+        if (columnIndex + 1 > stickyColumnWidths.length) {
             return 0f;
         }
         return this.stickyColumnWidths[columnIndex];
     }
 
-    public void setNumberStickyColumns(int number){
-        if (number>dataSizeValues){
+    public void setNumberStickyColumns(int number) {
+        if (number > dataSizeValues) {
             number = dataSizeValues;
         }
-        if (number<0){
+        if (number < 0) {
             number = 0;
         }
         this.numberStickyColumns = number;
@@ -735,169 +694,172 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         adjustTable();
     }
 
-    public void incStickyColumnWidth(int columnIndex, float dw){
-        this.stickyColumnWidths[columnIndex] +=dw;
+    public void incStickyColumnWidth(int columnIndex, float dw) {
+        this.stickyColumnWidths[columnIndex] += dw;
         calculateStickyColumnWidth();
         adjustTable();
     }
 
-    private void calculateStickyColumnWidth(){
+    private void calculateStickyColumnWidth() {
         float sum = 0;
-        for (int i = 0; i < numberStickyColumns; i++){
+        for (int i = 0; i < numberStickyColumns; i++) {
             sum = sum + getStickyColumnWidth(i);
         }
         this.stickyColumnWidth = sum;
     }
 
 
-    public void setStickyHeaderHeight(float height){
+    public void setStickyHeaderHeight(float height) {
         this.stickyHeaderHeight = height;
         adjustTable();
     }
-    public void setStickyHeaderTextSize(float size){
+
+    public void setStickyHeaderTextSize(float size) {
         stickyHeaderCell.setTextSize(size);
     }
 
-    public void setStickyFooterTextSize(float size){
+    public void setStickyFooterTextSize(float size) {
         stickyFooterCell.setTextSize(size);
     }
 
-    public void setStickyColumnTextSize(float size){
+    public void setStickyColumnTextSize(float size) {
         stickyColumnCell.setTextSize(size);
-    } 
-    public float getStickyFooterHeight(){
+    }
+
+    public float getStickyFooterHeight() {
         return this.stickyFooterHeight;
     }
 
-    public void setDataCellTextSize(float size){
+    public void setDataCellTextSize(float size) {
         dataCell.setTextSize(size);
     }
 
-    public void incStickyHeaderHeight(float dh){
-        this.stickyHeaderHeight = this.stickyHeaderHeight+dh;
+    public void incStickyHeaderHeight(float dh) {
+        this.stickyHeaderHeight = this.stickyHeaderHeight + dh;
         adjustTable();
     }
 
-    public void setStickyFooterHeight(float height){
+    public void setStickyFooterHeight(float height) {
         this.stickyFooterHeight = height;
         adjustTable();
     }
 
-    public void incStickyFooterHeight(float dh){
+    public void incStickyFooterHeight(float dh) {
         this.stickyFooterHeight = this.stickyFooterHeight + dh;
         adjustTable();
     }
 
-    public void setDataCellDimensions(float width, float height){
+    public void setDataCellDimensions(float width, float height) {
         this.dataCellWidth = width;
         this.dataCellHeight = height;
         adjustTable();
     }
 
 
-    public void setValuesColumn(int headerIndex, String[] column){
-        for(int i = 0; i <dataSizeObjects; i++){
+    public void setValuesColumn(int headerIndex, String[] column) {
+        for (int i = 0; i < dataSizeObjects; i++) {
             objectData[i].setValue(headerIndex, column[i]);
         }
         updateFooter(headerIndex);
     }
 
-    public void setFooters(String[] footers){
+    public void setFooters(String[] footers) {
         this.footers = footers;
     }
 
 
-
-    public void setRow(int objectIndex, String[] row){
-        for (int i =0; i <dataSizeValues; i++){
+    public void setRow(int objectIndex, String[] row) {
+        for (int i = 0; i < dataSizeValues; i++) {
             objectData[objectIndex].setValue(objectIndex, row[i]);
         }
 
-        for (int i = 0; i < dataSizeValues; i ++){
+        for (int i = 0; i < dataSizeValues; i++) {
             updateFooter(i);
         }
     }
 
-    public void setRow(int objectIndex, SpreadsheetRow row){
+    public void setRow(int objectIndex, SpreadsheetRow row) {
         objectData[objectIndex] = row;
-        for (int i = 0; i < dataSizeValues; i ++){
+        for (int i = 0; i < dataSizeValues; i++) {
             updateFooter(i);
         }
     }
 
-    public SpreadsheetRow getRowAt(int objectIndex){
+    public SpreadsheetRow getRowAt(int objectIndex) {
         return objectData[objectIndex];
     }
 
-    public String getFooterAt(int valueIndex){
+    public String getFooterAt(int valueIndex) {
         return footers[valueIndex];
 
     }
 
-    public String getHeaderAt(int valueIndex){
+    public String getHeaderAt(int valueIndex) {
         return headers[valueIndex];
     }
 
-    public void setLeftFootCornerCell(SpreadsheetCell cell){
+    public void setLeftFootCornerCell(SpreadsheetCell cell) {
         this.leftFootCornerCell = cell;
     }
-    public SpreadsheetCell getLeftFootCornerCell(){
+
+    public SpreadsheetCell getLeftFootCornerCell() {
         return leftFootCornerCell;
     }
 
 
-    public void setLeftHeadCornerCell(SpreadsheetCell cell){
+    public void setLeftHeadCornerCell(SpreadsheetCell cell) {
         this.leftHeadCornerCell = cell;
     }
-    public SpreadsheetCell getLeftHeadCornerCell(){
+
+    public SpreadsheetCell getLeftHeadCornerCell() {
         return leftHeadCornerCell;
     }
 
-    public void setDataCell(SpreadsheetCell cell){
+    public void setDataCell(SpreadsheetCell cell) {
         this.dataCell = cell;
     }
-    public SpreadsheetCell getDataCell(){
+
+    public SpreadsheetCell getDataCell() {
         return dataCell;
     }
 
-    public void setStickyColumnCell(SpreadsheetCell cell){
+    public void setStickyColumnCell(SpreadsheetCell cell) {
         this.stickyColumnCell = cell;
     }
-    public SpreadsheetCell getStickyColumnCell(){
+
+    public SpreadsheetCell getStickyColumnCell() {
         return stickyColumnCell;
     }
 
-    public void setStickyHeaderCell(SpreadsheetCell cell){
+    public void setStickyHeaderCell(SpreadsheetCell cell) {
         this.stickyHeaderCell = cell;
     }
-    public SpreadsheetCell getStickyHeaderCell(){
+
+    public SpreadsheetCell getStickyHeaderCell() {
         return stickyHeaderCell;
     }
 
-
-    public void setStickyFooterCell(SpreadsheetCell cell){
+    public void setStickyFooterCell(SpreadsheetCell cell) {
         this.stickyFooterCell = cell;
     }
-    public SpreadsheetCell getStickyFooterCell(){
+
+    public SpreadsheetCell getStickyFooterCell() {
         return stickyFooterCell;
     }
 
-    public void setHorizontalDividingPaint(Paint paint){
+    public void setHorizontalDividingPaint(Paint paint) {
         this.horzDividingPaint = paint;
     }
 
-    public Paint getHorizontalDividingPaint(){
+    public Paint getHorizontalDividingPaint() {
         return horzDividingPaint;
     }
 
-    public void setVerticalDividingPaint(Paint paint){
+    public void setVerticalDividingPaint(Paint paint) {
         this.vertDividingPaint = paint;
     }
 
-    public Paint getVerticalDividingPaint(){
+    public Paint getVerticalDividingPaint() {
         return vertDividingPaint;
     }
-
-
-
 }
