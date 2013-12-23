@@ -6,14 +6,14 @@ import android.widget.Button;
 import android.widget.Toast;
 import oak.demo.OakDemoActivity;
 import oak.demo.R;
-import oak.widget.StickySpreadSheet.SpreadSheetRow;
-import oak.widget.StickySpreadSheet.StickySpreadSheet;
+import oak.widget.spreadsheetview.SpreadsheetRow;
+import oak.widget.spreadsheetview.SpreadsheetView;
 
 
-public class StickySpreadSheetActivity extends OakDemoActivity {
+public class SpreadsheetViewActivity extends OakDemoActivity {
 
 
-    StickySpreadSheet table;
+    SpreadsheetView table;
     final static int NUM_OBJECTS = 100;
     final static int NUM_VALUES = 100;
 
@@ -25,7 +25,7 @@ public class StickySpreadSheetActivity extends OakDemoActivity {
         setContentView(R.layout.sticky_spreadsheet_demo);
 
 
-        table = (StickySpreadSheet) findViewById(R.id.spreadsheet_table);
+        table = (SpreadsheetView) findViewById(R.id.spreadsheet_table);
 
 
         //createData();
@@ -82,14 +82,14 @@ public class StickySpreadSheetActivity extends OakDemoActivity {
 
     private void setup(){
 
-            SpreadSheetRow[] objects = new SpreadSheetRow[NUM_OBJECTS];
+            SpreadsheetRow[] objects = new SpreadsheetRow[NUM_OBJECTS];
             for (int i = 0; i < NUM_OBJECTS; i++){
                 String[] values = new String[NUM_VALUES];
                 values[0] = "object "+(i+1);
                 for (int j = 1; j < NUM_VALUES; j++){
                     values[j] = "value "+j;
                 }
-                objects[i] = new SpreadSheetRow(values);
+                objects[i] = new SpreadsheetRow(values);
             }
 
             String[] headers = new String[NUM_VALUES];
@@ -107,7 +107,7 @@ public class StickySpreadSheetActivity extends OakDemoActivity {
             table.setFooters(footers);
 
 
-        table.setOnHeaderClickListener(new StickySpreadSheet.OnHeaderClickListener(){
+        table.setOnHeaderClickListener(new SpreadsheetView.OnHeaderClickListener(){
         @Override
         public void headerClick(int valueIndex) {
             if (valueIndex < table.getNumberStickyColumns()){
@@ -120,7 +120,7 @@ public class StickySpreadSheetActivity extends OakDemoActivity {
         });
 
 
-        table.setOnFooterClickListener(new StickySpreadSheet.OnFooterClickListener(){
+        table.setOnFooterClickListener(new SpreadsheetView.OnFooterClickListener(){
 
             @Override
             public void footerClick(int valueIndex) {
@@ -133,7 +133,7 @@ public class StickySpreadSheetActivity extends OakDemoActivity {
         });
 
 
-        table.setOnCellClickListener(new StickySpreadSheet.OnCellClickListener(){
+        table.setOnCellClickListener(new SpreadsheetView.OnCellClickListener(){
 
             @Override
             public void cellClick(int objectIndex, int valueIndex) {

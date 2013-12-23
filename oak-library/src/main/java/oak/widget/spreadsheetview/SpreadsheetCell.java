@@ -1,9 +1,9 @@
-package oak.widget.StickySpreadSheet;
+package oak.widget.spreadsheetview;
 
 import android.graphics.*;
 import android.graphics.drawable.Drawable;
 
-public class SpreadSheetCell {
+public class SpreadsheetCell {
 
    private Paint cellPaint;
    private Paint textPaint;
@@ -12,15 +12,15 @@ public class SpreadSheetCell {
    private float drawnHeight;
    private float insetCellWidth;
    private float insetCellHeight;
-   private StickySpreadSheet table;
+   private SpreadsheetView table;
 
    private Drawable shape;
 
    float horizontalBorderWidth;
    float verticalBorderWidth;
 
-    public SpreadSheetCell(StickySpreadSheet table, Paint cellPaint, Paint textPaint, Paint borderPaint,
-                           float horizontalBorderWidth, float verticalBorderWidth){
+    public SpreadsheetCell(SpreadsheetView table, Paint cellPaint, Paint textPaint, Paint borderPaint,
+            float horizontalBorderWidth, float verticalBorderWidth){
         this.cellPaint = cellPaint;
         this.textPaint = textPaint;
         textPaint.setTextAlign(Paint.Align.CENTER);
@@ -32,8 +32,8 @@ public class SpreadSheetCell {
 
     }
 
-    public SpreadSheetCell(StickySpreadSheet table, Drawable shape, Paint textPaint, Paint borderPaint,
-                           float horizontalBorderWidth, float verticalBorderWidth){
+    public SpreadsheetCell(SpreadsheetView table, Drawable shape, Paint textPaint, Paint borderPaint,
+            float horizontalBorderWidth, float verticalBorderWidth){
         this.table = table;
         this.shape = shape;
         this.textPaint = textPaint;

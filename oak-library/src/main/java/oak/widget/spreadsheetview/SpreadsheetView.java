@@ -1,4 +1,4 @@
-package oak.widget.StickySpreadSheet;
+package oak.widget.spreadsheetview;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -9,13 +9,12 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Scroller;
-import com.google.common.collect.Table;
 
 import java.util.Arrays;
 import java.util.Comparator;
 
 
-public class StickySpreadSheet extends View implements GestureDetector.OnGestureListener {
+public class SpreadsheetView extends View implements GestureDetector.OnGestureListener {
 
 
     private GestureDetector gestureDetector;
@@ -65,7 +64,7 @@ public class StickySpreadSheet extends View implements GestureDetector.OnGesture
     private int dataSizeObjects;
     private int dataSizeValues;
 
-    protected SpreadSheetRow[] objectData;
+    protected SpreadsheetRow[] objectData;
     protected String[] headers;
     protected int[] sorted;
     private final static int SORTED_UNSORTED = 0;
@@ -79,34 +78,33 @@ public class StickySpreadSheet extends View implements GestureDetector.OnGesture
     private Paint vertDividingPaint;
     private Paint horzDividingPaint;
 
-    private SpreadSheetCell dataCell;
-    private SpreadSheetCell stickyHeaderCell;
-    private SpreadSheetCell stickyFooterCell;
-    private SpreadSheetCell stickyColumnCell;
+    private SpreadsheetCell dataCell;
+    private SpreadsheetCell stickyHeaderCell;
+    private SpreadsheetCell stickyFooterCell;
+    private SpreadsheetCell stickyColumnCell;
 
-    private SpreadSheetCell leftFootCornerCell;
-    private SpreadSheetCell leftHeadCornerCell;
-
-
+    private SpreadsheetCell leftFootCornerCell;
+    private SpreadsheetCell leftHeadCornerCell;
 
 
 
-    public StickySpreadSheet(Context context){
+
+
+    public SpreadsheetView(Context context){
         super(context);
         init(context);
         defaultCells();
         defaultDimensions();
     }
 
-
-    public StickySpreadSheet(Context context, AttributeSet attrs) {
+    public SpreadsheetView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
         defaultCells();
         defaultDimensions();
     }
 
-    public StickySpreadSheet(Context context, AttributeSet attrs, int defStyleAttr) {
+    public SpreadsheetView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
         defaultCells();
@@ -126,8 +124,6 @@ public class StickySpreadSheet extends View implements GestureDetector.OnGesture
         Paint stickyColumnBorderPaint = new Paint();
         stickyColumnBorderPaint.setStyle(Paint.Style.FILL);
         stickyColumnBorderPaint.setColor(Color.BLACK);
-
-
 
         Paint stickyHeaderPaint = new Paint(stickyColumnPaint);
         Paint stickyHeaderTextPaint = new Paint(stickyColumnTextPaint);
@@ -156,31 +152,28 @@ public class StickySpreadSheet extends View implements GestureDetector.OnGesture
         cellPaint.setColor(Color.LTGRAY);
         cellPaint.setStyle(Paint.Style.FILL);
 
-
         Paint cellTextPaint = new Paint();
         cellTextPaint.setColor(Color.BLUE);
         cellTextPaint.setStyle(Paint.Style.FILL);
 
         Paint cellBorderPaint = new Paint(stickyColumnBorderPaint);
 
-
-
-        SpreadSheetCell stickyColumnCell = new SpreadSheetCell(this,stickyColumnPaint,stickyColumnTextPaint,
+        SpreadsheetCell stickyColumnCell = new SpreadsheetCell(this,stickyColumnPaint,stickyColumnTextPaint,
                 stickyColumnBorderPaint,DEFAULT_HORIZONTAL_BORDER_WIDTH, DEFAULT_HORIZONTAL_BORDER_WIDTH);
 
-        SpreadSheetCell stickyHeaderCell = new SpreadSheetCell(this,stickyHeaderPaint,stickyHeaderTextPaint,
+        SpreadsheetCell stickyHeaderCell = new SpreadsheetCell(this,stickyHeaderPaint,stickyHeaderTextPaint,
                 stickyHeaderBorderPaint,DEFAULT_HORIZONTAL_BORDER_WIDTH, DEFAULT_HORIZONTAL_BORDER_WIDTH);
 
-        SpreadSheetCell stickyFooterCell = new SpreadSheetCell(this,stickyFooterPaint,stickyFooterTextPaint,
+        SpreadsheetCell stickyFooterCell = new SpreadsheetCell(this,stickyFooterPaint,stickyFooterTextPaint,
                 stickyFooterBorderPaint,DEFAULT_HORIZONTAL_BORDER_WIDTH, DEFAULT_HORIZONTAL_BORDER_WIDTH);
 
-        SpreadSheetCell dataCell = new SpreadSheetCell(this,cellPaint,cellTextPaint,cellBorderPaint,DEFAULT_HORIZONTAL_BORDER_WIDTH,
+        SpreadsheetCell dataCell = new SpreadsheetCell(this,cellPaint,cellTextPaint,cellBorderPaint,DEFAULT_HORIZONTAL_BORDER_WIDTH,
                 DEFAULT_HORIZONTAL_BORDER_WIDTH);
 
-        SpreadSheetCell leftHeadCornerCell = new SpreadSheetCell(this,leftHeadCornerPaint,leftHeadCornerTextPaint,
+        SpreadsheetCell leftHeadCornerCell = new SpreadsheetCell(this,leftHeadCornerPaint,leftHeadCornerTextPaint,
                 leftHeadCornerBorderPaint,DEFAULT_HORIZONTAL_BORDER_WIDTH, DEFAULT_HORIZONTAL_BORDER_WIDTH);
 
-        SpreadSheetCell leftFootCornerCell = new SpreadSheetCell(this,leftFootCornerPaint,leftFootCornerTextPaint,
+        SpreadsheetCell leftFootCornerCell = new SpreadsheetCell(this,leftFootCornerPaint,leftFootCornerTextPaint,
                 leftFootCornerBorderPaint,DEFAULT_HORIZONTAL_BORDER_WIDTH, DEFAULT_HORIZONTAL_BORDER_WIDTH);
 
         setStickyHeaderCell(stickyHeaderCell);
@@ -189,8 +182,6 @@ public class StickySpreadSheet extends View implements GestureDetector.OnGesture
         setLeftFootCornerCell(leftFootCornerCell);
         setLeftHeadCornerCell(leftHeadCornerCell);
         setDataCell(dataCell);
-
-
     }
 
     private void defaultDimensions(){
@@ -214,9 +205,7 @@ public class StickySpreadSheet extends View implements GestureDetector.OnGesture
         setDataCellTextSize(DEFAULT_TEXT_SIZE);
         getLeftHeadCornerCell().getTextPaint().setTextSize(DEFAULT_TEXT_SIZE);
         getLeftFootCornerCell().getTextPaint().setTextSize(DEFAULT_TEXT_SIZE);
-
     }
-
 
     private void init(Context context){
 
@@ -226,8 +215,6 @@ public class StickySpreadSheet extends View implements GestureDetector.OnGesture
         windowScrollY = 0f;
         dataSet = false;
     }
-
-
 
     @Override
     protected void onSizeChanged(int width, int height, int oldwidth, int oldheight) {
@@ -252,19 +239,14 @@ public class StickySpreadSheet extends View implements GestureDetector.OnGesture
         scroll(0, 0); //to invalidate and make sure clamp bounds
     }
 
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-
         gestureDetector.onTouchEvent(event);
         super.onTouchEvent(event);
         return true;
-
     }
 
     private void processClick(float x, float y){
-
-
         if (y <stickyHeaderHeight){
             if (headerListener!=null){
             headerListener.headerClick(getValueDataCellIndex(x));
@@ -321,15 +303,15 @@ public class StickySpreadSheet extends View implements GestureDetector.OnGesture
     }
 
 
-    public void sortDataAscBy(final int headerIndex, Comparator<SpreadSheetRow> comparator){
+    public void sortDataAscBy(final int headerIndex, Comparator<SpreadsheetRow> comparator){
         Arrays.sort(objectData, comparator);
     }
 
-    public void sortDataDescBy(final int headerIndex, Comparator<SpreadSheetRow> comparator){
+    public void sortDataDescBy(final int headerIndex, Comparator<SpreadsheetRow> comparator){
         Arrays.sort(objectData,comparator);
     }
 
-    public void setData(SpreadSheetRow[] data, String[] headers){
+    public void setData(SpreadsheetRow[] data, String[] headers){
 
         this.objectData = data;
         this.headers = headers;
@@ -836,14 +818,14 @@ public class StickySpreadSheet extends View implements GestureDetector.OnGesture
         }
     }
 
-    public void setRow(int objectIndex, SpreadSheetRow row){
+    public void setRow(int objectIndex, SpreadsheetRow row){
         objectData[objectIndex] = row;
         for (int i = 0; i < dataSizeValues; i ++){
             updateFooter(i);
         }
     }
 
-    public SpreadSheetRow getRowAt(int objectIndex){
+    public SpreadsheetRow getRowAt(int objectIndex){
         return objectData[objectIndex];
     }
 
@@ -856,47 +838,47 @@ public class StickySpreadSheet extends View implements GestureDetector.OnGesture
         return headers[valueIndex];
     }
 
-    public void setLeftFootCornerCell(SpreadSheetCell cell){
+    public void setLeftFootCornerCell(SpreadsheetCell cell){
         this.leftFootCornerCell = cell;
     }
-    public SpreadSheetCell getLeftFootCornerCell(){
+    public SpreadsheetCell getLeftFootCornerCell(){
         return leftFootCornerCell;
     }
 
 
-    public void setLeftHeadCornerCell(SpreadSheetCell cell){
+    public void setLeftHeadCornerCell(SpreadsheetCell cell){
         this.leftHeadCornerCell = cell;
     }
-    public SpreadSheetCell getLeftHeadCornerCell(){
+    public SpreadsheetCell getLeftHeadCornerCell(){
         return leftHeadCornerCell;
     }
 
-    public void setDataCell(SpreadSheetCell cell){
+    public void setDataCell(SpreadsheetCell cell){
         this.dataCell = cell;
     }
-    public SpreadSheetCell getDataCell(){
+    public SpreadsheetCell getDataCell(){
         return dataCell;
     }
 
-    public void setStickyColumnCell(SpreadSheetCell cell){
+    public void setStickyColumnCell(SpreadsheetCell cell){
         this.stickyColumnCell = cell;
     }
-    public SpreadSheetCell getStickyColumnCell(){
+    public SpreadsheetCell getStickyColumnCell(){
         return stickyColumnCell;
     }
 
-    public void setStickyHeaderCell(SpreadSheetCell cell){
+    public void setStickyHeaderCell(SpreadsheetCell cell){
         this.stickyHeaderCell = cell;
     }
-    public SpreadSheetCell getStickyHeaderCell(){
+    public SpreadsheetCell getStickyHeaderCell(){
         return stickyHeaderCell;
     }
 
 
-    public void setStickyFooterCell(SpreadSheetCell cell){
+    public void setStickyFooterCell(SpreadsheetCell cell){
         this.stickyFooterCell = cell;
     }
-    public SpreadSheetCell getStickyFooterCell(){
+    public SpreadsheetCell getStickyFooterCell(){
         return stickyFooterCell;
     }
 

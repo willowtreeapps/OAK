@@ -1,14 +1,14 @@
-package oak.widget.StickySpreadSheet;
+package oak.widget.spreadsheetview;
 
-public class SpreadSheetRow {
+public class SpreadsheetRow {
 
     private String[] values;
 
-    public SpreadSheetRow(int length){
+    public SpreadsheetRow(int length){
         values = new String[length];
     }
 
-    public SpreadSheetRow(String[] values){
+    public SpreadsheetRow(String[] values){
         this.values = values;
     }
 

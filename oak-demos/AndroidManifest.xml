@@ -42,7 +42,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:label="@string/sticky_spreadsheet_activity" android:name=".widget.StickySpreadSheetActivity" android:screenOrientation="portrait">
+        <activity android:label="@string/spreadsheet_view_activity" android:name=".widget.SpreadsheetViewActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
