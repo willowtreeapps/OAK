@@ -206,7 +206,7 @@
                                     <archiveDirectory />
                                     <includes>
                                         <include>
-                                            \${project.build.directory}/${project.build.finalName}.apk
+                                            \${project.build.directory}/\${project.build.finalName}.apk
                                         </include>
                                     </includes>
                                     <keystore>\${sign.keystore}</keystore>
@@ -238,8 +238,8 @@
                             </zipalign>
                             <manifest>
                                 <debuggable>false</debuggable>
-                                <versionCode>${app.versioncode}</versionCode>
-                                <versionName>${project.version}</versionName>
+                                <versionCode>\${app.versioncode}</versionCode>
+                                <versionName>\${project.version}</versionName>
                                 <versionCodeAutoIncrement>false</versionCodeAutoIncrement>
                             </manifest>
                             <proguard>

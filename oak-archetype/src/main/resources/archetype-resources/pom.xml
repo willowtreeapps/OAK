@@ -183,8 +183,8 @@
                                     <includes>
                                         <include>\${project.build.directory}/\${project.build.finalName}.apk</include>
                                     </includes>
-                                    <keystore>${sign.keystore}</keystore>
-                                    <alias>${sign.keyalias}</alias>
+                                    <keystore>\${sign.keystore}</keystore>
+                                    <alias>\${sign.keyalias}</alias>
                                     <storepass>\${sign.storepass}</storepass>
                                     <keypass>\${sign.keypass}</keypass>
                                     <verbose>true</verbose>
@@ -203,14 +203,14 @@
                             <zipalign>
                                 <skip>false</skip>
                                 <verbose>true</verbose>
-                                <inputApk>${project.build.directory}/${project.build.finalName}.apk</inputApk>
-                                <outputApk>${project.build.directory}/${project.build.finalName}-signed-aligned.apk
+                                <inputApk>\${project.build.directory}/\${project.build.finalName}.apk</inputApk>
+                                <outputApk>\${project.build.directory}/\${project.build.finalName}-signed-aligned.apk
                                 </outputApk>
                             </zipalign>
                             <manifest>
                                 <debuggable>false</debuggable>
-                                <versionCode>${app.versioncode}</versionCode>
-                                <versionName>${project.version}</versionName>
+                                <versionCode>\${app.versioncode}</versionCode>
+                                <versionName>\${project.version}</versionName>
                                 <versionCodeAutoIncrement>false</versionCodeAutoIncrement>
                             </manifest>
                             <proguard>
