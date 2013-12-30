@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:oak="http://oak/oak/schema"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <oak.widget.RatioLinearLayout android:layout_width="match_parent"
+        android:layout_height="0dp"
+        oak:ratioHeight="1"
+        oak:ratioWidth="2">
+        <TextView android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="RatioLinearLayout will adjust the height of your layout based on the width. This is 2:1"
+            android:background="#FF0000"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:textSize="24dp"
+            />
+    </oak.widget.RatioLinearLayout>
+    <LinearLayout android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <oak.widget.RatioLinearLayout android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            oak:ratioHeight="3"
+            oak:ratioWidth="4">
+            <TextView android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="4:3"
+                android:background="#00FF00"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:textSize="24dp"
+                />
+        </oak.widget.RatioLinearLayout>
+        <oak.widget.RatioLinearLayout android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            oak:ratioHeight="5"
+            oak:ratioWidth="4">
+            <TextView android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="4:5"
+                android:background="#0000FF"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:textSize="24dp"
+                />
+        </oak.widget.RatioLinearLayout>
+        </LinearLayout>
+
+</LinearLayout>

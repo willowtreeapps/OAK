@@ -82,7 +82,9 @@ public class CancelEditText extends EditText {
             showOrHideCancel();
         }
 
-        String fontName = null;
+        if (isInEditMode()) return;
+
+        String fontName;
         if (attrs != null) {
             try {
                 fontName = attrs.getAttributeValue(OAK.XMLNS, "font");

@@ -41,6 +41,16 @@
                 <category android:name="oak.android.intent.category.OAK"/>
             </intent-filter>
         </activity>
+
+        <activity android:label="@string/spreadsheet_view_activity" android:name=".widget.SpreadsheetViewActivity" android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
+            </intent-filter>
+        </activity>
+
         <activity android:label="@string/encrypted_prefs_activity" android:name=".other.ObscuredPrefsActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -143,6 +153,16 @@
             </intent-filter>
         </activity>
         <activity android:label="@string/font_span_activity" android:name=".utils.FontTypeFaceSpanActivity" android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+                <category android:name="oak.android.intent.category.OAK"/>
+            </intent-filter>
+        </activity>
+        <activity android:screenOrientation="portrait"
+            android:name=".widget.RatioLinearLayoutActivity"
+            android:label="@string/ratio_linear_layout_activity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
