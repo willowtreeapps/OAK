@@ -17,6 +17,7 @@ public class SpreadsheetViewActivity extends OakDemoActivity {
 
     final static int NUM_OBJECTS = 100;
     final static int NUM_VALUES = 100;
+    private boolean[] headerSelected;
 
     final static float FOOTER_HEIGHT = 75;
 
@@ -25,6 +26,7 @@ public class SpreadsheetViewActivity extends OakDemoActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sticky_spreadsheet_demo);
 
+        headerSelected = new boolean[NUM_VALUES];
         mSpreadsheetView = (SpreadsheetView) findViewById(R.id.spreadsheet_table);
 
         //createData();
@@ -98,6 +100,10 @@ public class SpreadsheetViewActivity extends OakDemoActivity {
         mSpreadsheetView.setOnHeaderClickListener(new SpreadsheetView.OnHeaderClickListener() {
             @Override
             public void headerClick(int valueIndex) {
+
+                mSpreadsheetView.selectColumn(valueIndex, !headerSelected[valueIndex]);
+                headerSelected[valueIndex] = !headerSelected[valueIndex];
+
                 if (valueIndex < mSpreadsheetView.getNumberStickyColumns()) {
                     Toast.makeText(mSpreadsheetView.getContext(),
                             "Clicked Sticky Header " + mSpreadsheetView.getHeaderAt(valueIndex),
@@ -129,6 +135,11 @@ public class SpreadsheetViewActivity extends OakDemoActivity {
         mSpreadsheetView.setOnCellClickListener(new SpreadsheetView.OnCellClickListener() {
             @Override
             public void cellClick(int objectIndex, int valueIndex) {
+
+                if (valueIndex<mSpreadsheetView.getNumberStickyColumns()){
+                    mSpreadsheetView.selectRow(objectIndex, !mSpreadsheetView.isSelected(objectIndex, valueIndex));
+                }
+
                 if (valueIndex < mSpreadsheetView.getNumberStickyColumns()) {
                     Toast.makeText(mSpreadsheetView.getContext(),
                             "Clicked Sticky Cell " + mSpreadsheetView.getHeaderAt(valueIndex) + ": "

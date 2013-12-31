@@ -5,26 +5,37 @@ import android.graphics.drawable.Drawable;
 
 public class SpreadsheetCell {
 
-   private Paint cellPaint;
-   private Paint textPaint;
-   private Paint borderPaint;
-   private float drawnWidth;
-   private float drawnHeight;
-   private float insetCellWidth;
-   private float insetCellHeight;
-   private SpreadsheetView table;
+    private Paint cellPaint;
+    private Paint selectedCellPaint;
 
-   private Drawable shape;
+    private Paint textPaint;
+    private Paint selectedTextPaint;
 
-   float horizontalBorderWidth;
-   float verticalBorderWidth;
+    private Paint borderPaint;
+    private Paint selectedBorderPaint;
+
+    private float drawnWidth;
+    private float drawnHeight;
+    private float insetCellWidth;
+    private float insetCellHeight;
+    private SpreadsheetView table;
+
+    private Drawable shape;
+    private Drawable selectedShape;
+
+    float horizontalBorderWidth;
+    float verticalBorderWidth;
 
     public SpreadsheetCell(SpreadsheetView table, Paint cellPaint, Paint textPaint, Paint borderPaint,
-            float horizontalBorderWidth, float verticalBorderWidth){
+                           float horizontalBorderWidth, float verticalBorderWidth){
         this.cellPaint = cellPaint;
+        this.selectedCellPaint = new Paint(cellPaint);
         this.textPaint = textPaint;
-        textPaint.setTextAlign(Paint.Align.CENTER);
+        this.selectedTextPaint = new Paint(textPaint);
+        this.textPaint.setTextAlign(Paint.Align.CENTER);
+        this.selectedTextPaint.setTextAlign(Paint.Align.CENTER);
         this.borderPaint = borderPaint;
+        this.selectedBorderPaint = new Paint(borderPaint);
         this.horizontalBorderWidth = horizontalBorderWidth;
         this.verticalBorderWidth = verticalBorderWidth;
         this.table = table;
@@ -32,18 +43,25 @@ public class SpreadsheetCell {
 
     }
 
-    public SpreadsheetCell(SpreadsheetView table, Drawable shape, Paint textPaint, Paint borderPaint,
-            float horizontalBorderWidth, float verticalBorderWidth){
+    public SpreadsheetCell(SpreadsheetView table, Drawable shape, Drawable selectedShape,
+                           Paint textPaint, Paint borderPaint,
+                           float horizontalBorderWidth, float verticalBorderWidth){
         this.table = table;
         this.shape = shape;
+        this.selectedShape = selectedShape;
         this.textPaint = textPaint;
+        this.selectedTextPaint = new Paint(textPaint);
+        this.textPaint.setTextAlign(Paint.Align.CENTER);
+        this.selectedTextPaint.setTextAlign(Paint.Align.CENTER);
         this.horizontalBorderWidth = horizontalBorderWidth;
         this.verticalBorderWidth = verticalBorderWidth;
         this.borderPaint = borderPaint;
+        this.selectedBorderPaint = new Paint(borderPaint);
     }
 
     public void setTextSize(float size){
         textPaint.setTextSize(size);
+        selectedTextPaint.setTextSize(size);
     }
 
     public Paint getTextPaint(){
@@ -54,6 +72,12 @@ public class SpreadsheetCell {
         textPaint = paint;
     }
 
+    public Paint getSelectedTextPaint(){
+        return selectedTextPaint;
+    }
+
+    public void setSelectedTextPaint(Paint paint){ this.selectedTextPaint = paint;}
+
     public Paint getBorderPaint(){
         return borderPaint;
     }
@@ -61,6 +85,10 @@ public class SpreadsheetCell {
     public void setBorderPaint(Paint paint){
         this.borderPaint = paint;
     }
+
+    public Paint getSelectedBorderPaint(){ return selectedBorderPaint;}
+
+    public void setSelectedBorderPaint(Paint paint) { this.selectedBorderPaint = paint;}
 
     public Paint getCellPaint(){
         return cellPaint;
@@ -70,6 +98,10 @@ public class SpreadsheetCell {
         this.cellPaint = paint;
     }
 
+    public Paint getSelectedCellPaint(){ return selectedCellPaint;}
+
+    public void setSelectedCellPaint(Paint paint){ this.selectedCellPaint = paint;}
+
     public Drawable getDrawable(){
         return this.shape;
     }
@@ -77,6 +109,10 @@ public class SpreadsheetCell {
     public void setDrawable(Drawable drawable){
         this.shape = drawable;
     }
+
+    public Drawable getSelectedDrawable() { return this.selectedShape;}
+
+    public void setSelectedDrawable(Drawable drawable) { this.selectedShape = shape;}
 
     public void setHorizontalBorderWidth(float width){
         this.horizontalBorderWidth = width;
@@ -95,7 +131,8 @@ public class SpreadsheetCell {
     }
 
 
-    public void draw(Canvas canvas, String text, float leftX, float topY, float cellWidth, float cellHeight){
+    public void draw(Canvas canvas, String text, float leftX, float topY, float cellWidth,
+                     float cellHeight, boolean selected){
 
         drawnWidth = cellWidth;
         drawnHeight = cellHeight;
@@ -110,7 +147,11 @@ public class SpreadsheetCell {
         }
 
         //draw the cell border
-        canvas.drawRect(leftX, topY, leftX+drawnWidth, topY+drawnHeight,  borderPaint);
+        if (selected){
+            canvas.drawRect(leftX, topY, leftX+drawnWidth, topY+drawnHeight,  selectedBorderPaint);
+        } else{
+            canvas.drawRect(leftX, topY, leftX+drawnWidth, topY+drawnHeight,  borderPaint);
+        }
 
         //draw the cell itself
 
@@ -132,26 +173,50 @@ public class SpreadsheetCell {
         }
 
 
-        if (shape!=null){
+        if (selected){
+            if (selectedShape!=null){
 
-            shape.setBounds((int)(leftX+horizontalBorderWidth),(int)(topY+verticalBorderWidth),
-                    (int)(leftX+horizontalBorderWidth+insetCellWidth),
-                    (int) (topY+verticalBorderWidth+insetCellHeight));
+                selectedShape.setBounds((int)(leftX+horizontalBorderWidth),(int)(topY+verticalBorderWidth),
+                        (int)(leftX+horizontalBorderWidth+insetCellWidth),
+                        (int) (topY+verticalBorderWidth+insetCellHeight));
 
-            shape.draw(canvas);
+                selectedShape.draw(canvas);
+            } else{
+                canvas.drawRect(leftX+horizontalBorderWidth, topY+verticalBorderWidth,
+                        leftX+horizontalBorderWidth+insetCellWidth,
+                        topY+verticalBorderWidth+insetCellHeight,selectedCellPaint);
+
+            }
+
+
+            if (text==null){
+                text = "null";
+            }
+            canvas.drawText(text, leftX+cellWidth/2, topY+cellHeight/2, selectedTextPaint); //may draw out of bounds
+
         } else{
-            canvas.drawRect(leftX+horizontalBorderWidth, topY+verticalBorderWidth,
-                    leftX+horizontalBorderWidth+insetCellWidth,
-                    topY+verticalBorderWidth+insetCellHeight,cellPaint);
+
+            if (shape!=null){
+
+                shape.setBounds((int)(leftX+horizontalBorderWidth),(int)(topY+verticalBorderWidth),
+                        (int)(leftX+horizontalBorderWidth+insetCellWidth),
+                        (int) (topY+verticalBorderWidth+insetCellHeight));
+
+                shape.draw(canvas);
+            } else{
+                canvas.drawRect(leftX+horizontalBorderWidth, topY+verticalBorderWidth,
+                        leftX+horizontalBorderWidth+insetCellWidth,
+                        topY+verticalBorderWidth+insetCellHeight,cellPaint);
+
+            }
+
+
+            if (text==null){
+                text = "null";
+            }
+            canvas.drawText(text, leftX+cellWidth/2, topY+cellHeight/2, textPaint); //may draw out of bounds
 
         }
-
-
-        if (text==null){
-            text = "null";
-        }
-        canvas.drawText(text, leftX+cellWidth/2, topY+cellHeight/2, textPaint); //may draw out of bounds
-
 
     }
 }
