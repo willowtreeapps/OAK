@@ -61,6 +61,9 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     private float windowScrollX;
     private float windowScrollY;
 
+    private float scrollStartX;
+    private float scrollStartY;
+
     private float maxWindowScrollX;
     private float maxWindowScrollY;
 
@@ -493,6 +496,23 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
 
         gestureDetector.onTouchEvent(event);
         super.onTouchEvent(event);
+
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                scrollStartX = event.getX();
+                scrollStartY = event.getY();
+                break;
+
+            case MotionEvent.ACTION_MOVE:
+                float x = event.getX();
+                float y = event.getY();
+                float scrollByX = x - scrollStartX;
+                float scrollByY = y - scrollStartY;
+                scrollStartX = x;
+                scrollStartY = y;
+                scroll(scrollByX*-1,scrollByY*-1);
+                break;
+        }
         return true;
 
     }
@@ -992,8 +1012,8 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
 
     @Override
     public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        scroll(distanceX, distanceY);
-        return false;
+       // scroll(distanceX, distanceY);
+       return false;
     }
 
     @Override
