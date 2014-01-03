@@ -23,8 +23,8 @@ public class SpreadsheetCell {
     private Drawable shape;
     private Drawable selectedShape;
 
-    float horizontalBorderWidth;
-    float verticalBorderWidth;
+    private float horizontalBorderWidth;
+    private float verticalBorderWidth;
 
     public SpreadsheetCell(SpreadsheetView table, Paint cellPaint, Paint textPaint, Paint borderPaint,
                            float horizontalBorderWidth, float verticalBorderWidth){
@@ -43,19 +43,18 @@ public class SpreadsheetCell {
 
     }
 
-    public SpreadsheetCell(SpreadsheetView table, Drawable shape, Drawable selectedShape,
-                           Paint textPaint, Paint borderPaint,
-                           float horizontalBorderWidth, float verticalBorderWidth){
+    public SpreadsheetCell(SpreadsheetView table, Drawable shape, Drawable selectedShape, Paint borderPaint,
+                           Paint textPaint, float horizontalBorderWidth, float verticalBorderWidth){
         this.table = table;
         this.shape = shape;
         this.selectedShape = selectedShape;
         this.textPaint = textPaint;
+        this.borderPaint = borderPaint;
         this.selectedTextPaint = new Paint(textPaint);
         this.textPaint.setTextAlign(Paint.Align.CENTER);
         this.selectedTextPaint.setTextAlign(Paint.Align.CENTER);
         this.horizontalBorderWidth = horizontalBorderWidth;
         this.verticalBorderWidth = verticalBorderWidth;
-        this.borderPaint = borderPaint;
         this.selectedBorderPaint = new Paint(borderPaint);
     }
 
@@ -72,11 +71,42 @@ public class SpreadsheetCell {
         textPaint = paint;
     }
 
+    public void setTypeface(Typeface typeface){
+        textPaint.setTypeface(typeface);
+    }
+    public Typeface getTypeface(){
+        return textPaint.getTypeface();
+    }
+    public void setSelectedTypeface(Typeface typeface){
+        selectedTextPaint.setTypeface(typeface);
+    }
+    public void setTextColor(int color){
+        textPaint.setColor(color);
+    }
+    public int getTextColor(){
+        return textPaint.getColor();
+    }
+
     public Paint getSelectedTextPaint(){
         return selectedTextPaint;
     }
 
     public void setSelectedTextPaint(Paint paint){ this.selectedTextPaint = paint;}
+
+    public void setSelectedTextColor(int color){
+        selectedTextPaint.setColor(color);
+    }
+    public int getSelectedTextColor(){
+        return selectedTextPaint.getColor();
+    }
+
+    public void setSelectedTextSize(float size){
+        selectedTextPaint.setTextSize(size);
+    }
+    public float getSelectedTextSize(){
+        return selectedTextPaint.getTextSize();
+    }
+
 
     public Paint getBorderPaint(){
         return borderPaint;
@@ -112,7 +142,7 @@ public class SpreadsheetCell {
 
     public Drawable getSelectedDrawable() { return this.selectedShape;}
 
-    public void setSelectedDrawable(Drawable drawable) { this.selectedShape = shape;}
+    public void setSelectedDrawable(Drawable drawable) { this.selectedShape = drawable;}
 
     public void setHorizontalBorderWidth(float width){
         this.horizontalBorderWidth = width;
@@ -137,6 +167,7 @@ public class SpreadsheetCell {
         drawnWidth = cellWidth;
         drawnHeight = cellHeight;
 
+        /*
         if (leftX+cellWidth > table.getStickyTableWidth()){
             drawnWidth = table.getStickyTableWidth() -leftX;
         }
@@ -146,28 +177,34 @@ public class SpreadsheetCell {
 
         }
 
+        */
+
         //draw the cell border
-        if (selected){
+        if (selected && selectedBorderPaint!=null){
             canvas.drawRect(leftX, topY, leftX+drawnWidth, topY+drawnHeight,  selectedBorderPaint);
-        } else{
+        } else if (borderPaint!=null){
             canvas.drawRect(leftX, topY, leftX+drawnWidth, topY+drawnHeight,  borderPaint);
         }
 
         //draw the cell itself
 
         insetCellHeight = cellHeight-verticalBorderWidth*2;
+        /*
         if (insetCellHeight + verticalBorderWidth > drawnHeight){
             insetCellHeight = drawnHeight - verticalBorderWidth;
         }
+        */
         if (insetCellHeight<0){
             insetCellHeight =0;
         }
 
 
         insetCellWidth = cellWidth - horizontalBorderWidth*2;
+        /*
         if (insetCellWidth + horizontalBorderWidth>drawnWidth){
             insetCellWidth = drawnWidth - horizontalBorderWidth;
         }
+        */
         if (insetCellWidth<0){
             insetCellWidth = 0;
         }

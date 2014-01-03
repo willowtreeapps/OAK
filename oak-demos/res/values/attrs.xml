@@ -56,4 +56,144 @@
             name="ratioHeight"
             format="integer"/>
     </declare-styleable>
+
+    <declare-styleable
+        name="oak.widget.spreadsheetview.SpreadsheetView">
+        <attr
+                name="dataCellDrawable"
+                format="reference"/>
+        <attr
+                name="stickyColumnCellDrawable"
+                format="reference"/>
+        <attr
+                name="stickyHeaderCellDrawable"
+                format="reference"/>
+        <attr
+                name="stickyFooterCellDrawable"
+                format="reference"/>
+        <attr
+                name="leftFooterCornerCellDrawable"
+                format="reference"/>
+        <attr
+                name="leftHeaderCornerCellDrawable"
+                format="reference"/>
+        <attr
+                name="dataCellSelectedDrawable"
+                format="reference"/>
+        <attr
+                name="stickyColumnCellSelectedDrawable"
+                format="reference"/>
+        <attr
+                name="stickyHeaderCellSelectedDrawable"
+                format="reference"/>
+        <attr
+                name="stickyFooterCellSelectedDrawable"
+                format="reference"/>
+        <attr
+                name="leftFooterCornerCellSelectedDrawable"
+                format="reference"/>
+        <attr
+                name="leftHeaderCornerCellSelectedDrawable"
+                format="reference"/>
+        <attr
+                name="dataCellTextColor"
+                format="color|integer"/>
+        <attr
+                name="dataCellSelectedTextColor"
+                format="color|integer"/>
+        <attr
+                name="stickyColumnCellTextColor"
+                format="color|integer"/>
+        <attr
+                name="stickyColumnCellSelectedTextColor"
+                format="color|integer"/>
+        <attr
+                name="stickyHeaderCellTextColor"
+                format="color|integer"/>
+        <attr
+                name="stickyHeaderCellSelectedTextColor"
+                format="color|integer"/>
+        <attr
+                name="stickyFooterCellTextColor"
+                format="color|integer"/>
+        <attr
+                name="stickyFooterCellSelectedTextColor"
+                format="color|integer"/>
+        <attr
+                name="leftFooterCornerCellTextColor"
+                format="color|integer"/>
+        <attr
+                name="leftFooterCellSelectedTextColor"
+                format="color|integer"/>
+        <attr
+                name="leftHeaderCornerCellTextColor"
+                format="color|integer"/>
+        <attr
+                name="leftHeaderCellSelectedTextColor"
+                format="color|integer"/>
+        <attr
+                name="cellTextSize"
+                format="integer"
+                />
+        <attr
+                name="cellTextColor"
+                format="color|integer"
+                />
+        <attr
+                name="cellSelectedTextColor"
+                format="color|integer"
+                />
+        <attr
+                name="showFooter"
+                format="boolean"
+                />
+        <attr
+                name="footerHeight"
+                format="integer"
+                />
+        <attr
+                name="headerHeight"
+                format="integer"
+                />
+        <attr
+                name="cellWidth"
+                format="integer"
+                />
+        <attr
+                name="cellHeight"
+                format="integer"
+                />
+        <attr
+                name="verticalDividingLineWidth"
+                format="integer"
+                />
+        <attr
+                name="horizontalDividingLineWidth"
+                format="integer"
+                />
+        <attr
+                name="verticalDividingLineColor"
+                format="color|integer"
+                />
+        <attr
+                name="horizontalDividingLineColor"
+                format="color|integer"
+                />
+
+        <attr
+                name="cellFont"
+                format="string"
+                />
+        <attr
+                name="stickyColumns"
+                format="integer"
+                />
+
+
+
+
+
+
+
+    </declare-styleable>
 </resources>

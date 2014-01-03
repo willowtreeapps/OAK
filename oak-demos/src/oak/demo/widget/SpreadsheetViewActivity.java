@@ -10,6 +10,8 @@ import oak.demo.R;
 import oak.widget.spreadsheetview.SpreadsheetRow;
 import oak.widget.spreadsheetview.SpreadsheetView;
 
+import java.util.Comparator;
+
 
 public class SpreadsheetViewActivity extends OakDemoActivity {
 
@@ -17,7 +19,6 @@ public class SpreadsheetViewActivity extends OakDemoActivity {
 
     final static int NUM_OBJECTS = 100;
     final static int NUM_VALUES = 100;
-    private boolean[] headerSelected;
 
     final static float FOOTER_HEIGHT = 75;
 
@@ -26,12 +27,9 @@ public class SpreadsheetViewActivity extends OakDemoActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sticky_spreadsheet_demo);
 
-        headerSelected = new boolean[NUM_VALUES];
         mSpreadsheetView = (SpreadsheetView) findViewById(R.id.spreadsheet_table);
 
-        //createData();
         setup();
-        mSpreadsheetView.setNumberStickyColumns(1);
 
         Button incStickyButton = (Button) findViewById(R.id.spreadsheet_inc_sticky);
         incStickyButton.setText("+");
@@ -78,7 +76,7 @@ public class SpreadsheetViewActivity extends OakDemoActivity {
             String[] values = new String[NUM_VALUES];
             values[0] = "object " + (i + 1);
             for (int j = 1; j < NUM_VALUES; j++) {
-                values[j] = "value " + j;
+                values[j] = ""+NUM_VALUES*i + j;
             }
             objects[i] = new SpreadsheetRow(values);
         }
@@ -90,19 +88,73 @@ public class SpreadsheetViewActivity extends OakDemoActivity {
         footers[0] = "";
 
         for (int j = 1; j < NUM_VALUES; j++) {
-            headers[j] = "header " + j;
+            headers[j] = "value " + j;
             footers[j] = "footer " + j;
         }
 
         mSpreadsheetView.setData(objects, headers);
-        mSpreadsheetView.setFooters(footers);
+        mSpreadsheetView.setFooters(footers,FOOTER_HEIGHT);
 
         mSpreadsheetView.setOnHeaderClickListener(new SpreadsheetView.OnHeaderClickListener() {
             @Override
-            public void headerClick(int valueIndex) {
+            public void headerClick(final int valueIndex) {
 
-                mSpreadsheetView.selectColumn(valueIndex, !headerSelected[valueIndex]);
-                headerSelected[valueIndex] = !headerSelected[valueIndex];
+                //mSpreadsheetView.selectColumn(valueIndex, !mSpreadsheetView.isHeaderSelected(valueIndex));
+
+                if (mSpreadsheetView.getSortedStatus(valueIndex)==SpreadsheetView.SORTED_DESCENDING){
+
+                    mSpreadsheetView.sortDataAscBy(valueIndex, new Comparator<SpreadsheetRow>(){
+                        @Override
+                        public int compare(SpreadsheetRow a, SpreadsheetRow b) {
+
+                            boolean aIsNum = true;
+                            boolean bIsNum = true;
+
+                            Integer numberValueA = 0;
+                            Integer numberValueB = 0;
+                            try {
+                                numberValueA = Integer.parseInt(a.getValueAt(valueIndex));
+                            } catch(NumberFormatException e) {
+                                aIsNum = false;
+                            }
+                            try {
+                                numberValueB = Integer.parseInt(b.getValueAt(valueIndex));
+                            } catch(NumberFormatException e) {
+                                bIsNum = false;
+                        }
+                            if (!bIsNum && !aIsNum){
+                                return a.getValueAt(valueIndex).compareTo(b.getValueAt(valueIndex));
+                            }
+                            return numberValueA.compareTo(numberValueB);
+                        }
+                    });
+                } else {
+                    mSpreadsheetView.sortDataDescBy(valueIndex, new Comparator<SpreadsheetRow>() {
+                        @Override
+                        public int compare(SpreadsheetRow a, SpreadsheetRow b) {
+
+                            boolean aIsNum = true;
+                            boolean bIsNum = true;
+
+                            Integer numberValueA = 0;
+                            Integer numberValueB = 0;
+                            try {
+                                numberValueA = Integer.parseInt(a.getValueAt(valueIndex));
+                            } catch (NumberFormatException e) {
+                                aIsNum = false;
+                            }
+                            try {
+                                numberValueB = Integer.parseInt(b.getValueAt(valueIndex));
+                            } catch (NumberFormatException e) {
+                                bIsNum = false;
+                            }
+                            if (!bIsNum && !aIsNum) {
+                                return -1 * a.getValueAt(valueIndex).compareTo(b.getValueAt(valueIndex));
+                            }
+                            return -1 * numberValueA.compareTo(numberValueB);
+                        }
+                    });
+                }
 
                 if (valueIndex < mSpreadsheetView.getNumberStickyColumns()) {
                     Toast.makeText(mSpreadsheetView.getContext(),
@@ -134,11 +186,11 @@ public class SpreadsheetViewActivity extends OakDemoActivity {
 
         mSpreadsheetView.setOnCellClickListener(new SpreadsheetView.OnCellClickListener() {
             @Override
-            public void cellClick(int objectIndex, int valueIndex) {
-
+            public void cellClick(int objectIndex, int valueIndex){
                 if (valueIndex<mSpreadsheetView.getNumberStickyColumns()){
                     mSpreadsheetView.selectRow(objectIndex, !mSpreadsheetView.isSelected(objectIndex, valueIndex));
                 }
+
 
                 if (valueIndex < mSpreadsheetView.getNumberStickyColumns()) {
                     Toast.makeText(mSpreadsheetView.getContext(),
@@ -153,6 +205,7 @@ public class SpreadsheetViewActivity extends OakDemoActivity {
                             .show();
                 }
             }
+
         });
     }
 }

@@ -4,11 +4,14 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Scroller;
+import oak.OAK;
+import oak.util.OakUtils;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -46,7 +49,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
 
     private final float DEFAULT_CELL_WIDTH = 150;
     private final float DEFAULT_CELL_HEIGHT = 150;
-    private final float DEFAULT_STICKY_FOOTER_HEIGHT = 100;
+    private final float DEFAULT_STICKY_FOOTER_HEIGHT = 0;
     private final float DEFAULT_STICKY_HEADER_HEIGHT= 100;
     private final float DEFAULT_STICKY_COLUMN_WIDTH =150;
     private final float DEFAULT_HORIZONTAL_BORDER_WIDTH = 2;
@@ -66,14 +69,17 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
 
     protected SpreadsheetRow[] objectData;
     protected String[] headers;
+    private boolean[] headerSelected;
+    private boolean[] footerSelected;
     protected int[] sorted;
-    private final static int SORTED_UNSORTED = 0;
-    protected final static int SORTED_ASCENDING = 1;
-    protected final static int SORTED_DESCENDING = 2;
+    public final static int SORTED_UNSORTED = 0;
+    public final static int SORTED_ASCENDING = 1;
+    public final static int SORTED_DESCENDING = 2;
     protected String[] footers;
 
     private float[] stickyColumnWidths;
     private int numberStickyColumns;
+    private int targetNumberStickyColumns;
 
     private Paint vertDividingPaint;
     private Paint horzDividingPaint;
@@ -103,6 +109,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         init(context);
         defaultCells();
         defaultDimensions();
+        parseAttributes(attrs);
     }
 
     public SpreadsheetView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -110,6 +117,241 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         init(context);
         defaultCells();
         defaultDimensions();
+        parseAttributes(attrs);
+
+    }
+
+    private void parseAttributes(AttributeSet attrs){
+        if (attrs!=null){
+            int dataCellDrawable = attrs.getAttributeResourceValue(OAK.XMLNS,"dataCellDrawable",0);
+            if (dataCellDrawable!=0){
+                dataCell.setDrawable(getContext().getResources().getDrawable(dataCellDrawable));
+            }
+            int dataCellSelectedDrawable = attrs.getAttributeResourceValue(OAK.XMLNS,"dataCellSelectedDrawable",0);
+            if (dataCellSelectedDrawable!=0){
+                dataCell.setSelectedDrawable(getContext().getResources().getDrawable(dataCellSelectedDrawable));
+            }
+
+            int stickyColumnCellDrawable = attrs.getAttributeResourceValue(OAK.XMLNS,"stickyColumnCellDrawable",0);
+            if (stickyColumnCellDrawable!=0){
+                stickyColumnCell.setDrawable(getContext().getResources().getDrawable(stickyColumnCellDrawable));
+            }
+            int stickyColumnCellSelectedDrawable =
+                    attrs.getAttributeResourceValue(OAK.XMLNS,"stickyColumnCellSelectedDrawable",0);
+            if (stickyColumnCellSelectedDrawable!=0){
+                stickyColumnCell.setSelectedDrawable(getContext().getResources().getDrawable(stickyColumnCellSelectedDrawable));
+            }
+
+            int stickyHeaderCellDrawable = attrs.getAttributeResourceValue(OAK.XMLNS,"stickyHeaderCellDrawable",0);
+            if (stickyHeaderCellDrawable!=0){
+                stickyHeaderCell.setDrawable(getContext().getResources().getDrawable(stickyHeaderCellDrawable));
+               leftHeadCornerCell.setDrawable(getContext().getResources().getDrawable(stickyHeaderCellDrawable));
+
+            }
+            int stickyHeaderCellSelectedDrawable =
+                    attrs.getAttributeResourceValue(OAK.XMLNS,"stickyHeaderCellSelectedDrawable",0);
+            if (stickyHeaderCellSelectedDrawable!=0){
+                stickyHeaderCell.setSelectedDrawable(getContext().getResources().getDrawable(stickyHeaderCellSelectedDrawable));
+                leftHeadCornerCell.setSelectedDrawable(getContext().getResources().getDrawable(stickyHeaderCellSelectedDrawable));
+
+            }
+
+            int stickyFooterCellDrawable = attrs.getAttributeResourceValue(OAK.XMLNS,"stickyFooterCellDrawable",0);
+            if (stickyFooterCellDrawable!=0){
+                stickyFooterCell.setDrawable(getContext().getResources().getDrawable(stickyFooterCellDrawable));
+                leftFootCornerCell.setDrawable(getContext().getResources().getDrawable(stickyFooterCellDrawable));
+
+            }
+            int stickyFooterCellSelectedDrawable =
+                    attrs.getAttributeResourceValue(OAK.XMLNS,"stickyFooterCellSelectedDrawable",0);
+            if (stickyFooterCellSelectedDrawable!=0){
+                stickyFooterCell.setSelectedDrawable(getContext().getResources().getDrawable(stickyFooterCellSelectedDrawable));
+                leftFootCornerCell.setSelectedDrawable(getContext().getResources().getDrawable(stickyFooterCellSelectedDrawable));
+            }
+
+            int leftHeaderCornerCellDrawable =
+                    attrs.getAttributeResourceValue(OAK.XMLNS,"leftHeaderCornerCellDrawable",0);
+            if (leftHeaderCornerCellDrawable!=0){
+                leftHeadCornerCell.setDrawable(getContext().getResources().getDrawable(leftHeaderCornerCellDrawable));
+            }
+            int leftHeaderCornerCellSelectedDrawable =
+                    attrs.getAttributeResourceValue(OAK.XMLNS,"leftHeaderCornerCellSelectedDrawable",0);
+            if (leftHeaderCornerCellSelectedDrawable!=0){
+                leftHeadCornerCell.setSelectedDrawable(getContext().getResources().getDrawable(leftHeaderCornerCellSelectedDrawable));
+            }
+
+            int leftFooterCornerCellDrawable = attrs.getAttributeResourceValue(OAK.XMLNS,"leftFooterCornerCellDrawable",0);
+            if (leftFooterCornerCellDrawable!=0){
+                leftFootCornerCell.setDrawable(getContext().getResources().getDrawable(leftFooterCornerCellDrawable));
+            }
+            int leftFooterCornerCellSelectedDrawable =
+                    attrs.getAttributeResourceValue(OAK.XMLNS,"leftFooterCornerCellSelectedDrawable",0);
+            if (leftFooterCornerCellSelectedDrawable!=0){
+                leftFootCornerCell.setSelectedDrawable(getContext().getResources().getDrawable(leftFooterCornerCellSelectedDrawable));
+            }
+
+            int allTextColor = attrs.getAttributeIntValue(OAK.XMLNS,"cellTextColor",-1);
+            if (allTextColor!=-1){
+                setAllCellsTextColor(allTextColor);
+            }
+
+            int allTextColorRes = attrs.getAttributeResourceValue(OAK.XMLNS,"cellTextColor",-1);
+            if(allTextColorRes!=-1){
+                setAllCellsTextColor(getContext().getResources().getColor(allTextColorRes));
+            }
+
+            int allTextSelectedColor = attrs.getAttributeIntValue(OAK.XMLNS,"cellSelectedTextColor",-1);
+            if (allTextSelectedColor!=-1){
+                setAllCellsSelectedTextColor(allTextSelectedColor);
+            }
+
+            int allTextSelectedColorRes = attrs.getAttributeResourceValue(OAK.XMLNS, "cellSelectedTextColor", -1);
+            if (allTextSelectedColorRes!=-1){
+                setAllCellsSelectedTextColor(getContext().getResources().getColor(allTextSelectedColorRes));
+            }
+
+            int dataCellTextColor = attrs.getAttributeIntValue(OAK.XMLNS,"dataCellTextColor",-1);
+            if (dataCellTextColor!=-1){
+                dataCell.setTextColor(dataCellTextColor);
+            }
+            int dataCellTextColorRes = attrs.getAttributeResourceValue(OAK.XMLNS,"dataCellTextColor",-1);
+            if (dataCellTextColorRes!=-1){
+                dataCell.setTextColor(getContext().getResources().getColor(dataCellTextColorRes));
+            }
+            int dataCellSelectedTextColor = attrs.getAttributeIntValue(OAK.XMLNS,"dataCellSelectedTextColor",-1);
+            if (dataCellSelectedTextColor!=-1){
+                dataCell.setSelectedTextColor(dataCellSelectedTextColor);
+            }
+            int dataCellSelectedTextColorRes = attrs.getAttributeResourceValue(OAK.XMLNS,"dataCellSelectedTextColor",-1);
+            if (dataCellSelectedTextColorRes!=-1){
+                dataCell.setSelectedTextColor(getContext().getResources().getColor(dataCellSelectedTextColorRes));
+            }
+
+            int stickyColumnCellTextColor = attrs.getAttributeIntValue(OAK.XMLNS,"stickyColumnCellTextColor",-1);
+            if (stickyColumnCellTextColor!=-1){
+                stickyColumnCell.setTextColor(stickyColumnCellTextColor);
+            }
+            int stickyColumnCellTextColorRes = attrs.getAttributeResourceValue(OAK.XMLNS,"stickyColumnCellTextColor",-1);
+            if (stickyColumnCellTextColorRes!=-1){
+                stickyColumnCell.setTextColor(getContext().getResources().getColor(stickyColumnCellTextColorRes));
+            }
+            int stickyColumnCellSelectedTextColor = attrs.getAttributeIntValue(OAK.XMLNS,"stickyColumnCellSelectedTextColor",-1);
+            if (stickyColumnCellSelectedTextColor!=-1){
+                stickyColumnCell.setSelectedTextColor(stickyColumnCellSelectedTextColor);
+            }
+            int stickyColumnCellSelectedTextColorRes = attrs.getAttributeResourceValue(OAK.XMLNS,"stickyColumnCellSelectedTextColor",-1);
+            if (stickyColumnCellSelectedTextColorRes!=-1){
+                stickyColumnCell.setSelectedTextColor(getContext().getResources().getColor(stickyColumnCellSelectedTextColorRes));
+            }
+
+            int stickyHeaderCellTextColor = attrs.getAttributeIntValue(OAK.XMLNS,"stickyHeaderCellTextColor",-1);
+            if (stickyHeaderCellTextColor!=-1){
+                stickyHeaderCell.setTextColor(stickyHeaderCellTextColor);
+                leftHeadCornerCell.setTextColor(stickyHeaderCellTextColor);
+
+            }
+            int stickyHeaderCellTextColorRes = attrs.getAttributeResourceValue(OAK.XMLNS,"stickyHeaderCellTextColor",-1);
+            if (stickyHeaderCellTextColorRes!=-1){
+                stickyHeaderCell.setTextColor(getContext().getResources().getColor(stickyHeaderCellTextColorRes));
+                leftHeadCornerCell.setTextColor(getContext().getResources().getColor(stickyHeaderCellTextColorRes));
+
+            }
+            int stickyHeaderCellSelectedTextColor = attrs.getAttributeIntValue(OAK.XMLNS,"stickyHeaderCellSelectedTextColor",-1);
+            if (stickyHeaderCellSelectedTextColor!=-1){
+                stickyHeaderCell.setSelectedTextColor(stickyHeaderCellSelectedTextColor);
+                leftHeadCornerCell.setSelectedTextColor(stickyHeaderCellSelectedTextColor);
+
+            }
+            int stickyHeaderCellSelectedTextColorRes = attrs.getAttributeResourceValue(OAK.XMLNS,"stickyHeaderCellSelectedTextColor",-1);
+            if (stickyHeaderCellSelectedTextColorRes!=-1){
+                stickyHeaderCell.setSelectedTextColor(getContext().getResources().getColor(stickyHeaderCellSelectedTextColorRes));
+                leftHeadCornerCell.setSelectedTextColor(getContext().getResources().getColor(stickyHeaderCellSelectedTextColorRes));
+
+            }
+
+            int stickyFooterCellTextColor = attrs.getAttributeIntValue(OAK.XMLNS,"stickyFooterCellTextColor",-1);
+            if (stickyFooterCellTextColor!=-1){
+                stickyFooterCell.setTextColor(stickyFooterCellTextColor);
+                leftFootCornerCell.setTextColor(stickyFooterCellTextColor);
+            }
+            int stickyFooterCellTextColorRes = attrs.getAttributeResourceValue(OAK.XMLNS,"stickyFooterCellTextColor",-1);
+            if (stickyFooterCellTextColorRes!=-1){
+                stickyFooterCell.setTextColor(getContext().getResources().getColor(stickyFooterCellTextColorRes));
+                leftFootCornerCell.setTextColor(stickyFooterCellTextColor);
+            }
+            int stickyFooterCellSelectedTextColor = attrs.getAttributeIntValue(OAK.XMLNS,"stickyFooterCellSelectedTextColor",-1);
+            if (stickyFooterCellSelectedTextColor!=-1){
+                stickyFooterCell.setSelectedTextColor(stickyFooterCellSelectedTextColor);
+                leftFootCornerCell.setSelectedTextColor(stickyFooterCellSelectedTextColor);
+            }
+            int stickyFooterCellSelectedTextColorRes = attrs.getAttributeResourceValue(OAK.XMLNS,"stickyFooterCellSelectedTextColor",-1);
+            if (stickyFooterCellSelectedTextColorRes!=-1){
+                stickyFooterCell.setSelectedTextColor(getContext().getResources().getColor(stickyFooterCellSelectedTextColorRes));
+                leftFootCornerCell.setSelectedTextColor(getContext().getResources().getColor(stickyFooterCellSelectedTextColorRes));
+            }
+
+            int allTextSize = attrs.getAttributeIntValue(OAK.XMLNS,"cellTextSize",-1);
+            if (allTextSize!=-1){
+                setAllCellsTextSize(allTextSize);
+            }
+
+            String fontName = attrs.getAttributeValue(OAK.XMLNS, "cellFont");
+            if (fontName != null) {
+                setAllCellsTypeface(OakUtils.getStaticTypeFace(getContext(), fontName));
+            }
+
+            int verticalDividingLineWidth = attrs.getAttributeIntValue(OAK.XMLNS,"verticalDividingLineWidth",-1);
+            if (verticalDividingLineWidth!=-1){
+                getVerticalDividingPaint().setStrokeWidth(verticalDividingLineWidth);
+            }
+
+            int verticalDividingLineColor = attrs.getAttributeIntValue(OAK.XMLNS, "verticalDividingLineColor", -1);
+            if (verticalDividingLineColor!=-1){
+                getVerticalDividingPaint().setColor(verticalDividingLineColor);
+            }
+
+            int horizontalDividingLineWidth = attrs.getAttributeIntValue(OAK.XMLNS,"horizontalDividingLineWidth",-1);
+            if (horizontalDividingLineWidth!=-1){
+                getHorizontalDividingPaint().setStrokeWidth(horizontalDividingLineWidth);
+            }
+            int horizontalDividingLineColor = attrs.getAttributeIntValue(OAK.XMLNS,"horizontalDividingLineColor",-1);
+            if (horizontalDividingLineColor!=-1){
+                getHorizontalDividingPaint().setColor(horizontalDividingLineColor);
+            }
+
+
+            boolean showFooter = attrs.getAttributeBooleanValue(OAK.XMLNS, "showFooter", true);
+            int footerHeight = attrs.getAttributeIntValue(OAK.XMLNS, "footerHeight", -1);
+            if (showFooter==false){
+                setStickyFooterHeight(0);
+            } else if (footerHeight!=-1){
+                setStickyFooterHeight(footerHeight);
+           }
+
+            int headerHeight = attrs.getAttributeIntValue(OAK.XMLNS,"headerHeight",-1);
+            if (headerHeight!=-1){
+                setStickyHeaderHeight(headerHeight);
+            }
+
+
+            float dataCellWidth = attrs.getAttributeIntValue(OAK.XMLNS,"cellWidth",-1);
+            if (dataCellWidth==-1){
+                dataCellWidth = DEFAULT_CELL_WIDTH;
+            }
+
+            float dataCellHeight = attrs.getAttributeIntValue(OAK.XMLNS,"cellHeight",-1);
+            if (dataCellHeight==-1){
+                dataCellHeight = DEFAULT_CELL_HEIGHT;
+            }
+
+            setDataCellDimensions(dataCellWidth,dataCellHeight);
+
+            int numStickyCol = attrs.getAttributeIntValue(OAK.XMLNS,"stickyColumns",-1);
+            if (numStickyCol!=-1){
+                setNumberStickyColumns(numStickyCol);
+            }
+
+        }
     }
 
     private void defaultCells(){
@@ -140,6 +382,10 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         borderPaint.setStyle(Paint.Style.FILL);
         vertDividingPaint = new Paint(borderPaint);
         horzDividingPaint = new Paint(borderPaint);
+        vertDividingPaint.setStyle(Paint.Style.STROKE);
+        vertDividingPaint.setStrokeWidth(DEFAULT_HORIZONTAL_BORDER_WIDTH * 2);
+        horzDividingPaint.setStyle(Paint.Style.STROKE);
+        horzDividingPaint.setStrokeWidth(DEFAULT_HORIZONTAL_BORDER_WIDTH * 2);
         Paint cellPaint = new Paint();
         cellPaint.setColor(Color.LTGRAY);
         cellPaint.setStyle(Paint.Style.FILL);
@@ -189,6 +435,8 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         setNumberStickyColumns(1);
         headers = new String[1];
         headers[0] = "EMPTY";
+        headerSelected = new boolean[1];
+        footerSelected = new boolean[1];
         footers = new String[1];
         footers[0] = "EMPTY";
         dataSizeValues =1;
@@ -199,12 +447,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         setDataCellDimensions(DEFAULT_CELL_WIDTH, DEFAULT_CELL_HEIGHT);
         setStickyHeaderHeight(DEFAULT_STICKY_HEADER_HEIGHT);
         setStickyFooterHeight(DEFAULT_STICKY_FOOTER_HEIGHT);
-        setStickyFooterTextSize(DEFAULT_TEXT_SIZE);
-        setStickyHeaderTextSize(DEFAULT_TEXT_SIZE);
-        setStickyColumnTextSize(DEFAULT_TEXT_SIZE);
-        setDataCellTextSize(DEFAULT_TEXT_SIZE);
-        getLeftHeadCornerCell().getTextPaint().setTextSize(DEFAULT_TEXT_SIZE);
-        getLeftFootCornerCell().getTextPaint().setTextSize(DEFAULT_TEXT_SIZE);
+        setAllCellsTextSize(DEFAULT_TEXT_SIZE);
 
     }
 
@@ -313,12 +556,20 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     }
 
 
-    public void sortDataAscBy(final int headerIndex, Comparator<SpreadsheetRow> comparator){
+    public void sortDataAscBy(final int valueIndex, Comparator<SpreadsheetRow> comparator){
         Arrays.sort(objectData, comparator);
+        for (int i = 0; i < dataSizeValues;i++){
+            sorted[i] = SORTED_UNSORTED;
+        }
+        sorted[valueIndex]=SORTED_ASCENDING;
     }
 
-    public void sortDataDescBy(final int headerIndex, Comparator<SpreadsheetRow> comparator){
+    public void sortDataDescBy(final int valueIndex, Comparator<SpreadsheetRow> comparator){
         Arrays.sort(objectData,comparator);
+        for (int i = 0; i < dataSizeValues;i++){
+            sorted[i] = SORTED_UNSORTED;
+        }
+        sorted[valueIndex]=SORTED_DESCENDING;
     }
 
 
@@ -328,18 +579,18 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         this.headers = headers;
         this.footers = new String[headers.length];
         this.sorted = new int[headers.length];
+        this.headerSelected = new boolean[headers.length];
+        this.footerSelected = new boolean[headers.length];
         if (headers.length > stickyColumnWidths.length){
             float[] tempArray = new float[headers.length];
             for (int i = 0; i < headers.length; i++){
                 if (i < stickyColumnWidths.length){
                     tempArray[i] = stickyColumnWidths[i];
                 } else{
-                    tempArray[i] = DEFAULT_STICKY_COLUMN_WIDTH;
+                    tempArray[i] = dataCellWidth;
                 }
             }
             stickyColumnWidths = tempArray;
-            calculateStickyColumnWidth();
-            adjustTable();
             dataSet = true;
         }
 
@@ -352,8 +603,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
             sorted[i] = SORTED_UNSORTED;
         }
 
-        calculateStickyColumnWidth();
-        adjustTable();
+        setNumberStickyColumns(targetNumberStickyColumns);
     }
 
     private int getValueDataCellIndex(float x){
@@ -454,10 +704,25 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         for (int i = 0; i < dataSizeObjects; i++){
             objectData[i].select(valueIndex, select);
         }
+        selectHeader(valueIndex,select);
+        selectFooter(valueIndex,select);
     }
 
     public void select(int objectIndex, int valueIndex, boolean select){
         objectData[objectIndex].select(valueIndex,select);
+    }
+
+    public void selectFooter(int valueIndex, boolean select){
+        footerSelected[valueIndex]=select;
+    }
+    public void selectHeader(int valueIndex, boolean select){
+        headerSelected[valueIndex]=select;
+    }
+    public boolean isFooterSelected(int valueIndex){
+        return footerSelected[valueIndex];
+    }
+    public boolean isHeaderSelected(int valueIndex){
+        return headerSelected[valueIndex];
     }
 
     public boolean isSelected(int objectIndex, int valueIndex){
@@ -483,6 +748,8 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         drawCornerCells(canvas);
         canvas.drawLine(stickyColumnWidth,0f,stickyColumnWidth,stickyTableHeight, vertDividingPaint);
         canvas.drawLine(0f,stickyHeaderHeight,stickyTableWidth,stickyHeaderHeight,horzDividingPaint);
+        canvas.drawLine(0f,stickyTableHeight-stickyFooterHeight,stickyTableWidth,stickyTableHeight-stickyFooterHeight,
+                horzDividingPaint);
 
 
 
@@ -499,7 +766,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
 
                 if (leftHeadCornerCell!=null && stickyHeaderHeight>0f &&stickyColumnWidths[i]>0f){
                     leftHeadCornerCell.draw(canvas,headers[i],leftX,topY,stickyColumnWidths[i],
-                            stickyHeaderHeight, false);
+                            stickyHeaderHeight, isHeaderSelected(i));
                 }
                 leftX +=stickyColumnWidths[i];
             }
@@ -513,7 +780,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
             for (int i = 0; i <numberStickyColumns; i++){
                 if (leftFootCornerCell!=null && stickyFooterHeight>0f &&stickyColumnWidths[i]>0f){
                     leftFootCornerCell.draw(canvas,footers[i],leftX,topY,stickyColumnWidths[i],
-                            stickyFooterHeight, false);
+                            stickyFooterHeight, isFooterSelected(i));
                 }
                 leftX +=stickyColumnWidths[i];
             }
@@ -596,7 +863,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
 
             if (leftX<stickyColumnWidth+activeDataWindowWidth){
                 stickyHeaderCell.draw(canvas,headers[startIndex+i], leftX, topY, dataCellWidth,
-                        stickyHeaderHeight, false);
+                        stickyHeaderHeight, isHeaderSelected(startIndex+i));
             }
         }
     }
@@ -635,7 +902,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
 
             if (leftX<stickyColumnWidth+activeDataWindowWidth){
                 stickyFooterCell.draw(canvas, ""+footers[startIndex+i], leftX,topY,
-                        dataCellWidth,stickyFooterHeight, false);
+                        dataCellWidth,stickyFooterHeight, isFooterSelected(startIndex+i));
             }
         }
     }
@@ -706,7 +973,6 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
 
     @Override
     public boolean onDown(MotionEvent e) {
-        // Log.d(ScrollActivity.DEBUG,"Gesture DOWN");
         if (!scroller.isFinished()){
             scroller.forceFinished(true);
         }
@@ -715,7 +981,6 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
 
     @Override
     public void onShowPress(MotionEvent e) {
-        // Log.d(ScrollActivity.DEBUG,"Gesture SHOWPRESS");
 
     }
 
@@ -795,6 +1060,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
 
 
     public void setNumberStickyColumns(int number){
+        targetNumberStickyColumns=number;
         if (number>dataSizeValues){
             number = dataSizeValues;
         }
@@ -867,6 +1133,12 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     }
 
 
+    public void hideStickyFooter(){
+        setStickyFooterHeight(0);
+    }
+    public void showStickyFooter(float height){
+        setStickyFooterHeight(height);
+    }
     public void setStickyFooterHeight(float height){
         this.stickyFooterHeight = height;
         adjustTable();
@@ -900,8 +1172,9 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         updateFooter(headerIndex);
     }
 
-    public void setFooters(String[] footers){
+    public void setFooters(String[] footers, float height){
         this.footers = footers;
+        setStickyFooterHeight(height);
     }
 
 
@@ -937,11 +1210,73 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         return headers[valueIndex];
     }
 
+    public void setAllCellsTextSize(float textSize){
+        stickyColumnCell.setTextSize(textSize);
+        stickyHeaderCell.setTextSize(textSize);
+        stickyFooterCell.setTextSize(textSize);
+        dataCell.setTextSize(textSize);
+        leftHeadCornerCell.setTextSize(textSize);
+        leftFootCornerCell.setTextSize(textSize);
+
+        stickyColumnCell.setSelectedTextSize(textSize);
+        stickyHeaderCell.setSelectedTextSize(textSize);
+        stickyFooterCell.setSelectedTextSize(textSize);
+        dataCell.setSelectedTextSize(textSize);
+        leftHeadCornerCell.setSelectedTextSize(textSize);
+        leftFootCornerCell.setSelectedTextSize(textSize);
+    }
+
+    public void setAllCellsTextColor(int color){
+        stickyColumnCell.setTextColor(color);
+        stickyHeaderCell.setTextColor(color);
+        stickyFooterCell.setTextColor(color);
+        dataCell.setTextColor(color);
+        leftHeadCornerCell.setTextColor(color);
+        leftFootCornerCell.setTextColor(color);
+
+    }
+
+    public void setAllCellsSelectedTextColor(int color){
+        stickyColumnCell.setSelectedTextColor(color);
+        stickyHeaderCell.setSelectedTextColor(color);
+        stickyFooterCell.setSelectedTextColor(color);
+        dataCell.setSelectedTextColor(color);
+        leftHeadCornerCell.setSelectedTextColor(color);
+        leftFootCornerCell.setSelectedTextColor(color);
+
+    }
+
+    public void setAllCellsTypeface(Typeface typeface){
+        stickyColumnCell.setTypeface(typeface);
+        stickyHeaderCell.setTypeface(typeface);
+        stickyFooterCell.setTypeface(typeface);
+        dataCell.setTypeface(typeface);
+        leftHeadCornerCell.setTypeface(typeface);
+        leftFootCornerCell.setTypeface(typeface);
+        stickyColumnCell.setSelectedTypeface(typeface);
+        stickyHeaderCell.setSelectedTypeface(typeface);
+        stickyFooterCell.setSelectedTypeface(typeface);
+        dataCell.setSelectedTypeface(typeface);
+        leftHeadCornerCell.setSelectedTypeface(typeface);
+        leftFootCornerCell.setSelectedTypeface(typeface);
+    }
     public void setLeftFootCornerCell(SpreadsheetCell cell){
         this.leftFootCornerCell = cell;
     }
     public SpreadsheetCell getLeftFootCornerCell(){
         return leftFootCornerCell;
+    }
+    public void setLeftFootCornerCellTypeface(Typeface typeface){
+        leftFootCornerCell.setTypeface(typeface);
+    }
+    public Typeface getLeftFootCornerCellTypeface(){
+        return leftFootCornerCell.getTypeface();
+    }
+    public void setLeftFootCornerCellTextColor(int color){
+        leftFootCornerCell.setTextColor(color);
+    }
+    public int getLeftFootCornerCellTextColor(){
+        return leftFootCornerCell.getTextColor();
     }
 
     public void setLeftHeadCornerCell(SpreadsheetCell cell){
@@ -950,12 +1285,36 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     public SpreadsheetCell getLeftHeadCornerCell(){
         return leftHeadCornerCell;
     }
+    public void setLeftHeadCornerCellTypeface(Typeface typeface){
+        leftHeadCornerCell.setTypeface(typeface);
+    }
+    public Typeface getLeftHeadCornerCellTypeface(){
+        return leftHeadCornerCell.getTypeface();
+    }
+    public void setLeftHeadCornerCellTextColor(int color){
+        leftHeadCornerCell.setTextColor(color);
+    }
+    public int getLeftHeadCornerCellTextColor(){
+        return leftHeadCornerCell.getTextColor();
+    }
 
     public void setDataCell(SpreadsheetCell cell){
         this.dataCell = cell;
     }
     public SpreadsheetCell getDataCell(){
         return dataCell;
+    }
+    public void setDataCellTypeface(Typeface typeface){
+        dataCell.setTypeface(typeface);
+    }
+    public Typeface getDataCellTypeface(){
+        return dataCell.getTypeface();
+    }
+    public void setDataCellTextColor(int color){
+        dataCell.setTextColor(color);
+    }
+    public int getDataCellTextColor(){
+        return dataCell.getTextColor();
     }
 
     public void setStickyColumnCell(SpreadsheetCell cell){
@@ -964,6 +1323,18 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     public SpreadsheetCell getStickyColumnCell(){
         return stickyColumnCell;
     }
+    public void setStickyColumnCellTypeface(Typeface typeface){
+        stickyColumnCell.setTypeface(typeface);
+    }
+    public Typeface getStickyColumnCellTypeface(){
+        return stickyColumnCell.getTypeface();
+    }
+    public void setStickyColumnCellTextColor(int color){
+        stickyColumnCell.setTextColor(color);
+    }
+    public int getStickyColumnCellTextColor(){
+        return stickyColumnCell.getTextColor();
+    }
 
     public void setStickyHeaderCell(SpreadsheetCell cell){
         this.stickyHeaderCell = cell;
@@ -971,12 +1342,34 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     public SpreadsheetCell getStickyHeaderCell(){
         return stickyHeaderCell;
     }
+    public void setStickyHeaderCellTypeface(Typeface typeface){
+        stickyHeaderCell.setTypeface(typeface);
+    }
+    public Typeface getStickyHeaderCellTypeface(){
+        return stickyHeaderCell.getTypeface();
+    }
+    public void setStickyHeaderCellTextColor(int color){
+        stickyHeaderCell.setTextColor(color);
+    }
+    public int getStickyHeaderCellTextColor(){
+        return stickyHeaderCell.getTextColor();
+    }
+
 
     public void setStickyFooterCell(SpreadsheetCell cell){
         this.stickyFooterCell = cell;
     }
     public SpreadsheetCell getStickyFooterCell(){
         return stickyFooterCell;
+    }
+    public void setStickyFooterCellTypeface(Typeface typeface){
+        stickyFooterCell.setTypeface(typeface);
+    }
+    public void setStickyFooterCellTextColor(int color){
+        stickyFooterCell.setTextColor(color);
+    }
+    public int getStickyFooterCellTextColor(){
+        return stickyFooterCell.getTextColor();
     }
 
     public void setHorizontalDividingPaint(Paint paint){
@@ -993,6 +1386,10 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
 
     public Paint getVerticalDividingPaint(){
         return vertDividingPaint;
+    }
+
+    public int getSortedStatus(int valueIndex){
+        return sorted[valueIndex];
     }
 
 }

@@ -5,4 +5,10 @@
     <color name="gray">#ff333333</color>
     <color name="outer_shadow">#ff0088ff</color>
     <color name="stroke_color">#ffff0000</color>
+    <color name="blue">#ff0000ff</color>
+    <color name="red">#ffff0000</color>
+    <color name="purple">#ffff00ff</color>
+    <color name="green">#ff00ff00</color>
+    <color name="yellow">#ffffff00</color>
+
 </resources>
