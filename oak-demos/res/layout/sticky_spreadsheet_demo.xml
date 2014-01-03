@@ -33,6 +33,8 @@
             oak:stickyColumns="1"
             oak:cellFont="LiberationMono-Regular.ttf"
             oak:cellTextSize="24"
+            oak:cellHorizontalBorderWidth="2"
+            oak:cellVerticalBorderWidth="2"
             />
 
 

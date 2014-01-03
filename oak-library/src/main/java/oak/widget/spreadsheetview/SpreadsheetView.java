@@ -52,7 +52,8 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     private final float DEFAULT_STICKY_FOOTER_HEIGHT = 0;
     private final float DEFAULT_STICKY_HEADER_HEIGHT= 100;
     private final float DEFAULT_STICKY_COLUMN_WIDTH =150;
-    private final float DEFAULT_HORIZONTAL_BORDER_WIDTH = 2;
+    private final float DEFAULT_HORIZONTAL_BORDER_WIDTH = 0;
+    private final float DEFAULT_DIVIDING_LINE_WIDTH = 4;
     private final int DEFAULT_TEXT_SIZE = 32;
 
     private float activeDataWindowWidth;
@@ -354,6 +355,23 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
                 setNumberStickyColumns(numStickyCol);
             }
 
+            boolean setBorders =false;
+            float horizontalCellBorderWidth = attrs.getAttributeIntValue(OAK.XMLNS,"cellHorizontalBorderWidth",-1);
+            float verticalCellBorderWidth = attrs.getAttributeIntValue(OAK.XMLNS,"cellVerticalBorderWidth",-1);
+            if (verticalCellBorderWidth!=-1 || horizontalCellBorderWidth!=-1){
+                setBorders = true;
+            }
+            if (horizontalCellBorderWidth==-1){
+                horizontalCellBorderWidth = DEFAULT_HORIZONTAL_BORDER_WIDTH;
+            }
+            if (verticalCellBorderWidth==-1){
+                verticalCellBorderWidth = DEFAULT_HORIZONTAL_BORDER_WIDTH;
+            }
+            if (setBorders){
+                setAllCellsBorderWidth(horizontalCellBorderWidth,verticalCellBorderWidth);
+            }
+
+
         }
     }
 
@@ -386,9 +404,9 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         vertDividingPaint = new Paint(borderPaint);
         horzDividingPaint = new Paint(borderPaint);
         vertDividingPaint.setStyle(Paint.Style.STROKE);
-        vertDividingPaint.setStrokeWidth(DEFAULT_HORIZONTAL_BORDER_WIDTH * 2);
+        vertDividingPaint.setStrokeWidth(DEFAULT_DIVIDING_LINE_WIDTH);
         horzDividingPaint.setStyle(Paint.Style.STROKE);
-        horzDividingPaint.setStrokeWidth(DEFAULT_HORIZONTAL_BORDER_WIDTH * 2);
+        horzDividingPaint.setStrokeWidth(DEFAULT_DIVIDING_LINE_WIDTH);
         Paint cellPaint = new Paint();
         cellPaint.setColor(Color.LTGRAY);
         cellPaint.setStyle(Paint.Style.FILL);
@@ -1244,6 +1262,22 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         dataCell.setSelectedTextSize(textSize);
         leftHeadCornerCell.setSelectedTextSize(textSize);
         leftFootCornerCell.setSelectedTextSize(textSize);
+    }
+
+    public void setAllCellsBorderWidth(float horizontalWidth, float verticalWidth){
+        stickyColumnCell.setHorizontalBorderWidth(horizontalWidth);
+        stickyHeaderCell.setHorizontalBorderWidth(horizontalWidth);
+        stickyFooterCell.setHorizontalBorderWidth(horizontalWidth);
+        dataCell.setHorizontalBorderWidth(horizontalWidth);
+        leftHeadCornerCell.setHorizontalBorderWidth(horizontalWidth);
+        leftFootCornerCell.setHorizontalBorderWidth(horizontalWidth);
+
+        stickyColumnCell.setVerticalBorderWidth(verticalWidth);
+        stickyHeaderCell.setVerticalBorderWidth(verticalWidth);
+        stickyFooterCell.setVerticalBorderWidth(verticalWidth);
+        dataCell.setVerticalBorderWidth(verticalWidth);
+        leftHeadCornerCell.setVerticalBorderWidth(verticalWidth);
+        leftFootCornerCell.setVerticalBorderWidth(verticalWidth);
     }
 
     public void setAllCellsTextColor(int color){
