@@ -20,9 +20,10 @@ import android.widget.ImageView;
 
 import oak.util.ScaleGestureDetector;
 
+
 /**
  * An ImageView that supports pinch-to-zoom, double-tap-to-zoom, and swipe panning.
- *
+ * <p/>
  * Usage: - Set image source via android:src, setImageBitmap(), or setImageResource() - Supports
  * scale type of CENTER_CROP (default) and CENTER_INSIDE - Default maximum zoom scale is 2.5x
  *

@@ -22,6 +22,11 @@ public class OakUtils {
 
     private static HashMap<String, Typeface> mFontMap;
 
+    /**
+     * @param context      Context for fetching Typeface
+     * @param fontFileName Typeface to fetch. Must match a typeface name in /assets/fonts
+     * @return Typeface
+     */
     public static Typeface getStaticTypeFace(Context context, String fontFileName) {
         if (mFontMap == null) {
             initializeFontMap(context);
@@ -49,6 +54,13 @@ public class OakUtils {
         }
     }
 
+    /**
+     * Given a View, this method sets the Typeface on every TextView contained within that View
+     *
+     * @param root     View to check
+     * @param ctx      Context for fetching Typeface
+     * @param typeface Typeface to set. Must match a typeface name in /assets/fonts
+     */
     public static void changeFonts(View root, Context ctx, String typeface) {
         Typeface tf = getStaticTypeFace(ctx, typeface);
         if (root instanceof TextView) {
@@ -60,6 +72,13 @@ public class OakUtils {
         }
     }
 
+    /**
+     * Method that determines whether a specified package is installed on the device
+     *
+     * @param ctx         Context for package manager
+     * @param packageName Target package name
+     * @return boolean of whether packageName is installed
+     */
     public static boolean isPackageInstalled(Context ctx, String packageName) {
         try {
             ApplicationInfo info = ctx.getPackageManager().getApplicationInfo(packageName, 0);
@@ -83,7 +102,7 @@ public class OakUtils {
     /**
      * Method to determine whether string is a valid email address
      */
-    public static boolean isValidEmail(String email){
+    public static boolean isValidEmail(String email) {
         return EMAIL_ADDRESS_PATTERN.matcher(email).matches();
     }
 

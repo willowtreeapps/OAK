@@ -18,7 +18,7 @@
 
     <properties>
         <!--this will update the version of the latest stable, update after release -->
-        <latestStableVersion>1.1.9</latestStableVersion>
+        <latestStableVersion>1.2.0</latestStableVersion>
 
         <skipTests>true</skipTests>
         <!-- set a custom format that is guaranteed to grow as a Long number, so it can be used as version code
@@ -91,7 +91,7 @@
     </developers>
 
     <prerequisites>
-        <maven>2.0</maven>
+        <maven>3.1.1</maven>
     </prerequisites>
 
     <issueManagement>
@@ -102,7 +102,7 @@
         <url>http://github.com/willowtreeapps/OAK</url>
         <connection>scm:git:git@github.com:willowtreeapps/OAK.git</connection>
         <developerConnection>scm:git:git@github.com:willowtreeapps/OAK.git</developerConnection>
-        <tag>oak-project-1.1.9</tag>
+        <tag>oak-project-1.2.1</tag>
     </scm>
 
     <reporting>
@@ -174,7 +174,7 @@
             <dependency>
                 <groupId>com.google.android</groupId>
                 <artifactId>android</artifactId>
-                <version>4.1.1.4</version>
+                <version>4.4_r1</version>
             </dependency>
             <dependency>
                 <groupId>com.google.android</groupId>
@@ -355,7 +355,7 @@
                     <version>3.8.2</version>
                     <configuration>
                         <sdk>
-                            <platform>18</platform>
+                            <platform>19</platform>
                         </sdk>
                         <emulator>
                             <avd>22</avd>

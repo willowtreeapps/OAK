@@ -1,6 +1,7 @@
 package oak.http;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.squareup.okhttp.HttpResponseCache;
 import com.squareup.okhttp.OkHttpClient;
@@ -31,7 +32,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import oak.Base64;
-import roboguice.util.Ln;
+import oak.OAK;
 
 /**
  * This is a utility class for abstracting commonly used OkHttp methods
@@ -48,7 +49,6 @@ public class OkHttpTool {
 
     /**
      * Constructor with a Context to install a ResponseCache
-     *
      * @param context used to install ResponseCache
      */
     public OkHttpTool(Context context) {
@@ -68,8 +68,15 @@ public class OkHttpTool {
     }
 
     /**
+     * Just in case you want to set the client up more than it already is.
+     * @return OkHttpClient
+     */
+    public OkHttpClient getClient() {
+        return mClient;
+    }
+
+    /**
      * Set's OkHttpClients Read Timeout.
-     *
      * @param timeout Time is Milliseconds to wait until Timeout
      */
     public void setReadTimeout(long timeout) {
@@ -78,7 +85,6 @@ public class OkHttpTool {
 
     /**
      * Set's OkHttpClients Connect Timeout.
-     *
      * @param timeout Time is Milliseconds to wait until Timeout
      */
     public void setConnectTimeout(long timeout) {
@@ -87,7 +93,6 @@ public class OkHttpTool {
 
     /**
      * Set default headers to set on all Http Requests
-     *
      * @param defaultHeaders Map of http headers
      */
     public void setDefaultHeaders(Map<String, String> defaultHeaders) {
@@ -96,7 +101,6 @@ public class OkHttpTool {
 
     /**
      * Returns the default request headers
-     *
      * @return mDefaultHeaders
      */
     public Map<String, String> getDefaultHeaders() {
@@ -105,7 +109,6 @@ public class OkHttpTool {
 
     /**
      * Installs a Response Cache
-     *
      * @param context used to get a cache directory
      */
     private void installCache(Context context) {
@@ -120,7 +123,6 @@ public class OkHttpTool {
 
     /**
      * Configures Default Request Headers
-     *
      * @param connection URLConnection to add Request Poperties to.
      */
     private void configureDefaults(URLConnection connection) {
@@ -136,7 +138,6 @@ public class OkHttpTool {
 
     /**
      * Basic GET Request
-     *
      * @param url URL to send GET request
      * @return HttpUrlConnection
      * @throws IOException
@@ -147,7 +148,6 @@ public class OkHttpTool {
 
     /**
      * Basic POST Request
-     *
      * @param url    URL to send POST request
      * @param entity StringEntity to send as the body of the POST request
      * @return HttpUrlConnection
@@ -159,7 +159,6 @@ public class OkHttpTool {
 
     /**
      * Basic PUT Request
-     *
      * @param url    URL to send PUT request
      * @param entity StringEntity to send as the body of the PUT request
      * @return HttpUrlConnection
@@ -171,7 +170,6 @@ public class OkHttpTool {
 
     /**
      * Basic DELETE Request
-     *
      * @param url URL to send DELETE request
      * @return HttpUrlConnection
      * @throws IOException
@@ -205,9 +203,10 @@ public class OkHttpTool {
     /**
      * This method makes the app vulnerable to a plethora of nasty things such as man-in-the-middle.
      * Only enable this for debugging if you know what you're doing and your backend has SSL issues.
-     * After you enable it, slap your backend people and tell them to fix SSL ASAP before you ship the app/
-     * <p/>
+     * After you enable it, slap your backend people and tell them to fix SSL ASAP before you ship the app
      * Please never leave this enabled.
+     *
+     * Seriously. Just don't.
      *
      * @param isDisabled
      */
@@ -237,7 +236,7 @@ public class OkHttpTool {
                 sc.init(null, trustAllCerts, new java.security.SecureRandom());
                 HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
             } catch (Exception e) {
-                Ln.e(e);
+                Log.e(OAK.LOGTAG, e.getMessage() + "");
             }
 
             // Create all-trusting host name verifier
@@ -270,7 +269,6 @@ public class OkHttpTool {
 
     /**
      * Sets Basic Auth for all requests
-     *
      * @param targetHost Host to authenticate to
      * @param username   Username of user
      * @param password   password as user
