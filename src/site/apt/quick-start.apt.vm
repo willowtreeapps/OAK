@@ -25,12 +25,32 @@ mvn clean install
 
  Then, if you're using IntelliJ, you can just open the created pom.xml file via (File -> Open Project...)
 
-* Archetype with Dagger
+* Archetype with Dagger (minSdk 10 with AppCompat)
 
- Like above, copy and paste the following command to get started with a project using Dagger and ActionBarSherlock
+ Like above, copy and paste the following command to get started with a project using Dagger and AppCompat. In order to use this archetype you must have the maven-android-sdk-deployer deploying the SDK to your repo.
 
 +---
  mvn archetype:generate -DarchetypeGroupId=com.willowtreeapps -DarchetypeArtifactId=oak-dagger-archetype \
+                        -DarchetypeVersion=${project.version} \
+                        -DarchetypeRepository=${project.distributionManagement.snapshotRepository.url}
++---
+
+ Run the following inside the newly created subdirectory.
+
++---
+
+mvn clean install
+
++---
+
+ Then, if you're using IntelliJ, you can just open the created pom.xml file via (File -> Open Project...)
+
+* Archetype with Dagger (minSdk 15)
+
+ Like above, copy and paste the following command to get started with a project using Dagger.
+
++---
+ mvn archetype:generate -DarchetypeGroupId=com.willowtreeapps -DarchetypeArtifactId=oak-dagger-api15-archetype \
                         -DarchetypeVersion=${project.version} \
                         -DarchetypeRepository=${project.distributionManagement.snapshotRepository.url}
 +---
