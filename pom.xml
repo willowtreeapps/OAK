@@ -398,6 +398,7 @@
             <modules>
                 <module>oak-archetype</module>
                 <module>oak-dagger-archetype</module>
+                <module>oak-dagger-api15-archetype</module>
                 <module>oak-library</module>
                 <module>oak-demos</module>
                 <module>oak-instrumentation</module>
@@ -434,6 +435,8 @@
             </build>
             <modules>
                 <module>oak-archetype</module>
+                <module>oak-dagger-archetype</module>
+                <module>oak-dagger-api15-archetype</module>
                 <module>oak-library</module>
             </modules>
         </profile>
