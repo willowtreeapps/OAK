@@ -1,5 +1,0 @@
-<resources>
-    <string-array name="roboguice_modules">
-        <item>${package}.RoboGuiceModule</item>
-    </string-array>
-</resources>

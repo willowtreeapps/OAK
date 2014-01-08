@@ -12,7 +12,7 @@
 
     <properties>
         <platform.version>
-            4.1.1.4
+            4.4.2_r2
         </platform.version>
 
         <dagger.version>1.1.0</dagger.version>
@@ -62,7 +62,7 @@
         <dependency>
             <groupId>com.google.android</groupId>
             <artifactId>android-test</artifactId>
-            <version>\${platform.version}</version>
+            <version>4.1.1.4</version>
             <scope>test</scope>
         </dependency>
 
@@ -79,15 +79,15 @@
         </dependency>
 
         <dependency>
-            <groupId>com.google.android</groupId>
+            <groupId>com.android.support</groupId>
             <artifactId>support-v4</artifactId>
-            <version>18</version>
+            <version>19.0.0</version>
         </dependency>
 
         <dependency>
-            <groupId>com.pivotallabs</groupId>
+            <groupId>org.robolectric</groupId>
             <artifactId>robolectric</artifactId>
-            <version>1.1</version>
+            <version>2.1</version>
             <scope>test</scope>
         </dependency>
 
@@ -99,22 +99,10 @@
         </dependency>
 
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>13.0.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.actionbarsherlock</groupId>
-            <artifactId>actionbarsherlock</artifactId>
-            <version>4.3.0</version>
-            <type>apklib</type>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.google.android</groupId>
-                    <artifactId>support-v4</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>com.android.support</groupId>
+            <artifactId>appcompat-v7</artifactId>
+            <version>19.0.0</version>
+            <type>aar</type>
         </dependency>
 
         <dependency>
@@ -154,7 +142,7 @@
                     <nativeLibrariesDirectory>\${project.basedir}/src/main/native
                     </nativeLibrariesDirectory>
                     <sdk>
-                        <platform>18</platform>
+                        <platform>19</platform>
                     </sdk>
                     #if(${emulator} != "not-specified")
                     <emulator>

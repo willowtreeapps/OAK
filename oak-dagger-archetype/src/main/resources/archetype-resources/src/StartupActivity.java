@@ -7,10 +7,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.Window;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
+import android.support.v7.app.ActionBarActivity;
 
-
-public class StartupActivity extends SherlockFragmentActivity {
+public class StartupActivity extends ActionBarActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
