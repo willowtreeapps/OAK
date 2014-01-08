@@ -12,7 +12,7 @@
 
     <properties>
         <platform.version>
-            4.4.2_r2
+            4.1.1.4
         </platform.version>
 
         <dagger.version>1.1.0</dagger.version>
@@ -62,7 +62,7 @@
         <dependency>
             <groupId>com.google.android</groupId>
             <artifactId>android-test</artifactId>
-            <version>4.1.1.4</version>
+            <version>\${platform.version}</version>
             <scope>test</scope>
         </dependency>
 
