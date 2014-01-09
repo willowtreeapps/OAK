@@ -2,6 +2,7 @@ package oak.widget;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -15,7 +16,7 @@ import android.graphics.drawable.NinePatchDrawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import oak.OAK;
+import oak.R;
 
 public class MaskedImageView extends ImageView {
 
@@ -38,33 +39,36 @@ public class MaskedImageView extends ImageView {
         super(context, attrs, defStyle);
 
         Resources res = getResources();
-        
-        int fillColorResourceId = attrs.getAttributeResourceValue(OAK.XMLNS, "fillColor", -1);
-        int glareColorResourceId = attrs.getAttributeResourceValue(OAK.XMLNS, "glareColor", -1);
-        int maskResourceId = attrs.getAttributeResourceValue(OAK.XMLNS, "mask", -1);
-        int overlayResourceId = attrs.getAttributeResourceValue(OAK.XMLNS, "overlay", -1);
-        
-        if (fillColorResourceId != -1){            
-            setFillColor(res.getColor(fillColorResourceId));
-        }
-        if (glareColorResourceId != -1){
-            setGlareColor(res.getColor(glareColorResourceId));
-        }
-        if (maskResourceId != -1){
-            Drawable d = res.getDrawable(maskResourceId);
-            if(d != null && d instanceof BitmapDrawable){
-                setMaskDrawable((BitmapDrawable)d);
-            }else if (d != null && d instanceof NinePatchDrawable){
-                setMaskDrawable((NinePatchDrawable)d);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MaskedImageView);
+        if (typedArray != null && res != null) {
+            int fillColorResourceId = typedArray.getResourceId(R.styleable.MaskedImageView_fillColor, -1);
+            int glareColorResourceId = typedArray.getResourceId(R.styleable.MaskedImageView_glareColor, -1);
+            int maskResourceId = typedArray.getResourceId(R.styleable.MaskedImageView_mask, -1);
+            int overlayResourceId = typedArray.getResourceId(R.styleable.MaskedImageView_overlay, -1);
+
+            if (fillColorResourceId != -1) {
+                setFillColor(res.getColor(fillColorResourceId));
             }
-        }
-        if (overlayResourceId != -1){
-            Drawable d = res.getDrawable(overlayResourceId);
-            if(d != null && d instanceof BitmapDrawable){
-                setOverlayDrawable((BitmapDrawable)d);
-            }else if (d != null && d instanceof NinePatchDrawable){
-                setOverlayDrawable((NinePatchDrawable)d);
+            if (glareColorResourceId != -1) {
+                setGlareColor(res.getColor(glareColorResourceId));
             }
+            if (maskResourceId != -1) {
+                Drawable d = res.getDrawable(maskResourceId);
+                if (d != null && d instanceof BitmapDrawable) {
+                    setMaskDrawable((BitmapDrawable) d);
+                } else if (d != null && d instanceof NinePatchDrawable) {
+                    setMaskDrawable((NinePatchDrawable) d);
+                }
+            }
+            if (overlayResourceId != -1) {
+                Drawable d = res.getDrawable(overlayResourceId);
+                if (d != null && d instanceof BitmapDrawable) {
+                    setOverlayDrawable((BitmapDrawable) d);
+                } else if (d != null && d instanceof NinePatchDrawable) {
+                    setOverlayDrawable((NinePatchDrawable) d);
+                }
+            }
+            typedArray.recycle();
         }
     }
 
@@ -72,7 +76,7 @@ public class MaskedImageView extends ImageView {
         mFillColor = color;
     }
 
-    private void setGlareColor(int color){
+    private void setGlareColor(int color) {
         shadowColor = color;
     }
 
@@ -98,16 +102,16 @@ public class MaskedImageView extends ImageView {
                 maskDrawableNine.getPaint().setXfermode(new PorterDuffXfermode(PorterDuff.Mode.MULTIPLY));
                 maskDrawableNine.draw(c);
             }
-            if(shadowColor!=0){
+            if (shadowColor != 0) {
                 //draw glare
                 Paint glarePaint = new Paint();
                 glarePaint.setColor(shadowColor);
                 glarePaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
                 Path glarePath = new Path();
-                glarePath.moveTo(rect.centerX()-rect.width()/2, rect.centerY()-rect.height()/2);
-                glarePath.lineTo(rect.centerX()-rect.width()/2, rect.centerY()+rect.height()/2-rect.height()/5);
-                glarePath.lineTo(rect.centerX()+rect.width()/2, rect.centerY()-rect.height()/2+rect.height()/5);
-                glarePath.lineTo(rect.centerX()+rect.width()/2, rect.centerY()-rect.height()/2);
+                glarePath.moveTo(rect.centerX() - rect.width() / 2, rect.centerY() - rect.height() / 2);
+                glarePath.lineTo(rect.centerX() - rect.width() / 2, rect.centerY() + rect.height() / 2 - rect.height() / 5);
+                glarePath.lineTo(rect.centerX() + rect.width() / 2, rect.centerY() - rect.height() / 2 + rect.height() / 5);
+                glarePath.lineTo(rect.centerX() + rect.width() / 2, rect.centerY() - rect.height() / 2);
                 c.drawPath(glarePath, glarePaint);
             }
             if (overlayDrawable != null) {

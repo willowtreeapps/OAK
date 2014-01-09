@@ -17,11 +17,12 @@
 package oak.widget;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.widget.Button;
 
-import oak.OAK;
+import oak.R;
 import oak.util.OakUtils;
 
 /**
@@ -55,24 +56,27 @@ public class ButtonWithFont extends Button {
 
         String fontName = null;
         if (attrs != null) {
-            try {
-                fontName = attrs.getAttributeValue(OAK.XMLNS, "font");
-
-                if (fontName != null) {
-                    setTypeface(OakUtils.getStaticTypeFace(context, fontName));
-                }
-            } catch (IllegalArgumentException e) {
+            TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ButtonWithFont);
+            if (typedArray != null) {
                 try {
-                    int fontNameRes = attrs.getAttributeResourceValue(OAK.XMLNS, "font", -1);
-                    if (fontNameRes != -1) {
-                        fontName = context.getString(fontNameRes);
-                        if (fontName != null) {
-                            setTypeface(OakUtils.getStaticTypeFace(context, fontName));
-                        }
+                    fontName = typedArray.getString(R.styleable.ButtonWithFont_font);
+                    if (fontName != null) {
+                        setTypeface(OakUtils.getStaticTypeFace(context, fontName));
                     }
-                } catch (IllegalArgumentException f) {
-                    f.printStackTrace();
+                } catch (IllegalArgumentException e) {
+                    try {
+                        int fontNameRes = typedArray.getResourceId(R.styleable.ButtonWithFont_font, -1);
+                        if (fontNameRes != -1) {
+                            fontName = context.getString(fontNameRes);
+                            if (fontName != null) {
+                                setTypeface(OakUtils.getStaticTypeFace(context, fontName));
+                            }
+                        }
+                    } catch (IllegalArgumentException f) {
+                        f.printStackTrace();
+                    }
                 }
+                typedArray.recycle();
             }
         }
     }

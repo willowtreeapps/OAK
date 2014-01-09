@@ -17,14 +17,14 @@
 package oak.widget;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
-import android.graphics.drawable.ShapeDrawable;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-import oak.OAK;
+import oak.R;
 
 /**
  * User: Michael Lake Date: 11/21/11 Time: 5:36 PM
@@ -50,35 +50,33 @@ public class BeastTextView extends TextViewWithFont {
         super(context, attrs, defStyle);
 
         if (attrs != null) {
-            try {
-                int gradientColorsResId = attrs.getAttributeResourceValue(OAK.XMLNS, "gradientColors", -1);
-                if (gradientColorsResId != -1) {
-                    /*TypedArray ta = context.getResources().obtainTypedArray(gradientColorsResId);
-                    int[] mGradientColors = new int[ta.length()];
-                    for (int i = 0; i < ta.length(); i++) {
-                        mGradientColors[i] = ta.getColor(i, 0);
+            TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.BeastTextView);
+            if (typedArray != null) {
+                try {
+                    int gradientColorsResId = typedArray.getResourceId(R.styleable.BeastTextView_gradientColors, -1);
+                    if (gradientColorsResId != -1) {
+                        String[] colors = context.getResources().getStringArray(gradientColorsResId);
+                        mGradientColors = new int[colors.length];
+                        for (int i = 0; i < colors.length; i++) {
+                            mGradientColors[i] = Color.parseColor(colors[i]);
+                        }
                     }
-                    ta.recycle();*/
 
-                    String[] colors = context.getResources().getStringArray(gradientColorsResId);
-                    mGradientColors = new int[colors.length];
-                    for (int i = 0; i < colors.length; i++) {
-                        mGradientColors[i] = Color.parseColor(colors[i]);
+                    int gradientPositionsResId = typedArray.getResourceId(R.styleable.BeastTextView_gradientPositions, -1);
+                    if (gradientPositionsResId != -1) {
+                        String[] gps = context.getResources().getStringArray(gradientPositionsResId);
+                        mGradientPositions = new float[gps.length];
+                        for (int i = 0; i < gps.length; i++) {
+                            mGradientPositions[i] = Float.parseFloat(gps[i]);
+                        }
                     }
+
+                    mGradientAngle = typedArray.getFloat(R.styleable.BeastTextView_gradientAngle, 1f);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-
-                int gradientPositionsResId = attrs.getAttributeResourceValue(OAK.XMLNS, "gradientPositions", -1);
-                if (gradientPositionsResId != -1) {
-                    String[] gps = context.getResources().getStringArray(gradientPositionsResId);
-                    mGradientPositions = new float[gps.length];
-                    for (int i = 0; i < gps.length; i++) {
-                        mGradientPositions[i] = Float.parseFloat(gps[i]);
-                    }
-                }
-
-                mGradientAngle = Float.parseFloat(attrs.getAttributeValue(OAK.XMLNS, "gradientAngle"));
-            } catch (Exception e) {
-                e.printStackTrace();
+                typedArray.recycle();
             }
         }
     }

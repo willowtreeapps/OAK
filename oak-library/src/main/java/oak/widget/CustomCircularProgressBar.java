@@ -1,6 +1,7 @@
 package oak.widget;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -9,7 +10,7 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ProgressBar;
 
-import oak.OAK;
+import oak.R;
 
 /**
  * User: derek Date: 5/25/12 Time: 1:06 PM
@@ -38,9 +39,18 @@ public class CustomCircularProgressBar extends ProgressBar {
         rotate.setRepeatCount(Animation.INFINITE);
 
         if (attrs != null) {
-            Drawable d = c.getResources()
-                    .getDrawable(attrs.getAttributeResourceValue(OAK.XMLNS, "progressBarDrawable", -1));
-            this.setIndeterminateDrawable(d);
+            TypedArray typedArray = c.obtainStyledAttributes(attrs, R.styleable.CustomCircularProgressBar);
+            int resourceId;
+            if (typedArray != null) {
+                resourceId = typedArray.getResourceId(R.styleable.CustomCircularProgressBar_progressBarDrawable, -1);
+                typedArray.recycle();
+                if (resourceId != -1) {
+                    Drawable d = c.getResources()
+                            .getDrawable(resourceId);
+                    this.setIndeterminateDrawable(d);
+                }
+            }
+
         }
         this.setAnimation(rotate);
 

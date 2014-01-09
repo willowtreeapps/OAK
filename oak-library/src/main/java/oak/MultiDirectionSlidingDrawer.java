@@ -17,6 +17,7 @@ package oak;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -30,7 +31,7 @@ import android.view.SoundEffectConstants;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.accessibility.AccessibilityEvent;import java.lang.IllegalArgumentException;import java.lang.Math;import java.lang.Override;import java.lang.RuntimeException;import java.lang.String;import oak.OAK;
+import android.view.accessibility.AccessibilityEvent;
 
 
 public class MultiDirectionSlidingDrawer extends ViewGroup {
@@ -152,7 +153,7 @@ public class MultiDirectionSlidingDrawer extends ViewGroup {
      * Creates a new SlidingDrawer from a specified set of attributes defined in XML.
      *
      * @param context The application's environment.
-     * @param attrs The attributes defined in XML.
+     * @param attrs   The attributes defined in XML.
      */
     public MultiDirectionSlidingDrawer(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
@@ -161,8 +162,8 @@ public class MultiDirectionSlidingDrawer extends ViewGroup {
     /**
      * Creates a new SlidingDrawer from a specified set of attributes defined in XML.
      *
-     * @param context The application's environment.
-     * @param attrs The attributes defined in XML.
+     * @param context  The application's environment.
+     * @param attrs    The attributes defined in XML.
      * @param defStyle The style to apply to this widget.
      */
     public MultiDirectionSlidingDrawer(Context context, AttributeSet attrs, int defStyle) {
@@ -172,16 +173,16 @@ public class MultiDirectionSlidingDrawer extends ViewGroup {
         //                0);
 
         Resources res = getResources();
-
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.MultiDirectionSlidingDrawer);
         //int orientation = a
         //        .getInt(R.styleable.MultiDirectionSlidingDrawer_direction, ORIENTATION_BTT);
         int orientation = ORIENTATION_BTT;
-        String orientationId = attrs.getAttributeValue(OAK.XMLNS, "direction");
-        if(orientationId.equals("rightToLeft")){
-              orientation = ORIENTATION_RTL;
-        }else if (orientationId.equals("leftToRight")){
+        String orientationId = array.getString(R.styleable.MultiDirectionSlidingDrawer_direction);
+        if (orientationId.equals("rightToLeft")) {
+            orientation = ORIENTATION_RTL;
+        } else if (orientationId.equals("leftToRight")) {
             orientation = ORIENTATION_LTR;
-        }else if (orientationId.equals("topToBottom")){
+        } else if (orientationId.equals("topToBottom")) {
             orientation = ORIENTATION_TTB;
         }
         /*int orientation;
@@ -194,28 +195,28 @@ public class MultiDirectionSlidingDrawer extends ViewGroup {
 
         // mBottomOffset = (int) a
         //        .getDimension(R.styleable.MultiDirectionSlidingDrawer_bottomOffset, 0.0f);
-        int mBottomOffsetId = attrs.getAttributeResourceValue(OAK.XMLNS, "bottomOffset", -1);
-        if(mBottomOffsetId == -1){
+        int mBottomOffsetId = array.getResourceId(R.styleable.MultiDirectionSlidingDrawer_bottomOffset, -1);
+        if (mBottomOffsetId == -1) {
             mBottomOffset = 0;
-        }else{
+        } else {
             mBottomOffset = (int) res.getDimension(mBottomOffsetId);
         }
 
         //mTopOffset = (int) a.getDimension(R.styleable.MultiDirectionSlidingDrawer_topOffset, 0.0f);
-        int mTopOffsetId = attrs.getAttributeResourceValue(OAK.XMLNS, "topOffset", -1);
-        if(mTopOffsetId == -1){
+        int mTopOffsetId = array.getResourceId(R.styleable.MultiDirectionSlidingDrawer_topOffset, -1);
+        if (mTopOffsetId == -1) {
             mTopOffset = 0;
-        }else{
+        } else {
             mTopOffset = (int) res.getDimension(mTopOffsetId);
         }
 
 
         //mTopMargin = (int) a.getDimension(R.styleable.MultiDirectionSlidingDrawer_topMargin, 0.0f);
         //TODO: get margin programmatically. Hardcoded currently.
-        int mTopMarginId = attrs.getAttributeResourceValue(OAK.XMLNS, "topMargin", -1);
-        if(mTopMarginId == -1){
+        int mTopMarginId = array.getResourceId(R.styleable.MultiDirectionSlidingDrawer_topMargin, -1);
+        if (mTopMarginId == -1) {
             mTopMargin = 0;
-        }else{
+        } else {
             mTopMargin = (int) res.getDimension(mTopMarginId);
         }
 
@@ -223,19 +224,19 @@ public class MultiDirectionSlidingDrawer extends ViewGroup {
 
         //mAllowSingleTap = a
         //        .getBoolean(R.styleable.MultiDirectionSlidingDrawer_allowSingleTap, true);
-        int mAllowSingleTapId = attrs.getAttributeResourceValue(OAK.XMLNS, "allowSingleTap", -1);
-        if(mAllowSingleTapId == -1){
+        int mAllowSingleTapId = array.getResourceId(R.styleable.MultiDirectionSlidingDrawer_allowSingleTap, -1);
+        if (mAllowSingleTapId == -1) {
             mAllowSingleTap = true;
-        }else{
+        } else {
             mAllowSingleTap = res.getBoolean(mAllowSingleTapId);
         }
 
         //mAnimateOnClick = a
         //        .getBoolean(R.styleable.MultiDirectionSlidingDrawer_animateOnClick, true);
-        int mAnimateOnClickId = attrs.getAttributeResourceValue(OAK.XMLNS, "animateOnClick", -1);
-        if(mAnimateOnClickId == -1){
+        int mAnimateOnClickId = array.getResourceId(R.styleable.MultiDirectionSlidingDrawer_animateOnClick, -1);
+        if (mAnimateOnClickId == -1) {
             mAnimateOnClick = true;
-        }else{
+        } else {
             mAnimateOnClick = res.getBoolean(mAllowSingleTapId);
         }
 
@@ -247,7 +248,7 @@ public class MultiDirectionSlidingDrawer extends ViewGroup {
         //            + "to a valid child.");
         //}
 
-        int handleId = attrs.getAttributeResourceValue(OAK.XMLNS, "handle", 0);
+        int handleId = array.getResourceId(R.styleable.MultiDirectionSlidingDrawer_handle, 0);
         if (handleId == 0) {
             throw new IllegalArgumentException("The handle attribute is required and must refer "
                     + "to a valid child.");
@@ -259,7 +260,7 @@ public class MultiDirectionSlidingDrawer extends ViewGroup {
         //            + "to a valid child.");
         //}
 
-        int contentId = attrs.getAttributeResourceValue(OAK.XMLNS, "content", 0);
+        int contentId = array.getResourceId(R.styleable.MultiDirectionSlidingDrawer_content, 0);
         if (contentId == 0) {
             throw new IllegalArgumentException("The content attribute is required and must refer "
                     + "to a valid child.");
@@ -656,7 +657,7 @@ public class MultiDirectionSlidingDrawer extends ViewGroup {
             c1 = mInvert ? velocity < mMaximumMajorVelocity : velocity > mMaximumMajorVelocity;
             c2 = mInvert ? (bottom - (position + handleHeight)) + mBottomOffset > handleHeight
                     : position > mTopOffset + mTopMargin + (mVertical ? mHandleHeight
-                            : mHandleWidth);
+                    : mHandleWidth);
             c3 = mInvert ? velocity < -mMaximumMajorVelocity : velocity > -mMaximumMajorVelocity;
             Log.d(LOG_TAG, "EXPANDED. c1: " + c1 + ", c2: " + c2 + ", c3: " + c3);
             if (velocity == 225.0f || velocity == 300.0f) {
@@ -1201,7 +1202,7 @@ public class MultiDirectionSlidingDrawer extends ViewGroup {
      * Returns the handle of the drawer.
      *
      * @return The View reprenseting the handle of the drawer, identified by the "handle" id in
-     *         XML.
+     * XML.
      */
     public View getHandle() {
         return mHandle;
@@ -1211,7 +1212,7 @@ public class MultiDirectionSlidingDrawer extends ViewGroup {
      * Returns the content of the drawer.
      *
      * @return The View reprenseting the content of the drawer, identified by the "content" id in
-     *         XML.
+     * XML.
      */
     public View getContent() {
         return mContent;

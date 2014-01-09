@@ -17,26 +17,28 @@
   -->
 
 <RelativeLayout
-        style="@style/Fill"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:oak="http://oak/oak/schema"
-        android:background="#ccc">
+    style="@style/Fill"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:oak="http://schemas.android.com/apk/res-auto"
+    android:background="#ccc">
+
     <oak.widget.CancelEditText
-            style="@style/FillWidth"
-            android:id="@+id/filter_et"
-            android:hint="Search..."
-            android:textColorHint="#ccc"
-            android:inputType="textFilter"
-            android:imeOptions="actionDone"
-            android:singleLine="true"
-            oak:cancelDrawable="@drawable/oak_ic_cancel"/>
+        style="@style/FillWidth"
+        android:id="@+id/filter_et"
+        android:hint="Search..."
+        android:textColorHint="#ccc"
+        android:inputType="textFilter"
+        android:imeOptions="actionDone"
+        android:singleLine="true"
+        oak:cancelDrawable="@drawable/oak_ic_cancel" />
+
     <oak.widget.SectionListView
-            style="@style/Fill"
-            android:layout_below="@id/filter_et"
-            android:id="@+id/amazing_lv"
-            android:fastScrollEnabled="true"
-            android:cacheColorHint="#00000000"
-            android:dividerHeight="1dip"
-            android:divider="#00000000"
-            android:clickable="true"/>
+        style="@style/Fill"
+        android:layout_below="@id/filter_et"
+        android:id="@+id/amazing_lv"
+        android:fastScrollEnabled="true"
+        android:cacheColorHint="#00000000"
+        android:dividerHeight="1dip"
+        android:divider="#00000000"
+        android:clickable="true" />
 </RelativeLayout>

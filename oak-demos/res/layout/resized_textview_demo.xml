@@ -18,8 +18,8 @@
 <LinearLayout
         style="@style/Fill"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:oak="http://oak/oak/schema"
-        android:orientation="vertical">
+    xmlns:oak="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
     <oak.widget.ResizedTextView
             style="@style/FillWidth"
             android:text="Finally, Android developers have an automatically resizing TextView which will scale the text down to a minimum size and will ellipsize when it's too long."

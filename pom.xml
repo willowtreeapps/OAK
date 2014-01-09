@@ -56,6 +56,13 @@
             </roles>
         </developer>
         <developer>
+            <name>Eric Richardson</name>
+            <organization>WillowTree Apps</organization>
+            <roles>
+                <role>General Project Maintainer</role>
+            </roles>
+        </developer>
+        <developer>
             <name>Ron DuPlain</name>
             <organization>WillowTree Apps</organization>
         </developer>
@@ -66,13 +73,6 @@
         <developer>
             <name>Jonathan Nye</name>
             <organization>WillowTree Apps</organization>
-        </developer>
-        <developer>
-            <name>Eric Richardson</name>
-            <organization>WillowTree Apps</organization>
-            <roles>
-                <role>General Project Maintainer</role>
-            </roles>
         </developer>
         <developer>
             <name>Chris Thoma</name>

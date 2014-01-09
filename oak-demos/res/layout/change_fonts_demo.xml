@@ -17,40 +17,48 @@
   -->
 
 <LinearLayout
-        style="@style/Fill"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:oak="http://oak/oak/schema"
-        android:id="@+id/root"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+    style="@style/Fill"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:oak="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
     <TextView
-            style="@style/Wrap"
-            android:text="Ever wanted to specify a font for all of your Activity's views, no matter what?"
-            android:textSize="18sp"/>
+        style="@style/Wrap"
+        android:text="Ever wanted to specify a font for all of your Activity's views, no matter what?"
+        android:textSize="18sp" />
+
     <Button
-            style="@style/FillWidth"
-            android:text="Using OakUtils, you can!"
-            android:textSize="20sp"
-            oak:font="Apple Chancery.ttf"/>
+        style="@style/FillWidth"
+        android:text="Using OakUtils, you can!"
+        android:textSize="20sp"
+        oak:font="Apple Chancery.ttf" />
+
     <TextView
-            style="@style/Wrap"
-            android:text="Add an android:id to your root layout View."
-            android:textSize="14sp"/>
+        style="@style/Wrap"
+        android:text="Add an android:id to your root layout View."
+        android:textSize="14sp" />
+
     <TextView
-            style="@style/Wrap"
-            android:text="Then call OakUtils.changeFonts() after you've set your content and pass in the rootView, a Context, and a String with your font title!"
-            android:textSize="14sp"/>
+        style="@style/Wrap"
+        android:text="Then call OakUtils.changeFonts() after you've set your content and pass in the rootView, a Context, and a String with your font title!"
+        android:textSize="14sp" />
+
     <CheckBox
-            style="@style/Wrap"
-            android:text="It works for CheckBoxes!"/>
+        style="@style/Wrap"
+        android:text="It works for CheckBoxes!" />
+
     <RadioButton
-            style="@style/Wrap"
-            android:text="And RadioButtons!"/>
+        style="@style/Wrap"
+        android:text="And RadioButtons!" />
+
     <ToggleButton
-            style="@style/Wrap"
-            android:text="And ToggleButtons!"/>
+        style="@style/Wrap"
+        android:text="And ToggleButtons!" />
+
     <TextView
-            style="@style/Wrap"
-            android:text="It works for every view that has a TextView component, and it works on all nested views as well."
-            android:textSize="14sp"/>
+        style="@style/Wrap"
+        android:text="It works for every view that has a TextView component, and it works on all nested views as well."
+        android:textSize="14sp" />
 </LinearLayout>

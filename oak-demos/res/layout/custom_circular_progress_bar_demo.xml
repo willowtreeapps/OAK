@@ -17,21 +17,25 @@
   -->
 
 <LinearLayout
-        style="@style/Fill"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:oak="http://oak/oak/schema"
-        android:orientation="vertical">
+    style="@style/Fill"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:oak="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
     <TextView
-            style="@style/Wrap"
-            android:layout_gravity="center_horizontal"
-            android:text="The oak.widget.CustomCircularProgressBar allows you to use any drawable. Some examples follow. This should be used in place of the Holo styled one on older APIs and a layout-v11 res/ folder should be created."/>
+        style="@style/Wrap"
+        android:layout_gravity="center_horizontal"
+        android:text="The oak.widget.CustomCircularProgressBar allows you to use any drawable. Some examples follow. This should be used in place of the Holo styled one on older APIs and a layout-v11 res/ folder should be created." />
+
     <oak.widget.CustomCircularProgressBar
-            style="@style/Wrap"
-            oak:progressBarDrawable="@drawable/progress_small_holo"/>
+        style="@style/Wrap"
+        oak:progressBarDrawable="@drawable/progress_small_holo" />
+
     <oak.widget.CustomCircularProgressBar
-            style="@style/Wrap"
-            oak:progressBarDrawable="@drawable/progress_medium_holo"/>
+        style="@style/Wrap"
+        oak:progressBarDrawable="@drawable/progress_medium_holo" />
+
     <oak.widget.CustomCircularProgressBar
-            style="@style/Wrap"
-            oak:progressBarDrawable="@drawable/progress_large_holo"/>
+        style="@style/Wrap"
+        oak:progressBarDrawable="@drawable/progress_large_holo" />
 </LinearLayout>

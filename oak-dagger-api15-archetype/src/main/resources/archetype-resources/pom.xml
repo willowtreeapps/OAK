@@ -70,6 +70,7 @@
             <groupId>com.willowtreeapps</groupId>
             <artifactId>oak-library</artifactId>
             <version>${project.parent.version}</version>
+            <type>aar</type>
         </dependency>
 
         <dependency>

@@ -1,11 +1,12 @@
 package oak.widget;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import oak.OAK;
+import oak.R;
 
 /**
  * Created by ericrichardson on 1/9/14.
@@ -25,7 +26,12 @@ public class AspectRatioLayout extends FrameLayout {
         super(context, attrs, defStyle);
 
         if (attrs != null) {
-            mAspectRatio = attrs.getAttributeFloatValue(OAK.XMLNS, "ratio", 1f);
+            TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.AspectRatioLayout);
+            if (typedArray != null) {
+                mAspectRatio = typedArray.getFloat(R.styleable.AspectRatioLayout_aspectRatio, 1f);
+                typedArray.recycle();
+            }
+
         }
     }
 

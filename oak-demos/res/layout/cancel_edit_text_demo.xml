@@ -16,31 +16,34 @@
   -->
 
 <LinearLayout
-        style="@style/Fill"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:oak="http://oak/oak/schema"
-        android:orientation="vertical">
+    style="@style/Fill"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:oak="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
     <TextView
-            style="@style/Wrap"
-            android:text="The following CancelEditText has a cancel drawable to clear the text (it extends TextViewWithFont, so you can even specify a custom font if you like)"/>
+        style="@style/Wrap"
+        android:text="The following CancelEditText has a cancel drawable to clear the text (it extends TextViewWithFont, so you can even specify a custom font if you like)" />
     <!-- START SNIPPET: canceledittext_layout -->
     <oak.widget.CancelEditText
-            style="@style/FillWidth"
-            android:id="@+id/cancel_edit_one"
-            android:text="this is a cancel edit text"
-            oak:cancelDrawable="@drawable/oak_ic_cancel"/>
+        style="@style/FillWidth"
+        android:id="@+id/cancel_edit_one"
+        android:text="this is a cancel edit text"
+        oak:cancelDrawable="@drawable/oak_ic_cancel" />
+
     <oak.widget.CancelEditText
-            style="@style/FillWidth"
-            android:id="@+id/cancel_edit_two"
-            android:text="this one has drawables"
-            android:drawableLeft="@drawable/ic_menu_search"
-            android:drawableRight="@drawable/ic_menu_my_calendar"
-            oak:cancelDrawable="@drawable/oak_ic_cancel"/>
+        style="@style/FillWidth"
+        android:id="@+id/cancel_edit_two"
+        android:text="this one has drawables"
+        android:drawableLeft="@drawable/ic_menu_search"
+        android:drawableRight="@drawable/ic_menu_my_calendar"
+        oak:cancelDrawable="@drawable/oak_ic_cancel" />
     <!-- END SNIPPET: canceledittext_layout -->
     <TextView
-            style="@style/Wrap"
-            android:text="The following EditText is here for comparison"/>
+        style="@style/Wrap"
+        android:text="The following EditText is here for comparison" />
+
     <EditText
-            style="@style/FillWidth"
-            android:text="this is a normal edit text"/>
+        style="@style/FillWidth"
+        android:text="this is a normal edit text" />
 </LinearLayout>

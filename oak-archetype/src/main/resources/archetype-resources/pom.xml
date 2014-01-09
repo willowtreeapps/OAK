@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>\${groupId}</groupId>
     <!--ideally, we'd like this to follow the format of "PROJECTNAME-android"-->
@@ -33,53 +34,54 @@
 
 
     <repositories>
-		<repository>
-			<id>sonatype-nexus-snapshots</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-			<snapshots>
-				<enabled>true</enabled>
-				<checksumPolicy>warn</checksumPolicy>
-				<updatePolicy>always</updatePolicy>
-			</snapshots>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
+        <repository>
+            <id>sonatype-nexus-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <checksumPolicy>warn</checksumPolicy>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
 
-		</repository>
-	</repositories>
+        </repository>
+    </repositories>
 
     <dependencies>
-		<dependency>
-		    <groupId>com.google.android</groupId>
-		    <artifactId>android</artifactId>
-		    <version>\${platform.version}</version>
-		    <scope>provided</scope>
-		</dependency>
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>android</artifactId>
+            <version>\${platform.version}</version>
+            <scope>provided</scope>
+        </dependency>
 
-	    <dependency>
-		    <groupId>com.google.android</groupId>
-		    <artifactId>android-test</artifactId>
-		    <version>\${platform.version}</version>
-		    <scope>test</scope>
-	    </dependency>
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>android-test</artifactId>
+            <version>\${platform.version}</version>
+            <scope>test</scope>
+        </dependency>
 
-	    <dependency>
-		    <groupId>com.willowtreeapps</groupId>
-		    <artifactId>oak-library</artifactId>
-		    <version>${project.parent.version}</version>
-	    </dependency>
+        <dependency>
+            <groupId>com.willowtreeapps</groupId>
+            <artifactId>oak-library</artifactId>
+            <version>${project.parent.version}</version>
+            <type>aar</type>
+        </dependency>
 
-	    <dependency>
-		    <groupId>com.google.code.gson</groupId>
-		    <artifactId>gson</artifactId>
-		    <version>2.1</version>
-	    </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.1</version>
+        </dependency>
 
-	    <dependency>
-		    <groupId>org.roboguice</groupId>
-		    <artifactId>roboguice</artifactId>
-		    <version>2.0</version>
-	    </dependency>
+        <dependency>
+            <groupId>org.roboguice</groupId>
+            <artifactId>roboguice</artifactId>
+            <version>2.0</version>
+        </dependency>
 
         <dependency>
             <groupId>com.pivotallabs</groupId>
@@ -95,16 +97,16 @@
             <scope>test</scope>
         </dependency>
 
-	    <dependency>
-		    <groupId>com.google.guava</groupId>
-		    <artifactId>guava</artifactId>
-		    <version>13.0.1</version>
-	    </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>13.0.1</version>
+        </dependency>
 
         <dependency>
-          <groupId>com.github.rtyley</groupId>
-          <artifactId>roboguice-sherlock</artifactId>
-          <version>1.4</version>
+            <groupId>com.github.rtyley</groupId>
+            <artifactId>roboguice-sherlock</artifactId>
+            <version>1.4</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.google.android</groupId>
@@ -142,18 +144,20 @@
     </dependencies>
 
     <build>
-	    <sourceDirectory>src</sourceDirectory>
-	    <testSourceDirectory>test</testSourceDirectory>
-	    <plugins>
+        <sourceDirectory>src</sourceDirectory>
+        <testSourceDirectory>test</testSourceDirectory>
+        <plugins>
             <plugin>
                 <groupId>com.jayway.maven.plugins.android.generation2</groupId>
                 <artifactId>android-maven-plugin</artifactId>
                 <version>\${android-plugin-version}</version>
                 <configuration>
-                    <androidManifestFile>\${project.basedir}/AndroidManifest.xml</androidManifestFile>
+                    <androidManifestFile>\${project.basedir}/AndroidManifest.xml
+                    </androidManifestFile>
                     <assetsDirectory>\${project.basedir}/assets</assetsDirectory>
                     <resourceDirectory>\${project.basedir}/res</resourceDirectory>
-                    <nativeLibrariesDirectory>\${project.basedir}/src/main/native</nativeLibrariesDirectory>
+                    <nativeLibrariesDirectory>\${project.basedir}/src/main/native
+                    </nativeLibrariesDirectory>
                     <sdk>
                         <platform>16</platform>
                     </sdk>
@@ -162,7 +166,7 @@
                         <avd>\${emulator}</avd>
                     </emulator>
                     #end
-                                        <undeployBeforeDeploy>true</undeployBeforeDeploy>
+                    <undeployBeforeDeploy>true</undeployBeforeDeploy>
                 </configuration>
                 <extensions>true</extensions>
             </plugin>
@@ -199,7 +203,9 @@
                                     <removeExistingSignatures>true</removeExistingSignatures>
                                     <archiveDirectory />
                                     <includes>
-                                        <include>\${project.build.directory}/\${project.build.finalName}.apk</include>
+                                        <include>
+                                            \${project.build.directory}/\${project.build.finalName}.apk
+                                        </include>
                                     </includes>
                                     <keystore>\${sign.keystore}</keystore>
                                     <alias>\${sign.keyalias}</alias>
@@ -221,8 +227,11 @@
                             <zipalign>
                                 <skip>false</skip>
                                 <verbose>true</verbose>
-                                <inputApk>\${project.build.directory}/\${project.build.finalName}.apk</inputApk>
-                                <outputApk>\${project.build.directory}/\${project.build.finalName}-signed-aligned.apk
+                                <inputApk>
+                                    \${project.build.directory}/\${project.build.finalName}.apk
+                                </inputApk>
+                                <outputApk>
+                                    \${project.build.directory}/\${project.build.finalName}-signed-aligned.apk
                                 </outputApk>
                             </zipalign>
                             <manifest>

@@ -15,8 +15,8 @@
 
 package oak.widget;
 
-import android.R;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
@@ -29,7 +29,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.EditText;
 
-import oak.OAK;
+import oak.R;
 import oak.util.OakUtils;
 
 /**
@@ -46,67 +46,66 @@ public class CancelEditText extends EditText {
     }
 
     public CancelEditText(Context context, AttributeSet attrs) {
-        this(context, attrs, R.attr.editTextStyle);
+        this(context, attrs, android.R.attr.editTextStyle);
         setPaintFlags(getPaintFlags() | Paint.SUBPIXEL_TEXT_FLAG);
     }
 
     public CancelEditText(Context context, AttributeSet attrs,
-            int defStyle) {
+                          int defStyle) {
         super(context, attrs, defStyle);
         setPaintFlags(getPaintFlags() | Paint.SUBPIXEL_TEXT_FLAG);
 
         int cancelDrawableId = 0;
-        if (attrs != null) {
-            cancelDrawableId = attrs.getAttributeResourceValue(OAK.XMLNS, "cancelDrawable", 0);
-        }
-
-        if (cancelDrawableId != 0) {
-            mDrawable = getResources().getDrawable(cancelDrawableId);
-
-            addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    showOrHideCancel();
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-
-                }
-            });
-            showOrHideCancel();
-        }
-
-        if (isInEditMode()) return;
-
         String fontName;
         if (attrs != null) {
-            try {
-                fontName = attrs.getAttributeValue(OAK.XMLNS, "font");
+            TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CancelEditText);
+            if (typedArray != null) {
+                cancelDrawableId = typedArray.getResourceId(R.styleable.CancelEditText_cancelDrawable, -1);
+                if (cancelDrawableId != -1) {
+                    mDrawable = getResources().getDrawable(cancelDrawableId);
 
-                if (fontName != null) {
-                    setTypeface(OakUtils.getStaticTypeFace(context, fontName));
-                }
-            } catch (IllegalArgumentException e) {
-                try {
-                    int fontNameRes = attrs.getAttributeResourceValue(OAK.XMLNS, "font", -1);
-                    if (fontNameRes != -1) {
-                        fontName = context.getString(fontNameRes);
-                        if (fontName != null) {
-                            setTypeface(OakUtils.getStaticTypeFace(context, fontName));
+                    addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
                         }
-                    }
-                } catch (IllegalArgumentException f) {
-                    f.printStackTrace();
+
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+                            showOrHideCancel();
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable s) {
+
+                        }
+                    });
+                    showOrHideCancel();
                 }
+                try {
+                    fontName = typedArray.getString(R.styleable.CancelEditText_font);
+
+                    if (fontName != null) {
+                        setTypeface(OakUtils.getStaticTypeFace(context, fontName));
+                    }
+                } catch (IllegalArgumentException e) {
+                    try {
+                        int fontNameRes = typedArray.getResourceId(R.styleable.CancelEditText_font, -1);
+                        if (fontNameRes != -1) {
+                            fontName = context.getString(fontNameRes);
+                            if (fontName != null) {
+                                setTypeface(OakUtils.getStaticTypeFace(context, fontName));
+                            }
+                        }
+                    } catch (IllegalArgumentException f) {
+                        f.printStackTrace();
+                    }
+                }
+                typedArray.recycle();
             }
         }
 
+        if (isInEditMode()) return;
     }
 
     /**
