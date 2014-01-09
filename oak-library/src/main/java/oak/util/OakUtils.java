@@ -24,6 +24,9 @@ public class OakUtils {
 
     private static HashMap<String, Typeface> mFontMap;
 
+    private OakUtils() {
+    }
+
     /**
      * @param context      Context for fetching Typeface
      * @param fontFileName Typeface to fetch. Must match a typeface name in /assets/fonts
