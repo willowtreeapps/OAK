@@ -2,8 +2,6 @@ What is OAK Android Kit?
 
  OAK is a powerful kit of tools and components to use in your Android project (Compatible with API Level 8+)
 
-  * Image caching with transformations (rounded bitmaps? no problem)
-
   * Pinned Header List view - mimic the functionality of the contacts app
 
   * {{{./section-adapter.html}SectionAdapter with Pinned Headers}} - Same as above but with search filtering
@@ -19,7 +17,7 @@ What is OAK Android Kit?
 
   * BeastViewPager - ViewPager built to work with SlideMenu or inside a ListView Header
 
-  * OakHttpTool - Painless UrlConnection wrapper
+  * OkHttpTool - Painless OkHttp UrlConnection wrapper
 
   * SwankyImageView - Pinch and Zoom on ImageViews made easy
 

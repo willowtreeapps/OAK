@@ -1,0 +1,3 @@
+BeastViewPager
+
+ For when you need a ViewPager in a ViewPager and still maintain scrolling behavior between all children.

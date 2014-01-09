@@ -49,6 +49,7 @@ public class OkHttpTool {
 
     /**
      * Constructor with a Context to install a ResponseCache
+     *
      * @param context used to install ResponseCache
      */
     public OkHttpTool(Context context) {
@@ -69,6 +70,7 @@ public class OkHttpTool {
 
     /**
      * Just in case you want to set the client up more than it already is.
+     *
      * @return OkHttpClient
      */
     public OkHttpClient getClient() {
@@ -77,7 +79,8 @@ public class OkHttpTool {
 
     /**
      * Set's OkHttpClients Read Timeout.
-     * @param timeout Time is Milliseconds to wait until Timeout
+     *
+     * @param timeout Time in Milliseconds to wait until Timeout
      */
     public void setReadTimeout(long timeout) {
         mClient.setReadTimeout(timeout, TimeUnit.MILLISECONDS);
@@ -85,7 +88,8 @@ public class OkHttpTool {
 
     /**
      * Set's OkHttpClients Connect Timeout.
-     * @param timeout Time is Milliseconds to wait until Timeout
+     *
+     * @param timeout Time in Milliseconds to wait until Timeout
      */
     public void setConnectTimeout(long timeout) {
         mClient.setConnectTimeout(timeout, TimeUnit.MILLISECONDS);
@@ -93,6 +97,7 @@ public class OkHttpTool {
 
     /**
      * Set default headers to set on all Http Requests
+     *
      * @param defaultHeaders Map of http headers
      */
     public void setDefaultHeaders(Map<String, String> defaultHeaders) {
@@ -101,6 +106,7 @@ public class OkHttpTool {
 
     /**
      * Returns the default request headers
+     *
      * @return mDefaultHeaders
      */
     public Map<String, String> getDefaultHeaders() {
@@ -109,6 +115,7 @@ public class OkHttpTool {
 
     /**
      * Installs a Response Cache
+     *
      * @param context used to get a cache directory
      */
     private void installCache(Context context) {
@@ -123,6 +130,7 @@ public class OkHttpTool {
 
     /**
      * Configures Default Request Headers
+     *
      * @param connection URLConnection to add Request Poperties to.
      */
     private void configureDefaults(URLConnection connection) {
@@ -138,6 +146,7 @@ public class OkHttpTool {
 
     /**
      * Basic GET Request
+     *
      * @param url URL to send GET request
      * @return HttpUrlConnection
      * @throws IOException
@@ -148,6 +157,7 @@ public class OkHttpTool {
 
     /**
      * Basic POST Request
+     *
      * @param url    URL to send POST request
      * @param entity StringEntity to send as the body of the POST request
      * @return HttpUrlConnection
@@ -159,6 +169,7 @@ public class OkHttpTool {
 
     /**
      * Basic PUT Request
+     *
      * @param url    URL to send PUT request
      * @param entity StringEntity to send as the body of the PUT request
      * @return HttpUrlConnection
@@ -170,6 +181,7 @@ public class OkHttpTool {
 
     /**
      * Basic DELETE Request
+     *
      * @param url URL to send DELETE request
      * @return HttpUrlConnection
      * @throws IOException
@@ -205,7 +217,7 @@ public class OkHttpTool {
      * Only enable this for debugging if you know what you're doing and your backend has SSL issues.
      * After you enable it, slap your backend people and tell them to fix SSL ASAP before you ship the app
      * Please never leave this enabled.
-     *
+     * <p/>
      * Seriously. Just don't.
      *
      * @param isDisabled
@@ -269,6 +281,7 @@ public class OkHttpTool {
 
     /**
      * Sets Basic Auth for all requests
+     *
      * @param targetHost Host to authenticate to
      * @param username   Username of user
      * @param password   password as user

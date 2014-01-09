@@ -1,7 +1,7 @@
 Quick Start Guide
 
- NOTE: You will need to make sure your Android SDK is up to date. Make sure you're using Revision 18 or higher.
- (To update your tools run the "android" command in your Android SDK and update the SDK from there.)
+ NOTE: You will need to make sure your Android SDK is up to date. Make sure you're using Revision 19 or higher.
+ (To update your tools run the "android" command in your Android SDK and update the SDK from there.) Afterwards, be sure to run the maven-android-sdk-deployer to put your SDK platforms into your maven repo.
 
 * Just Use Maven (recommended)
 
@@ -27,7 +27,7 @@ mvn clean install
 
 * Archetype with Dagger (minSdk 10 with AppCompat)
 
- Like above, copy and paste the following command to get started with a project using Dagger and AppCompat. In order to use this archetype you must have the maven-android-sdk-deployer deploying the SDK to your repo.
+ Like above, copy and paste the following command to get started with a project using Dagger and AppCompat.
 
 +---
  mvn archetype:generate -DarchetypeGroupId=com.willowtreeapps -DarchetypeArtifactId=oak-dagger-archetype \
@@ -59,7 +59,7 @@ mvn clean install
 
 +---
 
-mvn clean install
+ mvn clean install
 
 +---
 

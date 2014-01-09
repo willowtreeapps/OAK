@@ -1,0 +1,13 @@
+TextViewWithFont
+
+ TextViewWithFont allows easier Typeface setting. Simply drop your chosen fonts into assets/fonts and set the oak:font attribute.
+
+ There are also subclasses of TextViewWithFont:
+
+  * CheckBoxWithFont
+
+  * ButtonWithFont
+
+  * CancelEditText
+
+%{snippet|id=textviewwithfont_layout|file=oak-demos/res/layout/textview_with_font_demo.xml}

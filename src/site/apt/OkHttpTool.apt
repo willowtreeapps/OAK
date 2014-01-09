@@ -1,0 +1,9 @@
+OkHttpTool
+
+ OkHttpTool is included to make setting up and using OkHttp more simple.
+
+ * Support for GET, POST, PUT, and DELETE
+
+ * Easy Basic Authentication
+
+ * Simple to setup and use

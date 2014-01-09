@@ -1,0 +1,16 @@
+Recommended Libraries:
+
+ Below are some commonly used libraries we use at WillowTree Apps.
+
+ * {{{http://square.github.io/dagger/} Dagger}} - Dependency Injection.
+
+ * {{{http://square.github.io/okhttp/} OkHttp}} - Http Client.
+
+ * {{{http://jakewharton.github.io/butterknife/} Butterknife}} - View Injection.
+
+ * {{{http://square.github.io/picasso/} Picasso}} - Image Loading.
+
+ * {{{http://square.github.io/otto/} Otto}} - Event Bus.
+
+
+

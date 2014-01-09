@@ -49,14 +49,19 @@
 			<item name="Quick Start" href="quick-start.html"/>
 			<item name="User Guide" href="user-doc.html"/>
             <item name="Download OAK" href="downloads.html"/>
-
 			<item name="Developer Guide" href="dev-doc.html"/>
 			<item name="JavaDoc" href="apidocs/"/>
 		</menu>
 		<menu name="Components">
-			<item name="Section Adapter" href="section-adapter.html"/>
+            <item name="OkHttpTool" href="okhttptool.html" />
+            <item name="TextViewWithFont" href="textviewwithfont.html" />
+            <item name="BeastViewPager" href="beastviewpager.html" />
+            <item name="Section Adapter" href="section-adapter.html"/>
             <item name="Resized TextView" href="resized_textview.html"/>
 		</menu>
-		<menu ref="reports"/>
+        <menu name="Resources">
+            <item name="Recommended Libraries" href="recommendedlibs.html" />
+        </menu>
+        <menu ref="reports"/>
 	</body>
 </project>
