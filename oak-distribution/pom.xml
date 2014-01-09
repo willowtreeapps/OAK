@@ -31,6 +31,7 @@
             <groupId>com.willowtreeapps</groupId>
             <artifactId>oak-library</artifactId>
             <version>${project.version}</version>
+            <type>aar</type>
         </dependency>
         <dependency>
             <groupId>com.willowtreeapps</groupId>

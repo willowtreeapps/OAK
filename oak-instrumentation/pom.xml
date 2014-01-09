@@ -17,6 +17,7 @@
             <artifactId>oak-library</artifactId>
             <version>${project.version}</version>
             <scope>provided</scope>
+            <type>aar</type>
         </dependency>
         <dependency>
             <groupId>com.google.android</groupId>
