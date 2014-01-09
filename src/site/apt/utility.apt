@@ -1,0 +1,15 @@
+Oak Utilities
+
+ Oak includes some often-used utility methods and classes to make common tasks more simple.
+
+ * FontTypefaceSpan - Easily set fonts on any view with Text, including ActionBar Titles
+
+ * OakAsyncLoader - AsyncTaskLoader that works.
+
+ * OakUtils.changeFonts(View root, Context context, String typeface) - Iterates through all children recursively to change all fonts to the specified typeface
+
+ * OakUtils.isPackageInstalled(Context context, String packageName) - Checks if the specified package is installed on the device
+
+ * OakUtils.isValidEmail(String email) - Checks whether the given string is a valid email address
+
+ * OakUtils.isValidPhone(String phonr) - Checks whether the given string is a valid phone number

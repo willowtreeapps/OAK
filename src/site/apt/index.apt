@@ -11,15 +11,17 @@ What is OAK Android Kit?
   * {{{./cancel_edit_text.html}CancelEditText}} - An EditText that lets you specify a tappable drawable
   to clear the field
 
-  * TextViewWithFont - Drop your fonts in "assets/fonts" and use this handy widget to set a custom font in your xml layout
+  * {{{./textviewwithfont.html}TextViewWithFont}} - Drop your fonts in "assets/fonts" and use this handy widget to set a custom font in your xml layout
 
   * {{{./obscured_prefs.html}ObscuredSharedPreferences}} - Store your shared preferences with encryption!
 
-  * BeastViewPager - ViewPager built to work with SlideMenu or inside a ListView Header
+  * {{{./beastviewpager.html}BeastViewPager}} - ViewPager built to work with SlideMenu or inside a ListView Header
 
-  * OkHttpTool - Painless OkHttp UrlConnection wrapper
+  * {{{./okhttptool.html}OkHttpTool}} - Painless OkHttp UrlConnection wrapper
 
   * SwankyImageView - Pinch and Zoom on ImageViews made easy
+
+  * Various utility methods to make development easier
 
 
 How is OAK licensed?
