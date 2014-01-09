@@ -5,6 +5,8 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +54,19 @@ public class OakUtils {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * Returns a formatted String to be used in places like an ActionBar
+     * @param context Context for fetching Typeface
+     * @param text text to be formatted
+     * @param typeface typeface to convert the text into.
+     * @return formatted String.
+     */
+    public SpannableString getFormattedText(Context context, String text, String typeface) {
+        SpannableString s = new SpannableString(text);
+        s.setSpan(new FontTypefaceSpan(context, typeface), 0, s.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        return s;
     }
 
     /**
