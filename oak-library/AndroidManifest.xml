@@ -17,8 +17,6 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="oak"
-          android:versionCode="1"
-          android:versionName="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://schemas.android.com/apk/res/android" >
-    <uses-sdk android:minSdkVersion="7" />
+          android:versionCode="1" android:versionName="1.0">
+    <uses-sdk android:minSdkVersion="8" />
 </manifest> 
