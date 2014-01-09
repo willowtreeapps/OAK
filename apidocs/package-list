@@ -3,5 +3,6 @@ oak.http
 oak.nfc
 oak.util
 oak.viewmodel
+oak.web
 oak.widget
 oak.widget.spreadsheetview
