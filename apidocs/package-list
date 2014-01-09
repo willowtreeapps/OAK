@@ -2,5 +2,6 @@ oak
 oak.http
 oak.nfc
 oak.util
+oak.viewmodel
 oak.widget
 oak.widget.spreadsheetview
