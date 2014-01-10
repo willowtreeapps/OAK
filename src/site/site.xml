@@ -58,7 +58,8 @@
             <item name="BeastViewPager" href="beastviewpager.html" />
             <item name="Section Adapter" href="section-adapter.html"/>
             <item name="Resized TextView" href="resized_textview.html"/>
-		</menu>
+            <item name="Utilities" href="utility.html" />
+        </menu>
         <menu name="Resources">
             <item name="Recommended Libraries" href="recommendedlibs.html" />
         </menu>

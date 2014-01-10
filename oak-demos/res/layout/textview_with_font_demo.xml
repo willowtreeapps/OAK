@@ -14,7 +14,7 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~ See the License for the specific language governing permissions and 
   ~ limitations under the License.
-  -->
+  --><!-- START SNIPPET: textviewwithfont_layout -->
 
 <LinearLayout
         style="@style/Fill"
@@ -37,4 +37,5 @@
             android:text="Even supports strings from res!"
             android:textSize="20sp"
             oak:font="@string/default_font"/>
-</LinearLayout>
+
+</LinearLayout><!-- END SNIPPET: textviewwithfont_layout -->

@@ -20,6 +20,8 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:oak="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+    <!-- START SNIPPET: resizedtv_layout -->
+
     <oak.widget.ResizedTextView
             style="@style/FillWidth"
             android:text="Finally, Android developers have an automatically resizing TextView which will scale the text down to a minimum size and will ellipsize when it's too long."
@@ -27,6 +29,7 @@
             android:textSize="18sp"
             oak:minTextSize="11"
             android:background="#4400ff00"/>
+    <!-- END SNIPPET: resizedtv_layout -->
     <oak.widget.ResizedTextView
             style="@style/FillWidth"
             android:text="This ResizedTextView has less text"
@@ -100,5 +103,4 @@
                 oak:font="Once_upon_a_time.ttf"
                 oak:minTextSize="6"/>
     </RelativeLayout>
-    <!-- END SNIPPET: resizedtv_layout -->
 </LinearLayout>
