@@ -17,6 +17,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.security.GeneralSecurityException;
 import java.security.cert.X509Certificate;
 import java.util.HashMap;
 import java.util.Map;
@@ -48,13 +49,32 @@ public class OkHttpTool {
     private Map<String, String> mCredentialsMap = new HashMap<String, String>();
 
     /**
+     * Creates a client that gets around issues with SSL Context when used with other libraries that may use HttpUrlConnection with SSL.
+     * @return OkHttpClient
+     */
+    private static OkHttpClient createClient() {
+        OkHttpClient client = new OkHttpClient();
+
+        // Working around the libssl crash: https://github.com/square/okhttp/issues/184
+        SSLContext sslContext;
+        try {
+            sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, null, null);
+        } catch (GeneralSecurityException e) {
+            throw new AssertionError(); // The system has no TLS. Just give up.
+        }
+        client.setSslSocketFactory(sslContext.getSocketFactory());
+        return client;
+    }
+
+    /**
      * Constructor with a Context to install a ResponseCache
      *
      * @param context used to install ResponseCache
      */
     public OkHttpTool(Context context) {
         if (mClient == null) {
-            mClient = new OkHttpClient();
+            mClient = createClient();
             installCache(context);
         }
     }
@@ -64,7 +84,7 @@ public class OkHttpTool {
      */
     public OkHttpTool() {
         if (mClient == null) {
-            mClient = new OkHttpClient();
+            mClient = createClient();
         }
     }
 
@@ -219,6 +239,8 @@ public class OkHttpTool {
      * Please never leave this enabled.
      * <p/>
      * Seriously. Just don't.
+     *
+     * If you call this, you should feel bad.
      *
      * @param isDisabled
      */
