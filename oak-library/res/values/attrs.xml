@@ -33,10 +33,10 @@
     </declare-styleable>
 
     <declare-styleable name="MaskedImageView">
-        <attr name="imageFillColor" format="color" />
-        <attr name="imageGlareColor" format="color" />
-        <attr name="imageMask" format="integer" />
-        <attr name="imageOverlay" format="integer" />
+        <attr name="viewFillColor" format="color" />
+        <attr name="glareColor" format="color" />
+        <attr name="mask" format="integer" />
+        <attr name="overlay" format="integer" />
     </declare-styleable>
 
     <declare-styleable name="CustomCircularProgressBar">
