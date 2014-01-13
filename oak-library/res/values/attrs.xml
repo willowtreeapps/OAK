@@ -20,7 +20,7 @@
     </declare-styleable>
 
     <declare-styleable name="ResizedTextView">
-        <attr name="minTextSize" format="integer|reference" />
+        <attr name="minTextSize" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="RatioLinearLayout">
@@ -33,10 +33,10 @@
     </declare-styleable>
 
     <declare-styleable name="MaskedImageView">
-        <attr name="fillColor" format="integer|reference" />
-        <attr name="glareColor" format="integer|reference" />
-        <attr name="mask" format="integer" />
-        <attr name="overlay" format="integer" />
+        <attr name="imageFillColor" format="color" />
+        <attr name="imageGlareColor" format="color" />
+        <attr name="imageMask" format="integer" />
+        <attr name="imageOverlay" format="integer" />
     </declare-styleable>
 
     <declare-styleable name="CustomCircularProgressBar">
@@ -62,36 +62,36 @@
         <attr name="leftHeaderCornerCellSelectedDrawable" format="reference" />
         <attr name="leftFooterCornerCellDrawable" format="reference" />
         <attr name="leftFooterCornerCellSelectedDrawable" format="reference" />
-        <attr name="cellTextColor" format="integer|reference" />
-        <attr name="cellSelectedTextColor" format="integer|reference" />
-        <attr name="dataCellTextColor" format="integer|reference" />
-        <attr name="dataCellSelectedTextColor" format="integer|reference" />
-        <attr name="stickyColumnCellTextColor" format="integer|reference" />
-        <attr name="stickyColumnCellSelectedTextColor" format="integer|reference" />
-        <attr name="stickyHeaderCellTextColor" format="integer|reference" />
-        <attr name="stickyHeaderCellSelectedTextColor" format="integer|reference" />
-        <attr name="stickyFooterCellTextColor" format="integer|reference" />
-        <attr name="stickyFooterCellSelectedTextColor" format="integer|reference" />
-        <attr name="cellTextSize" format="integer|reference" />
+        <attr name="cellTextColor" format="color" />
+        <attr name="cellSelectedTextColor" format="color" />
+        <attr name="dataCellTextColor" format="color" />
+        <attr name="dataCellSelectedTextColor" format="color" />
+        <attr name="stickyColumnCellTextColor" format="color" />
+        <attr name="stickyColumnCellSelectedTextColor" format="color" />
+        <attr name="stickyHeaderCellTextColor" format="color" />
+        <attr name="stickyHeaderCellSelectedTextColor" format="color" />
+        <attr name="stickyFooterCellTextColor" format="color" />
+        <attr name="stickyFooterCellSelectedTextColor" format="color" />
+        <attr name="cellTextSize" format="dimension" />
         <attr name="cellFont" format="string|reference" />
-        <attr name="verticalDividingLineWidth" format="integer|reference" />
-        <attr name="verticalDividingLineColor" format="integer|reference" />
-        <attr name="horizontalDividingLineWidth" format="integer|reference" />
-        <attr name="horizontalDividingLineColor" format="integer|reference" />
+        <attr name="verticalDividingLineWidth" format="dimension" />
+        <attr name="verticalDividingLineColor" format="color" />
+        <attr name="horizontalDividingLineWidth" format="dimension" />
+        <attr name="horizontalDividingLineColor" format="color" />
         <attr name="showFooter" format="boolean|reference" />
-        <attr name="footerHeight" format="integer|reference" />
-        <attr name="headerHeight" format="integer|reference" />
-        <attr name="cellWidth" format="integer|reference" />
-        <attr name="cellHeight" format="integer|reference" />
+        <attr name="footerHeight" format="dimension" />
+        <attr name="headerHeight" format="dimension" />
+        <attr name="cellWidth" format="dimension" />
+        <attr name="cellHeight" format="dimension" />
         <attr name="stickyColumns" format="integer|reference" />
-        <attr name="cellHorizontalBorderWidth" format="integer|reference" />
-        <attr name="cellVerticalBorderWidth" format="integer|reference" />
+        <attr name="cellHorizontalBorderWidth" format="dimension" />
+        <attr name="cellVerticalBorderWidth" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="MultiDirectionSlidingDrawer">
-        <attr name="bottomOffset" format="integer|reference" />
-        <attr name="topOffset" format="integer|reference" />
-        <attr name="topMargin" format="integer|reference" />
+        <attr name="bottomOffset" format="dimension" />
+        <attr name="topOffset" format="dimension" />
+        <attr name="topMargin" format="dimension" />
         <attr name="allowSingleTap" format="boolean|reference" />
         <attr name="animateOnClick" format="boolean|reference" />
         <attr name="handle" format="reference" />
