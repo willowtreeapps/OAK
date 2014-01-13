@@ -17,6 +17,7 @@ import oak.R;
  * Time: 8:24 PM
  * To change this template use File | Settings | File Templates.
  */
+@Deprecated
 public class ResizedTextView extends TextViewWithFont {
 
     private int numMaxLines; //Maximum number of lines, default is 2 if not set in XML
@@ -43,7 +44,7 @@ public class ResizedTextView extends TextViewWithFont {
                 2);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ResizedTextView);
         if (typedArray != null) {
-            this.numMinTextSize = typedArray.getInt(R.styleable.ResizedTextView_minTextSize, 11);
+            this.numMinTextSize = typedArray.getDimensionPixelSize(R.styleable.ResizedTextView_minTextSize, 11);
             typedArray.recycle();
         }
 

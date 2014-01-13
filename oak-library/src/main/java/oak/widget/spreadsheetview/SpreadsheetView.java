@@ -194,7 +194,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
                     leftFootCornerCell.setSelectedDrawable(getContext().getResources().getDrawable(leftFooterCornerCellSelectedDrawable));
                 }
 
-                int allTextColor = a.getInt(R.styleable.SpreadsheetView_cellTextColor, -1);
+                int allTextColor = a.getColor(R.styleable.SpreadsheetView_cellTextColor, -1);
                 if (allTextColor != -1) {
                     setAllCellsTextColor(allTextColor);
                 }
@@ -204,7 +204,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
                     setAllCellsTextColor(getContext().getResources().getColor(allTextColorRes));
                 }
 
-                int allTextSelectedColor = a.getInt(R.styleable.SpreadsheetView_cellSelectedTextColor, -1);
+                int allTextSelectedColor = a.getColor(R.styleable.SpreadsheetView_cellSelectedTextColor, -1);
                 if (allTextSelectedColor != -1) {
                     setAllCellsSelectedTextColor(allTextSelectedColor);
                 }
@@ -214,87 +214,87 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
                     setAllCellsSelectedTextColor(getContext().getResources().getColor(allTextSelectedColorRes));
                 }
 
-                int dataCellTextColor = a.getInt(R.styleable.SpreadsheetView_dataCellTextColor, -1);
+                int dataCellTextColor = a.getColor(R.styleable.SpreadsheetView_dataCellTextColor, -1);
                 if (dataCellTextColor != -1) {
                     dataCell.setTextColor(dataCellTextColor);
                 }
-                int dataCellTextColorRes = a.getResourceId(R.styleable.SpreadsheetView_dataCellTextColor, -1);
-                if (dataCellTextColorRes != -1) {
-                    dataCell.setTextColor(getContext().getResources().getColor(dataCellTextColorRes));
-                }
-                int dataCellSelectedTextColor = a.getInt(R.styleable.SpreadsheetView_dataCellSelectedTextColor, -1);
+//                int dataCellTextColorRes = a.getResourceId(R.styleable.SpreadsheetView_dataCellTextColor, -1);
+//                if (dataCellTextColorRes != -1) {
+//                    dataCell.setTextColor(getContext().getResources().getColor(dataCellTextColorRes));
+//                }
+                int dataCellSelectedTextColor = a.getColor(R.styleable.SpreadsheetView_dataCellSelectedTextColor, -1);
                 if (dataCellSelectedTextColor != -1) {
                     dataCell.setSelectedTextColor(dataCellSelectedTextColor);
                 }
-                int dataCellSelectedTextColorRes = a.getResourceId(R.styleable.SpreadsheetView_dataCellSelectedTextColor, -1);
-                if (dataCellSelectedTextColorRes != -1) {
-                    dataCell.setSelectedTextColor(getContext().getResources().getColor(dataCellSelectedTextColorRes));
-                }
+//                int dataCellSelectedTextColorRes = a.getResourceId(R.styleable.SpreadsheetView_dataCellSelectedTextColor, -1);
+//                if (dataCellSelectedTextColorRes != -1) {
+//                    dataCell.setSelectedTextColor(getContext().getResources().getColor(dataCellSelectedTextColorRes));
+//                }
 
-                int stickyColumnCellTextColor = a.getInt(R.styleable.SpreadsheetView_stickyColumnCellTextColor, -1);
+                int stickyColumnCellTextColor = a.getColor(R.styleable.SpreadsheetView_stickyColumnCellTextColor, -1);
                 if (stickyColumnCellTextColor != -1) {
                     stickyColumnCell.setTextColor(stickyColumnCellTextColor);
                 }
-                int stickyColumnCellTextColorRes = a.getResourceId(R.styleable.SpreadsheetView_stickyColumnCellTextColor, -1);
-                if (stickyColumnCellTextColorRes != -1) {
-                    stickyColumnCell.setTextColor(getContext().getResources().getColor(stickyColumnCellTextColorRes));
-                }
-                int stickyColumnCellSelectedTextColor = a.getInt(R.styleable.SpreadsheetView_stickyColumnCellSelectedTextColor, -1);
+//                int stickyColumnCellTextColorRes = a.getResourceId(R.styleable.SpreadsheetView_stickyColumnCellTextColor, -1);
+//                if (stickyColumnCellTextColorRes != -1) {
+//                    stickyColumnCell.setTextColor(getContext().getResources().getColor(stickyColumnCellTextColorRes));
+//                }
+                int stickyColumnCellSelectedTextColor = a.getColor(R.styleable.SpreadsheetView_stickyColumnCellSelectedTextColor, -1);
                 if (stickyColumnCellSelectedTextColor != -1) {
                     stickyColumnCell.setSelectedTextColor(stickyColumnCellSelectedTextColor);
                 }
-                int stickyColumnCellSelectedTextColorRes = a.getResourceId(R.styleable.SpreadsheetView_stickyColumnCellSelectedTextColor, -1);
-                if (stickyColumnCellSelectedTextColorRes != -1) {
-                    stickyColumnCell.setSelectedTextColor(getContext().getResources().getColor(stickyColumnCellSelectedTextColorRes));
-                }
+//                int stickyColumnCellSelectedTextColorRes = a.getResourceId(R.styleable.SpreadsheetView_stickyColumnCellSelectedTextColor, -1);
+//                if (stickyColumnCellSelectedTextColorRes != -1) {
+//                    stickyColumnCell.setSelectedTextColor(getContext().getResources().getColor(stickyColumnCellSelectedTextColorRes));
+//                }
 
-                int stickyHeaderCellTextColor = a.getInt(R.styleable.SpreadsheetView_stickyHeaderCellTextColor, -1);
+                int stickyHeaderCellTextColor = a.getColor(R.styleable.SpreadsheetView_stickyHeaderCellTextColor, -1);
                 if (stickyHeaderCellTextColor != -1) {
                     stickyHeaderCell.setTextColor(stickyHeaderCellTextColor);
                     leftHeadCornerCell.setTextColor(stickyHeaderCellTextColor);
 
                 }
-                int stickyHeaderCellTextColorRes = a.getResourceId(R.styleable.SpreadsheetView_stickyHeaderCellTextColor, -1);
-                if (stickyHeaderCellTextColorRes != -1) {
-                    stickyHeaderCell.setTextColor(getContext().getResources().getColor(stickyHeaderCellTextColorRes));
-                    leftHeadCornerCell.setTextColor(getContext().getResources().getColor(stickyHeaderCellTextColorRes));
-
-                }
-                int stickyHeaderCellSelectedTextColor = a.getInt(R.styleable.SpreadsheetView_stickyHeaderCellSelectedTextColor, -1);
+//                int stickyHeaderCellTextColorRes = a.getResourceId(R.styleable.SpreadsheetView_stickyHeaderCellTextColor, -1);
+//                if (stickyHeaderCellTextColorRes != -1) {
+//                    stickyHeaderCell.setTextColor(getContext().getResources().getColor(stickyHeaderCellTextColorRes));
+//                    leftHeadCornerCell.setTextColor(getContext().getResources().getColor(stickyHeaderCellTextColorRes));
+//
+//                }
+                int stickyHeaderCellSelectedTextColor = a.getColor(R.styleable.SpreadsheetView_stickyHeaderCellSelectedTextColor, -1);
                 if (stickyHeaderCellSelectedTextColor != -1) {
                     stickyHeaderCell.setSelectedTextColor(stickyHeaderCellSelectedTextColor);
                     leftHeadCornerCell.setSelectedTextColor(stickyHeaderCellSelectedTextColor);
 
                 }
-                int stickyHeaderCellSelectedTextColorRes = a.getResourceId(R.styleable.SpreadsheetView_stickyHeaderCellSelectedTextColor, -1);
-                if (stickyHeaderCellSelectedTextColorRes != -1) {
-                    stickyHeaderCell.setSelectedTextColor(getContext().getResources().getColor(stickyHeaderCellSelectedTextColorRes));
-                    leftHeadCornerCell.setSelectedTextColor(getContext().getResources().getColor(stickyHeaderCellSelectedTextColorRes));
+//                int stickyHeaderCellSelectedTextColorRes = a.getResourceId(R.styleable.SpreadsheetView_stickyHeaderCellSelectedTextColor, -1);
+//                if (stickyHeaderCellSelectedTextColorRes != -1) {
+//                    stickyHeaderCell.setSelectedTextColor(getContext().getResources().getColor(stickyHeaderCellSelectedTextColorRes));
+//                    leftHeadCornerCell.setSelectedTextColor(getContext().getResources().getColor(stickyHeaderCellSelectedTextColorRes));
+//
+//                }
 
-                }
-
-                int stickyFooterCellTextColor = a.getInt(R.styleable.SpreadsheetView_stickyFooterCellTextColor, -1);
+                int stickyFooterCellTextColor = a.getColor(R.styleable.SpreadsheetView_stickyFooterCellTextColor, -1);
                 if (stickyFooterCellTextColor != -1) {
                     stickyFooterCell.setTextColor(stickyFooterCellTextColor);
                     leftFootCornerCell.setTextColor(stickyFooterCellTextColor);
                 }
-                int stickyFooterCellTextColorRes = a.getResourceId(R.styleable.SpreadsheetView_stickyFooterCellTextColor, -1);
-                if (stickyFooterCellTextColorRes != -1) {
-                    stickyFooterCell.setTextColor(getContext().getResources().getColor(stickyFooterCellTextColorRes));
-                    leftFootCornerCell.setTextColor(stickyFooterCellTextColor);
-                }
-                int stickyFooterCellSelectedTextColor = a.getInt(R.styleable.SpreadsheetView_stickyFooterCellSelectedTextColor, -1);
+//                int stickyFooterCellTextColorRes = a.getResourceId(R.styleable.SpreadsheetView_stickyFooterCellTextColor, -1);
+//                if (stickyFooterCellTextColorRes != -1) {
+//                    stickyFooterCell.setTextColor(getContext().getResources().getColor(stickyFooterCellTextColorRes));
+//                    leftFootCornerCell.setTextColor(stickyFooterCellTextColor);
+//                }
+                int stickyFooterCellSelectedTextColor = a.getColor(R.styleable.SpreadsheetView_stickyFooterCellSelectedTextColor, -1);
                 if (stickyFooterCellSelectedTextColor != -1) {
                     stickyFooterCell.setSelectedTextColor(stickyFooterCellSelectedTextColor);
                     leftFootCornerCell.setSelectedTextColor(stickyFooterCellSelectedTextColor);
                 }
-                int stickyFooterCellSelectedTextColorRes = a.getResourceId(R.styleable.SpreadsheetView_stickyFooterCellSelectedTextColor, -1);
-                if (stickyFooterCellSelectedTextColorRes != -1) {
-                    stickyFooterCell.setSelectedTextColor(getContext().getResources().getColor(stickyFooterCellSelectedTextColorRes));
-                    leftFootCornerCell.setSelectedTextColor(getContext().getResources().getColor(stickyFooterCellSelectedTextColorRes));
-                }
+//                int stickyFooterCellSelectedTextColorRes = a.getResourceId(R.styleable.SpreadsheetView_stickyFooterCellSelectedTextColor, -1);
+//                if (stickyFooterCellSelectedTextColorRes != -1) {
+//                    stickyFooterCell.setSelectedTextColor(getContext().getResources().getColor(stickyFooterCellSelectedTextColorRes));
+//                    leftFootCornerCell.setSelectedTextColor(getContext().getResources().getColor(stickyFooterCellSelectedTextColorRes));
+//                }
 
-                int allTextSize = a.getInt(R.styleable.SpreadsheetView_cellTextSize, -1);
+                int allTextSize = a.getDimensionPixelSize(R.styleable.SpreadsheetView_cellTextSize, -1);
                 if (allTextSize != -1) {
                     setAllCellsTextSize(allTextSize);
                 }
@@ -316,7 +316,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
                 }
 
 
-                int verticalDividingLineWidth = a.getInt(R.styleable.SpreadsheetView_verticalDividingLineWidth, -1);
+                int verticalDividingLineWidth = a.getDimensionPixelSize(R.styleable.SpreadsheetView_verticalDividingLineWidth, -1);
                 if (verticalDividingLineWidth != -1) {
                     getVerticalDividingPaint().setStrokeWidth(verticalDividingLineWidth);
                 }
@@ -326,7 +326,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
                     getVerticalDividingPaint().setColor(verticalDividingLineColor);
                 }
 
-                int horizontalDividingLineWidth = a.getInt(R.styleable.SpreadsheetView_horizontalDividingLineWidth, -1);
+                int horizontalDividingLineWidth = a.getDimensionPixelSize(R.styleable.SpreadsheetView_horizontalDividingLineWidth, -1);
                 if (horizontalDividingLineWidth != -1) {
                     getHorizontalDividingPaint().setStrokeWidth(horizontalDividingLineWidth);
                 }
@@ -337,25 +337,25 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
 
 
                 boolean showFooter = a.getBoolean(R.styleable.SpreadsheetView_showFooter, false);
-                int footerHeight = a.getInt(R.styleable.SpreadsheetView_footerHeight, -1);
+                int footerHeight = a.getDimensionPixelSize(R.styleable.SpreadsheetView_footerHeight, -1);
                 if (showFooter == false) {
                     setStickyFooterHeight(0);
                 } else if (footerHeight != -1) {
                     setStickyFooterHeight(footerHeight);
                 }
 
-                int headerHeight = a.getInt(R.styleable.SpreadsheetView_headerHeight, -1);
+                int headerHeight = a.getDimensionPixelSize(R.styleable.SpreadsheetView_headerHeight, -1);
                 if (headerHeight != -1) {
                     setStickyHeaderHeight(headerHeight);
                 }
 
 
-                float dataCellWidth = a.getInt(R.styleable.SpreadsheetView_cellWidth, -1);
+                float dataCellWidth = a.getDimensionPixelSize(R.styleable.SpreadsheetView_cellWidth, -1);
                 if (dataCellWidth == -1) {
                     dataCellWidth = DEFAULT_CELL_WIDTH;
                 }
 
-                float dataCellHeight = a.getInt(R.styleable.SpreadsheetView_cellHeight, -1);
+                float dataCellHeight = a.getDimensionPixelSize(R.styleable.SpreadsheetView_cellHeight, -1);
                 if (dataCellHeight == -1) {
                     dataCellHeight = DEFAULT_CELL_HEIGHT;
                 }
@@ -368,8 +368,8 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
                 }
 
                 boolean setBorders = false;
-                float horizontalCellBorderWidth = a.getInt(R.styleable.SpreadsheetView_cellHorizontalBorderWidth, -1);
-                float verticalCellBorderWidth = a.getInt(R.styleable.SpreadsheetView_cellVerticalBorderWidth, -1);
+                float horizontalCellBorderWidth = a.getDimensionPixelSize(R.styleable.SpreadsheetView_cellHorizontalBorderWidth, -1);
+                float verticalCellBorderWidth = a.getDimensionPixelSize(R.styleable.SpreadsheetView_cellVerticalBorderWidth, -1);
                 if (verticalCellBorderWidth != -1 || horizontalCellBorderWidth != -1) {
                     setBorders = true;
                 }
