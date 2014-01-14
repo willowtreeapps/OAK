@@ -24,19 +24,19 @@
     </declare-styleable>
 
     <declare-styleable name="RatioLinearLayout">
-        <attr name="ratioWidth" format="integer|reference" />
-        <attr name="ratioHeight" format="integer|reference" />
+        <attr name="rllRatioWidth" format="integer|reference" />
+        <attr name="rllRatioHeight" format="integer|reference" />
     </declare-styleable>
 
     <declare-styleable name="AspectRatioLayout">
-        <attr name="aspectRatio" format="float|reference" />
+        <attr name="arlAspectRatio" format="float|reference" />
     </declare-styleable>
 
     <declare-styleable name="MaskedImageView">
-        <attr name="viewFillColor" format="color" />
-        <attr name="glareColor" format="color" />
-        <attr name="mask" format="integer" />
-        <attr name="overlay" format="integer" />
+        <attr name="mivFillColor" format="color" />
+        <attr name="mivGlareColor" format="color" />
+        <attr name="mivMask" format="integer" />
+        <attr name="mivOverlay" format="integer" />
     </declare-styleable>
 
     <declare-styleable name="CustomCircularProgressBar">
@@ -94,8 +94,8 @@
         <attr name="topMargin" format="dimension" />
         <attr name="allowSingleTap" format="boolean|reference" />
         <attr name="animateOnClick" format="boolean|reference" />
-        <attr name="handle" format="reference" />
-        <attr name="content" format="reference" />
+        <attr name="drawerHandle" format="reference" />
+        <attr name="drawerContent" format="reference" />
         <attr name="direction" format="string|reference" />
     </declare-styleable>
 

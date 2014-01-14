@@ -54,8 +54,8 @@ public class RatioLinearLayout extends LinearLayout {
         } else {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RatioLinearLayout);
             if (typedArray != null) {
-                width = typedArray.getInt(R.styleable.RatioLinearLayout_ratioWidth, DEFAULT_WIDTH);
-                height = typedArray.getInt(R.styleable.RatioLinearLayout_ratioHeight, DEFAULT_HEIGHT);
+                width = typedArray.getInt(R.styleable.RatioLinearLayout_rllRatioWidth, DEFAULT_WIDTH);
+                height = typedArray.getInt(R.styleable.RatioLinearLayout_rllRatioHeight, DEFAULT_HEIGHT);
                 typedArray.recycle();
             }
         }

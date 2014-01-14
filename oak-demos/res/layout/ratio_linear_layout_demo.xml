@@ -5,9 +5,10 @@
     android:layout_height="match_parent">
     <oak.widget.RatioLinearLayout android:layout_width="match_parent"
         android:layout_height="0dp"
-        oak:ratioHeight="1"
-        oak:ratioWidth="2">
-        <TextView android:layout_width="match_parent"
+        oak:rllRatioHeight="1"
+        oak:rllRatioWidth="2">
+
+    <TextView android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="RatioLinearLayout will adjust the height of your layout based on the width. This is 2:1"
             android:background="#FF0000"
@@ -22,9 +23,10 @@
         <oak.widget.RatioLinearLayout android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="0dp"
-            oak:ratioHeight="3"
-            oak:ratioWidth="4">
-            <TextView android:layout_width="match_parent"
+            oak:rllRatioHeight="3"
+            oak:rllRatioWidth="4">
+
+        <TextView android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="4:3"
                 android:background="#00FF00"
@@ -36,9 +38,10 @@
         <oak.widget.RatioLinearLayout android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="0dp"
-            oak:ratioHeight="5"
-            oak:ratioWidth="4">
-            <TextView android:layout_width="match_parent"
+            oak:rllRatioHeight="5"
+            oak:rllRatioWidth="4">
+
+        <TextView android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="4:5"
                 android:background="#0000FF"

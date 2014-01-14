@@ -248,7 +248,7 @@ public class MultiDirectionSlidingDrawer extends ViewGroup {
         //            + "to a valid child.");
         //}
 
-        int handleId = array.getResourceId(R.styleable.MultiDirectionSlidingDrawer_handle, 0);
+        int handleId = array.getResourceId(R.styleable.MultiDirectionSlidingDrawer_drawerHandle, 0);
         if (handleId == 0) {
             throw new IllegalArgumentException("The handle attribute is required and must refer "
                     + "to a valid child.");
@@ -260,7 +260,7 @@ public class MultiDirectionSlidingDrawer extends ViewGroup {
         //            + "to a valid child.");
         //}
 
-        int contentId = array.getResourceId(R.styleable.MultiDirectionSlidingDrawer_content, 0);
+        int contentId = array.getResourceId(R.styleable.MultiDirectionSlidingDrawer_drawerContent, 0);
         if (contentId == 0) {
             throw new IllegalArgumentException("The content attribute is required and must refer "
                     + "to a valid child.");
