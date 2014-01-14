@@ -60,7 +60,7 @@ public class CancelEditText extends EditText {
         if (attrs != null) {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CancelEditText);
             if (typedArray != null) {
-                cancelDrawableId = typedArray.getResourceId(R.styleable.CancelEditText_cancelDrawable, -1);
+                cancelDrawableId = typedArray.getResourceId(R.styleable.CancelEditText_oakCancelDrawable, -1);
                 if (cancelDrawableId != -1) {
                     mDrawable = getResources().getDrawable(cancelDrawableId);
 
@@ -83,14 +83,14 @@ public class CancelEditText extends EditText {
                     showOrHideCancel();
                 }
                 try {
-                    fontName = typedArray.getString(R.styleable.CancelEditText_font);
+                    fontName = typedArray.getString(R.styleable.CancelEditText_oakFont);
 
                     if (fontName != null) {
                         setTypeface(OakUtils.getStaticTypeFace(context, fontName));
                     }
                 } catch (IllegalArgumentException e) {
                     try {
-                        int fontNameRes = typedArray.getResourceId(R.styleable.CancelEditText_font, -1);
+                        int fontNameRes = typedArray.getResourceId(R.styleable.CancelEditText_oakFont, -1);
                         if (fontNameRes != -1) {
                             fontName = context.getString(fontNameRes);
                             if (fontName != null) {

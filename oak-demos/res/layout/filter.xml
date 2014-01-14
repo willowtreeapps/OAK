@@ -30,7 +30,7 @@
         android:inputType="textFilter"
         android:imeOptions="actionDone"
         android:singleLine="true"
-        oak:cancelDrawable="@drawable/oak_ic_cancel" />
+        oak:oakCancelDrawable="@drawable/oak_ic_cancel" />
 
     <oak.widget.SectionListView
         style="@style/Fill"

@@ -44,7 +44,7 @@ public class ResizedTextView extends TextViewWithFont {
                 2);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ResizedTextView);
         if (typedArray != null) {
-            this.numMinTextSize = typedArray.getDimensionPixelSize(R.styleable.ResizedTextView_minTextSize, 11);
+            this.numMinTextSize = typedArray.getDimensionPixelSize(R.styleable.ResizedTextView_oakMinTextSize, 11);
             typedArray.recycle();
         }
 

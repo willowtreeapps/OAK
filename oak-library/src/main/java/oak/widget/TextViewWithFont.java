@@ -52,13 +52,13 @@ public class TextViewWithFont extends TextView {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TextViewWithFont);
             if (typedArray != null) {
                 try {
-                    fontName = typedArray.getString(R.styleable.TextViewWithFont_font);
+                    fontName = typedArray.getString(R.styleable.TextViewWithFont_oakFont);
                     if (fontName != null) {
                         setTypeface(OakUtils.getStaticTypeFace(context, fontName));
                     }
                 } catch (IllegalArgumentException e) {
                     try {
-                        int fontNameRes = typedArray.getResourceId(R.styleable.TextViewWithFont_font, -1);
+                        int fontNameRes = typedArray.getResourceId(R.styleable.TextViewWithFont_oakFont, -1);
                         if (fontNameRes != -1) {
                             fontName = context.getString(fontNameRes);
                             if (fontName != null) {

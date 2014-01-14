@@ -27,17 +27,17 @@
         style="@style/Wrap"
         android:text="Use Gradients and stuff."
         android:textSize="24sp"
-        oak:font="Roboto-Bold.ttf"
-        oak:gradientColors="@array/gradientColors"
-        oak:gradientPositions="@array/gradientPositions"
-        oak:gradientAngle="90" />
+        oak:oakFont="Roboto-Bold.ttf"
+        oak:oakColors="@array/gradientColors"
+        oak:oakPositions="@array/gradientPositions"
+        oak:oakAngle="90" />
 
     <oak.widget.BeastTextView
         style="@style/Wrap"
         android:text="Even supports angles!"
         android:textSize="24sp"
-        oak:font="Roboto-Bold.ttf"
-        oak:gradientColors="@array/gradientColors"
-        oak:gradientPositions="@array/gradientPositions"
-        oak:gradientAngle="180" />
+        oak:oakFont="Roboto-Bold.ttf"
+        oak:oakColors="@array/gradientColors"
+        oak:oakPositions="@array/gradientPositions"
+        oak:oakAngle="180" />
 </LinearLayout>

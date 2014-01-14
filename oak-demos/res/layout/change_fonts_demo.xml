@@ -29,11 +29,11 @@
         android:text="Ever wanted to specify a font for all of your Activity's views, no matter what?"
         android:textSize="18sp" />
 
-    <Button
+    <oak.widget.ButtonWithFont
         style="@style/FillWidth"
         android:text="Using OakUtils, you can!"
         android:textSize="20sp"
-        oak:font="Apple Chancery.ttf" />
+        oak:oakFont="Apple Chancery.ttf" />
 
     <TextView
         style="@style/Wrap"

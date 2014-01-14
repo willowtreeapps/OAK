@@ -29,13 +29,13 @@
 
     <oak.widget.CustomCircularProgressBar
         style="@style/Wrap"
-        oak:progressBarDrawable="@drawable/progress_small_holo" />
+        oak:oakProgressBarDrawable="@drawable/progress_small_holo" />
 
     <oak.widget.CustomCircularProgressBar
         style="@style/Wrap"
-        oak:progressBarDrawable="@drawable/progress_medium_holo" />
+        oak:oakProgressBarDrawable="@drawable/progress_medium_holo" />
 
     <oak.widget.CustomCircularProgressBar
         style="@style/Wrap"
-        oak:progressBarDrawable="@drawable/progress_large_holo" />
+        oak:oakProgressBarDrawable="@drawable/progress_large_holo" />
 </LinearLayout>

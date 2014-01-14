@@ -31,42 +31,42 @@
             style="@style/FillWidth"
             android:text="Fonts on CheckBoxes"
             android:textSize="18sp"
-            oak:font="Once_upon_a_time.ttf" />
+            oak:oakFont="Once_upon_a_time.ttf" />
 
         <oak.widget.CheckBoxWithFont
             style="@style/FillWidth"
             android:text="Using CheckBoxWithFont!"
             android:textSize="20sp"
-            oak:font="Apple Chancery.ttf" />
+            oak:oakFont="Apple Chancery.ttf" />
 
         <oak.widget.CheckBoxWithFont
             style="@style/Wrap"
             android:text="Really useful"
             android:textSize="20sp"
-            oak:font="Roboto-Bold.ttf" />
+            oak:oakFont="Roboto-Bold.ttf" />
 
         <oak.widget.CheckBoxWithFont
             style="@style/Wrap"
             android:text="for the new"
             android:textSize="20sp"
-            oak:font="Roboto.ttf" />
+            oak:oakFont="Roboto.ttf" />
 
         <oak.widget.CheckBoxWithFont
             style="@style/Wrap"
             android:text="Roboto"
             android:textSize="20sp"
-            oak:font="Roboto-Light.ttf" />
+            oak:oakFont="Roboto-Light.ttf" />
 
         <oak.widget.CheckBoxWithFont
             style="@style/Wrap"
             android:text="font family!"
             android:textSize="20sp"
-            oak:font="Roboto-Thin.ttf" />
+            oak:oakFont="Roboto-Thin.ttf" />
 
         <oak.widget.CheckBoxWithFont
             style="@style/FillWidth"
             android:text="also res-supported!"
             android:textSize="18sp"
-            oak:font="@string/default_font" />
+            oak:oakFont="@string/default_font" />
     </LinearLayout>
 </ScrollView>

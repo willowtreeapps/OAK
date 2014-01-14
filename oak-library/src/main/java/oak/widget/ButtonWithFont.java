@@ -59,13 +59,13 @@ public class ButtonWithFont extends Button {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ButtonWithFont);
             if (typedArray != null) {
                 try {
-                    fontName = typedArray.getString(R.styleable.ButtonWithFont_font);
+                    fontName = typedArray.getString(R.styleable.ButtonWithFont_oakFont);
                     if (fontName != null) {
                         setTypeface(OakUtils.getStaticTypeFace(context, fontName));
                     }
                 } catch (IllegalArgumentException e) {
                     try {
-                        int fontNameRes = typedArray.getResourceId(R.styleable.ButtonWithFont_font, -1);
+                        int fontNameRes = typedArray.getResourceId(R.styleable.ButtonWithFont_oakFont, -1);
                         if (fontNameRes != -1) {
                             fontName = context.getString(fontNameRes);
                             if (fontName != null) {

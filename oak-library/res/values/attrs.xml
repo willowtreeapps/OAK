@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr name="font" />
+    <attr name="oakFont" />
 
     <declare-styleable name="TextViewWithFont">
-        <attr name="font" />
+        <attr name="oakFont" />
     </declare-styleable>
 
     <declare-styleable name="CheckBoxWithFont">
-        <attr name="font" />
+        <attr name="oakFont" />
     </declare-styleable>
 
     <declare-styleable name="CancelEditText">
-        <attr name="font" />
-        <attr name="cancelDrawable" format="reference" />
+        <attr name="oakFont" />
+        <attr name="oakCancelDrawable" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="ButtonWithFont">
-        <attr name="font" />
+        <attr name="oakFont" />
     </declare-styleable>
 
     <declare-styleable name="ResizedTextView">
-        <attr name="minTextSize" format="dimension" />
+        <attr name="oakMinTextSize" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="RatioLinearLayout">
-        <attr name="rllRatioWidth" format="integer|reference" />
-        <attr name="rllRatioHeight" format="integer|reference" />
+        <attr name="oakRatioWidth" format="integer|reference" />
+        <attr name="oakRatioHeight" format="integer|reference" />
     </declare-styleable>
 
     <declare-styleable name="AspectRatioLayout">
-        <attr name="arlAspectRatio" format="float|reference" />
+        <attr name="oakAspectRatio" format="float|reference" />
     </declare-styleable>
 
     <declare-styleable name="MaskedImageView">
-        <attr name="mivFillColor" format="color" />
-        <attr name="mivGlareColor" format="color" />
-        <attr name="mivMask" format="integer" />
-        <attr name="mivOverlay" format="integer" />
+        <attr name="oakFillColor" format="color" />
+        <attr name="oakGlareColor" format="color" />
+        <attr name="oakMask" format="integer" />
+        <attr name="oakOverlay" format="integer" />
     </declare-styleable>
 
     <declare-styleable name="CustomCircularProgressBar">
-        <attr name="progressBarDrawable" format="reference" />
+        <attr name="oakProgressBarDrawable" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="BeastTextView">
-        <attr name="gradientColors" format="integer|reference" />
-        <attr name="gradientPositions" format="integer|reference" />
-        <attr name="gradientAngle" format="integer|reference" />
+        <attr name="oakColors" format="integer|reference" />
+        <attr name="oakPositions" format="integer|reference" />
+        <attr name="oakAngle" format="integer|reference" />
     </declare-styleable>
 
     <declare-styleable name="SpreadsheetView">
@@ -89,14 +89,14 @@
     </declare-styleable>
 
     <declare-styleable name="MultiDirectionSlidingDrawer">
-        <attr name="bottomOffset" format="dimension" />
-        <attr name="topOffset" format="dimension" />
-        <attr name="topMargin" format="dimension" />
-        <attr name="allowSingleTap" format="boolean|reference" />
-        <attr name="animateOnClick" format="boolean|reference" />
-        <attr name="drawerHandle" format="reference" />
-        <attr name="drawerContent" format="reference" />
-        <attr name="direction" format="string|reference" />
+        <attr name="oakBottomOffset" format="dimension" />
+        <attr name="oakTopOffset" format="dimension" />
+        <attr name="oakTopMargin" format="dimension" />
+        <attr name="oakAllowSingleTap" format="boolean|reference" />
+        <attr name="oakAnimateOnClick" format="boolean|reference" />
+        <attr name="oakHandle" format="reference" />
+        <attr name="oakContent" format="reference" />
+        <attr name="oakDirection" format="string|reference" />
     </declare-styleable>
 
 </resources>

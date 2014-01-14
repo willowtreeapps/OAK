@@ -27,7 +27,7 @@
             android:text="Finally, Android developers have an automatically resizing TextView which will scale the text down to a minimum size and will ellipsize when it's too long."
             android:maxLines="3"
             android:textSize="18sp"
-        oak:minTextSize="11sp"
+        oak:oakMinTextSize="11sp"
         android:background="#4400ff00"/>
     <!-- END SNIPPET: resizedtv_layout -->
     <oak.widget.ResizedTextView
@@ -35,12 +35,12 @@
             android:text="This ResizedTextView has less text"
             android:textSize="18sp"
             android:maxLines="3"
-        oak:minTextSize="11sp"
+        oak:oakMinTextSize="11sp"
         android:background="#44AA88AA"/>
     <oak.widget.ResizedTextView
             style="@style/FillWidth"
             android:text="Imagine having your really long article title automatically shrunk to fit on-screen"
-        oak:minTextSize="10sp"
+        oak:oakMinTextSize="10sp"
         android:maxLines="2"
             android:gravity="center"
             android:background="#440000ff"
@@ -49,16 +49,17 @@
             style="@style/FillWidth"
             android:text="Even works with different fonts! Those developers at WillowTree Apps are genius!"
             android:textSize="17sp"
-        oak:minTextSize="13sp"
+        oak:oakMinTextSize="13sp"
         android:maxLines="2"
             android:gravity="center"
             android:background="#44ff0000"
             android:id="@+id/rtv"
-            oak:font="Apple Chancery.ttf"/>
+        oak:oakFont="Apple Chancery.ttf" />
+
     <oak.widget.ResizedTextView
             style="@style/FillWidth"
             android:text="Ofcourse it works with padding, why wouldn't it!"
-        oak:minTextSize="11sp"
+        oak:oakMinTextSize="11sp"
         android:maxLines="1"
             android:background="#440000ff"
             android:id="@+id/rtv"
@@ -66,7 +67,7 @@
     <oak.widget.ResizedTextView
             style="@style/FillWidth"
             android:text="Take note of the linebreak below"
-        oak:minTextSize="11sp"
+        oak:oakMinTextSize="11sp"
         android:textSize="20sp"
             android:maxLines="1"
             android:background="#ff006600"
@@ -77,14 +78,15 @@
         <oak.widget.TextViewWithFont
                 style="@style/Wrap"
                 android:id="@+id/label"
-            oak:minTextSize="11sp"
+            oak:oakMinTextSize="11sp"
             android:textSize="13sp"
                 android:text="Profile:"
                 android:textColor="#000000"
                 android:padding="4dip"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                oak:font="Once_upon_a_time.ttf"/>
+            oak:oakFont="Once_upon_a_time.ttf" />
+
         <oak.widget.ResizedTextView
                 style="@style/FillWidth"
                 android:layout_toRightOf="@id/label"
@@ -100,7 +102,7 @@
                 android:paddingRight="14dip"
                 android:paddingLeft="14dip"
                 android:paddingTop="0dip"
-                oak:font="Once_upon_a_time.ttf"
-            oak:minTextSize="6sp" />
+            oak:oakFont="Once_upon_a_time.ttf"
+            oak:oakMinTextSize="6sp" />
     </RelativeLayout>
 </LinearLayout>

@@ -5,8 +5,8 @@
     android:layout_height="match_parent">
     <oak.widget.RatioLinearLayout android:layout_width="match_parent"
         android:layout_height="0dp"
-        oak:rllRatioHeight="1"
-        oak:rllRatioWidth="2">
+        oak:oakRatioHeight="1"
+        oak:oakRatioWidth="2">
 
     <TextView android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -23,8 +23,8 @@
         <oak.widget.RatioLinearLayout android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="0dp"
-            oak:rllRatioHeight="3"
-            oak:rllRatioWidth="4">
+            oak:oakRatioHeight="3"
+            oak:oakRatioWidth="4">
 
         <TextView android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -38,8 +38,8 @@
         <oak.widget.RatioLinearLayout android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="0dp"
-            oak:rllRatioHeight="5"
-            oak:rllRatioWidth="4">
+            oak:oakRatioHeight="5"
+            oak:oakRatioWidth="4">
 
         <TextView android:layout_width="match_parent"
                 android:layout_height="match_parent"

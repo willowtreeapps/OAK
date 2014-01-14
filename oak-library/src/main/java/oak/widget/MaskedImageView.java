@@ -41,10 +41,10 @@ public class MaskedImageView extends ImageView {
         Resources res = getResources();
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MaskedImageView);
         if (typedArray != null && res != null) {
-            int fillColorResourceId = typedArray.getResourceId(R.styleable.MaskedImageView_mivFillColor, -1);
-            int glareColorResourceId = typedArray.getResourceId(R.styleable.MaskedImageView_mivGlareColor, -1);
-            int maskResourceId = typedArray.getResourceId(R.styleable.MaskedImageView_mivMask, -1);
-            int overlayResourceId = typedArray.getResourceId(R.styleable.MaskedImageView_mivOverlay, -1);
+            int fillColorResourceId = typedArray.getResourceId(R.styleable.MaskedImageView_oakFillColor, -1);
+            int glareColorResourceId = typedArray.getResourceId(R.styleable.MaskedImageView_oakGlareColor, -1);
+            int maskResourceId = typedArray.getResourceId(R.styleable.MaskedImageView_oakMask, -1);
+            int overlayResourceId = typedArray.getResourceId(R.styleable.MaskedImageView_oakOverlay, -1);
 
             if (fillColorResourceId != -1) {
                 setFillColor(res.getColor(fillColorResourceId));

@@ -28,7 +28,7 @@ public class AspectRatioLayout extends FrameLayout {
         if (attrs != null) {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.AspectRatioLayout);
             if (typedArray != null) {
-                mAspectRatio = typedArray.getFloat(R.styleable.AspectRatioLayout_arlAspectRatio, 1f);
+                mAspectRatio = typedArray.getFloat(R.styleable.AspectRatioLayout_oakAspectRatio, 1f);
                 typedArray.recycle();
             }
 

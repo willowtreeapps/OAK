@@ -177,7 +177,7 @@ public class MultiDirectionSlidingDrawer extends ViewGroup {
         //int orientation = a
         //        .getInt(R.styleable.MultiDirectionSlidingDrawer_direction, ORIENTATION_BTT);
         int orientation = ORIENTATION_BTT;
-        String orientationId = array.getString(R.styleable.MultiDirectionSlidingDrawer_direction);
+        String orientationId = array.getString(R.styleable.MultiDirectionSlidingDrawer_oakDirection);
         if (orientationId.equals("rightToLeft")) {
             orientation = ORIENTATION_RTL;
         } else if (orientationId.equals("leftToRight")) {
@@ -195,7 +195,7 @@ public class MultiDirectionSlidingDrawer extends ViewGroup {
 
         // mBottomOffset = (int) a
         //        .getDimension(R.styleable.MultiDirectionSlidingDrawer_bottomOffset, 0.0f);
-        int mBottomOffsetId = array.getResourceId(R.styleable.MultiDirectionSlidingDrawer_bottomOffset, -1);
+        int mBottomOffsetId = array.getResourceId(R.styleable.MultiDirectionSlidingDrawer_oakBottomOffset, -1);
         if (mBottomOffsetId == -1) {
             mBottomOffset = 0;
         } else {
@@ -203,7 +203,7 @@ public class MultiDirectionSlidingDrawer extends ViewGroup {
         }
 
         //mTopOffset = (int) a.getDimension(R.styleable.MultiDirectionSlidingDrawer_topOffset, 0.0f);
-        int mTopOffsetId = array.getResourceId(R.styleable.MultiDirectionSlidingDrawer_topOffset, -1);
+        int mTopOffsetId = array.getResourceId(R.styleable.MultiDirectionSlidingDrawer_oakTopOffset, -1);
         if (mTopOffsetId == -1) {
             mTopOffset = 0;
         } else {
@@ -213,7 +213,7 @@ public class MultiDirectionSlidingDrawer extends ViewGroup {
 
         //mTopMargin = (int) a.getDimension(R.styleable.MultiDirectionSlidingDrawer_topMargin, 0.0f);
         //TODO: get margin programmatically. Hardcoded currently.
-        int mTopMarginId = array.getResourceId(R.styleable.MultiDirectionSlidingDrawer_topMargin, -1);
+        int mTopMarginId = array.getResourceId(R.styleable.MultiDirectionSlidingDrawer_oakTopMargin, -1);
         if (mTopMarginId == -1) {
             mTopMargin = 0;
         } else {
@@ -224,7 +224,7 @@ public class MultiDirectionSlidingDrawer extends ViewGroup {
 
         //mAllowSingleTap = a
         //        .getBoolean(R.styleable.MultiDirectionSlidingDrawer_allowSingleTap, true);
-        int mAllowSingleTapId = array.getResourceId(R.styleable.MultiDirectionSlidingDrawer_allowSingleTap, -1);
+        int mAllowSingleTapId = array.getResourceId(R.styleable.MultiDirectionSlidingDrawer_oakAllowSingleTap, -1);
         if (mAllowSingleTapId == -1) {
             mAllowSingleTap = true;
         } else {
@@ -233,7 +233,7 @@ public class MultiDirectionSlidingDrawer extends ViewGroup {
 
         //mAnimateOnClick = a
         //        .getBoolean(R.styleable.MultiDirectionSlidingDrawer_animateOnClick, true);
-        int mAnimateOnClickId = array.getResourceId(R.styleable.MultiDirectionSlidingDrawer_animateOnClick, -1);
+        int mAnimateOnClickId = array.getResourceId(R.styleable.MultiDirectionSlidingDrawer_oakAnimateOnClick, -1);
         if (mAnimateOnClickId == -1) {
             mAnimateOnClick = true;
         } else {
@@ -248,7 +248,7 @@ public class MultiDirectionSlidingDrawer extends ViewGroup {
         //            + "to a valid child.");
         //}
 
-        int handleId = array.getResourceId(R.styleable.MultiDirectionSlidingDrawer_drawerHandle, 0);
+        int handleId = array.getResourceId(R.styleable.MultiDirectionSlidingDrawer_oakHandle, 0);
         if (handleId == 0) {
             throw new IllegalArgumentException("The handle attribute is required and must refer "
                     + "to a valid child.");
@@ -260,7 +260,7 @@ public class MultiDirectionSlidingDrawer extends ViewGroup {
         //            + "to a valid child.");
         //}
 
-        int contentId = array.getResourceId(R.styleable.MultiDirectionSlidingDrawer_drawerContent, 0);
+        int contentId = array.getResourceId(R.styleable.MultiDirectionSlidingDrawer_oakContent, 0);
         if (contentId == 0) {
             throw new IllegalArgumentException("The content attribute is required and must refer "
                     + "to a valid child.");

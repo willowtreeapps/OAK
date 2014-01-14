@@ -53,7 +53,7 @@ public class BeastTextView extends TextViewWithFont {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.BeastTextView);
             if (typedArray != null) {
                 try {
-                    int gradientColorsResId = typedArray.getResourceId(R.styleable.BeastTextView_gradientColors, -1);
+                    int gradientColorsResId = typedArray.getResourceId(R.styleable.BeastTextView_oakColors, -1);
                     if (gradientColorsResId != -1) {
                         String[] colors = context.getResources().getStringArray(gradientColorsResId);
                         mGradientColors = new int[colors.length];
@@ -62,7 +62,7 @@ public class BeastTextView extends TextViewWithFont {
                         }
                     }
 
-                    int gradientPositionsResId = typedArray.getResourceId(R.styleable.BeastTextView_gradientPositions, -1);
+                    int gradientPositionsResId = typedArray.getResourceId(R.styleable.BeastTextView_oakPositions, -1);
                     if (gradientPositionsResId != -1) {
                         String[] gps = context.getResources().getStringArray(gradientPositionsResId);
                         mGradientPositions = new float[gps.length];
@@ -71,7 +71,7 @@ public class BeastTextView extends TextViewWithFont {
                         }
                     }
 
-                    mGradientAngle = typedArray.getFloat(R.styleable.BeastTextView_gradientAngle, 1f);
+                    mGradientAngle = typedArray.getFloat(R.styleable.BeastTextView_oakAngle, 1f);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -104,7 +104,7 @@ public class BeastTextView extends TextViewWithFont {
     }
 
     static LinearGradient getGradient(int measuredWidth, int measuredHeight, float angle, int[] colors,
-            float[] positions) {
+                                      float[] positions) {
         // calculate a vector for this angle
         double rad = Math.toRadians(angle);
         double oa = Math.tan(rad);

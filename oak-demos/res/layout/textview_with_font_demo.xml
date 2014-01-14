@@ -26,16 +26,18 @@
             style="@style/FillWidth"
             android:text="Ever wanted to specify a font in XML?"
             android:textSize="18sp"
-            oak:font="Once_upon_a_time.ttf"/>
+        oak:oakFont="Once_upon_a_time.ttf" />
+
     <oak.widget.TextViewWithFont
             style="@style/FillWidth"
             android:text="Using TextViewWithFont, you can!"
             android:textSize="20sp"
-            oak:font="Apple Chancery.ttf"/>
+        oak:oakFont="Apple Chancery.ttf" />
+
     <oak.widget.TextViewWithFont
             style="@style/FillWidth"
             android:text="Even supports strings from res!"
             android:textSize="20sp"
-            oak:font="@string/default_font"/>
+        oak:oakFont="@string/default_font" />
 
 </LinearLayout><!-- END SNIPPET: textviewwithfont_layout -->

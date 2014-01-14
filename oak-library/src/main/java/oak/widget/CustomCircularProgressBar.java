@@ -42,7 +42,7 @@ public class CustomCircularProgressBar extends ProgressBar {
             TypedArray typedArray = c.obtainStyledAttributes(attrs, R.styleable.CustomCircularProgressBar);
             int resourceId;
             if (typedArray != null) {
-                resourceId = typedArray.getResourceId(R.styleable.CustomCircularProgressBar_progressBarDrawable, -1);
+                resourceId = typedArray.getResourceId(R.styleable.CustomCircularProgressBar_oakProgressBarDrawable, -1);
                 typedArray.recycle();
                 if (resourceId != -1) {
                     Drawable d = c.getResources()
