@@ -36,8 +36,7 @@ public class SectionListView extends ListView {
     private View mHeaderView;
     private boolean mHeaderViewVisible;
 
-    private int mHeaderViewWidth;
-    private int mHeaderViewHeight;
+    private int mHeaderLeft, mHeaderTop, mHeaderRight, mHeaderBottom;
 
     private BaseSectionAdapter mAdapter;
 
@@ -58,8 +57,10 @@ public class SectionListView extends ListView {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         if (mHeaderView != null) {
             measureChild(mHeaderView, widthMeasureSpec, heightMeasureSpec);
-            mHeaderViewWidth = mHeaderView.getMeasuredWidth();
-            mHeaderViewHeight = mHeaderView.getMeasuredHeight();
+            mHeaderLeft = getPaddingLeft();
+            mHeaderTop = getPaddingTop();
+            mHeaderRight = mHeaderLeft + mHeaderView.getMeasuredWidth();
+            mHeaderBottom = mHeaderTop + mHeaderView.getMeasuredHeight();
         }
     }
 
@@ -67,7 +68,8 @@ public class SectionListView extends ListView {
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
         if (mHeaderView != null) {
-            mHeaderView.layout(0, 0, mHeaderViewWidth, mHeaderViewHeight);
+
+            mHeaderView.layout(mHeaderLeft, mHeaderTop, mHeaderRight, mHeaderBottom);
             configureHeaderView(getFirstVisiblePosition());
         }
     }
@@ -87,7 +89,7 @@ public class SectionListView extends ListView {
             case BaseSectionAdapter.PINNED_HEADER_VISIBLE: {
                 mAdapter.configurePinnedHeader(mHeaderView, position, 255);
                 if (mHeaderView.getTop() != 0) {
-                    mHeaderView.layout(0, 0, mHeaderViewWidth, mHeaderViewHeight);
+                    mHeaderView.layout(mHeaderLeft, mHeaderTop, mHeaderRight, mHeaderBottom);
                 }
                 mHeaderViewVisible = true;
                 break;
@@ -109,7 +111,7 @@ public class SectionListView extends ListView {
                     }
                     mAdapter.configurePinnedHeader(mHeaderView, position, alpha);
                     if (mHeaderView.getTop() != y) {
-                        mHeaderView.layout(0, y, mHeaderViewWidth, mHeaderViewHeight + y);
+                        mHeaderView.layout(mHeaderLeft, mHeaderTop + y, mHeaderRight, mHeaderBottom + y);
                     }
                     mHeaderViewVisible = true;
                 }
