@@ -123,7 +123,7 @@ public class SectionListView extends ListView {
     @Override
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (mHeaderViewVisible) {
+        if (mHeaderViewVisible && mHeaderView != null) {
             drawChild(canvas, mHeaderView, getDrawingTime());
         }
     }
