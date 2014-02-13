@@ -27,7 +27,7 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Interpolator;
 
-import oak.android.R;
+import oak.R;
 import oak.widget.AnimatedWtaLogoView;
 
 public class AnimatedWtaLogoFragment extends Fragment {
