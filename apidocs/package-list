@@ -1,4 +1,5 @@
 oak
+oak.fragment
 oak.http
 oak.nfc
 oak.util
