@@ -170,8 +170,10 @@ public abstract class SectionAdapter<T extends Sectionable> extends BaseSectionA
     @Override
     public String[] getSections() {
         String[] res = new String[mObjects.size()];
+        String section;
         for (int i = 0; i < mObjects.size(); i++) {
-            res[i] = mObjects.get(i).first.substring(0, 1);
+            section = mObjects.get(i).first;
+            res[i] = section.length() > 1 ? mObjects.get(i).first.substring(0, 1) : section;
         }
         return res;
     }
