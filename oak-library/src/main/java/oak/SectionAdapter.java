@@ -57,7 +57,7 @@ public abstract class SectionAdapter<T extends Sectionable> extends BaseSectionA
 
         for (int i = 0; i < unSectionedList.size(); i++) {
             T currentSectionable = unSectionedList.get(i);
-            String nextSection = "";
+            String nextSection = null;
 
             if (subArray == null) {
                 subArray = new ArrayList<T>();
