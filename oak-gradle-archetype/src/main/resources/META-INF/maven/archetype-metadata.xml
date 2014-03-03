@@ -70,7 +70,6 @@
                 <include>*.gradle</include>
                 <include>*.gitignore</include>
                 <include>*.xml</include>
-                <include>gradlew</include>
                 <include>*.bat</include>
             </includes>
         </fileSet>
