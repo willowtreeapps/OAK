@@ -48,16 +48,12 @@
             </includes>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
-            <directory></directory>
-            <includes>
-                <include>*.xml</include>
-            </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
             <directory>app/</directory>
             <includes>
                 <include>*.properties</include>
                 <include>*.gradle</include>
+                <include>*.xml</include>
+                <include>*.gitignore</include>
             </includes>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
@@ -72,6 +68,10 @@
             <includes>
                 <include>*.properties</include>
                 <include>*.gradle</include>
+                <include>*.gitignore</include>
+                <include>*.xml</include>
+                <include>gradlew</include>
+                <include>*.bat</include>
             </includes>
         </fileSet>
     </fileSets>
