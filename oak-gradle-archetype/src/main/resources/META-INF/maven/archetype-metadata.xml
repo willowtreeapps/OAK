@@ -18,31 +18,31 @@
 
     <fileSets>
         <fileSet filtered="true" packaged="true" encoding="UTF-8">
-            <directory>src/</directory>
+            <directory>app/src/main/java/</directory>
             <includes>
                 <include>**/*.java</include>
             </includes>
         </fileSet>
         <fileSet filtered="true" packaged="true" encoding="UTF-8">
-            <directory>test/</directory>
+            <directory>app/src/main/test</directory>
             <includes>
                 <include>**/*.java</include>
             </includes>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
-            <directory>res</directory>
+            <directory>app/src/main/res/</directory>
             <includes>
                 <include>**/*.xml</include>
             </includes>
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
-            <directory>res</directory>
+            <directory>app/src/main/res/</directory>
             <includes>
                 <include>**/*.png</include>
             </includes>
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
-            <directory>assets</directory>
+            <directory>app/src/main/assets/</directory>
             <includes>
                 <include>**/*</include>
             </includes>
@@ -54,9 +54,24 @@
             </includes>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
+            <directory>app/</directory>
+            <includes>
+                <include>*.properties</include>
+                <include>*.gradle</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>gradle/wrapper/</directory>
+            <includes>
+                <include>*.properties</include>
+                <include>*.jar</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
             <directory></directory>
             <includes>
                 <include>*.properties</include>
+                <include>*.gradle</include>
             </includes>
         </fileSet>
     </fileSets>
