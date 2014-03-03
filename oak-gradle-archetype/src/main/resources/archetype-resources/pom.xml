@@ -128,18 +128,18 @@
     </dependencies>
 
     <build>
-        <sourceDirectory>src</sourceDirectory>
-        <testSourceDirectory>test</testSourceDirectory>
+        <sourceDirectory>app/src/main/java</sourceDirectory>
+        <testSourceDirectory>app/src/main/test</testSourceDirectory>
         <plugins>
             <plugin>
                 <groupId>com.jayway.maven.plugins.android.generation2</groupId>
                 <artifactId>android-maven-plugin</artifactId>
                 <version>\${android-plugin-version}</version>
                 <configuration>
-                    <androidManifestFile>\${project.basedir}/AndroidManifest.xml
+                    <androidManifestFile>\${project.basedir}app/src/AndroidManifest.xml
                     </androidManifestFile>
-                    <assetsDirectory>\${project.basedir}/assets</assetsDirectory>
-                    <resourceDirectory>\${project.basedir}/res</resourceDirectory>
+                    <assetsDirectory>\${project.basedir}app/src/main/assets</assetsDirectory>
+                    <resourceDirectory>\${project.basedir}app/src/main/res</resourceDirectory>
                     <nativeLibrariesDirectory>\${project.basedir}/src/main/native
                     </nativeLibrariesDirectory>
                     <sdk>
