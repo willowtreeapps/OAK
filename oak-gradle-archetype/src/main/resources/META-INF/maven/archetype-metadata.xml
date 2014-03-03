@@ -74,5 +74,11 @@
                 <include>*.bat</include>
             </includes>
         </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory></directory>
+            <includes>
+                <include>gradlew</include>
+            </includes>
+        </fileSet>
     </fileSets>
 </archetype-descriptor>
