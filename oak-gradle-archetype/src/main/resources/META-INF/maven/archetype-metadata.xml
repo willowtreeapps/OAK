@@ -56,8 +56,8 @@
                 <include>*.gitignore</include>
             </includes>
         </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-            <directory>gradle/wrapper/</directory>
+        <fileSet filtered="false" encoding="UTF-8">
+        <directory>gradle/wrapper/</directory>
             <includes>
                 <include>*.properties</include>
                 <include>*.jar</include>
@@ -70,13 +70,14 @@
                 <include>*.gradle</include>
                 <include>*.gitignore</include>
                 <include>*.xml</include>
-                <include>*.bat</include>
+
             </includes>
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
             <directory></directory>
             <includes>
                 <include>gradlew</include>
+                <include>*.bat</include>
             </includes>
         </fileSet>
     </fileSets>
