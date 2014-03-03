@@ -1,0 +1,67 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url 'https://oss.sonatype.org/content/repositories/snapshots/'
+        }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.8.+'
+        classpath 'com.squareup.gradle:gradle-android-test-plugin:0.9.1-SNAPSHOT'
+        classpath 'com.jimdo.gradle:gradle-apt-plugin:0.2-SNAPSHOT'
+    }
+}
+
+apply from: 'http://tellurianring.com/projects/gradle-plugins/gradle-release/apply.groovy'
+apply plugin: 'apt'
+
+release {
+    scm = 'git'
+    preCommitText = 'RELEASE:'
+    preTagCommitMessage = 'Release Build'
+    tagCommitMessage = 'New Tag'
+    newVersionCommitMessage = 'VERSION INCREMENTED'
+}
+/**
+ * Returns the build version code.
+ * This is either 9999 for a locally built apk, or the build server build number.
+ * versionCode is fed in through command line arguments (-PversionCode) with the build server build count.
+ * @return integer Version Code.
+ */
+def Integer buildVersionCode() {
+    if (project.hasProperty('versionCode')) {
+        return project.properties.versionCode.toInteger()
+    } else {
+        return 9999;
+    }
+}
+
+/**
+ * Returns the build version name.
+ * version needs to be in your gradle.properties. All else fails, it simply resorts to 1.0 as a version name
+ * Gradle-Release-Plugin handles all version name incrementing
+ * @return String Version Name.
+ */
+def String buildVersionName() {
+    if (project.hasProperty('version')) {
+        return project.properties.version
+    } else {
+        return "1.0";
+    }
+}
+
+
+allprojects {
+    repositories {
+        mavenCentral()
+        maven {
+            credentials {
+                username localMavenUser
+                password localMavenPassword
+            }
+            url localMavenUrl
+        }
+    }
+}
+
