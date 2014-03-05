@@ -80,5 +80,11 @@
                 <include>*.bat</include>
             </includes>
         </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>app/main</directory>
+            <includes>
+                <include>*.xml</include>
+            </includes>
+        </fileSet>
     </fileSets>
 </archetype-descriptor>
