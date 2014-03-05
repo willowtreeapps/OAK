@@ -81,7 +81,7 @@
             </includes>
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
-            <directory>app/main</directory>
+            <directory>app/src/main</directory>
             <includes>
                 <include>*.xml</include>
             </includes>
