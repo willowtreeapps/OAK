@@ -66,6 +66,10 @@ mvn clean install
  Then, if you're using IntelliJ, you can just open the created pom.xml file via (File -> Open Project...)
 
 
+Works in Progress <<Dragons Ahead>>
+
+ These archetypes are Gradle Android archetypes that are generated through Maven. They are to be used with Android Studio.
+
 * Gradle Archetype with Dagger (In development: Consider this a beta)
 
  Like above, copy and paste the following command to get started with a project using Dagger.

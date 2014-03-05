@@ -12,5 +12,7 @@ Recommended Libraries:
 
  * {{{http://square.github.io/otto/} Otto}} - Event Bus.
 
+ * {{{https://github.com/Netflix/RxJava/tree/master/rxjava-contrib/rxjava-android} RxJava}}
+
 
 
