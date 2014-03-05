@@ -16,7 +16,6 @@ public class StartupActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         Log.i(MainApp.TAG, "onCreate");
         setContentView(R.layout.startup);
-
     }
 
     @Override
