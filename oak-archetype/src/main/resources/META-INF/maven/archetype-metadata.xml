@@ -16,48 +16,48 @@
 		</requiredProperty>
 	</requiredProperties>
 
-	<fileSets>
-		<fileSet filtered="true" packaged="true" encoding="UTF-8">
-			<directory>src/</directory>
-			<includes>
-				<include>**/*.java</include>
-			</includes>
-		</fileSet>
-		<fileSet filtered="true" packaged="true" encoding="UTF-8">
-			<directory>test/</directory>
-			<includes>
-				<include>**/*.java</include>
-			</includes>
-		</fileSet>
-		<fileSet filtered="true" encoding="UTF-8">
-			<directory>res</directory>
-			<includes>
-				<include>**/*.xml</include>
-			</includes>
-		</fileSet>
-		<fileSet filtered="false" encoding="UTF-8">
-			<directory>res</directory>
-			<includes>
-				<include>**/*.png</include>
-			</includes>
-		</fileSet>
-		<fileSet filtered="false" encoding="UTF-8">
-			<directory>assets</directory>
-			<includes>
-				<include>**/*</include>
-			</includes>
-		</fileSet>
-		<fileSet filtered="true" encoding="UTF-8">
-			<directory></directory>
-			<includes>
-				<include>*.xml</include>
-			</includes>
-		</fileSet>
-		<fileSet filtered="true" encoding="UTF-8">
-			<directory></directory>
-			<includes>
-				<include>*.properties</include>
-			</includes>
-		</fileSet>
-	</fileSets>
+    <fileSets>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+            <directory>src/main/java/</directory>
+            <includes>
+                <include>**/*.java</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+            <directory>src/main/test/</directory>
+            <includes>
+                <include>**/*.java</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>src/main/res</directory>
+            <includes>
+                <include>**/*.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>src/main/res</directory>
+            <includes>
+                <include>**/*.png</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>src/main/assets</directory>
+            <includes>
+                <include>**/*</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory></directory>
+            <includes>
+                <include>*.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory></directory>
+            <includes>
+                <include>*.properties</include>
+            </includes>
+        </fileSet>
+    </fileSets>
 </archetype-descriptor>
