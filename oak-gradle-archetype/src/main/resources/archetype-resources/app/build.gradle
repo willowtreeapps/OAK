@@ -1,5 +1,6 @@
 apply plugin: 'android'
 apply plugin: 'android-test'
+apply plugin: 'apt'
 
 
 
@@ -8,7 +9,7 @@ android {
     buildToolsVersion "19.0.1"
 
     defaultConfig {
-        minSdkVersion 7
+        minSdkVersion 10
         targetSdkVersion 19
         versionCode buildVersionCode()
         versionName buildVersionName()
