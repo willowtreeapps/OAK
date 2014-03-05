@@ -248,6 +248,17 @@
                 <category android:name="oak.android.intent.category.OAK" />
             </intent-filter>
         </activity>
+        <activity
+            android:label="@string/vertical_view_pager"
+            android:name=".widget.VerticalViewPagerActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="oak.android.intent.category.OAK" />
+            </intent-filter>
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

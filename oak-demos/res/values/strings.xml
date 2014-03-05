@@ -53,6 +53,7 @@
         Checked/Unchecked exceptions are automatically captured and shown to the user with
         an AlertDialog. Clever, huh?
     </string>
+    <string name="vertical_view_pager">Widget/VerticalViewPager</string>
     <string-array name="names">
         <item>^mlake</item>
         <item>jjnye</item>
