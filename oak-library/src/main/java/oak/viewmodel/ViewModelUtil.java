@@ -37,4 +37,8 @@ public class ViewModelUtil {
             return (ViewModel<T>) convertView;
         }
     }
+
+    public static <T> ViewModel<T> getViewModel(LayoutInflater inflater, int layoutId, ViewGroup parent) {
+        return getViewModel(inflater, layoutId, null, parent);
+    }
 }
