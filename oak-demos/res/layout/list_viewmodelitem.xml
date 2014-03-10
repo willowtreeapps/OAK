@@ -13,5 +13,5 @@
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp" />
+        android:padding="45dp" />
 </oak.demo.viewmodel.StringViewModel>
