@@ -227,9 +227,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".widget.RatioLinearLayoutActivity"
-            android:label="@string/ratio_linear_layout_activity"
-            android:screenOrientation="portrait">
+            android:name=".widget.AspectRatioLayoutActivity"
+            android:label="@string/aspect_ratio_layout_activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
