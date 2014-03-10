@@ -29,7 +29,7 @@
     </declare-styleable>
 
     <declare-styleable name="AspectRatioLayout">
-        <attr name="oakAspectRatio" format="float|reference" />
+        <attr name="oakAspectRatio" format="string" />
     </declare-styleable>
 
     <declare-styleable name="MaskedImageView">
