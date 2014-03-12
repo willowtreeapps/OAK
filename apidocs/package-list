@@ -1,7 +1,7 @@
 oak
-oak.fragment
 oak.http
 oak.nfc
+oak.svg
 oak.util
 oak.viewmodel
 oak.web
