@@ -23,7 +23,7 @@
     android:orientation="vertical"
     android:gravity="center_horizontal">
 
-    <oak.widget.BeastTextView
+    <oak.widget.GradientTextView
         style="@style/Wrap"
         android:text="Use Gradients and stuff."
         android:textSize="24sp"
@@ -32,7 +32,7 @@
         oak:oakPositions="@array/gradientPositions"
         oak:oakAngle="90" />
 
-    <oak.widget.BeastTextView
+    <oak.widget.GradientTextView
         style="@style/Wrap"
         android:text="Even supports angles!"
         android:textSize="24sp"

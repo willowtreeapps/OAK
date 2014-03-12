@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package oak.widget;
+package oak.svg;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -24,6 +24,8 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathMeasure;
 import android.graphics.PointF;
+import android.os.Build;
+import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
@@ -33,27 +35,29 @@ import android.view.animation.Interpolator;
 
 import java.text.ParseException;
 
-import oak.util.MathUtil;
-import oak.util.SvgPathParser;
-import oak.util.WtaLogoPaths;
+public class AnimatedSvgView extends View {
 
-public class AnimatedWtaLogoView extends View {
-
-    private static final String TAG = "AnimatedWtaLogoView";
+    private static final String TAG = "AnimatedSvgView";
 
     private static final int TRACE_TIME = 2000;
     private static final int TRACE_TIME_PER_GLYPH = 1000;
     private static final int FILL_START = 1200;
-    private static final int FILL_TIME = 2000;
+    private static final int FILL_TIME = 1000;
     private static final int MARKER_LENGTH_DIP = 16;
-    private static final int TRACE_RESIDUE_COLOR = Color.argb(50, 0, 0, 0);
-    private static final int TRACE_COLOR = Color.BLACK;
-    private static final PointF VIEWPORT = new PointF(433, 433);
+    private int mTraceResidueColor = Color.argb(50, 0, 0, 0);
+    private int mTraceColor = Color.BLACK;
+    private int mViewportWidth = 433;
+    private int mViewportHeight = 433;
+    private PointF mViewport = new PointF(mViewportWidth, mViewportHeight);
 
     private static final Interpolator INTERPOLATOR = new DecelerateInterpolator();
 
     private Paint mFillPaint;
+    private int[] mFillReds = new int[]{136};
+    private int[] mFillGreens = new int[]{194};
+    private int[] mFillBlues = new int[]{200};
     private GlyphData[] mGlyphData;
+    private String[] mGlyphStrings = WtaLogoPaths.CIRCLE_ONLY_GLYPHS;
     private float mMarkerLength;
     private int mWidth;
     private int mHeight;
@@ -67,21 +71,22 @@ public class AnimatedWtaLogoView extends View {
     private int mState = STATE_NOT_STARTED;
     private OnStateChangeListener mOnStateChangeListener;
 
-    public AnimatedWtaLogoView(Context context) {
+    public AnimatedSvgView(Context context) {
         super(context);
         init();
     }
 
-    public AnimatedWtaLogoView(Context context, AttributeSet attrs) {
+    public AnimatedSvgView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public AnimatedWtaLogoView(Context context, AttributeSet attrs, int defStyle) {
+    public AnimatedSvgView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
 
+    @SuppressWarnings("NewApi")
     private void init() {
         mFillPaint = new Paint();
         mFillPaint.setAntiAlias(true);
@@ -99,25 +104,52 @@ public class AnimatedWtaLogoView extends View {
         // instead. Ideally this should be toggled using a heuristic based on the number
         // and or dimensions of paths to render.
         // Note that PathDashPathEffects can lead to clipping issues with hardware rendering.
-        setLayerType(LAYER_TYPE_SOFTWARE, null);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            setLayerType(LAYER_TYPE_SOFTWARE, null);
+        }
+    }
+
+    public void setViewportSize(int viewportWidth, int viewportHeight) {
+        mViewportWidth = viewportWidth;
+        mViewportHeight = viewportHeight;
+
+        mViewport = new PointF(mViewportWidth, mViewportHeight);
+    }
+
+    public void setGlyphStrings(String[] glyphStrings) {
+        mGlyphStrings = glyphStrings;
+    }
+
+    public void setTraceResidueColor(int color) {
+        mTraceResidueColor = color;
+    }
+
+    public void setTraceColor(int color) {
+        mTraceColor = color;
+    }
+
+    public void setFillPaints(int[] fillReds, int[] fillGreens, int[] fillBlues) {
+        mFillReds = fillReds;
+        mFillGreens = fillGreens;
+        mFillBlues = fillBlues;
     }
 
     public void start() {
         mStartTime = System.currentTimeMillis();
         changeState(STATE_TRACE_STARTED);
-        postInvalidateOnAnimation();
+        ViewCompat.postInvalidateOnAnimation(this);
     }
 
     public void reset() {
         mStartTime = 0;
         changeState(STATE_NOT_STARTED);
-        postInvalidateOnAnimation();
+        ViewCompat.postInvalidateOnAnimation(this);
     }
 
     public void setToFinishedFrame() {
         mStartTime = 1;
         changeState(STATE_FINISHED);
-        postInvalidateOnAnimation();
+        ViewCompat.postInvalidateOnAnimation(this);
     }
 
     @Override
@@ -132,20 +164,20 @@ public class AnimatedWtaLogoView extends View {
         SvgPathParser parser = new SvgPathParser() {
             @Override
             protected float transformX(float x) {
-                return x * mWidth / VIEWPORT.x;
+                return x * mWidth / mViewport.x;
             }
 
             @Override
             protected float transformY(float y) {
-                return y * mHeight / VIEWPORT.y;
+                return y * mHeight / mViewport.y;
             }
         };
 
-        mGlyphData = new GlyphData[WtaLogoPaths.GLYPHS.length];
-        for (int i = 0; i < WtaLogoPaths.GLYPHS.length; i++) {
+        mGlyphData = new GlyphData[mGlyphStrings.length];
+        for (int i = 0; i < mGlyphStrings.length; i++) {
             mGlyphData[i] = new GlyphData();
             try {
-                mGlyphData[i].path = parser.parsePath(WtaLogoPaths.GLYPHS[i]);
+                mGlyphData[i].path = parser.parsePath(mGlyphStrings[i]);
             } catch (ParseException e) {
                 mGlyphData[i].path = new Path();
                 Log.e(TAG, "Couldn't parse path", e);
@@ -182,12 +214,12 @@ public class AnimatedWtaLogoView extends View {
                     (t - (TRACE_TIME - TRACE_TIME_PER_GLYPH) * i * 1f / mGlyphData.length)
                             * 1f / TRACE_TIME_PER_GLYPH);
             float distance = INTERPOLATOR.getInterpolation(phase) * mGlyphData[i].length;
-            mGlyphData[i].paint.setColor(TRACE_RESIDUE_COLOR);
+            mGlyphData[i].paint.setColor(mTraceResidueColor);
             mGlyphData[i].paint.setPathEffect(new DashPathEffect(
                     new float[]{distance, mGlyphData[i].length}, 0));
             canvas.drawPath(mGlyphData[i].path, mGlyphData[i].paint);
 
-            mGlyphData[i].paint.setColor(TRACE_COLOR);
+            mGlyphData[i].paint.setColor(mTraceColor);
             mGlyphData[i].paint.setPathEffect(new DashPathEffect(
                     new float[]{0, distance, phase > 0 ? mMarkerLength : 0,
                             mGlyphData[i].length}, 0));
@@ -201,15 +233,16 @@ public class AnimatedWtaLogoView extends View {
 
             // If after fill start, draw fill
             float phase = MathUtil.constrain(0, 1, (t - FILL_START) * 1f / FILL_TIME);
-            mFillPaint.setARGB((int) (phase * 255), 136, 194, 200);
-            for (GlyphData glyphData : mGlyphData) {
+            for (int i = 0; i < mGlyphData.length; i++) {
+                GlyphData glyphData = mGlyphData[i];
+                mFillPaint.setARGB((int) (phase * 255), mFillReds[i], mFillGreens[i], mFillBlues[i]);
                 canvas.drawPath(glyphData.path, mFillPaint);
             }
         }
 
         if (t < FILL_START + FILL_TIME) {
             // draw next frame if animation isn't finished
-            postInvalidateOnAnimation();
+            ViewCompat.postInvalidateOnAnimation(this);
         } else {
             changeState(STATE_FINISHED);
         }

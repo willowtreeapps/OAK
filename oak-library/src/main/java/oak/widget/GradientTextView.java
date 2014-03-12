@@ -29,24 +29,24 @@ import oak.R;
 /**
  * User: Michael Lake Date: 11/21/11 Time: 5:36 PM
  */
-public class BeastTextView extends TextViewWithFont {
+public class GradientTextView extends TextViewWithFont {
 
-    private static final String TAG = BeastTextView.class.getSimpleName();
+    private static final String TAG = GradientTextView.class.getSimpleName();
 
     private int[] mGradientColors;
     private float[] mGradientPositions;
     private float mGradientAngle = 0.0f;
     private LinearGradient mGradient;
 
-    public BeastTextView(Context context) {
+    public GradientTextView(Context context) {
         this(context, null);
     }
 
-    public BeastTextView(Context context, AttributeSet attrs) {
+    public GradientTextView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public BeastTextView(Context context, AttributeSet attrs, int defStyle) {
+    public GradientTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
         if (attrs != null) {

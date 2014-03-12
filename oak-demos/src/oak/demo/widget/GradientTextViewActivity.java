@@ -25,11 +25,11 @@ import oak.demo.R;
  */
 
 
-public class BeastTextViewActivity extends OakDemoActivity {
+public class GradientTextViewActivity extends OakDemoActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.beast_text_view_demo);
+        setContentView(R.layout.gradient_text_view_demo);
     }
 }

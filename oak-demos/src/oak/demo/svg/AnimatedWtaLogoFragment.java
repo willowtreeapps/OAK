@@ -14,12 +14,14 @@
  * limitations under the License.
  */
 
-package oak.fragment;
+package oak.demo.svg;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.app.Fragment;
+import com.nineoldandroids.animation.AnimatorSet;
+import com.nineoldandroids.animation.ObjectAnimator;
+import com.nineoldandroids.view.ViewHelper;
+
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,15 +29,15 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Interpolator;
 
-import oak.R;
-import oak.widget.AnimatedWtaLogoView;
+import oak.demo.R;
+import oak.svg.AnimatedSvgView;
 
 public class AnimatedWtaLogoFragment extends Fragment {
 
     private View mRootView;
     private Runnable mOnFillStartedCallback;
     private View mSubtitleView;
-    private AnimatedWtaLogoView mLogoView;
+    private AnimatedSvgView mLogoView;
     private float mInitialLogoOffset;
 
     @Override
@@ -48,25 +50,24 @@ public class AnimatedWtaLogoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        mRootView = inflater.inflate(R.layout.animated_wta_logo_fragment, container, false);
+        mRootView = inflater.inflate(R.layout.fragment_animated_wta_logo, container, false);
         mSubtitleView = mRootView.findViewById(R.id.logo_subtitle);
 
-        mLogoView = (AnimatedWtaLogoView) mRootView.findViewById(R.id.animated_logo);
-        mLogoView.setOnStateChangeListener(new AnimatedWtaLogoView.OnStateChangeListener() {
+        mLogoView = (AnimatedSvgView) mRootView.findViewById(R.id.animated_logo);
+        mLogoView.setOnStateChangeListener(new AnimatedSvgView.OnStateChangeListener() {
             @Override
             public void onStateChange(int state) {
-                if (state == AnimatedWtaLogoView.STATE_FILL_STARTED) {
-                    mSubtitleView.setAlpha(0);
+                if (state == AnimatedSvgView.STATE_FILL_STARTED) {
+                    ViewHelper.setAlpha(mSubtitleView, 0);
                     mSubtitleView.setVisibility(View.VISIBLE);
                     //mSubtitleView.setTranslationX(-mSubtitleView.getWidth());
 
                     // Bug in older versions where set.setInterpolator didn't work
                     AnimatorSet set = new AnimatorSet();
                     Interpolator interpolator = new AccelerateInterpolator();
-                    ObjectAnimator a1 = ObjectAnimator.ofFloat(mLogoView, View.TRANSLATION_X, 0);
-                    ObjectAnimator a2 = ObjectAnimator.ofFloat(mSubtitleView,
-                            View.TRANSLATION_X, 0);
-                    ObjectAnimator a3 = ObjectAnimator.ofFloat(mSubtitleView, View.ALPHA, 1);
+                    ObjectAnimator a1 = ObjectAnimator.ofFloat(mLogoView, "translationX", 0);
+                    ObjectAnimator a2 = ObjectAnimator.ofFloat(mSubtitleView, "translationX", 0);
+                    ObjectAnimator a3 = ObjectAnimator.ofFloat(mSubtitleView, "alpha", 1);
                     a1.setInterpolator(interpolator);
                     a2.setInterpolator(interpolator);
                     set.setDuration(500).playTogether(a1, a2, a3);
@@ -97,7 +98,7 @@ public class AnimatedWtaLogoFragment extends Fragment {
 
     public void reset() {
         mLogoView.reset();
-        mLogoView.setTranslationX(mInitialLogoOffset / 2);
+        ViewHelper.setTranslationX(mLogoView, mInitialLogoOffset / 2);
         mSubtitleView.setVisibility(View.INVISIBLE);
     }
 }

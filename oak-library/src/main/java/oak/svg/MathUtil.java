@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package oak.util;
+package oak.svg;
 
 import android.util.FloatMath;
 
