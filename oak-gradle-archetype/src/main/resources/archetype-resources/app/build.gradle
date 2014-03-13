@@ -80,6 +80,17 @@ if (project.hasProperty('keyStore') &&
     android.buildTypes.release.signingConfig = android.signingConfigs.release
 }
 
+hockeyapp {
+    apiToken = "YOURHOCKEYAPPTOKEN"
+    releaseType = 2 // alpha
+    notify = 0
+    status = 2
+    notesType = 1
+    notes = "Some notes."
+    symbolsDirectory = file("build/symbols/")
+    mappingFileNameRegex = "R.txt"
+}
+
 
 
 
