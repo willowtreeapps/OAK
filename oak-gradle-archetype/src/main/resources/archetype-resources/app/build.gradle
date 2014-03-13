@@ -1,7 +1,9 @@
 apply plugin: 'android'
-apply plugin: 'android-test'
 apply plugin: 'apt'
 
+project.ext['src.java.dir'] = ['src/test/java']
+project.ext['module.iml.file'] = "TestGradle.iml"
+apply from: 'https://raw.github.com/sababado/gradle-android-add-dir/master/gradle-android-add-dir.gradle'
 
 
 android {
@@ -18,6 +20,12 @@ android {
         release {
             runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+        applicationVariants.all { variant ->
+            def file = variant.outputFile
+
+            //noinspection GroovyAssignabilityCheck
+            variant.outputFile = new File(file.parent, file.name.replace(".apk", "-" + buildVersionName() + "-b" + buildVersionCode() + ".apk"))
         }
     }
     signingConfigs {
@@ -47,8 +55,8 @@ dependencies {
      * Unit Test dependencies
      * Required to run Unit Tests
      */
-    testCompile 'junit:junit:4.+'
-    testCompile 'org.robolectric:robolectric:2.1.+'
+    androidTestCompile 'junit:junit:4.+'
+    androidTestCompile 'org.robolectric:robolectric:2.1.+'
 }
 
 /**
