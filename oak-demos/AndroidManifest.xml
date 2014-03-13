@@ -161,8 +161,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".widget.BeastViewPagerActivity"
-            android:label="@string/beast_view_pager_activity"
+            android:name=".widget.ParentSwipingViewPagerActivity"
+            android:label="@string/parent_swiping_view_pager_activity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -172,8 +172,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".widget.BeastWebViewActivity"
-            android:label="@string/beast_web_view_activity"
+            android:name=".widget.ParentSwipingWebViewActivity"
+            android:label="@string/parent_swiping_web_view_activity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -205,8 +205,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".widget.BeastTextViewActivity"
-            android:label="@string/beast_text_view_activity"
+            android:name=".widget.GradientTextViewActivity"
+            android:label="@string/gradient_text_view_activity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -261,6 +261,28 @@
         <activity
             android:name=".viewmodel.ViewModelActivity"
             android:label="ListView/ViewModel ListView"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="oak.android.intent.category.OAK" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".svg.AttributionActivity"
+            android:label="@string/svg_attribution_activity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="oak.android.intent.category.OAK" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".svg.FullLogoAttributionActivity"
+            android:label="@string/svg_full_attribution_activity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

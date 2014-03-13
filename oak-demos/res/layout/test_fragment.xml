@@ -24,7 +24,7 @@
             style="@style/FillWidth"
             android:orientation="vertical"
             android:gravity="center">
-        <oak.widget.BeastViewPager
+        <oak.widget.ParentSwipingViewPager
                 style="@style/FillWidth"
                 android:id="@+id/view_pager"
                 android:layout_height="200dp"/>

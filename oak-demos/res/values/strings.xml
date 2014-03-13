@@ -29,9 +29,9 @@
     <string name="encrypted_prefs_activity">Other/Encrypted Preferences</string>
     <string name="custom_progress_dialog_activity">Widget/CustomProgressDialog</string>
     <string name="custom_circular_progress_bar_activity">Widget/CustomCircularProgressBar</string>
-    <string name="beast_view_pager_activity">Widget/BeastViewPager</string>
-    <string name="beast_web_view_activity">Widget/BeastWebView</string>
-    <string name="beast_text_view_activity">Widget/BeastTextView</string>
+    <string name="parent_swiping_view_pager_activity">Widget/ParentSwipingViewPager</string>
+    <string name="parent_swiping_web_view_activity">Widget/ParentSwipingWebView</string>
+    <string name="gradient_text_view_activity">Widget/GradientTextView</string>
     <string name="spreadsheet_view_activity">Widget/SpreadsheetView</string>
     <string name="font_span_activity">Utils/FontTypefaceSpan</string>
     <string name="check_box_with_font_activity">Widget/CheckBoxWithFont</string>
@@ -40,6 +40,8 @@
     <string name="change_font_activity">Utils/OakUtils.changeFonts()</string>
     <string name="is_package_installed_activity">Utils/OakUtils.isPackageInstalled()</string>
     <string name="tag_writer_activity">Nfc/Nfc TagWriter</string>
+    <string name="svg_attribution_activity">Svg/Attribution Demo</string>
+    <string name="svg_full_attribution_activity">Svg/Custom Attribution Demo</string>
     <string name="disclaimer">Although MODE_PRIVATE in SharedPreferences should isolate your saved
         data to be viewable by only your application, a compromised android device(read \'rooted\')
         would be able to view all shared preferences which are generally just in plain text. By
@@ -61,7 +63,6 @@
         <item>eric</item>
         <item>nate</item>
         <item>dbrameyer</item>
-        <item>george</item>
     </string-array>
     <string-array name="emails">
         <item>michael.lake</item>
@@ -70,6 +71,6 @@
         <item>eric.richardson</item>
         <item>nate.vogt</item>
         <item>derek.brameyer</item>
-        <item>george.delmonte</item>
     </string-array>
+    <string name="built_by_willowtree_apps">Built by WillowTree Apps</string>
 </resources>

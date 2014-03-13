@@ -30,7 +30,7 @@
                 android:textSize="28sp"
                 android:padding="20dp"
                 android:text="Some text to pad the top."/>
-        <oak.widget.BeastWebView
+        <oak.widget.ParentSwipingWebView
                 style="@style/FillWidth"
                 android:id="@+id/web_view"
                 android:layout_height="200dp"/>

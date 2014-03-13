@@ -9,19 +9,19 @@ import android.view.ViewConfiguration;
 /**
  * User: derek Date: 7/12/12 Time: 2:57 PM
  */
-public class BeastViewPager extends ViewPager {
+public class ParentSwipingViewPager extends ViewPager {
 
     private float mCurrX = 0.0f;
     private float mCurrY = 0.0f;
     private float mStartX, mStartY;
     private int mTouchSlop;
 
-    public BeastViewPager(Context context) {
+    public ParentSwipingViewPager(Context context) {
         super(context);
         init();
     }
 
-    public BeastViewPager(Context context, AttributeSet attrs) {
+    public ParentSwipingViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }

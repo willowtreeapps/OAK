@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.webkit.WebView;
 
-public class BeastWebView extends WebView {
+public class ParentSwipingWebView extends WebView {
 
     private float mCurrX = 0.0f;
     private float mCurrY = 0.0f;
@@ -17,13 +17,13 @@ public class BeastWebView extends WebView {
     private boolean overScrollBottom = false;
     private boolean isScrolling = false;
 
-    public BeastWebView(Context context) {
+    public ParentSwipingWebView(Context context) {
         super(context);
         init();
     }
 
 
-    public BeastWebView(Context context, AttributeSet attrs) {
+    public ParentSwipingWebView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
