@@ -33,8 +33,7 @@ android {
     }
 }
 
-
-
+apply plugin: 'android-unit-test'
 
 dependencies {
     apt "com.squareup.dagger:dagger-compiler:1.2.1"
