@@ -81,16 +81,18 @@ if (project.hasProperty('keyStore') &&
 }
 
 hockeyapp {
-    apiToken = "YOUR_HOCKEY_API_TOKEN"
-    releaseType = 2 // alpha
-    notify = 0
-    status = 2
+    apiToken = "YOUR_HOCKEY_API_TOKEN" // Your API token.
+    releaseType = 2 // 0 = Beta; 1 = Live; 2 = Alpha
+    notify = 0 // 0 = No Notify; 1 = Notify all testers that can install
+    status = 2 // 1 = No users can download; 2 = available to download for users
     outputDirectory = file("build/apk/")
+    // Directory where builds are output. Should always be build/apk
     appFileNameRegex = ".*(release).*\\.apk\$"
-    notesType = 1
-    notes = "Some notes. Just checking to see if it works."
-    symbolsDirectory = file("build/symbols/")
-    mappingFileNameRegex = "R.txt"
+    // Regex for file. This regex does the release version
+    notesType = 1 // 0 = Textile Format; 1 = Markdown Format
+    notes = "Some notes. Just checking to see if it works." //Build Notes.
+    symbolsDirectory = file("build/symbols/") // Directory for Symbols. Should be build/symbols
+    mappingFileNameRegex = "R.txt" //file regex for mapping file. Should be R.txt
 }
 
 
