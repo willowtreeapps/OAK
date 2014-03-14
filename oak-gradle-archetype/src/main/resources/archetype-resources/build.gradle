@@ -16,7 +16,6 @@ buildscript {
 }
 
 apply from: 'http://tellurianring.com/projects/gradle-plugins/gradle-release/apply.groovy'
-apply plugin: 'hockeyApp'
 
 release {
     scm = 'git'
