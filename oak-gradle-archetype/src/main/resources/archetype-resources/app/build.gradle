@@ -1,9 +1,8 @@
 apply plugin: 'android'
 apply plugin: 'apt'
+apply plugin: 'hockeyApp'
+apply plugin: 'android-test'
 
-project.ext['src.java.dir'] = ['src/test/java']
-project.ext['module.iml.file'] = "TestGradle.iml"
-apply from: 'https://raw.github.com/sababado/gradle-android-add-dir/master/gradle-android-add-dir.gradle'
 
 
 android {
@@ -33,7 +32,6 @@ android {
     }
 }
 
-apply plugin: 'android-unit-test'
 
 dependencies {
     apt "com.squareup.dagger:dagger-compiler:1.2.1"
