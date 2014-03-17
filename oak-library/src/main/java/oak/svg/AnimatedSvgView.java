@@ -43,26 +43,27 @@ public class AnimatedSvgView extends View {
 
     private static final String TAG = "AnimatedSvgView";
 
-    private static final int TRACE_TIME = 2000;
-    private static final int TRACE_TIME_PER_GLYPH = 1000;
-    private static final int FILL_START = 1200;
-    private static final int FILL_TIME = 1000;
+    private int mTraceTime = 2000;
+    private int mTraceTimePerGlyph = 1000;
+    private int mFillStart = 1200;
+    private int mFillTime = 1000;
     private static final int MARKER_LENGTH_DIP = 16;
-    private int mTraceResidueColor = Color.argb(50, 0, 0, 0);
-    private int mTraceColor = Color.BLACK;
+    private int[] mTraceResidueColors;
+    private int[] mTraceColors;
     private RatioSizingUtils.RatioSizingInfo mRatioSizingInfo = new RatioSizingUtils.RatioSizingInfo();
-    private int mViewportWidth = 433;
-    private int mViewportHeight = 433;
+    private int mViewportWidth;
+    private int mViewportHeight;
     private PointF mViewport = new PointF(mViewportWidth, mViewportHeight);
 
     private static final Interpolator INTERPOLATOR = new DecelerateInterpolator();
 
     private Paint mFillPaint;
-    private int[] mFillReds = new int[]{136};
-    private int[] mFillGreens = new int[]{194};
-    private int[] mFillBlues = new int[]{200};
+    private int[] mFillAlphas;
+    private int[] mFillReds;
+    private int[] mFillGreens;
+    private int[] mFillBlues;
     private GlyphData[] mGlyphData;
-    private String[] mGlyphStrings = WtaLogoPaths.CIRCLE_ONLY_GLYPHS;
+    private String[] mGlyphStrings;
     private float mMarkerLength;
     private int mWidth;
     private int mHeight;
@@ -100,6 +101,11 @@ public class AnimatedSvgView extends View {
         mMarkerLength = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
                 MARKER_LENGTH_DIP, getResources().getDisplayMetrics());
 
+        mTraceColors = new int[1];
+        mTraceColors[0] = Color.BLACK;
+        mTraceResidueColors = new int[1];
+        mTraceResidueColors[0] = Color.argb(50, 0, 0, 0);
+
         if (attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AnimatedSvgView);
 
@@ -108,8 +114,13 @@ public class AnimatedSvgView extends View {
             mViewportHeight = a.getInt(R.styleable.AnimatedSvgView_oakSvgImageSizeY, 433);
             mRatioSizingInfo.aspectRatioHeight = a.getInt(R.styleable.AnimatedSvgView_oakSvgImageSizeY, 433);
 
+            mTraceTime = a.getInt(R.styleable.AnimatedSvgView_oakSvgTraceTime, 2000);
+            mTraceTimePerGlyph = a.getInt(R.styleable.AnimatedSvgView_oakSvgTraceTimePerGlyph, 1000);
+            mFillStart = a.getInt(R.styleable.AnimatedSvgView_oakSvgFillStart, 1200);
+            mFillTime = a.getInt(R.styleable.AnimatedSvgView_oakSvgFillTime, 1000);
+
             a.recycle();
-            
+
             mViewport = new PointF(mViewportWidth, mViewportHeight);
         }
 
@@ -143,15 +154,16 @@ public class AnimatedSvgView extends View {
         mGlyphStrings = glyphStrings;
     }
 
-    public void setTraceResidueColor(int color) {
-        mTraceResidueColor = color;
+    public void setTraceResidueColors(int[] traceResidueColors) {
+        mTraceResidueColors = traceResidueColors;
     }
 
-    public void setTraceColor(int color) {
-        mTraceColor = color;
+    public void setTraceColors(int[] traceColors) {
+        mTraceColors = traceColors;
     }
 
-    public void setFillPaints(int[] fillReds, int[] fillGreens, int[] fillBlues) {
+    public void setFillPaints(int[] fillAlphas, int[] fillReds, int[] fillGreens, int[] fillBlues) {
+        mFillAlphas = fillAlphas;
         mFillReds = fillReds;
         mFillGreens = fillGreens;
         mFillBlues = fillBlues;
@@ -244,36 +256,39 @@ public class AnimatedSvgView extends View {
         // Draw outlines (starts as traced)
         for (int i = 0; i < mGlyphData.length; i++) {
             float phase = MathUtil.constrain(0, 1,
-                    (t - (TRACE_TIME - TRACE_TIME_PER_GLYPH) * i * 1f / mGlyphData.length)
-                            * 1f / TRACE_TIME_PER_GLYPH);
+                    (t - (mTraceTime - mTraceTimePerGlyph) * i * 1f / mGlyphData.length)
+                            * 1f / mTraceTimePerGlyph);
             float distance = INTERPOLATOR.getInterpolation(phase) * mGlyphData[i].length;
-            mGlyphData[i].paint.setColor(mTraceResidueColor);
+            mGlyphData[i].paint.setColor(mTraceResidueColors[i]);
             mGlyphData[i].paint.setPathEffect(new DashPathEffect(
                     new float[]{distance, mGlyphData[i].length}, 0));
             canvas.drawPath(mGlyphData[i].path, mGlyphData[i].paint);
 
-            mGlyphData[i].paint.setColor(mTraceColor);
+            mGlyphData[i].paint.setColor(mTraceColors[i]);
             mGlyphData[i].paint.setPathEffect(new DashPathEffect(
                     new float[]{0, distance, phase > 0 ? mMarkerLength : 0,
                             mGlyphData[i].length}, 0));
             canvas.drawPath(mGlyphData[i].path, mGlyphData[i].paint);
         }
 
-        if (t > FILL_START) {
+        if (t > mFillStart) {
             if (mState < STATE_FILL_STARTED) {
                 changeState(STATE_FILL_STARTED);
             }
 
             // If after fill start, draw fill
-            float phase = MathUtil.constrain(0, 1, (t - FILL_START) * 1f / FILL_TIME);
+            float phase = MathUtil.constrain(0, 1, (t - mFillStart) * 1f / mFillTime);
             for (int i = 0; i < mGlyphData.length; i++) {
                 GlyphData glyphData = mGlyphData[i];
-                mFillPaint.setARGB((int) (phase * 255), mFillReds[i], mFillGreens[i], mFillBlues[i]);
+                mFillPaint.setARGB((int) (phase * ((float) mFillAlphas[i] / (float) 255) * 255),
+                        mFillReds[i],
+                        mFillGreens[i],
+                        mFillBlues[i]);
                 canvas.drawPath(glyphData.path, mFillPaint);
             }
         }
 
-        if (t < FILL_START + FILL_TIME) {
+        if (t < mFillStart + mFillTime) {
             // draw next frame if animation isn't finished
             ViewCompat.postInvalidateOnAnimation(this);
         } else {

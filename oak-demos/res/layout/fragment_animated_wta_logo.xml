@@ -14,6 +14,7 @@
   limitations under the License.
   -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:oak="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
     android:padding="4dp"
@@ -24,7 +25,9 @@
         android:id="@+id/animated_logo"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:contentDescription="@string/built_by_willowtree_apps" />
+        android:contentDescription="@string/built_by_willowtree_apps"
+        oak:oakSvgImageSizeX="433"
+        oak:oakSvgImageSizeY="433" />
 
     <ImageView
         android:id="@+id/logo_subtitle"
