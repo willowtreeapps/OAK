@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:oak="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -18,8 +19,10 @@
 
         <oak.svg.AnimatedSvgView
             android:id="@+id/full_logo"
-            android:layout_width="250dp"
-            android:layout_height="72.5dp"
-            android:contentDescription="@string/built_by_willowtree_apps" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/built_by_willowtree_apps"
+            oak:oakSvgImageSizeX="1319"
+            oak:oakSvgImageSizeY="382" />
     </LinearLayout>
 </ScrollView>

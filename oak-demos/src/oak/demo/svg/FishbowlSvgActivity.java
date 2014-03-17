@@ -14,7 +14,7 @@ import oak.svg.WtaLogoPaths;
 /**
  * User: derek Date: 2/13/14 Time: 3:34 PM
  */
-public class FullLogoAttributionActivity extends OakDemoActivity {
+public class FishbowlSvgActivity extends OakDemoActivity {
 
     private Handler mHandler = new Handler();
 
@@ -36,6 +36,7 @@ public class FullLogoAttributionActivity extends OakDemoActivity {
             }
         });
         fullLogo = (AnimatedSvgView) findViewById(R.id.full_logo);
+        fullLogo.setViewportSize(1319, 382);
         fullLogo.setGlyphStrings(WtaLogoPaths.FULL_LOGO_GLYPHS);
         fullLogo.setFillPaints(new int[]{136, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65},
                 new int[]{194, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65},

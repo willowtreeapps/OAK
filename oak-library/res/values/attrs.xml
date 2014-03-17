@@ -99,4 +99,9 @@
         <attr name="oakDirection" format="string|reference" />
     </declare-styleable>
 
+    <declare-styleable name="AnimatedSvgView">
+        <attr name="oakSvgImageSizeX" format="integer" />
+        <attr name="oakSvgImageSizeY" format="integer" />
+    </declare-styleable>
+
 </resources>

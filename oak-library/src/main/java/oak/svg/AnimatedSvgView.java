@@ -17,6 +17,7 @@
 package oak.svg;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
@@ -35,6 +36,9 @@ import android.view.animation.Interpolator;
 
 import java.text.ParseException;
 
+import oak.R;
+import oak.util.RatioSizingUtils;
+
 public class AnimatedSvgView extends View {
 
     private static final String TAG = "AnimatedSvgView";
@@ -46,6 +50,7 @@ public class AnimatedSvgView extends View {
     private static final int MARKER_LENGTH_DIP = 16;
     private int mTraceResidueColor = Color.argb(50, 0, 0, 0);
     private int mTraceColor = Color.BLACK;
+    private RatioSizingUtils.RatioSizingInfo mRatioSizingInfo = new RatioSizingUtils.RatioSizingInfo();
     private int mViewportWidth = 433;
     private int mViewportHeight = 433;
     private PointF mViewport = new PointF(mViewportWidth, mViewportHeight);
@@ -73,27 +78,40 @@ public class AnimatedSvgView extends View {
 
     public AnimatedSvgView(Context context) {
         super(context);
-        init();
+        init(context, null);
     }
 
     public AnimatedSvgView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
+        init(context, attrs);
     }
 
     public AnimatedSvgView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        init();
+        init(context, attrs);
     }
 
     @SuppressWarnings("NewApi")
-    private void init() {
+    private void init(Context context, AttributeSet attrs) {
         mFillPaint = new Paint();
         mFillPaint.setAntiAlias(true);
         mFillPaint.setStyle(Paint.Style.FILL);
 
         mMarkerLength = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
                 MARKER_LENGTH_DIP, getResources().getDisplayMetrics());
+
+        if (attrs != null) {
+            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AnimatedSvgView);
+
+            mViewportWidth = a.getInt(R.styleable.AnimatedSvgView_oakSvgImageSizeX, 433);
+            mRatioSizingInfo.aspectRatioWidth = a.getInt(R.styleable.AnimatedSvgView_oakSvgImageSizeX, 433);
+            mViewportHeight = a.getInt(R.styleable.AnimatedSvgView_oakSvgImageSizeY, 433);
+            mRatioSizingInfo.aspectRatioHeight = a.getInt(R.styleable.AnimatedSvgView_oakSvgImageSizeY, 433);
+
+            a.recycle();
+            
+            mViewport = new PointF(mViewportWidth, mViewportHeight);
+        }
 
         // See https://github.com/romainguy/road-trip/blob/master/application/src/main/java/org/curiouscreature/android/roadtrip/IntroView.java
         // Note: using a software layer here is an optimization. This view works with
@@ -113,7 +131,12 @@ public class AnimatedSvgView extends View {
         mViewportWidth = viewportWidth;
         mViewportHeight = viewportHeight;
 
+        mRatioSizingInfo.aspectRatioWidth = viewportWidth;
+        mRatioSizingInfo.aspectRatioHeight = viewportHeight;
+
         mViewport = new PointF(mViewportWidth, mViewportHeight);
+
+        requestLayout();
     }
 
     public void setGlyphStrings(String[] glyphStrings) {
@@ -158,6 +181,16 @@ public class AnimatedSvgView extends View {
         mWidth = w;
         mHeight = h;
         rebuildGlyphData();
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        RatioSizingUtils.RatioMeasureInfo rmi = RatioSizingUtils
+                .getMeasureInfo(widthMeasureSpec, heightMeasureSpec, mRatioSizingInfo, 0, 0);
+
+        super.onMeasure(
+                MeasureSpec.makeMeasureSpec(rmi.width, MeasureSpec.EXACTLY),
+                MeasureSpec.makeMeasureSpec(rmi.height, MeasureSpec.EXACTLY));
     }
 
     private void rebuildGlyphData() {
