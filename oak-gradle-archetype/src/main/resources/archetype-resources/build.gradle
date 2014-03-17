@@ -2,14 +2,16 @@
 buildscript {
     repositories {
         mavenCentral()
+        mavenLocal()
         maven {
             url 'https://oss.sonatype.org/content/repositories/snapshots/'
         }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:0.9.+'
-        classpath 'com.squareup.gradle:gradle-android-test-plugin:0.9.1-SNAPSHOT'
+        classpath 'com.github.jcandksolutions.gradle:android-unit-test:1.0.+'
         classpath 'com.jimdo.gradle:gradle-apt-plugin:0.2-SNAPSHOT'
+        classpath 'de.felixschulze.gradle:gradle-hockeyapp-plugin:1.3+'
     }
 }
 
@@ -32,7 +34,7 @@ def Integer buildVersionCode() {
     if (project.hasProperty('versionCode')) {
         return project.properties.versionCode.toInteger()
     } else {
-        return 9999;
+        return 1;
     }
 }
 
