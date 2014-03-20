@@ -25,7 +25,7 @@ public class WebViewActivity extends FragmentActivity {
         try {
             URL url = new URL(urlToLoad);
         } catch (MalformedURLException ex) {
-            throw new IllegalArgumentException("Please provide a valid url to the WebViewActivity getIntent() method");
+            throw new IllegalArgumentException("Please provide a valid url to the WebViewActivity getIntent() or startWebActivity() method");
         }
         if (savedInstanceState == null) {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -38,5 +38,18 @@ public class WebViewActivity extends FragmentActivity {
         Intent intent = new Intent(context, WebViewActivity.class);
         intent.putExtra(EXTRA_URL, url);
         return intent;
+    }
+
+    public static void startWebActivity(Context context, String url) {
+        context.startActivity(getIntent(context, url));
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (((OakWebViewFragment) getSupportFragmentManager().findFragmentById(android.R.id.content)).webView.canGoBack()) {
+            ((OakWebViewFragment) getSupportFragmentManager().findFragmentById(android.R.id.content)).webView.goBack();
+        } else {
+            super.onBackPressed();
+        }
     }
 }

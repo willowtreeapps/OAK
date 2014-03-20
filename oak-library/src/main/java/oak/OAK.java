@@ -21,4 +21,6 @@ package oak;
  */
 public interface OAK {
     static final String LOGTAG = "OAK";
+
+    public static final String EXTRA_URL = "oak_url";
 }

@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:clipChildren="false"
     android:layout_height="match_parent">
 
     <WebView
         android:id="@+id/webview"
-        android:paddingBottom="48dp"
         android:layout_width="match_parent"
+        android:paddingBottom="48dp"
         android:layout_height="match_parent" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:id="@+id/button_container"
+        android:id="@id/button_container"
+        android:padding="8dp"
         android:layout_alignParentBottom="true"
         android:layout_height="wrap_content">
 
@@ -20,7 +22,6 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_alignParentLeft="true"
-            android:layout_margin="16dp"
             android:background="@drawable/button_bg"
             android:src="@drawable/back" />
 
@@ -40,7 +41,7 @@
             android:background="@drawable/button_bg">
 
             <ProgressBar
-                style="@android:style/Widget.ProgressBar.Large"
+                style="@android:style/Widget.Holo.ProgressBar.Large"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:indeterminate="true" />
