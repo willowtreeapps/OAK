@@ -22,11 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:contentDescription="@string/built_by_willowtree_apps"
-            oak:oakSvgImageSizeX="1319"
-            oak:oakSvgImageSizeY="382"
-            oak:oakSvgTraceTime="10000"
-            oak:oakSvgTraceTimePerGlyph="5000"
-            oak:oakSvgFillStart="7500"
-            oak:oakSvgFillTime="10000" />
+            oak:oakSvgImageSizeX="926"
+            oak:oakSvgImageSizeY="163" />
     </LinearLayout>
 </ScrollView>

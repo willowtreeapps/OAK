@@ -14,7 +14,7 @@ import oak.svg.AnimatedSvgView;
 /**
  * User: derek Date: 2/13/14 Time: 3:34 PM
  */
-public class FullLogoAttributionActivity extends OakDemoActivity {
+public class FishbowlSvgActivity extends OakDemoActivity {
 
     private Handler mHandler = new Handler();
 
@@ -24,7 +24,7 @@ public class FullLogoAttributionActivity extends OakDemoActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_full_logo_attribution);
+        setContentView(R.layout.activity_fishbowl_svg);
 
         resetAnimationsButton = (Button) findViewById(R.id.reset_animations);
         resetAnimationsButton.setOnClickListener(new View.OnClickListener() {
@@ -35,22 +35,20 @@ public class FullLogoAttributionActivity extends OakDemoActivity {
             }
         });
         fullLogo = (AnimatedSvgView) findViewById(R.id.full_logo);
-        fullLogo.setGlyphStrings(WtaLogoPaths.FULL_LOGO_GLYPHS);
+        fullLogo.setGlyphStrings(FishbowlLogoPaths.FISHBOWL_GLYPHS);
         fullLogo.setFillPaints(
-                new int[]{255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255},
-                new int[]{136, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65},
-                new int[]{194, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65},
-                new int[]{200, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65});
-        int tc = Color.argb(255, 0, 0, 0);
-        int[] traceColors = new int[18];
-        int rc = Color.argb(50, 0, 0, 0);
-        int[] residueColors = new int[18];
-        for (int i = 0; i < traceColors.length; i++) {
-            traceColors[i] = tc;
-            residueColors[i] = rc;
-        }
-        fullLogo.setTraceColors(traceColors);
-        fullLogo.setTraceResidueColors(residueColors);
+                new int[]{255, 255, 255, 255, 255, 0, 255, 255},
+                new int[]{0, 0, 0, 0, 0, 0, 0, 0},
+                new int[]{178, 178, 178, 178, 178, 178, 178, 178},
+                new int[]{238, 238, 238, 238, 238, 238, 238, 238});
+        int traceColor = Color.argb(255, 0, 0, 0);
+        fullLogo.setTraceColors(
+                new int[]{traceColor, traceColor, traceColor, traceColor, traceColor, traceColor, traceColor,
+                        traceColor});
+        int residueColor = Color.argb(50, 0, 0, 0);
+        fullLogo.setTraceResidueColors(
+                new int[]{residueColor, residueColor, residueColor, residueColor, residueColor, residueColor,
+                        residueColor, residueColor});
     }
 
     @Override

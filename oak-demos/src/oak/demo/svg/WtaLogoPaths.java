@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package oak.svg;
+package oak.demo.svg;
 
 public interface WtaLogoPaths {
 

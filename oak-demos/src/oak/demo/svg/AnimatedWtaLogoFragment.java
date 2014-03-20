@@ -20,6 +20,7 @@ import com.nineoldandroids.animation.AnimatorSet;
 import com.nineoldandroids.animation.ObjectAnimator;
 import com.nineoldandroids.view.ViewHelper;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.TypedValue;
@@ -79,6 +80,26 @@ public class AnimatedWtaLogoFragment extends Fragment {
                 }
             }
         });
+        mLogoView.setGlyphStrings(WtaLogoPaths.CIRCLE_ONLY_GLYPHS);
+        int tc = Color.argb(255, 0, 0, 0);
+        int rc = Color.argb(50, 0, 0, 0);
+        int[] fillAlphas = new int[WtaLogoPaths.CIRCLE_ONLY_GLYPHS.length];
+        int[] fillReds = new int[WtaLogoPaths.CIRCLE_ONLY_GLYPHS.length];
+        int[] fillGreens = new int[WtaLogoPaths.CIRCLE_ONLY_GLYPHS.length];
+        int[] fillBlues = new int[WtaLogoPaths.CIRCLE_ONLY_GLYPHS.length];
+        int[] traceColors = new int[WtaLogoPaths.CIRCLE_ONLY_GLYPHS.length];
+        int[] residueColors = new int[WtaLogoPaths.CIRCLE_ONLY_GLYPHS.length];
+        for (int i = 0; i < WtaLogoPaths.CIRCLE_ONLY_GLYPHS.length; i++) {
+            fillAlphas[i] = 255;
+            fillReds[i] = 136;
+            fillGreens[i] = 194;
+            fillBlues[i] = 200;
+            traceColors[i] = tc;
+            residueColors[i] = rc;
+        }
+        mLogoView.setFillPaints(fillAlphas, fillReds, fillGreens, fillBlues);
+        mLogoView.setTraceColors(traceColors);
+        mLogoView.setTraceResidueColors(residueColors);
         return mRootView;
     }
 
