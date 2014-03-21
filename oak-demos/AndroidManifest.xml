@@ -237,17 +237,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".fragment.WtaLogoFragmentActivity"
-            android:label="@string/wta_animated_logo_activity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".widget.VerticalViewPagerActivity"
             android:label="@string/vertical_view_pager"
             android:screenOrientation="portrait">
