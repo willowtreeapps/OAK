@@ -54,7 +54,6 @@
     <WebView
         android:id="@+id/webview"
         android:layout_width="match_parent"
-        android:paddingBottom="48dp"
         android:layout_below="@+id/button_container"
         android:layout_height="match_parent" />
 </RelativeLayout>
