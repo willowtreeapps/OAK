@@ -15,6 +15,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import java.net.URL;
+
 import oak.R;
 
 /**
@@ -32,6 +34,14 @@ public class OakWebViewFragment extends Fragment {
         OakWebViewFragment fragment = new OakWebViewFragment();
         Bundle bundle = new Bundle();
         bundle.putString(WebViewActivity.EXTRA_URL, url);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
+    public static OakWebViewFragment getInstance(URL url) {
+        OakWebViewFragment fragment = new OakWebViewFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(WebViewActivity.EXTRA_URL, url.toString());
         fragment.setArguments(bundle);
         return fragment;
     }
