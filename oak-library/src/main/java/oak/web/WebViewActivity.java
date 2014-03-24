@@ -39,7 +39,7 @@ public class WebViewActivity extends FragmentActivity {
                 openInBrowserEnabled = getIntent().getBooleanExtra(OAK.EXTRA_OPEN_IN_BROWSER, false);
             }
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.add(android.R.id.content, OakWebViewFragment.getInstance(urlToLoad, true));
+            fragmentTransaction.add(android.R.id.content, OakWebViewFragment.getInstance(urlToLoad, true, getIntent().getIntExtra(OAK.EXTRA_LAYOUT, 0)));
             fragmentTransaction.commit();
         } else {
             openInBrowserEnabled = savedInstanceState.getBoolean(OAK.EXTRA_OPEN_IN_BROWSER);
@@ -58,21 +58,25 @@ public class WebViewActivity extends FragmentActivity {
         ((OakWebViewFragment) getSupportFragmentManager().findFragmentById(android.R.id.content)).setOpenInBrowserEnabled(openInBrowserEnabled);
     }
 
-    public static Intent getIntent(Context context, String url, boolean openInBrowserEnabled) {
+    public static Intent getIntent(Context context, String url, boolean openInBrowserEnabled, int layoutId) {
         Intent intent = new Intent(context, WebViewActivity.class);
         intent.putExtra(OAK.EXTRA_URL, url);
         intent.putExtra(OAK.EXTRA_OPEN_IN_BROWSER, openInBrowserEnabled);
+        intent.putExtra(OAK.EXTRA_LAYOUT, layoutId);
         return intent;
     }
 
     public static void startWebActivity(Context context, String url, boolean openInBrowserEnabled) {
-        context.startActivity(getIntent(context, url, openInBrowserEnabled));
+        context.startActivity(getIntent(context, url, openInBrowserEnabled, 0));
     }
 
     public static void startWebActivity(Context context, String url) {
-        context.startActivity(getIntent(context, url, true));
+        context.startActivity(getIntent(context, url, true, 0));
     }
 
+    public static void startWebActivity(Context context, String url, int layoutId) {
+        context.startActivity(getIntent(context, url, true, layoutId));
+    }
     @Override
     public void onBackPressed() {
         if (((OakWebViewFragment) getSupportFragmentManager().findFragmentById(android.R.id.content)).webView.canGoBack()) {

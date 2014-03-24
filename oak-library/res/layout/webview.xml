@@ -40,7 +40,6 @@
             android:background="@drawable/button_bg">
 
             <ProgressBar
-                style="@android:style/Widget.ProgressBar.Large"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:indeterminate="true" />

@@ -23,7 +23,7 @@ public class WebLaunchActivity extends OakDemoActivity {
     }
 
     private void launchWebActivity() {
-        WebViewActivity.startWebActivity(this, "http://willowtreeapps.com");
+        WebViewActivity.startWebActivity(this, "http://willowtreeapps.com", R.layout.fragment_webview);
     }
 
 }

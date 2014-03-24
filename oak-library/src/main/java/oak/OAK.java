@@ -24,5 +24,7 @@ public interface OAK {
 
     public static final String EXTRA_URL = "oak_url";
 
+    public static final String EXTRA_LAYOUT = "oak_layout";
+
     public static final String EXTRA_OPEN_IN_BROWSER = "oak_open_in_browser";
 }

@@ -4,17 +4,13 @@
     android:clipChildren="false"
     android:layout_height="match_parent">
 
-    <WebView
-        android:id="@+id/webview"
-        android:layout_width="match_parent"
-        android:paddingBottom="48dp"
-        android:layout_height="match_parent" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:id="@id/button_container"
+        android:id="@+id/button_container"
+        android:background="@android:color/white"
         android:padding="8dp"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_height="wrap_content">
 
         <ImageButton
@@ -41,7 +37,6 @@
             android:background="@drawable/button_bg">
 
             <ProgressBar
-                style="@android:style/Widget.Holo.ProgressBar.Large"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:indeterminate="true" />
@@ -55,4 +50,11 @@
             android:background="@drawable/button_bg"
             android:src="@drawable/forward" />
     </RelativeLayout>
+
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:paddingBottom="48dp"
+        android:layout_below="@+id/button_container"
+        android:layout_height="match_parent" />
 </RelativeLayout>

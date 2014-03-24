@@ -17,8 +17,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import java.net.URL;
-
 import oak.OAK;
 import oak.R;
 
@@ -34,7 +32,7 @@ public class OakWebViewFragment extends Fragment {
     boolean hidden, openInBrowserEnabled = false;
 
     public static OakWebViewFragment getInstance(String url) {
-        return getInstance(url, false);
+        return getInstance(url, true);
     }
 
     public static OakWebViewFragment getInstance(String url, boolean openInBrowserEnabled) {
@@ -46,21 +44,29 @@ public class OakWebViewFragment extends Fragment {
         return fragment;
     }
 
-    public static OakWebViewFragment getInstance(URL url) {
-        return getInstance(url.toString());
+    public static OakWebViewFragment getInstance(String url, boolean openInBrowserEnabled, int layoutId) {
+        OakWebViewFragment fragment = new OakWebViewFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(OAK.EXTRA_URL, url);
+        bundle.putBoolean(OAK.EXTRA_OPEN_IN_BROWSER, openInBrowserEnabled);
+        if (layoutId > 0) {
+            bundle.putInt(OAK.EXTRA_LAYOUT, layoutId);
+        }
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         url = getArguments().getString(OAK.EXTRA_URL);
-        openInBrowserEnabled = getArguments().getBoolean(OAK.EXTRA_OPEN_IN_BROWSER, false);
+        openInBrowserEnabled = getArguments().getBoolean(OAK.EXTRA_OPEN_IN_BROWSER, true);
         setHasOptionsMenu(openInBrowserEnabled);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.webview, container, false);
+        return inflater.inflate(getArguments().containsKey(OAK.EXTRA_LAYOUT) ? getArguments().getInt(OAK.EXTRA_LAYOUT) : R.layout.webview, container, false);
     }
 
     @Override
@@ -71,6 +77,9 @@ public class OakWebViewFragment extends Fragment {
         refresh = view.findViewById(R.id.refresh);
         progress = view.findViewById(R.id.progress);
         webView = (WebView) view.findViewById(R.id.webview);
+        if (webView == null) {
+            throw new IllegalStateException("Layout used with this webview must contain a WebView with the id R.id.webview");
+        }
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setPluginState(WebSettings.PluginState.ON);
         webView.getSettings().setAllowFileAccess(true);
@@ -92,44 +101,57 @@ public class OakWebViewFragment extends Fragment {
 
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                progress.setVisibility(View.VISIBLE);
-                refresh.setVisibility(View.INVISIBLE);
+                if (refresh != null) {
+                    refresh.setVisibility(View.INVISIBLE);
+                }
+                if (progress != null) {
+                    progress.setVisibility(View.VISIBLE);
+                }
                 super.onPageStarted(view, url, favicon);
             }
 
             @Override
             public void onPageFinished(WebView view, String url) {
-                refresh.setVisibility(View.VISIBLE);
-                progress.setVisibility(View.INVISIBLE);
+                if (refresh != null) {
+                    refresh.setVisibility(View.VISIBLE);
+                }
+                if (progress != null) {
+                    progress.setVisibility(View.INVISIBLE);
+                }
                 super.onPageFinished(view, url);
                 configureButtons(view);
             }
         });
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (webView.canGoBack()) {
-                    webView.goBack();
+        if (back != null) {
+            back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (webView.canGoBack()) {
+                        webView.goBack();
+                    }
                 }
-            }
-        });
-        fwd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (webView.canGoForward()) {
-                    webView.goForward();
+            });
+        }
+        if (fwd != null) {
+            fwd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (webView.canGoForward()) {
+                        webView.goForward();
+                    }
                 }
-            }
-        });
-        refresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                webView.reload();
-                progress.setVisibility(View.VISIBLE);
-                refresh.setVisibility(View.INVISIBLE);
-            }
-        });
-
+            });
+        }
+        if (refresh != null) {
+            refresh.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    webView.reload();
+                    progress.setVisibility(View.VISIBLE);
+                    refresh.setVisibility(View.INVISIBLE);
+                }
+            });
+        }
         webView.loadUrl(url);
 
         webView.setOnTouchListener(new View.OnTouchListener() {
@@ -157,8 +179,12 @@ public class OakWebViewFragment extends Fragment {
     private void unHide() {
         configureButtons(webView);
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
-            refresh.animate().alpha(1.0f);
-            progress.animate().alpha(1.0f);
+            if (refresh != null) {
+                refresh.animate().alpha(1.0f);
+            }
+            if (progress != null) {
+                progress.animate().alpha(1.0f);
+            }
         }
     }
 
@@ -166,28 +192,35 @@ public class OakWebViewFragment extends Fragment {
     private void hide() {
         configureButtons(webView);
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
-            refresh.animate().alpha(0.2f);
-            progress.animate().alpha(0.2f);
+            if (refresh != null) {
+                refresh.animate().alpha(0.2f);
+            }
+            if (progress != null) {
+                progress.animate().alpha(0.2f);
+            }
         }
     }
 
     @SuppressLint("NewApi")
     private void configureButtons(WebView webView) {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
-            if (webView.canGoBack()) {
-                back.animate().alpha(hidden ? 0.2f : 1f);
-                back.setEnabled(true);
-            } else {
-                back.animate().alpha(0.2f);
-                back.setEnabled(false);
+            if (back != null) {
+                if (webView.canGoBack()) {
+                    back.animate().alpha(hidden ? 0.2f : 1f);
+                    back.setEnabled(true);
+                } else {
+                    back.animate().alpha(0.2f);
+                    back.setEnabled(false);
+                }
             }
-
-            if (webView.canGoForward()) {
-                fwd.animate().alpha(hidden ? 0.2f : 1f);
-                fwd.setEnabled(true);
-            } else {
-                fwd.animate().alpha(0.2f);
-                fwd.setEnabled(false);
+            if (fwd != null) {
+                if (webView.canGoForward()) {
+                    fwd.animate().alpha(hidden ? 0.2f : 1f);
+                    fwd.setEnabled(true);
+                } else {
+                    fwd.animate().alpha(0.2f);
+                    fwd.setEnabled(false);
+                }
             }
         }
     }
@@ -196,6 +229,7 @@ public class OakWebViewFragment extends Fragment {
         this.openInBrowserEnabled = openInBrowserEnabled;
         setHasOptionsMenu(openInBrowserEnabled);
     }
+
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
