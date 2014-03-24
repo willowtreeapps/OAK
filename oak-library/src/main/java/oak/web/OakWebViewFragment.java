@@ -8,6 +8,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import android.webkit.WebViewClient;
 
 import java.net.URL;
 
+import oak.OAK;
 import oak.R;
 
 /**
@@ -28,28 +31,31 @@ public class OakWebViewFragment extends Fragment {
     public WebView webView;
     View refresh;
     View progress, back, fwd;
-    boolean hidden;
+    boolean hidden, openInBrowserEnabled = false;
 
     public static OakWebViewFragment getInstance(String url) {
+        return getInstance(url, false);
+    }
+
+    public static OakWebViewFragment getInstance(String url, boolean openInBrowserEnabled) {
         OakWebViewFragment fragment = new OakWebViewFragment();
         Bundle bundle = new Bundle();
-        bundle.putString(WebViewActivity.EXTRA_URL, url);
+        bundle.putString(OAK.EXTRA_URL, url);
+        bundle.putBoolean(OAK.EXTRA_OPEN_IN_BROWSER, openInBrowserEnabled);
         fragment.setArguments(bundle);
         return fragment;
     }
 
     public static OakWebViewFragment getInstance(URL url) {
-        OakWebViewFragment fragment = new OakWebViewFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString(WebViewActivity.EXTRA_URL, url.toString());
-        fragment.setArguments(bundle);
-        return fragment;
+        return getInstance(url.toString());
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        url = getArguments().getString(WebViewActivity.EXTRA_URL);
+        url = getArguments().getString(OAK.EXTRA_URL);
+        openInBrowserEnabled = getArguments().getBoolean(OAK.EXTRA_OPEN_IN_BROWSER, false);
+        setHasOptionsMenu(openInBrowserEnabled);
     }
 
     @Override
@@ -184,5 +190,26 @@ public class OakWebViewFragment extends Fragment {
                 fwd.setEnabled(false);
             }
         }
+    }
+
+    public void setOpenInBrowserEnabled(boolean openInBrowserEnabled) {
+        this.openInBrowserEnabled = openInBrowserEnabled;
+        setHasOptionsMenu(openInBrowserEnabled);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.add(Menu.NONE, R.id.oak_menu_open_in_broswer, Menu.NONE, R.string.open_in_browser);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+        if (item.getItemId() == R.id.oak_menu_open_in_broswer) {
+            Intent toBroswer = new Intent(Intent.ACTION_VIEW);
+            toBroswer.setData(Uri.parse(webView.getUrl()));
+            startActivity(toBroswer);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

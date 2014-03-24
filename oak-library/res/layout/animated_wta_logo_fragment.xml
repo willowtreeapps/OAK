@@ -24,7 +24,7 @@
         android:id="@+id/animated_logo"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:contentDescription="@string/app_name" />
+        android:contentDescription="@string/content" />
 
     <ImageView
         android:id="@+id/logo_subtitle"
@@ -32,6 +32,6 @@
         android:layout_marginLeft="4dp"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:contentDescription="@string/app_name" />
+        android:contentDescription="@string/content" />
 
 </LinearLayout>

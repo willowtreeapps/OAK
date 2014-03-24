@@ -16,6 +16,7 @@
   -->
 
 <resources>
-    <string name="app_name">OAK LIBRARY</string>
+    <string name="open_in_browser">Open in Browser</string>
+    <string name="content">OAK Content Description</string>
     <string name="oak_test">This is from a resource in oak-library.</string>
 </resources>

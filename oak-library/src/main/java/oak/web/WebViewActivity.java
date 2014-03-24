@@ -5,9 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import oak.OAK;
 
 /**
  * Activity that takes a url and displays it inside an OakWebViewFragment with Navigation
@@ -16,32 +19,58 @@ import java.net.URL;
 public class WebViewActivity extends FragmentActivity {
     public static final String EXTRA_URL = "oak_url";
     private String urlToLoad;
+    public boolean openInBrowserEnabled = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         urlToLoad = getIntent().getExtras().getString(EXTRA_URL);
+        if (TextUtils.isEmpty(urlToLoad)) {
+            throw new IllegalArgumentException("You much include an IntentExtra for OAK.EXTRA_URL for the URL to display");
+        }
         try {
             URL url = new URL(urlToLoad);
         } catch (MalformedURLException ex) {
             throw new IllegalArgumentException("Please provide a valid url to the WebViewActivity getIntent() or startWebActivity() method");
         }
         if (savedInstanceState == null) {
+            if (getIntent().hasExtra(OAK.EXTRA_OPEN_IN_BROWSER)) {
+                openInBrowserEnabled = getIntent().getBooleanExtra(OAK.EXTRA_OPEN_IN_BROWSER, false);
+            }
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.add(android.R.id.content, OakWebViewFragment.getInstance(urlToLoad));
+            fragmentTransaction.add(android.R.id.content, OakWebViewFragment.getInstance(urlToLoad, true));
             fragmentTransaction.commit();
+        } else {
+            openInBrowserEnabled = savedInstanceState.getBoolean(OAK.EXTRA_OPEN_IN_BROWSER);
         }
     }
 
-    public static Intent getIntent(Context context, String url) {
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putBoolean(OAK.EXTRA_OPEN_IN_BROWSER, openInBrowserEnabled);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ((OakWebViewFragment) getSupportFragmentManager().findFragmentById(android.R.id.content)).setOpenInBrowserEnabled(openInBrowserEnabled);
+    }
+
+    public static Intent getIntent(Context context, String url, boolean openInBrowserEnabled) {
         Intent intent = new Intent(context, WebViewActivity.class);
-        intent.putExtra(EXTRA_URL, url);
+        intent.putExtra(OAK.EXTRA_URL, url);
+        intent.putExtra(OAK.EXTRA_OPEN_IN_BROWSER, openInBrowserEnabled);
         return intent;
     }
 
+    public static void startWebActivity(Context context, String url, boolean openInBrowserEnabled) {
+        context.startActivity(getIntent(context, url, openInBrowserEnabled));
+    }
+
     public static void startWebActivity(Context context, String url) {
-        context.startActivity(getIntent(context, url));
+        context.startActivity(getIntent(context, url, true));
     }
 
     @Override
