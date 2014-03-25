@@ -28,13 +28,13 @@ public class OakWebViewFragment extends Fragment {
     public static final int PROVIDED_LAYOUT = 0;
     private String url;
     public WebView webView;
-    View refresh;
-    View progress, back, fwd;
-    boolean hidden, openInBrowserEnabled = false;
+    private View refresh, progress, back, fwd;
+    private boolean hidden, openInBrowserEnabled = false;
     private boolean hideControls = true;
     private int fadeTimeout = 1500;
     private float fadeoutMinimum = 0.2f;
     private float fadeoutMaximum = 1.0f;
+
 
     /**
      * Sets whether buttons fade out after touch
