@@ -28,21 +28,83 @@ public class OakWebViewFragment extends Fragment {
     public static final int PROVIDED_LAYOUT = 0;
     private String url;
     public WebView webView;
-    private View refresh, progress, back, fwd;
-    private boolean hidden, openInBrowserEnabled = false;
-    private boolean hideControls = true;
-    private int fadeTimeout = 1500;
+    private View refresh, progress, back, fwd, container;
+    private boolean hidden, openInBrowserEnabled = false, showControls = true;
+    private boolean fadeControls = true;
+    private long fadeTimeout = 1500;
+    private int layoutId;
     private float fadeoutMinimum = 0.2f;
     private float fadeoutMaximum = 1.0f;
 
 
+    public static class BundleBuilder {
+        private Bundle bundle;
+
+        public BundleBuilder(Bundle bundle) {
+            this.bundle = bundle;
+        }
+
+        public BundleBuilder(String url) {
+            bundle = new Bundle();
+            bundle.putString(OAK.EXTRA_URL, url);
+        }
+
+        public BundleBuilder showControls(boolean showControls) {
+            bundle.putBoolean(OAK.EXTRA_SHOW_CONTROLS, showControls);
+            return this;
+        }
+
+        public BundleBuilder fadeControls(boolean fadeControls) {
+            bundle.putBoolean(OAK.EXTRA_CONTROL_FADE, fadeControls);
+            return this;
+        }
+
+        public BundleBuilder layoutId(int layoutId) {
+            bundle.putInt(OAK.EXTRA_LAYOUT, layoutId);
+            return this;
+        }
+
+        public BundleBuilder fadeTimeout(long milliseconds) {
+            bundle.putLong(OAK.EXTRA_FADE_TIMEOUT, milliseconds);
+            return this;
+        }
+
+        public BundleBuilder maxControlAlpha(float maxAlpha) {
+            bundle.putFloat(OAK.EXTRA_FADE_MAX, maxAlpha);
+            return this;
+        }
+
+        public BundleBuilder minControlAlpha(float minAlpha) {
+            bundle.putFloat(OAK.EXTRA_FADE_MIN, minAlpha);
+            return this;
+        }
+
+        public BundleBuilder openInBrowserEnabled(boolean enabled) {
+            bundle.putBoolean(OAK.EXTRA_OPEN_IN_BROWSER, enabled);
+            return this;
+        }
+
+        public Bundle build() {
+            return bundle;
+        }
+    }
+
     /**
      * Sets whether buttons fade out after touch
      *
-     * @param hideControls
+     * @param fadeControls
      */
-    public void setHideControls(boolean hideControls) {
-        this.hideControls = hideControls;
+    public void setFadeControls(boolean fadeControls) {
+        this.fadeControls = fadeControls;
+    }
+
+    /**
+     * Sets whether WebView should show controls
+     *
+     * @param showControls
+     */
+    public void setShowControls(boolean showControls) {
+        this.showControls = showControls;
     }
 
     /**
@@ -50,7 +112,7 @@ public class OakWebViewFragment extends Fragment {
      *
      * @param fadeTimeout
      */
-    public void setFadeTimeout(int fadeTimeout) {
+    public void setFadeTimeout(long fadeTimeout) {
         this.fadeTimeout = fadeTimeout;
     }
 
@@ -72,23 +134,49 @@ public class OakWebViewFragment extends Fragment {
         this.fadeoutMinimum = minAlpha;
     }
 
-    public static OakWebViewFragment getInstance(String url) {
-        return getInstance(url, true);
+    /**
+     * Set Whether a "open in browser" option is shown in menu.
+     *
+     * @param openInBrowserEnabled
+     */
+    public void setOpenInBrowserEnabled(boolean openInBrowserEnabled) {
+        this.openInBrowserEnabled = openInBrowserEnabled;
+        setHasOptionsMenu(openInBrowserEnabled);
     }
 
-    public static OakWebViewFragment getInstance(String url, boolean openInBrowserEnabled) {
-        return getInstance(url, openInBrowserEnabled, PROVIDED_LAYOUT);
-    }
-
-    public static OakWebViewFragment getInstance(String url, boolean openInBrowserEnabled, int layoutId) {
-        OakWebViewFragment fragment = new OakWebViewFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString(OAK.EXTRA_URL, url);
-        bundle.putBoolean(OAK.EXTRA_OPEN_IN_BROWSER, openInBrowserEnabled);
-        if (layoutId > PROVIDED_LAYOUT) {
-            bundle.putInt(OAK.EXTRA_LAYOUT, layoutId);
+    public void back() {
+        if (webView != null && webView.canGoBack()) {
+            webView.goBack();
         }
-        fragment.setArguments(bundle);
+    }
+
+    public boolean canGoBack() {
+        return webView.canGoBack();
+    }
+
+    public boolean canGoForward() {
+        return webView.canGoForward();
+    }
+
+    public void forward() {
+        if (webView != null && webView.canGoForward()) {
+            webView.goForward();
+        }
+    }
+
+    public void refresh() {
+        if (webView != null) {
+            webView.reload();
+        }
+    }
+
+    public static OakWebViewFragment getInstance(String url) {
+        return getInstance(new BundleBuilder(url).build());
+    }
+
+    public static OakWebViewFragment getInstance(Bundle arguments) {
+        OakWebViewFragment fragment = new OakWebViewFragment();
+        fragment.setArguments(arguments);
         return fragment;
     }
 
@@ -97,31 +185,90 @@ public class OakWebViewFragment extends Fragment {
         super.onCreate(savedInstanceState);
         url = getArguments().getString(OAK.EXTRA_URL);
         setOpenInBrowserEnabled(getArguments().getBoolean(OAK.EXTRA_OPEN_IN_BROWSER, true));
+        setFadeControls(getArguments().getBoolean(OAK.EXTRA_CONTROL_FADE, true));
+        setShowControls(getArguments().getBoolean(OAK.EXTRA_SHOW_CONTROLS, true));
+        setFadeTimeout(getArguments().getLong(OAK.EXTRA_FADE_TIMEOUT, 1500l));
+        setMaximumAlpha(getArguments().getFloat(OAK.EXTRA_FADE_MAX, 1.0f));
+        setMinimumAlpha(getArguments().getFloat(OAK.EXTRA_FADE_MIN, 0.2f));
+        layoutId = getArguments().getInt(OAK.EXTRA_LAYOUT, R.layout.webview);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(getArguments().containsKey(OAK.EXTRA_LAYOUT) ? getArguments().getInt(OAK.EXTRA_LAYOUT) : R.layout.webview, container, false);
+        return inflater.inflate(layoutId, container, false);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        back = view.findViewById(R.id.back);
-        fwd = view.findViewById(R.id.forward);
-        refresh = view.findViewById(R.id.refresh);
-        progress = view.findViewById(R.id.progress);
         webView = (WebView) view.findViewById(R.id.webview);
         if (webView == null) {
             throw new IllegalStateException("Layout used with this webview must contain a WebView with the ID R.id.webview");
         }
+        if (showControls) {
+            back = view.findViewById(R.id.back);
+            fwd = view.findViewById(R.id.forward);
+            refresh = view.findViewById(R.id.refresh);
+            progress = view.findViewById(R.id.progress);
+            if (back != null) {
+                back.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (webView.canGoBack()) {
+                            webView.goBack();
+                        }
+                    }
+                });
+            }
+            if (fwd != null) {
+                fwd.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (webView.canGoForward()) {
+                            webView.goForward();
+                        }
+                    }
+                });
+            }
+            if (refresh != null) {
+                refresh.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        webView.reload();
+                        progress.setVisibility(View.VISIBLE);
+                        refresh.setVisibility(View.INVISIBLE);
+                    }
+                });
+            }
+            webView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    if (hidden) {
+                        hidden = false;
+                        unHide();
+                    } else {
+                        view.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                hide();
+                                hidden = true;
+                            }
+                        }, fadeTimeout);
+                    }
+                    return false;
+                }
+            });
+        } else {
+            view.findViewById(R.id.button_container).setVisibility(View.GONE);
+        }
+
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setPluginState(WebSettings.PluginState.ON);
         webView.getSettings().setAllowFileAccess(true);
         webView.getSettings().setUseWideViewPort(true);
         webView.getSettings().setLoadsImagesAutomatically(true);
         webView.getSettings().setSupportZoom(true);
-        webView.getSettings().setBuiltInZoomControls(false);
+        webView.getSettings().setBuiltInZoomControls(!fadeControls);
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -138,10 +285,8 @@ public class OakWebViewFragment extends Fragment {
 
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                if (refresh != null) {
+                if (showControls) {
                     refresh.setVisibility(View.INVISIBLE);
-                }
-                if (progress != null) {
                     progress.setVisibility(View.VISIBLE);
                 }
                 super.onPageStarted(view, url, favicon);
@@ -149,82 +294,28 @@ public class OakWebViewFragment extends Fragment {
 
             @Override
             public void onPageFinished(WebView view, String url) {
-                if (refresh != null) {
+                if (showControls) {
                     refresh.setVisibility(View.VISIBLE);
-                }
-                if (progress != null) {
                     progress.setVisibility(View.INVISIBLE);
+                    configureButtons(view);
                 }
                 super.onPageFinished(view, url);
-                configureButtons(view);
             }
         });
-        if (back != null) {
-            back.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (webView.canGoBack()) {
-                        webView.goBack();
-                    }
-                }
-            });
-        }
-        if (fwd != null) {
-            fwd.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (webView.canGoForward()) {
-                        webView.goForward();
-                    }
-                }
-            });
-        }
-        if (refresh != null) {
-            refresh.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    webView.reload();
-                    progress.setVisibility(View.VISIBLE);
-                    refresh.setVisibility(View.INVISIBLE);
-                }
-            });
-        }
+
         webView.loadUrl(url);
-
-        webView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (hidden) {
-                    hidden = false;
-                    unHide();
-                } else {
-                    view.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            hide();
-                            hidden = true;
-                        }
-                    }, fadeTimeout);
-                }
-                return false;
-            }
-        });
-
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (webView.getSettings().getBuiltInZoomControls()) {
-            hideControls = false;
-        }
     }
 
     @SuppressLint("NewApi")
     private void unHide() {
         configureButtons(webView);
 
-        if (hideControls) {
+        if (fadeControls) {
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
                 if (refresh != null) {
                     refresh.animate().alpha(fadeoutMaximum);
@@ -240,7 +331,7 @@ public class OakWebViewFragment extends Fragment {
     private void hide() {
         configureButtons(webView);
 
-        if (hideControls) {
+        if (fadeControls) {
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
                 if (refresh != null) {
                     refresh.animate().alpha(fadeoutMinimum);
@@ -255,31 +346,25 @@ public class OakWebViewFragment extends Fragment {
     @SuppressLint("NewApi")
     private void configureButtons(WebView webView) {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
-            if (back != null) {
-                if (webView.canGoBack()) {
-                    back.animate().alpha(hidden && hideControls ? fadeoutMinimum : fadeoutMaximum);
-                    back.setEnabled(true);
-                } else {
-                    back.animate().alpha(fadeoutMinimum);
-                    back.setEnabled(false);
-                }
+
+            if (webView.canGoBack()) {
+                back.animate().alpha(hidden && fadeControls ? fadeoutMinimum : fadeoutMaximum);
+                back.setEnabled(true);
+            } else {
+                back.animate().alpha(fadeoutMinimum);
+                back.setEnabled(false);
             }
-            if (fwd != null) {
-                if (webView.canGoForward()) {
-                    fwd.animate().alpha(hidden && hideControls ? fadeoutMinimum : fadeoutMaximum);
-                    fwd.setEnabled(true);
-                } else {
-                    fwd.animate().alpha(fadeoutMinimum);
-                    fwd.setEnabled(false);
-                }
+            if (webView.canGoForward()) {
+                fwd.animate().alpha(hidden && fadeControls ? fadeoutMinimum : fadeoutMaximum);
+                fwd.setEnabled(true);
+            } else {
+                fwd.animate().alpha(fadeoutMinimum);
+                fwd.setEnabled(false);
             }
         }
     }
 
-    public void setOpenInBrowserEnabled(boolean openInBrowserEnabled) {
-        this.openInBrowserEnabled = openInBrowserEnabled;
-        setHasOptionsMenu(openInBrowserEnabled);
-    }
+
 
 
     @Override

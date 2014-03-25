@@ -23,9 +23,8 @@
         </activity>
         <activity
             android:name=".listview.SectionActivity"
-            android:label="@string/filter_activity"
-            android:screenOrientation="portrait">
-            <intent-filter>
+            android:label="@string/filter_activity">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -34,9 +33,8 @@
         </activity>
         <activity
             android:name=".widget.ResizedTextViewActivity"
-            android:label="@string/resized_textview_activity"
-            android:screenOrientation="portrait">
-            <intent-filter>
+            android:label="@string/resized_textview_activity">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -45,9 +43,8 @@
         </activity>
         <activity
             android:name=".widget.TextViewWithFontActivity"
-            android:label="@string/textview_with_font_activity"
-            android:screenOrientation="portrait">
-            <intent-filter>
+            android:label="@string/textview_with_font_activity">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -56,9 +53,8 @@
         </activity>
         <activity
             android:name=".widget.CancelEditTextActivity"
-            android:label="@string/cancel_edit_text_activity"
-            android:screenOrientation="portrait">
-            <intent-filter>
+            android:label="@string/cancel_edit_text_activity">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -68,9 +64,8 @@
 
         <activity
             android:name=".widget.SpreadsheetViewActivity"
-            android:label="@string/spreadsheet_view_activity"
-            android:screenOrientation="portrait">
-            <intent-filter>
+            android:label="@string/spreadsheet_view_activity">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -80,9 +75,8 @@
 
         <activity
             android:name=".other.ObscuredPrefsActivity"
-            android:label="@string/encrypted_prefs_activity"
-            android:screenOrientation="portrait">
-            <intent-filter>
+            android:label="@string/encrypted_prefs_activity">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -91,9 +85,8 @@
         </activity>
         <activity
             android:name=".image.SwankyGalleryActivity"
-            android:label="@string/swanky_gallery_activity"
-            android:screenOrientation="portrait">
-            <intent-filter>
+            android:label="@string/swanky_gallery_activity">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -102,9 +95,8 @@
         </activity>
         <activity
             android:name=".widget.CustomProgressDialogActivity"
-            android:label="@string/custom_progress_dialog_activity"
-            android:screenOrientation="portrait">
-            <intent-filter>
+            android:label="@string/custom_progress_dialog_activity">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -113,9 +105,8 @@
         </activity>
         <activity
             android:name=".widget.ButtonWithFontActivity"
-            android:label="@string/button_with_font_activity"
-            android:screenOrientation="portrait">
-            <intent-filter>
+            android:label="@string/button_with_font_activity">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -124,9 +115,8 @@
         </activity>
         <activity
             android:name=".utils.ChangeFontsActivity"
-            android:label="@string/change_font_activity"
-            android:screenOrientation="portrait">
-            <intent-filter>
+            android:label="@string/change_font_activity">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -135,9 +125,8 @@
         </activity>
         <activity
             android:name=".utils.IsPackageInstalledActivity"
-            android:label="@string/is_package_installed_activity"
-            android:screenOrientation="portrait">
-            <intent-filter>
+            android:label="@string/is_package_installed_activity">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -146,9 +135,8 @@
         </activity>
         <activity
             android:name=".nfc.TagWriterActivity"
-            android:label="@string/tag_writer_activity"
-            android:screenOrientation="portrait">
-            <intent-filter>
+            android:label="@string/tag_writer_activity">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -162,9 +150,8 @@
         </activity>
         <activity
             android:name=".widget.ParentSwipingViewPagerActivity"
-            android:label="@string/parent_swiping_view_pager_activity"
-            android:screenOrientation="portrait">
-            <intent-filter>
+            android:label="@string/parent_swiping_view_pager_activity">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -173,9 +160,8 @@
         </activity>
         <activity
             android:name=".widget.ParentSwipingWebViewActivity"
-            android:label="@string/parent_swiping_web_view_activity"
-            android:screenOrientation="portrait">
-            <intent-filter>
+            android:label="@string/parent_swiping_web_view_activity">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -184,9 +170,8 @@
         </activity>
         <activity
             android:name=".widget.CustomCircularProgressBarActivity"
-            android:label="@string/custom_circular_progress_bar_activity"
-            android:screenOrientation="portrait">
-            <intent-filter>
+            android:label="@string/custom_circular_progress_bar_activity">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -195,9 +180,8 @@
         </activity>
         <activity
             android:name=".widget.CheckBoxWithFontActivity"
-            android:label="@string/check_box_with_font_activity"
-            android:screenOrientation="portrait">
-            <intent-filter>
+            android:label="@string/check_box_with_font_activity">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -206,9 +190,8 @@
         </activity>
         <activity
             android:name=".widget.GradientTextViewActivity"
-            android:label="@string/gradient_text_view_activity"
-            android:screenOrientation="portrait">
-            <intent-filter>
+            android:label="@string/gradient_text_view_activity">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -217,9 +200,8 @@
         </activity>
         <activity
             android:name=".utils.FontTypeFaceSpanActivity"
-            android:label="@string/font_span_activity"
-            android:screenOrientation="portrait">
-            <intent-filter>
+            android:label="@string/font_span_activity">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -238,9 +220,8 @@
         </activity>
         <activity
             android:name=".widget.VerticalViewPagerActivity"
-            android:label="@string/vertical_view_pager"
-            android:screenOrientation="portrait">
-            <intent-filter>
+            android:label="@string/vertical_view_pager">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -249,9 +230,8 @@
         </activity>
         <activity
             android:name=".viewmodel.ViewModelActivity"
-            android:label="ListView/ViewModel ListView"
-            android:screenOrientation="portrait">
-            <intent-filter>
+            android:label="ListView/ViewModel ListView">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -260,9 +240,8 @@
         </activity>
         <activity
             android:name=".svg.AttributionActivity"
-            android:label="@string/svg_attribution_activity"
-            android:screenOrientation="portrait">
-            <intent-filter>
+            android:label="@string/svg_attribution_activity">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -271,9 +250,8 @@
         </activity>
         <activity
             android:name=".svg.FullLogoAttributionActivity"
-            android:label="@string/svg_full_attribution_activity"
-            android:screenOrientation="portrait">
-            <intent-filter>
+            android:label="@string/svg_full_attribution_activity">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -282,9 +260,8 @@
         </activity>
         <activity
             android:name=".svg.FishbowlSvgActivity"
-            android:label="Svg/Fishbowl Sample"
-            android:screenOrientation="portrait">
-            <intent-filter>
+            android:label="Svg/Fishbowl Sample">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -293,9 +270,8 @@
         </activity>
         <activity
             android:name=".web.WebLaunchActivity"
-            android:label="@string/web_activity"
-            android:screenOrientation="portrait">
-            <intent-filter>
+            android:label="@string/web_activity">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.SAMPLE_CODE" />

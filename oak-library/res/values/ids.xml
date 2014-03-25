@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="oak_menu_open_in_broswer" type="id" />
+    <item name="oak_menu_back" type="id" />
+    <item name="oak_menu_forward" type="id" />
+    <item name="oak_menu_refresh" type="id" />
 </resources>

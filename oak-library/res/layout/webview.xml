@@ -11,6 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:id="@+id/button_container"
+        android:layout_margin="8dp"
         android:layout_alignParentBottom="true"
         android:layout_height="wrap_content">
 
@@ -19,7 +20,6 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_alignParentLeft="true"
-            android:layout_margin="16dp"
             android:background="@drawable/button_bg"
             android:src="@drawable/back" />
 

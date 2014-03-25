@@ -5,6 +5,7 @@ import android.view.View;
 
 import oak.demo.OakDemoActivity;
 import oak.demo.R;
+import oak.web.OakWebViewFragment;
 import oak.web.WebViewActivity;
 
 /**
@@ -23,7 +24,9 @@ public class WebLaunchActivity extends OakDemoActivity {
     }
 
     private void launchWebActivity() {
-        WebViewActivity.startWebActivity(this, "http://willowtreeapps.com", R.layout.fragment_webview);
+        OakWebViewFragment.BundleBuilder builder = new OakWebViewFragment.BundleBuilder("http://willowtreeapps.com");
+        builder.fadeControls(false);
+        WebViewActivity.startWebActivity(this, builder.build());
     }
 
 }
