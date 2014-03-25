@@ -29,10 +29,10 @@ public class OakWebViewFragment extends Fragment {
     private String url;
     public WebView webView;
     private View refresh, progress, back, fwd, container;
-    private boolean hidden, openInBrowserEnabled = false, showControls = true;
+    private boolean hidden, openInBrowserEnabled = false, showControls = true, refreshInMenuEnabled = false;
     private boolean fadeControls = true;
     private long fadeTimeout = 1500;
-    private int layoutId;
+    private int layoutId = R.layout.webview;
     private float fadeoutMinimum = 0.2f;
     private float fadeoutMaximum = 1.0f;
 
@@ -81,6 +81,11 @@ public class OakWebViewFragment extends Fragment {
 
         public BundleBuilder openInBrowserEnabled(boolean enabled) {
             bundle.putBoolean(OAK.EXTRA_OPEN_IN_BROWSER, enabled);
+            return this;
+        }
+
+        public BundleBuilder refreshInMenuEnabled(boolean enabled) {
+            bundle.putBoolean(OAK.EXTRA_REFRESH_IN_MENU, enabled);
             return this;
         }
 
@@ -141,7 +146,10 @@ public class OakWebViewFragment extends Fragment {
      */
     public void setOpenInBrowserEnabled(boolean openInBrowserEnabled) {
         this.openInBrowserEnabled = openInBrowserEnabled;
-        setHasOptionsMenu(openInBrowserEnabled);
+    }
+
+    public void setRefreshInMenuEnabled(boolean refreshInMenuEnabled) {
+        this.refreshInMenuEnabled = refreshInMenuEnabled;
     }
 
     public void back() {
@@ -190,7 +198,9 @@ public class OakWebViewFragment extends Fragment {
         setFadeTimeout(getArguments().getLong(OAK.EXTRA_FADE_TIMEOUT, 1500l));
         setMaximumAlpha(getArguments().getFloat(OAK.EXTRA_FADE_MAX, 1.0f));
         setMinimumAlpha(getArguments().getFloat(OAK.EXTRA_FADE_MIN, 0.2f));
+        setRefreshInMenuEnabled(getArguments().getBoolean(OAK.EXTRA_REFRESH_IN_MENU, false));
         layoutId = getArguments().getInt(OAK.EXTRA_LAYOUT, R.layout.webview);
+        setHasOptionsMenu(refreshInMenuEnabled || openInBrowserEnabled);
     }
 
     @Override
@@ -267,7 +277,7 @@ public class OakWebViewFragment extends Fragment {
         webView.getSettings().setAllowFileAccess(true);
         webView.getSettings().setUseWideViewPort(true);
         webView.getSettings().setLoadsImagesAutomatically(true);
-        webView.getSettings().setSupportZoom(true);
+        webView.getSettings().setSupportZoom(!fadeControls);
         webView.getSettings().setBuiltInZoomControls(!fadeControls);
         webView.setWebViewClient(new WebViewClient() {
             @Override
@@ -314,7 +324,6 @@ public class OakWebViewFragment extends Fragment {
     @SuppressLint("NewApi")
     private void unHide() {
         configureButtons(webView);
-
         if (fadeControls) {
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
                 if (refresh != null) {
@@ -346,7 +355,6 @@ public class OakWebViewFragment extends Fragment {
     @SuppressLint("NewApi")
     private void configureButtons(WebView webView) {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
-
             if (webView.canGoBack()) {
                 back.animate().alpha(hidden && fadeControls ? fadeoutMinimum : fadeoutMaximum);
                 back.setEnabled(true);
@@ -370,7 +378,13 @@ public class OakWebViewFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        menu.add(Menu.NONE, R.id.oak_menu_open_in_broswer, Menu.NONE, R.string.open_in_browser);
+        if (openInBrowserEnabled) {
+            menu.add(Menu.NONE, R.id.oak_menu_open_in_broswer, Menu.NONE, R.string.open_in_browser);
+        }
+        if (refreshInMenuEnabled) {
+            menu.add(Menu.NONE, R.id.oak_menu_refresh, Menu.NONE, R.string.refresh_in_menu);
+        }
+
     }
 
     @Override
@@ -379,6 +393,9 @@ public class OakWebViewFragment extends Fragment {
             Intent toBroswer = new Intent(Intent.ACTION_VIEW);
             toBroswer.setData(Uri.parse(webView.getUrl()));
             startActivity(toBroswer);
+        }
+        if (item.getItemId() == R.id.oak_menu_refresh) {
+            webView.reload();
         }
         return super.onOptionsItemSelected(item);
     }

@@ -24,8 +24,11 @@ public class WebLaunchActivity extends OakDemoActivity {
     }
 
     private void launchWebActivity() {
-        OakWebViewFragment.BundleBuilder builder = new OakWebViewFragment.BundleBuilder("http://willowtreeapps.com");
-        builder.fadeControls(false);
+        OakWebViewFragment.BundleBuilder builder = new OakWebViewFragment.BundleBuilder("http://willowtreeapps.com")
+                .fadeControls(true)
+                .maxControlAlpha(0.9f)
+                .minControlAlpha(0.4f)
+                .fadeTimeout(2500);
         WebViewActivity.startWebActivity(this, builder.build());
     }
 

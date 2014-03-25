@@ -32,4 +32,5 @@ public interface OAK {
     public static final String EXTRA_FADE_TIMEOUT = "oak_fade_timeout";
 
     public static final String EXTRA_OPEN_IN_BROWSER = "oak_open_in_browser";
+    public static final String EXTRA_REFRESH_IN_MENU = "oak_refresh_in_menu";
 }
