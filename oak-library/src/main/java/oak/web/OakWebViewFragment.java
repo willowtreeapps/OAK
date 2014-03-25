@@ -113,7 +113,7 @@ public class OakWebViewFragment extends Fragment {
         progress = view.findViewById(R.id.progress);
         webView = (WebView) view.findViewById(R.id.webview);
         if (webView == null) {
-            throw new IllegalStateException("Layout used with this webview must contain a WebView with the id R.id.webview");
+            throw new IllegalStateException("Layout used with this webview must contain a WebView with the ID R.id.webview");
         }
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setPluginState(WebSettings.PluginState.ON);
@@ -121,7 +121,7 @@ public class OakWebViewFragment extends Fragment {
         webView.getSettings().setUseWideViewPort(true);
         webView.getSettings().setLoadsImagesAutomatically(true);
         webView.getSettings().setSupportZoom(true);
-        webView.getSettings().setBuiltInZoomControls(true);
+        webView.getSettings().setBuiltInZoomControls(false);
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
