@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="The FragmentHostActivity can be used to host multiple fragments from a single activity. Any additional intent extras are passed to the hosted fragment as arguments.  Click a button below to load a fragment into the host activity."
+            />
+
+
+        <Button
+            android:id="@+id/frag_host_btn_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:padding="5dp"
+            android:gravity="center"
+            android:text="Load a Box of Color in a Fragment"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/black"/>
+
+        <EditText
+            android:id="@+id/frag_host_bundle_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Enter text to pass to fragment"/>
+
+        <Button
+            android:id="@+id/frag_host_btn_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:padding="5dp"
+            android:gravity="center"
+            android:text="Send Text Above to Fragment"/>
+
+
+    </LinearLayout>
+
+</ScrollView>

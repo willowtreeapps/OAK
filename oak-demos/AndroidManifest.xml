@@ -279,6 +279,25 @@
             </intent-filter>
         </activity>
         <activity android:name="oak.web.WebViewActivity" />
+        <activity android:name=".fragmenthostactivity.SupportFragmentHostDemoActivity"
+            android:label="@string/fragment_host_support_demo_activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="oak.android.intent.category.OAK" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".fragmenthostactivity.FragmentHostDemoActivity"
+            android:label="@string/fragment_host_demo_activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="oak.android.intent.category.OAK" />
+            </intent-filter>
+        </activity>
+        <activity android:name="oak.activity.SupportFragmentHostActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

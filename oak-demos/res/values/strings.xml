@@ -27,6 +27,8 @@
     <string name="cancel_edit_text_activity">Widget/CancelEditText</string>
     <string name="button_with_font_activity">Widget/ButtonWithFont</string>
     <string name="encrypted_prefs_activity">Other/Encrypted Preferences</string>
+    <string name="fragment_host_support_demo_activity">Fragment Host/Support Fragment</string>
+    <string name="fragment_host_demo_activity">Fragment Host/Fragment</string>
     <string name="custom_progress_dialog_activity">Widget/CustomProgressDialog</string>
     <string name="custom_circular_progress_bar_activity">Widget/CustomCircularProgressBar</string>
     <string name="parent_swiping_view_pager_activity">Widget/ParentSwipingViewPager</string>
