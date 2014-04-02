@@ -30,4 +30,15 @@
             style="@style/FillWidth"
             android:layout_marginTop="10dip"
             android:id="@+id/saved_content"/>
+
+    <TextView
+        style="@style/FillWidth"
+        android:layout_marginTop="10dp"
+        android:text="Below  is the decrypted data:"
+        android:id="@+id/saved_content_decrypted_desc"/>
+    <TextView
+        style="@style/FillWidth"
+        android:layout_marginTop="10dp"
+        android:id="@+id/saved_content_decrypted"
+        />
 </LinearLayout>
