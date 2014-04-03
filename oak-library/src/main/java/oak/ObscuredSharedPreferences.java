@@ -7,10 +7,8 @@ package oak;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.provider.Settings;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.security.spec.InvalidKeySpecException;
 import java.util.Map;
 import java.util.Set;
 
@@ -30,27 +28,15 @@ import javax.crypto.spec.PBEParameterSpec;
 /**
  * This code originally posted by Michael Burton on StackOverflow
  * http://stackoverflow.com/questions/785973/what-is-the-most-appropriate-way-to-store-user-settings-in-android-application/6393502#6393502
+ *
+ * This implementation has been replaced by the CryptoSharedPreferences which uses
+ * AES encryption if available and a random initialization vector.
  */
 
-
+@Deprecated
 public abstract class ObscuredSharedPreferences implements SharedPreferences {
 
     protected static final String UTF8 = "utf-8";
-    protected static final int SECRET_KEY_ITERATIONS = 20;
-    protected static final int SALT_LENGTH = 20;
-    protected static final int IV_LENGTH = 20;
-    protected static final String RANDOM_ALGORITHM = "SHA1PRNG";
-
-    // AES
-//    protected static final String CIPHER_ALGORITHM = "AES/CBC/NoPadding";
-//    protected static final String PBE_ALGORITHM = "PBEWithSHA256And256BitAES-CBC-BC";
-//    private static final String SECRET_KEY_ALGORITHM = "AES";
-
-
-    // DES
-  protected static final String CIPHER_ALGORITHM = "PBEWithMD5AndDES";
-  protected static final String PBE_ALGORITHM = "PBEWithMD5AndDES";
-  private static final String SECRET_KEY_ALGORITHM = "AES";
 
     protected SharedPreferences delegate;
     protected Context context;
@@ -78,9 +64,7 @@ public abstract class ObscuredSharedPreferences implements SharedPreferences {
 
         @Override
         public Editor putBoolean(String key, boolean value) {
-            String eValue = encrypt(Boolean.toString(value));
-
-            delegate.putString(key, eValue);
+            delegate.putString(key, encrypt(Boolean.toString(value)));
             return this;
         }
 
@@ -108,7 +92,7 @@ public abstract class ObscuredSharedPreferences implements SharedPreferences {
             return this;
         }
 
-//        @Override
+        //        @Override
         public SharedPreferences.Editor putStringSet(String s, Set<String> strings) {
             return null;  //To change body of implemented methods use File | Settings | File Templates.
         }
@@ -130,7 +114,7 @@ public abstract class ObscuredSharedPreferences implements SharedPreferences {
             return delegate.commit();
         }
 
-//        @Override
+        //        @Override
         public void apply() {
             //To change body of implemented methods use File | Settings | File Templates.
         }
@@ -204,83 +188,40 @@ public abstract class ObscuredSharedPreferences implements SharedPreferences {
 
         try {
             final byte[] bytes = value != null ? value.getBytes(UTF8) : new byte[0];
-
-            byte[] ivBytes = getInitVector();
-            PBEParameterSpec iv = new PBEParameterSpec(ivBytes, 20);
-
-            SecretKey key = getSecretKey();
-            Cipher pbeCipher = Cipher.getInstance(CIPHER_ALGORITHM);
-
-            pbeCipher.init(Cipher.ENCRYPT_MODE, key, iv);
-
-            byte[] encryptedBytes = pbeCipher.doFinal(bytes);
-            byte[] encryptedAndIv = new byte[encryptedBytes.length + ivBytes.length];
-            System.arraycopy(encryptedBytes, 0, encryptedAndIv, 0, encryptedBytes.length);
-            System.arraycopy(ivBytes, 0, encryptedAndIv, encryptedBytes.length, ivBytes.length);
-            return new String(Base64.encode(encryptedAndIv, Base64.NO_WRAP), UTF8);
+            SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("PBEWithMD5AndDES");
+            SecretKey key = keyFactory.generateSecret(new PBEKeySpec(getSpecialCode()));
+            Cipher pbeCipher = Cipher.getInstance("PBEWithMD5AndDES");
+            pbeCipher.init(Cipher.ENCRYPT_MODE, key, new PBEParameterSpec(getAndroidId()
+                    .getBytes(UTF8), 20));
+            return new String(Base64.encode(pbeCipher.doFinal(bytes), Base64.NO_WRAP), UTF8);
 
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
+    }
+
+    private String getAndroidId() {
+        String androidId = Settings.Secure
+                .getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+        //doing this to ease unit testing in mock environments where shadowed contentresolver returns null
+        if (androidId == null) androidId = "01234567";
+        return androidId;
     }
 
     protected String decrypt(String value) {
         try {
             final byte[] bytes = value != null ? Base64.decode(value, Base64.DEFAULT) : new byte[0];
-
-            byte[] ivBytes;
-            byte[] encryptedBytes;
-
-            if (bytes.length > IV_LENGTH) {
-                ivBytes = copyOfRange(bytes, bytes.length - IV_LENGTH, bytes.length);
-                encryptedBytes = copyOfRange(bytes, 0, bytes.length - IV_LENGTH);
-            } else {
-                return "";
-            }
-
-            PBEParameterSpec iv = new PBEParameterSpec(ivBytes, 20);
-
-            SecretKey key = getSecretKey();
-            Cipher pbeCipher = Cipher.getInstance(CIPHER_ALGORITHM);
-
-            pbeCipher.init(Cipher.DECRYPT_MODE, key, iv);
-            return new String(pbeCipher.doFinal(encryptedBytes), UTF8);
+            SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("PBEWithMD5AndDES");
+            SecretKey key = keyFactory.generateSecret(new PBEKeySpec(getSpecialCode()));
+            Cipher pbeCipher = Cipher.getInstance("PBEWithMD5AndDES");
+            pbeCipher.init(Cipher.DECRYPT_MODE, key, new PBEParameterSpec(getAndroidId()
+                    .getBytes(UTF8), 20));
+            return new String(pbeCipher.doFinal(bytes), UTF8);
 
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }
-
-    private byte[] getSalt() throws NoSuchAlgorithmException {
-        SecureRandom random = SecureRandom.getInstance(RANDOM_ALGORITHM);
-        byte[] salt = new byte[SALT_LENGTH];
-        random.nextBytes(salt);
-        return salt;
-    }
-
-    private byte[] getInitVector() throws NoSuchAlgorithmException {
-        SecureRandom random = SecureRandom.getInstance(RANDOM_ALGORITHM);
-        byte[] iv = new byte[IV_LENGTH];
-        random.nextBytes(iv);
-        return iv;
-    }
-
-
-    private SecretKey getSecretKey() throws NoSuchAlgorithmException,
-            InvalidKeySpecException
-    {
-        PBEKeySpec keySpec = new PBEKeySpec(getSpecialCode());
-        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(PBE_ALGORITHM);
-        SecretKey key = keyFactory.generateSecret(keySpec);
-        return key;
-    }
-
-    private byte[] copyOfRange(byte[] from, int start, int end) {
-        int length = end - start;
-        byte[] result = new byte[length];
-        System.arraycopy(from, start, result, 0, length);
-        return result;
     }
 
 }

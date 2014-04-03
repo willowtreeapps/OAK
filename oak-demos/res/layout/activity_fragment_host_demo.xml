@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:text="The FragmentHostActivity can be used to host multiple fragments from a single activity. Any additional intent extras are passed to the hosted fragment as arguments.  Click a button below to load a fragment into the host activity."
+            android:text="@string/fragment_host_description"
             />
 
 
@@ -29,7 +29,7 @@
             android:layout_marginBottom="10dp"
             android:padding="5dp"
             android:gravity="center"
-            android:text="Load a Box of Color in a Fragment"/>
+            android:text="@string/fragment_host_button_one"/>
 
         <View
             android:layout_width="match_parent"
@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="Enter text to pass to fragment"/>
+            android:hint="@string/fragment_host_enter_text_hint"/>
 
         <Button
             android:id="@+id/frag_host_btn_2"
@@ -52,7 +52,7 @@
             android:layout_marginBottom="10dp"
             android:padding="5dp"
             android:gravity="center"
-            android:text="Send Text Above to Fragment"/>
+            android:text="@string/fragment_host_button_two"/>
 
 
     </LinearLayout>

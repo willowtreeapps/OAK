@@ -20,12 +20,12 @@ import android.content.SharedPreferences;
 
 import java.util.Set;
 
-import oak.ObscuredSharedPreferences;
+import oak.CryptoSharedPreferences;
 
 /**
  * User: mlake Date: 12/19/11 Time: 11:16 AM
  */
-public class EncryptedPreferences extends ObscuredSharedPreferences {
+public class EncryptedPreferences extends CryptoSharedPreferences {
 
     public EncryptedPreferences(Context context, SharedPreferences delegate) {
         super(context, delegate);

@@ -49,12 +49,8 @@ public class ObscuredPrefsActivity extends OakDemoActivity {
 
         mNormalSharedPreferences = getSharedPreferences(MY_APP_PREFENCES_NAME, MODE_PRIVATE);
 
-        //EncryptedPreferences is defined by you and extends ObscuredSharedPreferences
+        //EncryptedPreferences is defined by you and extends CryptoSharedPreferences
         mEncryptedPreferences = new EncryptedPreferences(this, mNormalSharedPreferences);
-
-        //load up saved value into textview for demonstration
-        mTextView.setText(mNormalSharedPreferences.getString("first_name", ""));
-
     }
 
     public void saveEncryptedClicked(View view) {

@@ -48,16 +48,29 @@
     <string name="disclaimer">Although MODE_PRIVATE in SharedPreferences should isolate your saved
         data to be viewable by only your application, a compromised android device(read \'rooted\')
         would be able to view all shared preferences which are generally just in plain text. By
-        using oak.ObscuredSharedPreferences, all your data is saved through a layer of encryption
-        which offers considerable more protection should your device fall into the wrong hands. That
+        using oak.CryptoSharedPreferences, all your data is saved through a layer of encryption
+        which offers considerably more protection should your device fall into the wrong hands. That
         said, nothing is bulletproof when it comes to computer security.
     </string>
+    <string name="obscured_prefs_enter_text_hint">save a preference here</string>
+    <string name="obscured_prefs_encrypted_button">Save Encrypted</string>
+    <string name="obscured_prefs_normal_button">Save Normally</string>
+    <string name="obscured_prefs_how_data_is_saved">The following shows exactly how the data is saved:</string>
+    <string name="obscured_prefs_decrypted_data">Below is the decrypted data:</string>
     <string name="async_tool_description">
         The AsyncTool class provides an easy way to perform background tasks while keeping
         the user entertained with Android\'s captivating progress dialog.
         Checked/Unchecked exceptions are automatically captured and shown to the user with
         an AlertDialog. Clever, huh?
     </string>
+    <string name="fragment_host_description">The FragmentHostActivity can be used to host multiple fragments from a
+        single activity. Any additional intent extras are passed to the hosted fragment as arguments.
+        Click a button below to load a fragment into the host activity.
+    </string>
+    <string name="fragment_host_button_one">Load a Box of Color in a Fragment</string>
+    <string name="fragment_host_button_two">Send Text Above to Fragment</string>
+    <string name="fragment_host_enter_text_hint">Enter text to pass to fragment</string>
+    <string name="fragment_host_passed_text">You passed the text below: </string>
     <string name="vertical_view_pager">Widget/VerticalViewPager</string>
     <string-array name="names">
         <item>^mlake</item>
