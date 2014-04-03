@@ -13,11 +13,11 @@ What is OAK Android Kit?
 
   * {{{./textviewwithfont.html}TextViewWithFont}} - Drop your fonts in "assets/fonts" and use this handy widget to set a custom font in your xml layout
 
-  * {{{./obscured_prefs.html}ObscuredSharedPreferences}} - Store your shared preferences with encryption!
+  * {{{./crypto_prefs.html}CryptoSharedPreferences}} - Store your shared preferences with encryption!
 
   * {{{./beastviewpager.html}BeastViewPager}} - ViewPager built to work with SlideMenu or inside a ListView Header
 
-  * {{{./okhttptool.html}OkHttpTool}} - Painless OkHttp UrlConnection wrapper
+  * {{{./http.html}OkHttpTool}} - Painless OkHttp UrlConnection wrapper
 
   * SwankyImageView - Pinch and Zoom on ImageViews made easy
 

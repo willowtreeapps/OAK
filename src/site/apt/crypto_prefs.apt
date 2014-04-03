@@ -1,0 +1,29 @@
+CryptoSharedPreferences
+
+ A wrapper around SharedPreferences that encrypts / decrypts all shared preferences.
+
+ Warning - do not assume use of this class will prevent access to shared preferences.
+ If an attacker has enough access to acquire your password store, they have enough access
+ to acquire your source binary and figure out your encryption key.
+
+ However, this class will prevent casual investigators from acquiring
+ passwords, and thereby may prevent undesired negative publicity.
+
+ Full disclosure: This code was adapted from {{{http://stackoverflow.com/questions/785973/what-is-the-most-appropriate-way-to-store-user-settings-in-android-application/6393502#6393502}Michael Burton's response on StackOverflow}}
+
+ To use you must extend the CryptoSharedPreferences abstract class and implement the
+ getSpecialCode() method.  Ideally this method would use either user input or an external
+ source to get the password used to encrypt the shared preferences.  The demo has the
+ value hard-coded and is significantly less secure as a result.
+
+ The demo EncryptedPreferences object is shown below.
+
+%{snippet|id=encrypted_prefs|file=oak-demos/src/oak/demo/EncryptedPreferences.java}
+
+ The activity using the EncryptedPreferences object.
+
+%{snippet|id=obscured_prefs|file=oak-demos/src/oak/demo/other/ObscuredPrefsActivity.java}
+
+ Screenshot of demo activity.
+
+[crypto_shared_prefs.png] Crypto Shared Preferences

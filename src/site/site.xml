@@ -53,11 +53,12 @@
 			<item name="JavaDoc" href="apidocs/"/>
 		</menu>
 		<menu name="Components">
-            <item name="OkHttpTool" href="http.html" />
-            <item name="TextViewWithFont" href="textviewwithfont.html" />
             <item name="BeastViewPager" href="beastviewpager.html" />
-            <item name="Section Adapter" href="section-adapter.html"/>
+            <item name="CryptoSharedPreferences" href="crypto_prefs.html"/>
+            <item name="OkHttpTool" href="http.html" />
             <item name="Resized TextView" href="resized_textview.html"/>
+            <item name="Section Adapter" href="section-adapter.html"/>
+            <item name="TextViewWithFont" href="textviewwithfont.html" />
             <item name="Utilities" href="utility.html" />
         </menu>
         <menu name="Resources">
