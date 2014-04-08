@@ -34,6 +34,8 @@ import oak.util.OakUtils;
 
 /**
  * User: mlake Date: 12/8/11 Time: 11:01 AM
+ * Allows you to set a custom resource that will
+ * clear/cancel an EditText.
  */
 public class CancelEditText extends EditText {
     private Drawable mDrawable;

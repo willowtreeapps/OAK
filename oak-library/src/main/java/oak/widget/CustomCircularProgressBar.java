@@ -14,6 +14,8 @@ import oak.R;
 
 /**
  * User: derek Date: 5/25/12 Time: 1:06 PM
+ * Allows you to create a spinner with
+ * your own resources.
  */
 public class CustomCircularProgressBar extends ProgressBar {
 

@@ -18,7 +18,11 @@ import java.util.Comparator;
 import oak.R;
 import oak.util.OakUtils;
 
-
+/**
+ * Spreedsheet view, which is helpful when displaying large data.
+ * This is similar to views you will find in many sports apps
+ * when showing scores, player stats, etc.
+ */
 public class SpreadsheetView extends View implements GestureDetector.OnGestureListener {
 
 

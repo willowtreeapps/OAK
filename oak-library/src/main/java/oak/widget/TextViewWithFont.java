@@ -27,6 +27,8 @@ import oak.util.OakUtils;
 
 /**
  * User: Michael Lake Date: 11/21/11 Time: 5:36 PM
+ * Allows you to set a custom font to a textview
+ * via XML.
  */
 public class TextViewWithFont extends TextView {
 

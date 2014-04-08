@@ -9,13 +9,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.provider.Settings;
 
+import java.util.Map;
+import java.util.Set;
+
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Warning, this gives a false sense of security.  If an attacker has enough access to acquire your
@@ -92,12 +93,6 @@ public abstract class ObscuredSharedPreferences implements SharedPreferences {
         public SharedPreferences.Editor putStringSet(String s, Set<String> strings) {
             return null;  //To change body of implemented methods use File | Settings | File Templates.
         }
-
-//      commented out for 2.1 compatibility
-//        @Override
-//        public void apply() {
-//            delegate.apply();
-//        }
 
         @Override
         public Editor clear() {

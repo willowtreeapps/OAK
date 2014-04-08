@@ -70,7 +70,7 @@ Configure your IDE
 
 * IntelliJ IDEA
 
-**Importing OAK into IntelliJ
+**Importing OAK into IntelliJ/Android Studio
 
  <<File ->Create New Project -> Import project from external model -> Maven>>
 

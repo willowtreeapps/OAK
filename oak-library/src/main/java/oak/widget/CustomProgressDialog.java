@@ -9,6 +9,10 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+/**
+ * Allows you to create a dialog with a loading animation
+ * using your own resoruces
+ */
 public class CustomProgressDialog extends Dialog {
 
     private ImageView mProgressImageView;

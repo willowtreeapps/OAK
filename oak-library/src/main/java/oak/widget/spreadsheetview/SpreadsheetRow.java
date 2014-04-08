@@ -1,5 +1,8 @@
 package oak.widget.spreadsheetview;
 
+/**
+ * Used within SpreadsheetView
+ */
 public class SpreadsheetRow {
 
     private String[] values;

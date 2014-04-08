@@ -8,6 +8,8 @@ import android.text.style.MetricAffectingSpan;
 
 /**
  * User: ericrichardson Date: 5/6/13 Time: 2:10 PM
+ * Allows you to set custom fonts with a spannable.
+ * A useful example would be changing ActionBar title fonts!
  */
 public class FontTypefaceSpan extends MetricAffectingSpan {
 

@@ -3,6 +3,10 @@ package oak.widget.spreadsheetview;
 import android.graphics.*;
 import android.graphics.drawable.Drawable;
 
+/**
+ *  This cell is used within the SpreadsheetView
+ */
+
 public class SpreadsheetCell {
 
     private Paint cellPaint;

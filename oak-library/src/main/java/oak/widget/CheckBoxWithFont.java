@@ -25,6 +25,10 @@ import android.widget.CheckBox;
 import oak.R;
 import oak.util.OakUtils;
 
+/**
+ * Allows you to set a checkbox with custom
+ * font via XML
+ */
 public class CheckBoxWithFont extends CheckBox {
 
     private static final String TAG = CheckBoxWithFont.class.getSimpleName();
