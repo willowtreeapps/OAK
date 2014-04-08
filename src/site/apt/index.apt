@@ -23,7 +23,7 @@ What is OAK Android Kit?
 
   * {{{./animatedsvgview.html}AnimatedSvgView}} - Allows you to animate in an SVG
 
-  * SwankyImageView - Pinch and Zoom on ImageViews made easy
+  * {{{./swankyimageview.html}SwankyImageView}} - Pinch and Zoom on ImageViews made easy
 
   * {{{./utility.html}OakUtils}} - Various utility methods to make development easier
 
