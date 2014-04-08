@@ -2,11 +2,11 @@ What is OAK Android Kit?
 
  OAK is a powerful kit of tools and components to use in your Android project (Compatible with API Level 8+)
 
-  * {{{./pinnedheader.html}Section Listview}} - mimic the functionality of the contacts app
+  * {{{./pinnedheader.html}Section ListView}} - mimic the functionality of the contacts app
 
   * {{{./section-adapter.html}SectionAdapter with Pinned Headers}} - Same as above but with search filtering
 
-  * {{{./resized_textview.html}ResizedTextView}} - Auto-resizing textview makes long content smaller
+  * {{{./resized_textview.html}ResizedTextView}} - Auto-resizing TextView makes long content smaller
 
   * {{{./cancel_edit_text.html}CancelEditText}} - An EditText that lets you specify a tappable drawable
   to clear the field
@@ -17,13 +17,15 @@ What is OAK Android Kit?
 
   * {{{./beastviewpager.html}BeastViewPager}} - ViewPager built to work with SlideMenu or inside a ListView Header
 
-  * {{{./oakwebview.html}BeastViewPager}} - ViewPager built to work with SlideMenu or inside a ListView Header
+  * {{{./oakwebview.html}OakWebView}} - Easy to use WebView with built-in controls
 
   * {{{./okhttptool.html}OkHttpTool}} - Painless OkHttp UrlConnection wrapper
 
+  * {{{./animatedsvgview.html}AnimatedSvgView}} - Allows you to animate in an SVG
+
   * SwankyImageView - Pinch and Zoom on ImageViews made easy
 
-  * Various utility methods to make development easier
+  * {{{./utility.html}OakUtils}} - Various utility methods to make development easier
 
 
 How is OAK licensed?
@@ -37,5 +39,5 @@ How do I get started using OAK?
 
 How can I contribute?
 
- OAK development is meant to be easy for both Eclipse and IntelliJ users. See the {{{./dev-doc.html} developer docs}}
+ OAK development is meant to be easy for Eclipse, IntelliJ, or Android Studio users. See the {{{./dev-doc.html} developer docs}}
   to see how you can make OAK even better.
