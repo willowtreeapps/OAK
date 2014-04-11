@@ -19,8 +19,8 @@ import oak.R;
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class FragmentHostActivity extends Activity {
 
-    private static final String ACTION_BAR_TITLE_KEY = "FragmentHostActivity_ActionBarTitleKey";
-    private static final String FRAGMENT_CLASS_NAME_KEY = "FragmentHostActivity_FragmentClassNameKey";
+    public static final String ACTION_BAR_TITLE_KEY = "FragmentHostActivity_ActionBarTitleKey";
+    public static final String FRAGMENT_CLASS_NAME_KEY = "FragmentHostActivity_FragmentClassNameKey";
 
     private FrameLayout frameLayout;
 

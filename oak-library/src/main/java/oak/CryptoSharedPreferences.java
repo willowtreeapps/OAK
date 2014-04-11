@@ -19,6 +19,8 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import oak.util.PRNGFixes;
+
 /**
  * Created by robcook on 4/2/14.
  */
@@ -384,12 +386,18 @@ public abstract class CryptoSharedPreferences implements SharedPreferences {
             InvalidKeySpecException
     {
         PBEKeySpec keySpec = new PBEKeySpec(getSpecialCode());
+
+        PRNGFixes.apply();
+
         SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(PBE_ALGORITHM_DES);
         SecretKey key = keyFactory.generateSecret(keySpec);
         return key;
     }
 
     private SecretKey getSecretKey_AES(byte[] salt) throws NoSuchAlgorithmException, InvalidKeySpecException {
+
+        PRNGFixes.apply();
+
         SecretKeyFactory factory = SecretKeyFactory.getInstance(PBE_ALGORITHM_AES);
         KeySpec spec = new PBEKeySpec(getSpecialCode(), salt, SECRET_KEY_ITERATIONS, 256);
         SecretKey tmp = factory.generateSecret(spec);
