@@ -14,9 +14,7 @@ buildscript {
     }
 }
 
-if (!project.plugins.findPlugin(release.ReleasePlugin)) {
-    project.apply(plugin: release.ReleasePlugin)
-}
+apply plugin: 'release'
 
 release {
     scm = 'git'
