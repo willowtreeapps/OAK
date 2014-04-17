@@ -8,6 +8,8 @@ package oak.util;
  * Permission is granted to anyone to use this software for any purpose,
  * including commercial applications, and to alter it and redistribute it
  * freely, as long as the origin is not misrepresented.
+ *
+ * http://android-developers.blogspot.com/2013/08/some-securerandom-thoughts.html
  */
 
 import android.os.Build;

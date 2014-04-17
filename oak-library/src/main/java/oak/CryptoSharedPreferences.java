@@ -19,8 +19,6 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import oak.util.PRNGFixes;
-
 /**
  * Created by robcook on 4/2/14.
  */
@@ -40,6 +38,13 @@ import oak.util.PRNGFixes;
  * This class was created to replace the original ObscurredSharedPreferences.  It includes DES and AES
  * encryption options, and uses a randomly generate initialization vector to ensure each encrypted string
  * is unique.  If no crypto type is specified the default is AES.
+ *
+ * Note: There was a flaw in the JCA in some versions of Android.  There is a fix,
+ * see this: http://android-developers.blogspot.com/2013/08/some-securerandom-thoughts.html
+ *
+ * The code provided is also provided in OAK.  You should call PRNGFixes.apply()
+ * in your Application.onCreate() method if you are using this library to ensure
+ * strong keys are created.
  */
 public abstract class CryptoSharedPreferences implements SharedPreferences {
 
@@ -387,16 +392,12 @@ public abstract class CryptoSharedPreferences implements SharedPreferences {
     {
         PBEKeySpec keySpec = new PBEKeySpec(getSpecialCode());
 
-        PRNGFixes.apply();
-
         SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(PBE_ALGORITHM_DES);
         SecretKey key = keyFactory.generateSecret(keySpec);
         return key;
     }
 
     private SecretKey getSecretKey_AES(byte[] salt) throws NoSuchAlgorithmException, InvalidKeySpecException {
-
-        PRNGFixes.apply();
 
         SecretKeyFactory factory = SecretKeyFactory.getInstance(PBE_ALGORITHM_AES);
         KeySpec spec = new PBEKeySpec(getSpecialCode(), salt, SECRET_KEY_ITERATIONS, 256);
