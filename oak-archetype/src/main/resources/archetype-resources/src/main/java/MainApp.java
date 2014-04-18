@@ -19,6 +19,15 @@ public class MainApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        /**
+         * Ensure the keys generated for the CryptoSharedPreferences are strong and sufficiently
+         * random.
+         *
+         * See http://android-developers.blogspot.com/2013/08/some-securerandom-thoughts.html
+         */
+        PRNGFixes.apply();
+
         Log.i(TAG, "onCreate");
         Injector i = RoboGuice.getBaseApplicationInjector(this);
         mDataStore = i.getInstance(Datastore.class);
