@@ -4,13 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import java.util.Set;
 
-import oak.ObscuredSharedPreferences;
+import oak.CryptoSharedPreferences;
 
 /**
  * Generated from archetypezz
  */
 
-public final class EncryptedSharedPreferences extends ObscuredSharedPreferences{
+public final class EncryptedSharedPreferences extends CryptoSharedPreferences {
 
     public EncryptedSharedPreferences(Context context, SharedPreferences delegate) {
         super(context, delegate);

@@ -5,14 +5,19 @@ import android.content.SharedPreferences;
 
 import java.util.Set;
 
-import oak.ObscuredSharedPreferences;
+import oak.CryptoSharedPreferences;
 
-public final class EncryptedSharedPreferences extends ObscuredSharedPreferences {
+public final class EncryptedSharedPreferences extends CryptoSharedPreferences {
 
     public EncryptedSharedPreferences(Context context, SharedPreferences delegate) {
         super(context, delegate);
     }
 
+    /**
+     * This should be replaced with a user input pass phrase or an externally
+     * retrieved pass phrase if possible.
+     * @return
+     */
     @Override
     protected char[] getSpecialCode() {
         return "y0urPa$$w0rdH3r3".toCharArray();

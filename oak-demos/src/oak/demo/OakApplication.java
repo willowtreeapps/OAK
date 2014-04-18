@@ -17,6 +17,8 @@ package oak.demo;
 
 import android.app.Application;
 
+import oak.util.PRNGFixes;
+
 /**
  * User: Michael Lake Date: 9/20/11 Time: 10:53 AM
  *
@@ -32,6 +34,14 @@ public class OakApplication extends Application {
         super.onCreate();
 
         message = "testMessage";
+
+        /**
+         * Ensure the keys generated for the CryptoSharedPreferences are strong and sufficiently
+         * random.
+         *
+         * See http://android-developers.blogspot.com/2013/08/some-securerandom-thoughts.html
+         */
+        PRNGFixes.apply();
 
     }
 

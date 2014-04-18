@@ -20,17 +20,23 @@ import android.content.SharedPreferences;
 
 import java.util.Set;
 
-import oak.ObscuredSharedPreferences;
+import oak.CryptoSharedPreferences;
 
 /**
  * User: mlake Date: 12/19/11 Time: 11:16 AM
  */
-public class EncryptedPreferences extends ObscuredSharedPreferences {
+// START SNIPPET: encrypted_prefs
+public class EncryptedPreferences extends CryptoSharedPreferences {
 
     public EncryptedPreferences(Context context, SharedPreferences delegate) {
         super(context, delegate);
     }
 
+    /**
+     * This should be replaced with a user input pass phrase or an externally
+     * retrieved pass phrase if possible.
+     * @return
+     */
     @Override
     protected char[] getSpecialCode() {
         return "THIS IS MY ENCRYPTING KEY PHRASE@@!".toCharArray();
@@ -41,3 +47,4 @@ public class EncryptedPreferences extends ObscuredSharedPreferences {
         return null;
     }
 }
+// END SNIPPET: encrypted_prefs

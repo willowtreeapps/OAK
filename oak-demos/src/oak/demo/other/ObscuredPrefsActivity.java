@@ -39,6 +39,8 @@ public class ObscuredPrefsActivity extends OakDemoActivity {
     private EncryptedPreferences mEncryptedPreferences;
     @InjectView(R.id.my_edittext) private EditText mEditText;
     @InjectView(R.id.saved_content) private TextView mTextView;
+    @InjectView(R.id.saved_content_decrypted) private TextView mDecryptedText;
+    @InjectView(R.id.saved_content_decrypted_desc) private TextView mDecryptedDesc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +49,8 @@ public class ObscuredPrefsActivity extends OakDemoActivity {
 
         mNormalSharedPreferences = getSharedPreferences(MY_APP_PREFENCES_NAME, MODE_PRIVATE);
 
-        //EncryptedPreferences is defined by you and extends ObscuredSharedPreferences
+        //EncryptedPreferences is defined by you and extends CryptoSharedPreferences
         mEncryptedPreferences = new EncryptedPreferences(this, mNormalSharedPreferences);
-
-        //load up saved value into textview for demonstration
-        mTextView.setText(mNormalSharedPreferences.getString("first_name", ""));
-
     }
 
     public void saveEncryptedClicked(View view) {
@@ -61,7 +59,7 @@ public class ObscuredPrefsActivity extends OakDemoActivity {
                 .putString("first_name", mEditText.getText().toString())
                 .commit();
 
-        showRawContents();
+        showRawContents(true);
     }
 
     public void saveNormallyClicked(View view) {
@@ -70,14 +68,22 @@ public class ObscuredPrefsActivity extends OakDemoActivity {
                 .putString("first_name", mEditText.getText().toString())
                 .commit();
 
-        showRawContents();
+        showRawContents(false);
     }
 
-    private void showRawContents() {
+    private void showRawContents(boolean isEncrypted) {
         //demonstrate what could be viewed by a light-weight hacker
         mTextView.setText(mNormalSharedPreferences.getString("first_name", ""));
 
         //note: to read encrypted data, you would just use mEncryptedPreferences.getString(...
+        if (isEncrypted) {
+            mDecryptedDesc.setVisibility(View.VISIBLE);
+            mDecryptedText.setText(mEncryptedPreferences.getString("first_name", ""));
+            mDecryptedText.setVisibility(View.VISIBLE);
+        } else {
+            mDecryptedDesc.setVisibility(View.GONE);
+            mDecryptedText.setVisibility(View.GONE);
+        }
     }
 }
 // END SNIPPET: obscured_prefs

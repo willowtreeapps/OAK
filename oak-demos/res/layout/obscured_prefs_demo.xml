@@ -1,33 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        style="@style/Fill"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical">
-    <TextView
-            style="@style/FillWidth"
-            android:text="@string/disclaimer"/>
-    <EditText
-            style="@style/FillWidth"
-            android:id="@+id/my_edittext"
-            android:hint="save a preference here"/>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/FillWidth">
     <LinearLayout
+            style="@style/Fill"
+
+            android:orientation="vertical">
+        <TextView
+                style="@style/FillWidth"
+                android:text="@string/disclaimer"/>
+        <EditText
+                style="@style/FillWidth"
+                android:id="@+id/my_edittext"
+                android:hint="@string/obscured_prefs_enter_text_hint"/>
+        <LinearLayout
+                style="@style/FillWidth"
+                android:orientation="horizontal"
+                android:gravity="center">
+            <Button
+                    style="@style/Wrap"
+                    android:text="@string/obscured_prefs_encrypted_button"
+                    android:onClick="saveEncryptedClicked"/>
+            <Button
+                    style="@style/Wrap"
+                    android:text="@string/obscured_prefs_normal_button"
+                    android:onClick="saveNormallyClicked"/>
+        </LinearLayout>
+        <TextView
+                style="@style/FillWidth"
+                android:text="@string/obscured_prefs_how_data_is_saved"/>
+        <TextView
+                style="@style/FillWidth"
+                android:layout_marginTop="10dip"
+                android:id="@+id/saved_content"/>
+
+        <TextView
             style="@style/FillWidth"
-            android:orientation="horizontal"
-            android:gravity="center">
-        <Button
-                style="@style/Wrap"
-                android:text="Save Encrypted"
-                android:onClick="saveEncryptedClicked"/>
-        <Button
-                style="@style/Wrap"
-                android:text="Save Normally"
-                android:onClick="saveNormallyClicked"/>
+            android:layout_marginTop="10dp"
+            android:text="@string/obscured_prefs_decrypted_data"
+            android:id="@+id/saved_content_decrypted_desc"
+            android:visibility="gone"/>
+        <TextView
+            style="@style/FillWidth"
+            android:layout_marginTop="10dp"
+            android:id="@+id/saved_content_decrypted"
+            android:visibility="gone"/>
     </LinearLayout>
-    <TextView
-            style="@style/FillWidth"
-            android:text="The following shows exactly how the data is saved:"/>
-    <TextView
-            style="@style/FillWidth"
-            android:layout_marginTop="10dip"
-            android:id="@+id/saved_content"/>
-</LinearLayout>
+
+</ScrollView>

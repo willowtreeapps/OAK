@@ -28,9 +28,12 @@ import javax.crypto.spec.PBEParameterSpec;
 /**
  * This code originally posted by Michael Burton on StackOverflow
  * http://stackoverflow.com/questions/785973/what-is-the-most-appropriate-way-to-store-user-settings-in-android-application/6393502#6393502
+ *
+ * This implementation has been replaced by the CryptoSharedPreferences which uses
+ * AES encryption if available and a random initialization vector.
  */
 
-
+@Deprecated
 public abstract class ObscuredSharedPreferences implements SharedPreferences {
 
     protected static final String UTF8 = "utf-8";
@@ -89,7 +92,7 @@ public abstract class ObscuredSharedPreferences implements SharedPreferences {
             return this;
         }
 
-//        @Override
+        //        @Override
         public SharedPreferences.Editor putStringSet(String s, Set<String> strings) {
             return null;  //To change body of implemented methods use File | Settings | File Templates.
         }
@@ -105,7 +108,7 @@ public abstract class ObscuredSharedPreferences implements SharedPreferences {
             return delegate.commit();
         }
 
-//        @Override
+        //        @Override
         public void apply() {
             //To change body of implemented methods use File | Settings | File Templates.
         }
