@@ -80,9 +80,9 @@ mvn clean install
                          -DarchetypeRepository=${project.distributionManagement.snapshotRepository.url}
 +---
 
- This will create a basic project using Gradle
+ This will create a basic project using Gradle, You'll need to have a gradle.properties setup with Archiva credentials or remove the non-central maven repo information from the build.gradle
 
- From there, import project into Android Studio and develop away!
+ From there, import project into Android Studio and develop away! Make sure to import from the top level folder of the project!!
 
 
 
