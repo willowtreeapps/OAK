@@ -20,7 +20,7 @@
     <parent>
         <groupId>com.willowtreeapps</groupId>
         <artifactId>oak-project</artifactId>
-        <version>1.3.7</version>
+        <version>1.3.8-SNAPSHOT</version>
     </parent>
     <groupId>com.willowtreeapps</groupId>
     <artifactId>oak-gradle-archetype</artifactId>
