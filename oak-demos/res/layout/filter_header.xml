@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2011. WillowTree Apps
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,14 +14,16 @@
   ~ limitations under the License.
   -->
 
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-          android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          android:background="#990000ff"
-          android:textColor="#fff"
-          android:text="Header"
-          android:textStyle="bold"
-          android:textSize="16sp"
-          android:padding="6dp"
-          android:id="@+id/header"
-        />
+<oak.widget.TextViewWithFont
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:oak="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/list_color_blue"
+    android:textColor="#fff"
+    android:text="Header"
+    android:textStyle="bold"
+    android:textSize="16sp"
+    android:padding="6dp"
+    android:id="@+id/header"
+    oak:oakFont="Roboto-Thin.ttf"/>
