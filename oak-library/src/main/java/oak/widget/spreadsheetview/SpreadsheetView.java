@@ -1083,6 +1083,12 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     }
 
 
+    /**
+     * Allows you to set the width of a stick column
+     *
+     * @param columnIndex set which column to adjust
+     * @param width set the width of the column
+     */
     public void setStickyColumnWidth(int columnIndex, float width) {
         if (this.stickyColumnWidths == null || columnIndex + 1 > stickyColumnWidths.length) {
             return;
@@ -1100,6 +1106,11 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     }
 
 
+    /**
+     * Set the number of sticky columns for your spreadsheet
+     *
+     * @param number
+     */
     public void setNumberStickyColumns(int number) {
         targetNumberStickyColumns = number;
         if (number > dataSizeValues) {
@@ -1133,6 +1144,11 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         this.stickyColumnWidth = sum;
     }
 
+    /**
+     * Set the text size for the sticky header
+     *
+     * @param size
+     */
     public void setStickyHeaderTextSize(float size) {
         stickyHeaderCell.setTextSize(size);
     }
@@ -1141,6 +1157,11 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         return stickyHeaderCell.getTextPaint().getTextSize();
     }
 
+    /**
+     * Set the text size in a sticky footer
+     *
+     * @param size
+     */
     public void setStickyFooterTextSize(float size) {
         stickyFooterCell.setTextSize(size);
     }
@@ -1149,6 +1170,11 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         return stickyFooterCell.getTextPaint().getTextSize();
     }
 
+    /**
+     * Set the text size for the sticky columns
+     *
+     * @param size
+     */
     public void setStickyColumnTextSize(float size) {
         stickyColumnCell.setTextSize(size);
     }
@@ -1157,6 +1183,12 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         return stickyColumnCell.getTextPaint().getTextSize();
     }
 
+
+    /**
+     * Set text size in a data cell
+     *
+     * @param size
+     */
     public void setDataCellTextSize(float size) {
         dataCell.setTextSize(size);
     }
@@ -1170,6 +1202,11 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         adjustTable();
     }
 
+    /**
+     * Set the height for a sticky header
+     *
+     * @param height
+     */
     public void setStickyHeaderHeight(float height) {
         this.stickyHeaderHeight = height;
         adjustTable();
@@ -1188,6 +1225,11 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         setStickyFooterHeight(height);
     }
 
+    /**
+     * Set height for the sticky footer
+     *
+     * @param height
+     */
     public void setStickyFooterHeight(float height) {
         this.stickyFooterHeight = height;
         adjustTable();
@@ -1202,6 +1244,12 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         adjustTable();
     }
 
+    /**
+     * Set height and width for our data cells
+     *
+     * @param width
+     * @param height
+     */
     public void setDataCellDimensions(float width, float height) {
         this.dataCellWidth = width;
         this.dataCellHeight = height;
