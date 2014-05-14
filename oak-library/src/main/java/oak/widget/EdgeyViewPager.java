@@ -7,8 +7,9 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 /**
- * ViewPager that helps while using mapviews.
- * Will also assit while using nav drawers.
+ * ViewPager that helps while using mapviews, nav drawers, etc.
+ *
+ *
  * Created by david.hodge on 3/24/14.
  */
 public class EdgeyViewPager extends ViewPager {
@@ -28,6 +29,20 @@ public class EdgeyViewPager extends ViewPager {
     public EdgeyViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
+    }
+
+    public int getEdgeSize(){
+        return edgeSize;
+    }
+
+    /**
+     * Allows you to set a custom size to the swipe edge.
+     * The default value is 16.
+     *
+     * @param edgeSize
+     */
+    public void setEdgeSize(int edgeSize){
+        this.edgeSize = edgeSize;
     }
 
     public void EdgeyViewPager(OnSwipeOutListener listener) {

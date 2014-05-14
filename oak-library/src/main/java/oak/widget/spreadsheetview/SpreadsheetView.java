@@ -1260,6 +1260,11 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         return headers[valueIndex];
     }
 
+    /**
+     * Sets the text size of all text in every cell
+     *
+     * @param textSize
+     */
     public void setAllCellsTextSize(float textSize) {
         stickyColumnCell.setTextSize(textSize);
         stickyHeaderCell.setTextSize(textSize);
@@ -1276,6 +1281,12 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         leftFootCornerCell.setSelectedTextSize(textSize);
     }
 
+    /**
+     * Set a border width to every cell. Requires setting both horizontal and vertical params
+     *
+     * @param horizontalWidth
+     * @param verticalWidth
+     */
     public void setAllCellsBorderWidth(float horizontalWidth, float verticalWidth) {
         stickyColumnCell.setHorizontalBorderWidth(horizontalWidth);
         stickyHeaderCell.setHorizontalBorderWidth(horizontalWidth);
@@ -1292,6 +1303,11 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         leftFootCornerCell.setVerticalBorderWidth(verticalWidth);
     }
 
+    /**
+     * Set a color to the text of every cell
+     *
+     * @param color
+     */
     public void setAllCellsTextColor(int color) {
         stickyColumnCell.setTextColor(color);
         stickyHeaderCell.setTextColor(color);
@@ -1302,6 +1318,11 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
 
     }
 
+    /**
+     * Set a color to the selected text of every cell
+     *
+     * @param color
+     */
     public void setAllCellsSelectedTextColor(int color) {
         stickyColumnCell.setSelectedTextColor(color);
         stickyHeaderCell.setSelectedTextColor(color);
@@ -1312,6 +1333,11 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
 
     }
 
+    /**
+     * Set a custom typeface to every cell
+     *
+     * @param typeface
+     */
     public void setAllCellsTypeface(Typeface typeface) {
         stickyColumnCell.setTypeface(typeface);
         stickyHeaderCell.setTypeface(typeface);

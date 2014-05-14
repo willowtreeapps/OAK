@@ -62,6 +62,11 @@ public class SpreadsheetCell {
         this.selectedBorderPaint = new Paint(borderPaint);
     }
 
+    /**
+     * Set the text size for the cells
+     *
+     * @param size
+     */
     public void setTextSize(float size){
         textPaint.setTextSize(size);
         selectedTextPaint.setTextSize(size);
@@ -71,19 +76,41 @@ public class SpreadsheetCell {
         return textPaint;
     }
 
+    /**
+     * Sets custom paint parameter to the text in each cell
+     *
+     * @param paint
+     */
     public void setTextPaint(Paint paint){
         textPaint = paint;
     }
 
+    /**
+     * Seta custom typeface to the text
+     *
+     * @param typeface
+     */
     public void setTypeface(Typeface typeface){
         textPaint.setTypeface(typeface);
     }
     public Typeface getTypeface(){
         return textPaint.getTypeface();
     }
+
+    /**
+     * Sets time in seconds for how long after touch buttons fade out
+     *
+     * @param typeface
+     */
     public void setSelectedTypeface(Typeface typeface){
         selectedTextPaint.setTypeface(typeface);
     }
+
+    /**
+     * Sets cusotm color to the text of each cell
+     *
+     * @param color
+     */
     public void setTextColor(int color){
         textPaint.setColor(color);
     }
@@ -95,8 +122,19 @@ public class SpreadsheetCell {
         return selectedTextPaint;
     }
 
+
+    /**
+     * Set custom paint to the selected text of each cell
+     *
+     * @param paint
+     */
     public void setSelectedTextPaint(Paint paint){ this.selectedTextPaint = paint;}
 
+    /**
+     * Set custom color to the selected text of each cell
+     *
+     * @param color
+     */
     public void setSelectedTextColor(int color){
         selectedTextPaint.setColor(color);
     }
@@ -104,6 +142,11 @@ public class SpreadsheetCell {
         return selectedTextPaint.getColor();
     }
 
+    /**
+     * Set the text size of the selected text of each cell
+     *
+     * @param size
+     */
     public void setSelectedTextSize(float size){
         selectedTextPaint.setTextSize(size);
     }
@@ -116,38 +159,73 @@ public class SpreadsheetCell {
         return borderPaint;
     }
 
+    /**
+     * Set custom paint used as the border of eachc ell
+     *
+     * @param paint
+     */
     public void setBorderPaint(Paint paint){
         this.borderPaint = paint;
     }
 
     public Paint getSelectedBorderPaint(){ return selectedBorderPaint;}
 
+    /**
+     * Sets a custom paint border to a selected cell
+     *
+     * @param paint
+     */
     public void setSelectedBorderPaint(Paint paint) { this.selectedBorderPaint = paint;}
 
     public Paint getCellPaint(){
         return cellPaint;
     }
 
+    /**
+     * Set custom paint to each cell
+     *
+     * @param paint
+     */
     public void setCellPaint(Paint paint){
         this.cellPaint = paint;
     }
 
     public Paint getSelectedCellPaint(){ return selectedCellPaint;}
 
+    /**
+     * Set custom paint to a cell used when selected
+     *
+     * @param paint
+     */
     public void setSelectedCellPaint(Paint paint){ this.selectedCellPaint = paint;}
 
     public Drawable getDrawable(){
         return this.shape;
     }
 
+    /**
+     * Set custom drawable used for each cell
+     *
+     * @param drawable
+     */
     public void setDrawable(Drawable drawable){
         this.shape = drawable;
     }
 
     public Drawable getSelectedDrawable() { return this.selectedShape;}
 
+    /**
+     * Set a custom drawable used when a cell is selected
+     *
+     * @param drawable
+     */
     public void setSelectedDrawable(Drawable drawable) { this.selectedShape = drawable;}
 
+    /**
+     * Set the horizontal border width for each cell
+     *
+     * @param width
+     */
     public void setHorizontalBorderWidth(float width){
         this.horizontalBorderWidth = width;
     }
@@ -156,6 +234,11 @@ public class SpreadsheetCell {
         return this.horizontalBorderWidth;
     }
 
+    /**
+     * Set the vertical border width for each cell
+     *
+     * @param width
+     */
     public void setVerticalBorderWidth(float width){
         this.verticalBorderWidth = width;
     }

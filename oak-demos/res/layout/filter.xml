@@ -38,7 +38,7 @@
         android:id="@+id/amazing_lv"
         android:fastScrollEnabled="true"
         android:cacheColorHint="#00000000"
-        android:dividerHeight="1dip"
+        android:dividerHeight="8dp"
         android:divider="#00000000"
         android:clickable="true" />
 </RelativeLayout>

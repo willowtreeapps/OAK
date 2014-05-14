@@ -57,10 +57,21 @@ public class SwankyGallery extends FrameLayout {
         mViewPager.setAdapter(mAdapter = adapter);
     }
 
+    /**
+     * Sets maximum alpha when buttons fade in
+     *
+     * @param item set which item to go to
+     * @param smoothScroll boolean on whether to smooth scroll or not
+     */
     public void setCurrentItem(int item, boolean smoothScroll) {
         mViewPager.setCurrentItem(item, smoothScroll);
     }
 
+    /**
+     * Set the max zoom level
+     *
+     * @param maxZoom
+     */
     public void setMaxZoom(float maxZoom) {
         mMaxZoom = maxZoom;
     }
