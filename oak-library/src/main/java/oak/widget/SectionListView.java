@@ -29,6 +29,8 @@ import oak.BaseSectionAdapter;
 /**
  * A ListView that maintains a header pinned at the top of the list. The
  * pinned header can be pushed up and dissolved as needed.
+ *
+ * The best example of this can be found in the stock android contacts/people app.
  */
 public class SectionListView extends ListView {
     public static final String TAG = SectionListView.class.getSimpleName();

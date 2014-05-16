@@ -7,7 +7,9 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 /**
- * ViewPager that helps while using mapviews, nav drawers, etc.
+ * This viewpager will allow you to set the size of an "edge" for the viewpager.
+ * By doing so, this allows you the user to be able to control the content within
+ * the viewpager better. For example, this can make map movements easier for the user.
  *
  *
  * Created by david.hodge on 3/24/14.
