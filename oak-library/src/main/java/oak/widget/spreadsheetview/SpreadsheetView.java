@@ -39,7 +39,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     private OnFooterChangedListener footerChangedListener;
 
 
-    private final static int SCALE = -2;
+    private final static int FLING_SCALE = -2;
 
     private float stickyTableWidth;
     private float stickyTableHeight;
@@ -50,7 +50,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     private float dataCellWidth;
     private float dataCellHeight;
 
-    private boolean dataSet;
+    private boolean dataSet; //whether data has been set to the view. (Does not draw without data)
 
     private final float DEFAULT_CELL_WIDTH = 150;
     private final float DEFAULT_CELL_HEIGHT = 150;
@@ -61,38 +61,54 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     private final float DEFAULT_DIVIDING_LINE_WIDTH = 4;
     private final int DEFAULT_TEXT_SIZE = 32;
 
+    //dimensions of portion containing data cells
     private float activeDataWindowWidth;
     private float activeDataWindowHeight;
 
+    //how much scroll has taken place within data cell portion
     private float windowScrollX;
     private float windowScrollY;
 
+    //used for scrolling based on touch event
     private float scrollStartX;
     private float scrollStartY;
 
+    //maximum amount of scrolling in data window
     private float maxWindowScrollX;
     private float maxWindowScrollY;
 
-    private int dataSizeObjects;
-    private int dataSizeValues;
+    private int dataSizeObjects; // number different objects (SpreadsheetRows)
+    private int dataSizeValues; // number of columns in spreadsheet
 
+    //each row in this array is a different object with column values
     protected SpreadsheetRow[] objectData;
+
+    //titles of columns
     protected String[] headers;
+
+    //arrays that keep track (by index) of which columns are selected
     private boolean[] headerSelected;
     private boolean[] footerSelected;
+
+    //keeps track (by index) of which columns are sorted
     protected int[] sorted;
     public final static int SORTED_UNSORTED = 0;
     public final static int SORTED_ASCENDING = 1;
     public final static int SORTED_DESCENDING = 2;
+
+    //footer values
     protected String[] footers;
 
+    //sticky columns can have varying widths.  This array keeps track
     private float[] stickyColumnWidths;
-    private int numberStickyColumns;
-    private int targetNumberStickyColumns;
+    private int numberStickyColumns; //number of columns marked as "sticky"
+    private int targetNumberStickyColumns; //number of sticky columns may exceed number of data columns
 
+    //how dividing lines between cells should be drawn
     private Paint vertDividingPaint;
     private Paint horzDividingPaint;
 
+    //specifications for how different cells should be drawn
     private SpreadsheetCell dataCell;
     private SpreadsheetCell stickyHeaderCell;
     private SpreadsheetCell stickyFooterCell;
@@ -393,6 +409,11 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         }
     }
 
+
+    /**
+     * Set default values for all cells, paints, etc.
+     * called before attributes are parsed.
+     */
     private void defaultCells() {
         Paint stickyColumnPaint = new Paint();
         stickyColumnPaint.setColor(Color.DKGRAY);
@@ -469,6 +490,10 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
 
     }
 
+    /**
+     * Sets default dimensions and data.
+     * Called from constructor.
+     */
     private void defaultDimensions() {
         stickyColumnWidths = new float[1];
         setNumberStickyColumns(1);
@@ -501,6 +526,11 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     }
 
 
+    /**
+     * Adjust dimensions of different portions of spreadsheet to new size of SpreadsheetView.
+     * makes sure scroll is still in bounds and fits cell width to fill the active window
+     * if necessary.
+     */
     @Override
     protected void onSizeChanged(int width, int height, int oldwidth, int oldheight) {
         this.stickyTableWidth = width;
@@ -526,6 +556,10 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     }
 
 
+    /**
+     * Send events to gestureDetector.
+     * Manually detects scrolling based on events (no touch-slop).
+     */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
@@ -552,6 +586,9 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
 
     }
 
+    /**
+     * Dispatch click to appropriate listener.
+     */
     private void processClick(float x, float y) {
 
 
@@ -572,6 +609,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
             }
         }
     }
+
 
     public interface OnFooterChangedListener {
         public void updateFooter(int valueIndex);
@@ -606,6 +644,11 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     }
 
 
+    /**
+     * Sort column at given index ascending using the given comparator.
+     * @param valueIndex index of column to be sorted
+     * @param comparator comparator that determines how to sort
+     */
     public void sortDataAscBy(final int valueIndex, Comparator<SpreadsheetRow> comparator) {
         Arrays.sort(objectData, comparator);
         for (int i = 0; i < dataSizeValues; i++) {
@@ -614,6 +657,12 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         sorted[valueIndex] = SORTED_ASCENDING;
     }
 
+
+    /**
+     * Sort column at given index descending using the given comparator.
+     * @param valueIndex index of column to be sorted
+     * @param comparator comparator that determines how to sort
+     */
     public void sortDataDescBy(final int valueIndex, Comparator<SpreadsheetRow> comparator) {
         Arrays.sort(objectData, comparator);
         for (int i = 0; i < dataSizeValues; i++) {
@@ -623,6 +672,69 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     }
 
 
+    /**
+     * Returns column index at the given x coordinate.
+     */
+
+    private int getValueDataCellIndex(float x) {
+
+
+        if ((x) < stickyColumnWidth) {
+            float widthSearched = 0f;
+            for (int i = 0; i < numberStickyColumns; i++) {
+                widthSearched += stickyColumnWidths[i];
+                if ((x) < widthSearched) {
+                    return i;
+                }
+            }
+        }
+        int startValuesIndex;
+
+        if (windowScrollX == 0f) {
+            startValuesIndex = numberStickyColumns;
+        } else {
+            startValuesIndex = (int) (numberStickyColumns + windowScrollX / dataCellWidth);
+        }
+
+        float xOffset = windowScrollX % dataCellWidth;
+
+        float xInto = x - stickyColumnWidth;
+        int indexOffsetX = (int) ((xInto + xOffset) / dataCellWidth);
+        return indexOffsetX + startValuesIndex;
+
+    }
+
+    /**
+     * Returns object (SpreadsheetRow) at the given y coordinate.
+     */
+    private int getObjectDataCellIndex(float y) {
+
+
+        int startObjectsIndex;
+
+        if (windowScrollY == 0f) {
+            startObjectsIndex = 0;
+        } else {
+            startObjectsIndex = (int) (windowScrollY / dataCellHeight);
+        }
+
+        float yOffset = windowScrollY % dataCellHeight;
+
+        float yInto = y - stickyHeaderHeight;
+        int indexOffsetY = (int) ((yInto + yOffset) / dataCellHeight);
+
+        return indexOffsetY + startObjectsIndex;
+
+    }
+
+
+
+    /**
+     * Set all data and headers for spreadsheet.
+     * Replaces all current data.
+     * @param data array containing SpreadsheetRows for each object
+     * @param headers array containing titles of columns
+     */
     public void setData(SpreadsheetRow[] data, String[] headers) {
 
         this.objectData = data;
@@ -656,58 +768,116 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         setNumberStickyColumns(targetNumberStickyColumns);
     }
 
-    private int getValueDataCellIndex(float x) {
+    /**
+     * Set data for a single cell.
+     * @param objectIndex index of row
+     * @param valueIndex index of column
+     * @param data data to put in cell
+     */
+    public void setDataAt(int objectIndex, int valueIndex, String data) {
+        getRowAt(objectIndex).setValue(valueIndex, data);
+    }
 
+    /**
+     * Returns string data from given cell.
+     * @param objectIndex index of row
+     * @param valueIndex index of column
+     * @return data from cell
+     */
+    public String getDataAt(int objectIndex, int valueIndex) {
+        return getRowAt(objectIndex).getValueAt(valueIndex);
+    }
 
-        if ((x) < stickyColumnWidth) {
-            float widthSearched = 0f;
-            for (int i = 0; i < numberStickyColumns; i++) {
-                widthSearched += stickyColumnWidths[i];
-                if ((x) < widthSearched) {
-                    return i;
-                }
-            }
+    /**
+     * Sets data to entire column.
+     * @param headerIndex index to insert column
+     * @param column values for column
+     */
+    public void setValuesColumn(int headerIndex, String[] column) {
+        for (int i = 0; i < dataSizeObjects; i++) {
+            objectData[i].setValue(headerIndex, column[i]);
         }
-        int startValuesIndex;
+        updateFooter(headerIndex);
+    }
 
-        if (windowScrollX == 0f) {
-            startValuesIndex = numberStickyColumns;
-        } else {
-            startValuesIndex = (int) (numberStickyColumns + windowScrollX / dataCellWidth);
+    /**
+     * Set data to all footers as well as height of footers.
+     * @param footers values to set as footers
+     * @param height height of footer row
+     */
+    public void setFooters(String[] footers, float height) {
+        this.footers = footers;
+        setStickyFooterHeight(height);
+    }
+
+
+    /**
+     * Set data to entire row using strings.
+     * @param objectIndex row index to set
+     * @param row string data to be set
+     */
+    public void setRow(int objectIndex, String[] row) {
+        for (int i = 0; i < dataSizeValues; i++) {
+            objectData[objectIndex].setValue(objectIndex, row[i]);
         }
 
-        float xOffset = windowScrollX % dataCellWidth;
+        for (int i = 0; i < dataSizeValues; i++) {
+            updateFooter(i);
+        }
+    }
 
-        float xInto = x - stickyColumnWidth;
-        int indexOffsetX = (int) ((xInto + xOffset) / dataCellWidth);
-        return indexOffsetX + startValuesIndex;
+    /**
+     * Set data to entire row using SpreadsheetRow object
+     * @param objectIndex row index to set
+     * @param row SpreadsheetRow object to set
+     */
+    public void setRow(int objectIndex, SpreadsheetRow row) {
+        objectData[objectIndex] = row;
+        for (int i = 0; i < dataSizeValues; i++) {
+            updateFooter(i);
+        }
+    }
+
+
+    /**
+     * returns SpreadsheetRow object representing specified row of spreadsheet.
+     * @param objectIndex row index to return
+     * @return row values
+     */
+    public SpreadsheetRow getRowAt(int objectIndex) {
+        return objectData[objectIndex];
+    }
+
+    /**
+     * Returns footer value at the given index.
+     * @param valueIndex index of footer
+     * @return value of footer
+     */
+    public String getFooterAt(int valueIndex) {
+        return footers[valueIndex];
 
     }
 
-    private int getObjectDataCellIndex(float y) {
-
-
-        int startObjectsIndex;
-
-        if (windowScrollY == 0f) {
-            startObjectsIndex = 0;
-        } else {
-            startObjectsIndex = (int) (windowScrollY / dataCellHeight);
-        }
-
-        float yOffset = windowScrollY % dataCellHeight;
-
-        float yInto = y - stickyHeaderHeight;
-        int indexOffsetY = (int) ((yInto + yOffset) / dataCellHeight);
-
-        return indexOffsetY + startObjectsIndex;
-
+    /**
+     * Returns header value at the given index.
+     * @param valueIndex index of header.
+     * @return value of header
+     */
+    public String getHeaderAt(int valueIndex) {
+        return headers[valueIndex];
     }
 
+    /**
+     * Returns total number of rows in spreadsheet.
+     * @return number of rows.
+     */
+    public int getNumberObjects() {
+        return dataSizeObjects;
+    }
 
     private void updateFooter(int valueIndex) {
         if (footerChangedListener != null) {
-            updateFooter(valueIndex);
+            footerChangedListener.updateFooter(valueIndex);
         }
     }
 
@@ -733,6 +903,9 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     }
 
 
+    /**
+     * Fits the width of columns to fit the active window if necessary.
+     */
     private void fitCellWidthToFill() {
         int numDataCells = getNumberNonStickyColumns();
         if (numDataCells == 0) {
@@ -1049,9 +1222,9 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
 
 
-        int velX = (int) (velocityX / SCALE);
+        int velX = (int) (velocityX / FLING_SCALE);
 
-        int velY = (int) (velocityY / SCALE);
+        int velY = (int) (velocityY / FLING_SCALE);
 
         scroller.fling((int) windowScrollX, (int) windowScrollY, velX, velY, 0, (int) (maxWindowScrollX), 0, (int) (maxWindowScrollY));
         postInvalidate();
@@ -1070,17 +1243,6 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         return stickyColumnWidth;
     }
 
-    public void setDataAt(int objectIndex, int valueIndex, String data) {
-        getRowAt(objectIndex).setValue(valueIndex, data);
-    }
-
-    public String getDataAt(int objectIndex, int valueIndex) {
-        return getRowAt(objectIndex).getValueAt(valueIndex);
-    }
-
-    public int getNumberObjects() {
-        return dataSizeObjects;
-    }
 
 
     /**
@@ -1264,49 +1426,6 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
         return dataCellHeight;
     }
 
-    public void setValuesColumn(int headerIndex, String[] column) {
-        for (int i = 0; i < dataSizeObjects; i++) {
-            objectData[i].setValue(headerIndex, column[i]);
-        }
-        updateFooter(headerIndex);
-    }
-
-    public void setFooters(String[] footers, float height) {
-        this.footers = footers;
-        setStickyFooterHeight(height);
-    }
-
-
-    public void setRow(int objectIndex, String[] row) {
-        for (int i = 0; i < dataSizeValues; i++) {
-            objectData[objectIndex].setValue(objectIndex, row[i]);
-        }
-
-        for (int i = 0; i < dataSizeValues; i++) {
-            updateFooter(i);
-        }
-    }
-
-    public void setRow(int objectIndex, SpreadsheetRow row) {
-        objectData[objectIndex] = row;
-        for (int i = 0; i < dataSizeValues; i++) {
-            updateFooter(i);
-        }
-    }
-
-
-    public SpreadsheetRow getRowAt(int objectIndex) {
-        return objectData[objectIndex];
-    }
-
-    public String getFooterAt(int valueIndex) {
-        return footers[valueIndex];
-
-    }
-
-    public String getHeaderAt(int valueIndex) {
-        return headers[valueIndex];
-    }
 
     /**
      * Sets the text size of all text in every cell
