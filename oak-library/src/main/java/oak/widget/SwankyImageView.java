@@ -203,8 +203,10 @@ public class SwankyImageView extends ImageView {
     @Override
     public void setImageBitmap(Bitmap bm) {
         super.setImageBitmap(bm);
-        bitmapWidth = bm.getWidth();
-        bitmapHeight = bm.getHeight();
+        if (null != bm) {
+            bitmapWidth = bm.getWidth();
+            bitmapHeight = bm.getHeight();
+        }
     }
 
     @Override
