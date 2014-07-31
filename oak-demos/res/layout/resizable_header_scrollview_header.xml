@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Resizable Header ScrollView"
+        android:text="ResizableHeaderScrollView"
         android:id="@+id/header_title"
         android:layout_gravity="center_horizontal" />
 

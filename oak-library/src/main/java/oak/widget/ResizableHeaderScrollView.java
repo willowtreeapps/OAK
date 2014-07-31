@@ -218,16 +218,17 @@ public class ResizableHeaderScrollView extends FrameLayout {
          */
         headerFrame.measure(MeasureSpec.UNSPECIFIED,MeasureSpec.UNSPECIFIED);
         int measuredHeight = headerFrame.getMeasuredHeight();
-        if (minHeaderHeight == maxHeaderHeight && maxHeaderHeight== NOT_SPECIFIED){
-            maxHeaderHeight = measuredHeight;
+
+        if (minHeaderHeight == NOT_SPECIFIED || minHeaderHeight < measuredHeight){
             minHeaderHeight = measuredHeight;
-        } else if (minHeaderHeight == NOT_SPECIFIED && maxHeaderHeight>=measuredHeight){
-            minHeaderHeight = measuredHeight;
-        } else if (maxHeaderHeight == NOT_SPECIFIED && minHeaderHeight<=measuredHeight){
+        }
+        if (maxHeaderHeight == NOT_SPECIFIED || maxHeaderHeight < measuredHeight){
             maxHeaderHeight = measuredHeight;
-        } else if (minHeaderHeight == NOT_SPECIFIED || maxHeaderHeight == NOT_SPECIFIED){
-            minHeaderHeight = measuredHeight;
-            maxHeaderHeight = measuredHeight;
+        }
+        if (minHeaderHeight >maxHeaderHeight){
+            minHeaderHeight = maxHeaderHeight;
+        } else if (maxHeaderHeight < minHeaderHeight){
+            minHeaderHeight = maxHeaderHeight;
         }
 
         /**
