@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:padding="16dp"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt tortor vitae leo posuere, sed rhoncus metus sagittis. Quisque venenatis ligula a feugiat vestibulum. Vestibulum vehicula, ipsum eu mattis mollis, ligula magna vehicula erat, in dapibus lorem risus sit amet turpis. Nunc volutpat hendrerit augue at rhoncus. Nulla bibendum eu dolor in vehicula. Donec a gravida enim. Praesent porta sit amet dui sit amet condimentum. Vestibulum urna dui, dictum non posuere vitae, rhoncus sed leo. Fusce suscipit nec lorem a venenatis. Etiam volutpat dolor quis varius lobortis. Fusce lorem elit, sodales id mollis eget, suscipit id odio. Vestibulum et pellentesque mauris. Donec luctus ultricies nunc, adipiscing varius leo sagittis eu. In ut nulla est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae egestas risus.
+
+Sed sollicitudin velit mi, et consequat turpis commodo eget. Quisque ultricies varius ullamcorper. Nulla a est faucibus, dapibus nisl ut, tempus augue. Donec vel ullamcorper nunc. Vivamus sed pretium diam. Praesent nibh nisi, pharetra id ante vel, mollis congue sem. Donec justo metus, imperdiet quis hendrerit at, consectetur id ipsum. Phasellus vulputate nisl sem, sit amet iaculis diam rutrum ut. Donec ut magna odio. Sed semper sodales venenatis. Vivamus malesuada nibh ligula, a ultrices libero sodales eu.
+
+Sed libero lorem, venenatis eu turpis quis, elementum convallis nunc. Integer euismod augue eu leo scelerisque tempus. Vestibulum vitae enim in augue consequat iaculis. Suspendisse eu augue sit amet mi molestie porta in feugiat leo. Pellentesque tincidunt sem eu porta elementum. Sed posuere ullamcorper quam sit amet rhoncus. Suspendisse sit amet mauris mattis, aliquet quam vel, ultrices justo. Quisque sodales augue in tristique auctor. Fusce fringilla velit sodales felis venenatis fermentum ut vestibulum turpis. Etiam congue porta augue, et dapibus nisi suscipit faucibus. Aliquam quis ante erat. Integer dignissim nec magna et molestie. Phasellus sollicitudin luctus orci, vel consequat ipsum tincidunt a. Suspendisse lobortis arcu eu diam faucibus, ac varius massa condimentum. Morbi in lorem ut enim gravida mattis eu ac tellus. Nullam nibh magna, placerat at fringilla et, fermentum id sem.
+
+Etiam velit elit, semper vel nibh sit amet, dapibus convallis ante. Proin tristique, nibh quis lacinia cursus, dui nisl viverra nisi, a ultrices eros elit iaculis nisl. Curabitur dapibus velit ac velit tristique pretium. Nam feugiat purus ac nibh consectetur facilisis. Maecenas vitae nulla id est lobortis dignissim. Etiam iaculis vestibulum enim sed luctus. Pellentesque feugiat nisi non arcu adipiscing lobortis. Aenean hendrerit ante id tincidunt faucibus. Duis blandit scelerisque ligula. Nulla at cursus lorem. Fusce gravida quis tortor a facilisis. Mauris sodales id eros vitae suscipit. Nam suscipit dolor tincidunt magna egestas porta. Curabitur sit amet dui dictum, faucibus magna aliquet, vestibulum risus.
+
+Duis sed porttitor magna, consequat facilisis ipsum. Donec commodo rutrum libero eget porta. Nulla in blandit lacus. Nunc id rhoncus neque. Aliquam erat volutpat. Aenean consectetur felis ut odio vulputate, eget dapibus ante dictum. Aenean vel feugiat nulla."
+        android:id="@+id/textView" />
+</LinearLayout>

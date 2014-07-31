@@ -44,6 +44,7 @@
     <string name="tag_writer_activity">Nfc/Nfc TagWriter</string>
     <string name="svg_attribution_activity">Svg/Attribution Demo</string>
     <string name="svg_full_attribution_activity">Svg/Custom Attribution Demo</string>
+    <string name="resizable_header_scroll_view_activity">Widget/Resizable Header ScrollView</string>
     <string name="web_activity">Web/Web Launcher Activity</string>
     <string name="disclaimer">Although MODE_PRIVATE in SharedPreferences should isolate your saved
         data to be viewable by only your application, a compromised android device(read \'rooted\')
