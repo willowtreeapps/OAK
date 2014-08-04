@@ -2,14 +2,10 @@ package oak.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -82,6 +78,12 @@ public class ResizableHeaderScrollView extends FrameLayout {
     }
 
     private int getContentScrolled(){
+        if (scrollView.getScrollY()<0){
+            /**
+             * Negative scroll produces white space above header due to the logic in adjustChildren()
+             */
+            return 0;
+        }
         return scrollView.getScrollY();
     }
 
