@@ -8,6 +8,7 @@ import android.view.ViewTreeObserver;
 /**
  * Created by erichardson on 8/5/14.
  */
+@SuppressWarnings("deprecation")
 public class CompatUtils {
     public static void setBackground(View v, Drawable background){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
