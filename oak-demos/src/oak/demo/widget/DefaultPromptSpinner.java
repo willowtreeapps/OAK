@@ -34,7 +34,6 @@ public class DefaultPromptSpinner extends Spinner {
     @Override
     public void setAdapter(SpinnerAdapter orig) {
         final SpinnerAdapter adapter = newProxy(orig);
-
         super.setAdapter(adapter);
 
         try {
