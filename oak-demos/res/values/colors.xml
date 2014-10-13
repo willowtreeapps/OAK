@@ -10,5 +10,8 @@
     <color name="purple">#ffff00ff</color>
     <color name="green">#ff00ff00</color>
     <color name="yellow">#ffffff00</color>
-
+    <color name="list_color_blue">#0099cc</color>
+    <color name="black_overlay">#D9000000</color>
+    <color name="translucent_white">#26ffffff</color>
+    <color name="google_now_text_color">#878787</color>
 </resources>

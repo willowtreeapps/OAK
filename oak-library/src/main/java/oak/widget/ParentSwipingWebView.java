@@ -6,6 +6,14 @@ import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.webkit.WebView;
 
+/**
+ *
+ * This webview makes it easier to manage touch events when using
+ * multiple views that need swiping. Example, this can be used
+ * along side the ParentViewPager to allow for proper swiping.
+ *
+ */
+
 public class ParentSwipingWebView extends WebView {
 
     private float mCurrX = 0.0f;

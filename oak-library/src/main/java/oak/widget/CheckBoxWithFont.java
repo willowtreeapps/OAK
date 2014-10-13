@@ -28,6 +28,13 @@ import oak.util.OakUtils;
 /**
  * Allows you to set a checkbox with custom
  * font via XML
+ *
+ * Start by adding xmlns:oak="http://oak/oak/schema" to the base of your view.
+ * You can then specify a particular font with
+ * oak:font="Your-font.ttf"
+ *
+ * Make sure the font you want to use is in a proper assets/fonts/ folder.
+ *
  */
 public class CheckBoxWithFont extends CheckBox {
 

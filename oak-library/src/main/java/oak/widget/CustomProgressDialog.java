@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 
 /**
  * Allows you to create a dialog with a loading animation
- * using your own resoruces
+ * using your own resources.
  */
 public class CustomProgressDialog extends Dialog {
 

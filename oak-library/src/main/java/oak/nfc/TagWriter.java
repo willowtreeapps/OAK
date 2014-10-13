@@ -1,5 +1,6 @@
 package oak.nfc;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -25,6 +26,7 @@ import java.io.IOException;
  * Time: 1:25 PM
  * To change this template use File | Settings | File Templates.
  */
+@TargetApi(14)
 public class TagWriter {
     private static final String TAG = "OakTagWriter";
     NfcAdapter adapter;

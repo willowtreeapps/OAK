@@ -88,6 +88,16 @@
         <attr name="cellVerticalBorderWidth" format="dimension" />
     </declare-styleable>
 
+    <declare-styleable name="ResizableHeaderScrollView">
+        <attr name="headerLayout" format="reference"/>
+        <attr name="contentLayout" format="reference"/>
+        <attr name="resizableHeaderBackground" format="reference"/>
+        <attr name="headerChangeThreshold" format="dimension"/>
+        <attr name="minHeaderHeight" format="dimension"/>
+        <attr name="maxHeaderHeight" format="dimension"/>
+        <attr name="headerCentered" format="boolean"/>
+    </declare-styleable>
+
     <declare-styleable name="MultiDirectionSlidingDrawer">
         <attr name="oakBottomOffset" format="dimension" />
         <attr name="oakTopOffset" format="dimension" />

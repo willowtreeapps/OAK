@@ -8,6 +8,9 @@ import android.view.ViewConfiguration;
 
 /**
  * User: derek Date: 7/12/12 Time: 2:57 PM
+ *
+ * Viewpager that is helpful when having to handle multiple views with touch or swipe events.
+ * For example, handling a viewpager in a viewpager.
  */
 public class ParentSwipingViewPager extends ViewPager {
 

@@ -30,6 +30,7 @@ import oak.R;
  * User: Michael Lake Date: 11/21/11 Time: 5:36 PM
  * Enables you to set a graiant to a textview
  */
+@Deprecated
 public class GradientTextView extends TextViewWithFont {
 
     private static final String TAG = GradientTextView.class.getSimpleName();

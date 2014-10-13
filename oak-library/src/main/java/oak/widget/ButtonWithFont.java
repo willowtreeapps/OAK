@@ -27,8 +27,15 @@ import oak.util.OakUtils;
 
 /**
  * User: Michael Lake Date: 11/21/11 Time: 5:36 PM
- * Allows you to set a custom font to a button's text.
- * Set via XML
+ *
+ * Allows you to set a custom font to a button's text via XML.
+ *
+ * Start by adding xmlns:oak="http://oak/oak/schema" to the base of your view.
+ * You can then specify a particular font with
+ * oak:font="Your-font.ttf"
+ *
+ * Make sure the font you want to use is in a proper assets/fonts/ folder.
+ *
  */
 public class ButtonWithFont extends Button {
 

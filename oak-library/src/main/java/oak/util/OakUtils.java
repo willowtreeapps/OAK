@@ -250,6 +250,7 @@ public class OakUtils {
 
     /**
      * Method to determine whether string is a valid email address
+     * @param email email to verify
      */
     public static boolean isValidEmail(String email) {
         return EMAIL_ADDRESS_PATTERN.matcher(email).matches();
@@ -259,6 +260,7 @@ public class OakUtils {
 
     /**
      * Method to determine whether string is a valid phone number
+     * @param phone phone number to verify
      */
     public static boolean isValidPhone(String phone) {
         return PHONE_NUMBER.matcher(phone).matches();
