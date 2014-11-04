@@ -1,10 +1,11 @@
 /*
- * Copyright (c) 2011. WillowTree Apps, Inc.
+ * Copyright (c) 2011. WillowTree Apps
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,19 +14,14 @@
  * limitations under the License.
  */
 
-package oak.demo.widget;
+package oak.sectionlistview;
 
-import android.os.Bundle;
+/**
+ * User: Michael Lake
+ * Date: 5/18/11
+ * Time: 10:14 AM
+ */
+public interface Sectionable {
 
-import oak.demo.OakDemoActivity;
-import oak.demo.R;
-
-public class ResizedTextViewActivity extends OakDemoActivity {
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.resized_textview_demo);
-    }
+    String getSection();
 }

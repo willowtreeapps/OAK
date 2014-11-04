@@ -68,7 +68,7 @@ public class OakUtils {
      * @param typeface typeface to convert the text into.
      * @return formatted String.
      */
-    public SpannableString getFormattedText(Context context, String text, String typeface) {
+    public static SpannableString getTypefaceFormattedText(Context context, String text, String typeface) {
         //TODO Make it not crash on terrible LG devices
         SpannableString s = new SpannableString(text);
         s.setSpan(new FontTypefaceSpan(context, typeface), 0, s.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

@@ -39,6 +39,7 @@ import oak.OAK;
  * This is a utility class for abstracting commonly used OkHttp methods
  * Created by ericrichardson on 1/6/14.
  */
+@Deprecated
 public class OkHttpTool {
     public static final String PUT = "PUT";
     public static final String POST = "POST";
@@ -50,6 +51,7 @@ public class OkHttpTool {
 
     /**
      * Creates a client that gets around issues with SSL Context when used with other libraries that may use HttpUrlConnection with SSL.
+     *
      * @return OkHttpClient
      */
     private static OkHttpClient createClient() {
@@ -239,7 +241,7 @@ public class OkHttpTool {
      * Please never leave this enabled.
      * <p/>
      * Seriously. Just don't.
-     *
+     * <p/>
      * If you call this, you should feel bad.
      *
      * @param isDisabled

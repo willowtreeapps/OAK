@@ -1,6 +1,8 @@
 package oak.widget;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.os.Build;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -8,7 +10,7 @@ import android.view.ViewConfiguration;
 
 /**
  * User: derek Date: 7/12/12 Time: 2:57 PM
- *
+ * <p/>
  * Viewpager that is helpful when having to handle multiple views with touch or swipe events.
  * For example, handling a viewpager in a viewpager.
  */
@@ -29,6 +31,7 @@ public class ParentSwipingViewPager extends ViewPager {
         init();
     }
 
+    @TargetApi(Build.VERSION_CODES.CUPCAKE)
     private void init() {
         ViewConfiguration viewConfiguration = ViewConfiguration.get(getContext());
         mTouchSlop = (viewConfiguration.getScaledTouchSlop());

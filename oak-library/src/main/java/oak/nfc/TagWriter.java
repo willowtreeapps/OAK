@@ -27,6 +27,7 @@ import java.io.IOException;
  * To change this template use File | Settings | File Templates.
  */
 @TargetApi(14)
+@Deprecated
 public class TagWriter {
     private static final String TAG = "OakTagWriter";
     NfcAdapter adapter;
@@ -49,9 +50,10 @@ public class TagWriter {
 
     /**
      * The constructor for a write tag object
-     * @param context the context needed to create the NfcAdapter. (The activity)
-     * @param mimeType the mimetype for the application
-     * @param activity the activity that will be using this object
+     *
+     * @param context       the context needed to create the NfcAdapter. (The activity)
+     * @param mimeType      the mimetype for the application
+     * @param activity      the activity that will be using this object
      * @param pendingIntent the pending intent that handles all nfc intents
      * @param intentFilters the filters needed for writing to a tag
      */
@@ -66,7 +68,7 @@ public class TagWriter {
     /**
      * Call to enable an exchange between NDEF devices during the activity with the message to be written.
      * Gives priority to the foreground activity when dispatching a discovered tag to an application.
-     *
+     * <p/>
      * If this needs to be changed in the future, change what the message is, or list a different activity in
      * setNdefPushMessage.
      */
@@ -87,14 +89,15 @@ public class TagWriter {
     /**
      * Gets the message from a text view and turns it into an NDEF Message and returns it as well as setting the message
      * field.
+     *
      * @param view The textView that contains the text to be turned into a message.
      * @return Returns a new NdefMessage from the text.
      */
     public NdefMessage getTextViewAsNdef(TextView view) {
         byte[] textBytes = view.getText().toString().getBytes();
         NdefRecord textRecord = new NdefRecord(NdefRecord.TNF_MIME_MEDIA, mimeType.getBytes(),
-                new byte[] {}, textBytes);
-        message = new NdefMessage(new NdefRecord[] {
+                new byte[]{}, textBytes);
+        message = new NdefMessage(new NdefRecord[]{
                 textRecord
         });
         return message;
@@ -109,6 +112,7 @@ public class TagWriter {
 
     /**
      * A helper method to get the string version of whatever the current ndef message is.
+     *
      * @return payloadString the string version of the payload of message if it has been set.
      */
     public String getPayloadString() {
@@ -125,6 +129,7 @@ public class TagWriter {
 
     /**
      * Gets the payload for a message from the array of NDEFmessages and then sets mPayload to that value and returns it.
+     *
      * @return mPayload the payload for the ndefMessage in the first position in the messages array.
      */
     public byte[] getBytePayload() {
@@ -134,6 +139,7 @@ public class TagWriter {
 
     /**
      * A getter for the current NdefMessage.
+     *
      * @return message the current NdefMessage.
      */
     public NdefMessage getNdefMessage() {
@@ -142,6 +148,7 @@ public class TagWriter {
 
     /**
      * A getter for the NdefMessages array.
+     *
      * @return Returns messages which is an array of NdefMessages.
      */
     public NdefMessage[] getNdefMessages() {
@@ -150,6 +157,7 @@ public class TagWriter {
 
     /**
      * Gets the first message in the array of messages and sets the current message field to that value.
+     *
      * @return message the current message stored in the WriteTag object.
      */
     public NdefMessage getMessageFromArray() {
@@ -159,6 +167,7 @@ public class TagWriter {
 
     /**
      * Gets the NdefMessage array from a tag when it's discovered or from an NDEF device. Then it sets the field messages to that array.
+     *
      * @param intent The intent that contains the action that is hopefully either ACTION_TAG_DISCOVERED or ACTION_NDEF_DISCOVERED
      * @return messages Returns the messages array.
      */
@@ -177,12 +186,12 @@ public class TagWriter {
                 messages = msgs;
             } else {
                 // Unknown tag type
-                byte[] empty = new byte[] {};
+                byte[] empty = new byte[]{};
                 NdefRecord record = new NdefRecord(NdefRecord.TNF_UNKNOWN, empty, empty, empty);
-                NdefMessage msg = new NdefMessage(new NdefRecord[] {
+                NdefMessage msg = new NdefMessage(new NdefRecord[]{
                         record
                 });
-                msgs = new NdefMessage[] {
+                msgs = new NdefMessage[]{
                         msg
                 };
                 messages = msgs;
@@ -196,6 +205,7 @@ public class TagWriter {
 
     /**
      * a getter for a detected tag from an intent.
+     *
      * @param intent the intent that contains the tag
      * @return the Tag that is in the intent.
      */
@@ -205,6 +215,7 @@ public class TagWriter {
 
     /**
      * A getter for the boolean writeMode.
+     *
      * @return writeMode returns the boolean value that determines if it is currently in writeMode according to the boolean.
      */
     public boolean isWriteMode() {
@@ -213,6 +224,7 @@ public class TagWriter {
 
     /**
      * A method that determines if there's an NDEF action discovered from an intent.
+     *
      * @param intent the intent that might contain the NDEF Action.
      * @return true if there exists an NDEF action in the intent.
      */
@@ -222,6 +234,7 @@ public class TagWriter {
 
     /**
      * A method that determines if there's an NFC tag discovered from an intent.
+     *
      * @param intent the intent that might contain a Tag Discovered action
      * @return true if the intent contains a Tag Discovered action.
      */
@@ -235,7 +248,7 @@ public class TagWriter {
     public void enableTagWriteMode() {
         writeMode = true;
         IntentFilter tagDetected = new IntentFilter(adapter.ACTION_TAG_DISCOVERED);
-        writeTagFilters = new IntentFilter[] {
+        writeTagFilters = new IntentFilter[]{
                 tagDetected
         };
         adapter.enableForegroundDispatch(activity, nfcPendingIntent, writeTagFilters, null);
@@ -253,40 +266,44 @@ public class TagWriter {
     /**
      * a method to create a MimeType that the application will use when writing to a tag so that it knows which
      * application / activity to bring up when the tag is touched.
+     *
      * @param name the name of the application that will be tacked on to the mimeType.
      */
     public void createMimeType(String name) {
-        mimeType = "application/"+name;
+        mimeType = "application/" + name;
     }
 
     /**
      * A method that will create an NDEF message from a string and set the current message to that value.
+     *
      * @param str The String that will be used to create an NDEF message.
      */
     public void setMessage(String str) {
         byte[] textBytes = str.getBytes();
         NdefRecord stringRecord = new NdefRecord(NdefRecord.TNF_MIME_MEDIA, mimeType.getBytes(),
-                new byte[] {}, textBytes);
-        message = new NdefMessage(new NdefRecord[] {
+                new byte[]{}, textBytes);
+        message = new NdefMessage(new NdefRecord[]{
                 stringRecord
         });
     }
 
     /**
      * A method to create an NDEF message from a byte array and sets the current message field to that value.
+     *
      * @param bytes the byte array that will be used to create the NDEF message.
      */
     public void setMessage(byte[] bytes) {
-        NdefRecord byteRecord = new NdefRecord(NdefRecord.TNF_MIME_MEDIA, mimeType.getBytes(), new byte[] {}, bytes);
-        message = new NdefMessage(new NdefRecord[] {
+        NdefRecord byteRecord = new NdefRecord(NdefRecord.TNF_MIME_MEDIA, mimeType.getBytes(), new byte[]{}, bytes);
+        message = new NdefMessage(new NdefRecord[]{
                 byteRecord
         });
     }
 
     /**
      * A big method that writes an NDEF message to a tag or displays a toast message as to why it failed.
+     *
      * @param aMessage the message to be written to the tag.
-     * @param tag the tag that the message is being written to.
+     * @param tag      the tag that the message is being written to.
      * @return True if it succeeded in writing the message to the tag. False otherwise.
      */
     public boolean writeToTag(NdefMessage aMessage, Tag tag) {

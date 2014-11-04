@@ -1,17 +1,17 @@
 package oak.widget;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.webkit.WebView;
 
 /**
- *
  * This webview makes it easier to manage touch events when using
  * multiple views that need swiping. Example, this can be used
  * along side the ParentViewPager to allow for proper swiping.
- *
  */
 
 public class ParentSwipingWebView extends WebView {
@@ -36,6 +36,7 @@ public class ParentSwipingWebView extends WebView {
         init();
     }
 
+    @TargetApi(Build.VERSION_CODES.CUPCAKE)
     private void init() {
         ViewConfiguration viewConfiguration = ViewConfiguration.get(getContext());
         mTouchSlop = (viewConfiguration.getScaledTouchSlop());

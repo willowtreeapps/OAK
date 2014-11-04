@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.willowtreeapps</groupId>
     <artifactId>oak-project</artifactId>
@@ -102,8 +104,8 @@
         <url>http://github.com/willowtreeapps/OAK</url>
         <connection>scm:git:git@github.com:willowtreeapps/OAK.git</connection>
         <developerConnection>scm:git:git@github.com:willowtreeapps/OAK.git</developerConnection>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <reporting>
         <plugins>
@@ -398,6 +400,10 @@
                 <module>oak-gradle-archetype</module>
                 <module>oak-dagger-api15-archetype</module>
                 <module>oak-library</module>
+                <module>oak-viewmodel</module>
+                <module>oak-sectionlistview</module>
+                <module>oak-viewswithfont</module>
+                <module>oak-parentswipingviews</module>
                 <module>oak-demos</module>
                 <module>oak-instrumentation</module>
                 <module>oak-distribution</module>

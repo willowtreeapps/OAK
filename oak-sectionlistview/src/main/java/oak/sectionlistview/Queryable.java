@@ -1,10 +1,11 @@
 /*
- * Copyright (c) 2011. WillowTree Apps, Inc.
+ * Copyright (c) 2011. WillowTree Apps
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,23 +14,12 @@
  * limitations under the License.
  */
 
-package oak.demo.widget;
-
-import android.os.Bundle;
-
-import oak.demo.OakDemoActivity;
-import oak.demo.R;
+package oak.sectionlistview;
 
 /**
- * User: Michael Lake Date: 11/21/11 Time: 5:33 PM
+ * User: Michael Lake Date: 10/18/11 Time: 4:53 PM
  */
+public interface Queryable {
 
-
-public class GradientTextViewActivity extends OakDemoActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.gradient_text_view_demo);
-    }
+    boolean isQueryMatch(CharSequence query);
 }

@@ -44,7 +44,8 @@ import roboguice.inject.InjectView;
 public class SectionActivity extends OakDemoActivity {
 
     @InjectView(R.id.amazing_lv) SectionListView mSectionListView;
-    @InjectView(R.id.filter_et) CancelEditText mFilter;
+    @InjectView(R.id.filter_et)
+    CancelEditText mFilter;
 
     private PersonAdapter adapter;
 

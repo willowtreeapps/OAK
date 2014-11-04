@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="oakFont" />
+
+    <declare-styleable name="TextViewWithFont">
+        <attr name="oakFont" />
+    </declare-styleable>
+
+    <declare-styleable name="CheckBoxWithFont">
+        <attr name="oakFont" />
+    </declare-styleable>
+
+    <declare-styleable name="CancelEditText">
+        <attr name="oakFont" />
+        <attr name="oakCancelDrawable" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="ButtonWithFont">
+        <attr name="oakFont" />
+    </declare-styleable>
+
+</resources>

@@ -32,16 +32,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".widget.ResizedTextViewActivity"
-            android:label="@string/resized_textview_activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".widget.TextViewWithFontActivity"
             android:label="@string/textview_with_font_activity">
             <intent-filter>
@@ -189,16 +179,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".widget.GradientTextViewActivity"
-            android:label="@string/gradient_text_view_activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".utils.FontTypeFaceSpanActivity"
             android:label="@string/font_span_activity">
             <intent-filter>
@@ -313,7 +293,6 @@
         </activity>
         <activity android:name="oak.activity.SupportFragmentHostActivity" />
     </application>
-
 
 
     <uses-permission android:name="android.permission.INTERNET" />
