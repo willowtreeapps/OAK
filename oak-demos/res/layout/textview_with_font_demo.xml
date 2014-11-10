@@ -17,27 +17,28 @@
   --><!-- START SNIPPET: textviewwithfont_layout -->
 
 <LinearLayout
-        style="@style/Fill"
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Fill"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:oak="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-        android:gravity="center_horizontal">
-    <oak.widget.TextViewWithFont
-            style="@style/FillWidth"
-            android:text="Ever wanted to specify a font in XML?"
-            android:textSize="18sp"
+    android:gravity="center_horizontal">
+
+    <TextViewWithFont
+        style="@style/FillWidth"
+        android:text="Ever wanted to specify a font in XML?"
+        android:textSize="18sp"
         oak:oakFont="Once_upon_a_time.ttf" />
 
-    <oak.widget.TextViewWithFont
-            style="@style/FillWidth"
-            android:text="Using TextViewWithFont, you can!"
-            android:textSize="20sp"
+    <TextViewWithFont
+        style="@style/FillWidth"
+        android:text="Using TextViewWithFont, you can!"
+        android:textSize="20sp"
         oak:oakFont="Apple Chancery.ttf" />
 
-    <oak.widget.TextViewWithFont
-            style="@style/FillWidth"
-            android:text="Even supports strings from res!"
-            android:textSize="20sp"
+    <TextViewWithFont
+        style="@style/FillWidth"
+        android:text="Even supports strings from res!"
+        android:textSize="20sp"
         oak:oakFont="@string/default_font" />
 
 </LinearLayout><!-- END SNIPPET: textviewwithfont_layout -->

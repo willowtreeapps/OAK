@@ -22,7 +22,7 @@
     xmlns:oak="http://schemas.android.com/apk/res-auto"
     android:background="#ccc">
 
-    <oak.widget.CancelEditText
+    <CancelEditText
         style="@style/FillWidth"
         android:id="@+id/filter_et"
         android:hint="Search..."

@@ -27,43 +27,43 @@
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
-        <oak.widget.ButtonWithFont
+        <ButtonWithFont
             style="@style/FillWidth"
             android:text="Fonts on Buttons"
             android:textSize="18sp"
             oak:oakFont="Once_upon_a_time.ttf" />
 
-        <oak.widget.ButtonWithFont
+        <ButtonWithFont
             style="@style/FillWidth"
             android:text="Using ButtonWithFont!"
             android:textSize="20sp"
             oak:oakFont="Apple Chancery.ttf" />
 
-        <oak.widget.ButtonWithFont
+        <ButtonWithFont
             style="@style/Wrap"
             android:text="Really useful"
             android:textSize="20sp"
             oak:oakFont="Roboto-Bold.ttf" />
 
-        <oak.widget.ButtonWithFont
+        <ButtonWithFont
             style="@style/Wrap"
             android:text="for the new"
             android:textSize="20sp"
             oak:oakFont="Roboto.ttf" />
 
-        <oak.widget.ButtonWithFont
+        <ButtonWithFont
             style="@style/Wrap"
             android:text="Roboto"
             android:textSize="20sp"
             oak:oakFont="Roboto-Light.ttf" />
 
-        <oak.widget.ButtonWithFont
+        <ButtonWithFont
             style="@style/Wrap"
             android:text="font family!"
             android:textSize="20sp"
             oak:oakFont="Roboto-Thin.ttf" />
 
-        <oak.widget.ButtonWithFont
+        <ButtonWithFont
             style="@style/FillWidth"
             android:text="also res-supported!"
             android:textSize="18sp"

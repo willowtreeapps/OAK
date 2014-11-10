@@ -25,13 +25,13 @@
         style="@style/Wrap"
         android:text="The following CancelEditText has a cancel drawable to clear the text (it extends TextViewWithFont, so you can even specify a custom font if you like)" />
     <!-- START SNIPPET: canceledittext_layout -->
-    <oak.widget.CancelEditText
+    <CancelEditText
         style="@style/FillWidth"
         android:id="@+id/cancel_edit_one"
         android:text="this is a cancel edit text"
         oak:oakCancelDrawable="@drawable/oak_ic_cancel" />
 
-    <oak.widget.CancelEditText
+    <CancelEditText
         style="@style/FillWidth"
         android:id="@+id/cancel_edit_two"
         android:text="this one has drawables"

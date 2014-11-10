@@ -17,22 +17,25 @@
   -->
 
 <ScrollView
-        style="@style/Fill"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:fillViewport="true">
+    style="@style/Fill"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fillViewport="true">
+
     <LinearLayout
-            style="@style/FillWidth"
-            android:orientation="vertical"
-            android:gravity="center">
+        style="@style/FillWidth"
+        android:orientation="vertical"
+        android:gravity="center">
+
         <oak.widget.ParentSwipingViewPager
-                style="@style/FillWidth"
-                android:id="@+id/view_pager"
-                android:layout_height="200dp"/>
-        <oak.widget.TextViewWithFont
-                style="@style/FillWidth"
-                android:id="@+id/text_view"
-                android:gravity="center"
-                android:textSize="28sp"
-                android:padding="20dp"/>
+            style="@style/FillWidth"
+            android:id="@+id/view_pager"
+            android:layout_height="200dp" />
+
+        <TextViewWithFont
+            style="@style/FillWidth"
+            android:id="@+id/text_view"
+            android:gravity="center"
+            android:textSize="28sp"
+            android:padding="20dp" />
     </LinearLayout>
 </ScrollView>
