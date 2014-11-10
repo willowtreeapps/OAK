@@ -23,19 +23,19 @@
     android:orientation="vertical"
     android:gravity="center_horizontal">
 
-    <TextViewWithFont
+    <oak.widget.TextViewWithFont
         style="@style/FillWidth"
         android:text="Ever wanted to specify a font in XML?"
         android:textSize="18sp"
         oak:oakFont="Once_upon_a_time.ttf" />
 
-    <TextViewWithFont
+    <oak.widget.TextViewWithFont
         style="@style/FillWidth"
         android:text="Using TextViewWithFont, you can!"
         android:textSize="20sp"
         oak:oakFont="Apple Chancery.ttf" />
 
-    <TextViewWithFont
+    <oak.widget.TextViewWithFont
         style="@style/FillWidth"
         android:text="Even supports strings from res!"
         android:textSize="20sp"

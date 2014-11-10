@@ -27,43 +27,43 @@
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
-        <CheckBoxWithFont
+        <oak.widget.CheckBoxWithFont
             style="@style/FillWidth"
             android:text="Fonts on CheckBoxes"
             android:textSize="18sp"
             oak:oakFont="Once_upon_a_time.ttf" />
 
-        <CheckBoxWithFont
+        <oak.widget.CheckBoxWithFont
             style="@style/FillWidth"
             android:text="Using CheckBoxWithFont!"
             android:textSize="20sp"
             oak:oakFont="Apple Chancery.ttf" />
 
-        <CheckBoxWithFont
+        <oak.widget.CheckBoxWithFont
             style="@style/Wrap"
             android:text="Really useful"
             android:textSize="20sp"
             oak:oakFont="Roboto-Bold.ttf" />
 
-        <CheckBoxWithFont
+        <oak.widget.CheckBoxWithFont
             style="@style/Wrap"
             android:text="for the new"
             android:textSize="20sp"
             oak:oakFont="Roboto.ttf" />
 
-        <CheckBoxWithFont
+        <oak.widget.CheckBoxWithFont
             style="@style/Wrap"
             android:text="Roboto"
             android:textSize="20sp"
             oak:oakFont="Roboto-Light.ttf" />
 
-        <CheckBoxWithFont
+        <oak.widget.CheckBoxWithFont
             style="@style/Wrap"
             android:text="font family!"
             android:textSize="20sp"
             oak:oakFont="Roboto-Thin.ttf" />
 
-        <CheckBoxWithFont
+        <oak.widget.CheckBoxWithFont
             style="@style/FillWidth"
             android:text="also res-supported!"
             android:textSize="18sp"
