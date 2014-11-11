@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <oak.widget.AspectRatioLayout
+        <oak.aspectratioview.widget.AspectRatioLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             oak:oakAspectRatio="2:1">
@@ -23,14 +23,14 @@
                 android:layout_margin="10dp"
                 android:gravity="center"
                 android:textSize="24dp" />
-        </oak.widget.AspectRatioLayout>
+        </oak.aspectratioview.widget.AspectRatioLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <oak.widget.AspectRatioLayout
+            <oak.aspectratioview.widget.AspectRatioLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -44,9 +44,9 @@
                     android:layout_margin="10dp"
                     android:gravity="center"
                     android:textSize="24dp" />
-            </oak.widget.AspectRatioLayout>
+            </oak.aspectratioview.widget.AspectRatioLayout>
 
-            <oak.widget.AspectRatioLayout
+            <oak.aspectratioview.widget.AspectRatioLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -61,7 +61,7 @@
                     android:layout_margin="10dp"
                     android:gravity="center"
                     android:textSize="24dp" />
-            </oak.widget.AspectRatioLayout>
+            </oak.aspectratioview.widget.AspectRatioLayout>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

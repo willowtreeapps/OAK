@@ -39,6 +39,12 @@
             <type>jar</type>
         </dependency>
         <dependency>
+            <groupId>com.willowtreeapps</groupId>
+            <artifactId>oak-aspectratioview</artifactId>
+            <version>${project.version}</version>
+            <type>aar</type>
+        </dependency>
+        <dependency>
         <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
