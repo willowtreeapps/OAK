@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AnimatedSvgView">
+        <attr name="oakSvgImageSizeX" format="integer" />
+        <attr name="oakSvgImageSizeY" format="integer" />
+        <attr name="oakSvgTraceTime" format="string" />
+        <attr name="oakSvgTraceTimePerGlyph" format="string" />
+        <attr name="oakSvgFillStart" format="string" />
+        <attr name="oakSvgFillTime" format="string" />
+    </declare-styleable>
+
+</resources>

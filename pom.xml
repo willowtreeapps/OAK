@@ -409,6 +409,8 @@
                 <module>oak-viewswithfont</module>
                 <module>oak-parentswipingviews</module>
                 <module>oak-aspectratioview</module>
+                <module>oak-animatedsvgview</module>
+                <module>oak-spreadsheetview</module>
                 <module>oak-demos</module>
                 <module>oak-instrumentation</module>
                 <module>oak-distribution</module>

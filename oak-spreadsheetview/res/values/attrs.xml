@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SpreadsheetView">
+        <attr name="dataCellDrawable" format="reference" />
+        <attr name="dataCellSelectedDrawable" format="reference" />
+        <attr name="stickyColumnCellDrawable" format="reference" />
+        <attr name="stickyColumnCellSelectedDrawable" format="reference" />
+        <attr name="stickyHeaderCellDrawable" format="reference" />
+        <attr name="stickyHeaderCellSelectedDrawable" format="reference" />
+        <attr name="stickyFooterCellDrawable" format="reference" />
+        <attr name="stickyFooterCellSelectedDrawable" format="reference" />
+        <attr name="leftHeaderCornerCellDrawable" format="reference" />
+        <attr name="leftHeaderCornerCellSelectedDrawable" format="reference" />
+        <attr name="leftFooterCornerCellDrawable" format="reference" />
+        <attr name="leftFooterCornerCellSelectedDrawable" format="reference" />
+        <attr name="cellTextColor" format="color" />
+        <attr name="cellSelectedTextColor" format="color" />
+        <attr name="dataCellTextColor" format="color" />
+        <attr name="dataCellSelectedTextColor" format="color" />
+        <attr name="stickyColumnCellTextColor" format="color" />
+        <attr name="stickyColumnCellSelectedTextColor" format="color" />
+        <attr name="stickyHeaderCellTextColor" format="color" />
+        <attr name="stickyHeaderCellSelectedTextColor" format="color" />
+        <attr name="stickyFooterCellTextColor" format="color" />
+        <attr name="stickyFooterCellSelectedTextColor" format="color" />
+        <attr name="cellTextSize" format="dimension" />
+        <attr name="cellFont" format="string|reference" />
+        <attr name="verticalDividingLineWidth" format="dimension" />
+        <attr name="verticalDividingLineColor" format="color" />
+        <attr name="horizontalDividingLineWidth" format="dimension" />
+        <attr name="horizontalDividingLineColor" format="color" />
+        <attr name="showFooter" format="boolean|reference" />
+        <attr name="footerHeight" format="dimension" />
+        <attr name="headerHeight" format="dimension" />
+        <attr name="cellWidth" format="dimension" />
+        <attr name="cellHeight" format="dimension" />
+        <attr name="stickyColumns" format="integer|reference" />
+        <attr name="cellHorizontalBorderWidth" format="dimension" />
+        <attr name="cellVerticalBorderWidth" format="dimension" />
+    </declare-styleable>
+
+</resources>
