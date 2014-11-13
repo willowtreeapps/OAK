@@ -22,8 +22,8 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
+import oak.util.OakUtils;
 import oak.viewswithfont.R;
-import oak.viewswithfont.util.OakFontUtils;
 
 /**
  * User: Michael Lake Date: 11/21/11 Time: 5:36 PM
@@ -61,7 +61,7 @@ public class TextViewWithFont extends TextView {
                 try {
                     fontName = typedArray.getString(R.styleable.TextViewWithFont_oakFont);
                     if (fontName != null) {
-                        setTypeface(OakFontUtils.getStaticTypeFace(context, fontName));
+                        setTypeface(OakUtils.getStaticTypeFace(context, fontName));
                     }
                 } catch (IllegalArgumentException e) {
                     try {
@@ -69,7 +69,7 @@ public class TextViewWithFont extends TextView {
                         if (fontNameRes != -1) {
                             fontName = context.getString(fontNameRes);
                             if (fontName != null) {
-                                setTypeface(OakFontUtils.getStaticTypeFace(context, fontName));
+                                setTypeface(OakUtils.getStaticTypeFace(context, fontName));
                             }
                         }
                     } catch (IllegalArgumentException f) {

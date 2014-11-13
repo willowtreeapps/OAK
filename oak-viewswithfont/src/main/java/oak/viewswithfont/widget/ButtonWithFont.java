@@ -22,8 +22,8 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.widget.Button;
 
+import oak.util.OakUtils;
 import oak.viewswithfont.R;
-import oak.viewswithfont.util.OakFontUtils;
 
 
 /**
@@ -70,7 +70,7 @@ public class ButtonWithFont extends Button {
                 try {
                     fontName = typedArray.getString(R.styleable.ButtonWithFont_oakFont);
                     if (fontName != null) {
-                        setTypeface(OakFontUtils.getStaticTypeFace(context, fontName));
+                        setTypeface(OakUtils.getStaticTypeFace(context, fontName));
                     }
                 } catch (IllegalArgumentException e) {
                     try {
@@ -78,7 +78,7 @@ public class ButtonWithFont extends Button {
                         if (fontNameRes != -1) {
                             fontName = context.getString(fontNameRes);
                             if (fontName != null) {
-                                setTypeface(OakFontUtils.getStaticTypeFace(context, fontName));
+                                setTypeface(OakUtils.getStaticTypeFace(context, fontName));
                             }
                         }
                     } catch (IllegalArgumentException f) {

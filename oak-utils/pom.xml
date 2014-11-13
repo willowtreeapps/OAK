@@ -9,9 +9,9 @@
         <version>1.3.8-SNAPSHOT</version>
     </parent>
     <groupId>com.willowtreeapps</groupId>
-    <artifactId>oak-spreadsheetview</artifactId>
-    <name>OAK - SpreadsheetView</name>
-    <packaging>aar</packaging>
+    <artifactId>oak-utils</artifactId>
+    <name>OAK - Util</name>
+    <packaging>jar</packaging>
     <description>A library for shared android functionality</description>
 
     <dependencies>
@@ -20,13 +20,6 @@
             <groupId>com.android.support</groupId>
             <artifactId>support-v4</artifactId>
             <version>19.0.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.willowtreeapps</groupId>
-            <artifactId>oak-utils</artifactId>
-            <version>${parent.version}</version>
-            <type>jar</type>
         </dependency>
 
         <dependency>

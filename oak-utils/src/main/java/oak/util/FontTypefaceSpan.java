@@ -1,4 +1,4 @@
-package oak.viewswithfont.util;
+package oak.util;
 
 import android.content.Context;
 import android.graphics.Paint;
@@ -16,7 +16,7 @@ public class FontTypefaceSpan extends MetricAffectingSpan {
     private Typeface mTypeface;
 
     public FontTypefaceSpan(Context context, String typefaceName) {
-        mTypeface = OakFontUtils.getStaticTypeFace(context, typefaceName);
+        mTypeface = OakUtils.getStaticTypeFace(context, typefaceName);
     }
 
     @Override

@@ -23,7 +23,14 @@
         </dependency>
 
         <dependency>
-            <groupId>com.google.android</groupId>
+            <groupId>com.willowtreeapps</groupId>
+            <artifactId>oak-utils</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+
+
+        <dependency>
+        <groupId>com.google.android</groupId>
             <artifactId>android</artifactId>
             <scope>provided</scope>
         </dependency>

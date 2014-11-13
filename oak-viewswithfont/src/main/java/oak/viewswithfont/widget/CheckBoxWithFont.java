@@ -22,8 +22,8 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.widget.CheckBox;
 
+import oak.util.OakUtils;
 import oak.viewswithfont.R;
-import oak.viewswithfont.util.OakFontUtils;
 
 
 /**
@@ -70,7 +70,7 @@ public class CheckBoxWithFont extends CheckBox {
                 try {
                     fontName = typedArray.getString(R.styleable.CheckBoxWithFont_oakFont);
                     if (fontName != null) {
-                        setTypeface(OakFontUtils.getStaticTypeFace(context, fontName));
+                        setTypeface(OakUtils.getStaticTypeFace(context, fontName));
                     }
                 } catch (IllegalArgumentException e) {
                     try {
@@ -78,7 +78,7 @@ public class CheckBoxWithFont extends CheckBox {
                         if (fontNameRes != -1) {
                             fontName = context.getString(fontNameRes);
                             if (fontName != null) {
-                                setTypeface(OakFontUtils.getStaticTypeFace(context, fontName));
+                                setTypeface(OakUtils.getStaticTypeFace(context, fontName));
                             }
                         }
                     } catch (IllegalArgumentException f) {

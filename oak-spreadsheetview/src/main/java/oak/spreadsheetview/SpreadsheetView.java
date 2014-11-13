@@ -15,7 +15,7 @@ import android.widget.Scroller;
 import java.util.Arrays;
 import java.util.Comparator;
 
-import oak.viewswithfont.util.OakFontUtils;
+import oak.util.OakUtils;
 
 
 /**
@@ -322,13 +322,13 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
                 try {
                     fontName = a.getString(R.styleable.SpreadsheetView_cellFont);
                     if (fontName != null) {
-                        setAllCellsTypeface(OakFontUtils.getStaticTypeFace(getContext(), fontName));
+                        setAllCellsTypeface(OakUtils.getStaticTypeFace(getContext(), fontName));
                     }
                 } catch (IllegalArgumentException ex) {
                     try {
                         int fontNameId = a.getResourceId(R.styleable.SpreadsheetView_cellFont, -1);
                         if (fontNameId != -1) {
-                            setAllCellsTypeface(OakFontUtils.getStaticTypeFace(getContext(), getResources().getString(fontNameId)));
+                            setAllCellsTypeface(OakUtils.getStaticTypeFace(getContext(), getResources().getString(fontNameId)));
                         }
                     } catch (IllegalArgumentException fx) {
                         fx.printStackTrace();

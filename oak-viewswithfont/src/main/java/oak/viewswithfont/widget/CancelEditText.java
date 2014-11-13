@@ -29,8 +29,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.EditText;
 
+import oak.util.OakUtils;
 import oak.viewswithfont.R;
-import oak.viewswithfont.util.OakFontUtils;
 
 
 /**
@@ -89,7 +89,7 @@ public class CancelEditText extends EditText {
                     fontName = typedArray.getString(R.styleable.CancelEditText_oakFont);
 
                     if (fontName != null) {
-                        setTypeface(OakFontUtils.getStaticTypeFace(context, fontName));
+                        setTypeface(OakUtils.getStaticTypeFace(context, fontName));
                     }
                 } catch (IllegalArgumentException e) {
                     try {
@@ -97,7 +97,7 @@ public class CancelEditText extends EditText {
                         if (fontNameRes != -1) {
                             fontName = context.getString(fontNameRes);
                             if (fontName != null) {
-                                setTypeface(OakFontUtils.getStaticTypeFace(context, fontName));
+                                setTypeface(OakUtils.getStaticTypeFace(context, fontName));
                             }
                         }
                     } catch (IllegalArgumentException f) {

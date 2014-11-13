@@ -411,6 +411,7 @@
                 <module>oak-aspectratioview</module>
                 <module>oak-animatedsvgview</module>
                 <module>oak-spreadsheetview</module>
+                <module>oak-utils</module>
                 <module>oak-demos</module>
                 <module>oak-instrumentation</module>
                 <module>oak-distribution</module>
