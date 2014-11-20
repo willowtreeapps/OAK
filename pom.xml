@@ -257,6 +257,7 @@
                 <configuration>
                     <!-- for for Java 8 compilation -->
                     <additionalparam>-Xdoclint:none</additionalparam>
+                    <useStandardDocletOptions>false</useStandardDocletOptions>
                 </configuration>
                 <executions>
                     <execution>
