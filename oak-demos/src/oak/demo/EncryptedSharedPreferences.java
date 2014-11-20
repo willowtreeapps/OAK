@@ -5,7 +5,8 @@ import android.content.SharedPreferences;
 
 import java.util.Set;
 
-import oak.CryptoSharedPreferences;
+import oak.app.CryptoSharedPreferences;
+
 
 public final class EncryptedSharedPreferences extends CryptoSharedPreferences {
 
@@ -16,6 +17,7 @@ public final class EncryptedSharedPreferences extends CryptoSharedPreferences {
     /**
      * This should be replaced with a user input pass phrase or an externally
      * retrieved pass phrase if possible.
+     *
      * @return
      */
     @Override

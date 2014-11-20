@@ -124,21 +124,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".nfc.TagWriterActivity"
-            android:label="@string/tag_writer_activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="application/oaktagwriter" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".widget.ParentSwipingViewPagerActivity"
             android:label="@string/parent_swiping_view_pager_activity">
             <intent-filter>

@@ -31,7 +31,7 @@
             android:id="@+id/view_pager"
             android:layout_height="200dp" />
 
-        <TextViewWithFont
+        <oak.widget.TextViewWithFont
             style="@style/FillWidth"
             android:id="@+id/text_view"
             android:gravity="center"

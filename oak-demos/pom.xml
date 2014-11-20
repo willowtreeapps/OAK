@@ -40,6 +40,18 @@
         </dependency>
         <dependency>
             <groupId>com.willowtreeapps</groupId>
+            <artifactId>oak-utils</artifactId>
+            <version>${project.version}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.willowtreeapps</groupId>
+            <artifactId>oak-sectionlistview</artifactId>
+            <version>${project.version}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.willowtreeapps</groupId>
             <artifactId>oak-aspectratioview</artifactId>
             <version>${project.version}</version>
             <type>aar</type>

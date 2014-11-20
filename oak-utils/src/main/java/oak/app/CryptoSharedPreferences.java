@@ -1,4 +1,4 @@
-package oak;
+package oak.app;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -19,6 +19,8 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import oak.util.Base64;
+
 /**
  * Created by robcook on 4/2/14.
  */
@@ -34,14 +36,14 @@ import javax.crypto.spec.SecretKeySpec;
 /**
  * This code originally posted by Michael Burton on StackOverflow
  * http://stackoverflow.com/questions/785973/what-is-the-most-appropriate-way-to-store-user-settings-in-android-application/6393502#6393502
- *
+ * <p/>
  * This class was created to replace the original ObscurredSharedPreferences.  It includes DES and AES
  * encryption options, and uses a randomly generate initialization vector to ensure each encrypted string
  * is unique.  If no crypto type is specified the default is AES.
- *
+ * <p/>
  * Note: There was a flaw in the JCA in some versions of Android.  There is a fix,
  * see this: http://android-developers.blogspot.com/2013/08/some-securerandom-thoughts.html
- *
+ * <p/>
  * The code provided is also provided in OAK.  You should call PRNGFixes.apply()
  * in your Application.onCreate() method if you are using this library to ensure
  * strong keys are created.
@@ -76,10 +78,10 @@ public abstract class CryptoSharedPreferences implements SharedPreferences {
      * vector to ensure the encrypted data is effectively random each time it is
      * generated.
      */
-    private static byte[] SALT = new byte[] { (byte)0x162, 0x48, (byte)0x1c9, (byte)0x2d8, (byte)0x283,
-            (byte)0xc8, (byte)0xeb, (byte)0x148, (byte)0x1bb, (byte)0x2c7,
-            (byte)0x246, (byte)0x114, (byte)0x2e0, (byte)0x140, (byte)0x1b8,
-            (byte)0x114, (byte)0xbd, (byte)0x321, (byte)0x1d7, (byte)0x1dd};
+    private static byte[] SALT = new byte[]{(byte) 0x162, 0x48, (byte) 0x1c9, (byte) 0x2d8, (byte) 0x283,
+            (byte) 0xc8, (byte) 0xeb, (byte) 0x148, (byte) 0x1bb, (byte) 0x2c7,
+            (byte) 0x246, (byte) 0x114, (byte) 0x2e0, (byte) 0x140, (byte) 0x1b8,
+            (byte) 0x114, (byte) 0xbd, (byte) 0x321, (byte) 0x1d7, (byte) 0x1dd};
 
     public CryptoSharedPreferences(Context context, SharedPreferences delegate) {
         this.delegate = delegate;
@@ -246,13 +248,13 @@ public abstract class CryptoSharedPreferences implements SharedPreferences {
 
     @Override
     public void registerOnSharedPreferenceChangeListener(
-            SharedPreferences.OnSharedPreferenceChangeListener onSharedPreferenceChangeListener) {
+            OnSharedPreferenceChangeListener onSharedPreferenceChangeListener) {
         delegate.registerOnSharedPreferenceChangeListener(onSharedPreferenceChangeListener);
     }
 
     @Override
     public void unregisterOnSharedPreferenceChangeListener(
-            SharedPreferences.OnSharedPreferenceChangeListener onSharedPreferenceChangeListener) {
+            OnSharedPreferenceChangeListener onSharedPreferenceChangeListener) {
         delegate.unregisterOnSharedPreferenceChangeListener(onSharedPreferenceChangeListener);
     }
 
@@ -388,8 +390,7 @@ public abstract class CryptoSharedPreferences implements SharedPreferences {
 
 
     private SecretKey getSecretKey_DES() throws NoSuchAlgorithmException,
-            InvalidKeySpecException
-    {
+            InvalidKeySpecException {
         PBEKeySpec keySpec = new PBEKeySpec(getSpecialCode());
 
         SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(PBE_ALGORITHM_DES);
