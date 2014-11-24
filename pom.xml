@@ -415,7 +415,7 @@
                 <module>oak-utils</module>
                 <module>oak-demos</module>
                 <module>oak-instrumentation</module>
-                <module>oak-distribution</module>
+                <!--<module>oak-distribution</module>-->
             </modules>
         </profile>
         <profile>
@@ -462,7 +462,7 @@
                 <module>oak-utils</module>
                 <module>oak-demos</module>
                 <module>oak-instrumentation</module>
-                <module>oak-distribution</module>
+                <!--<module>oak-distribution</module>-->
             </modules>
         </profile>
     </profiles>
