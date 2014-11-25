@@ -7,22 +7,9 @@ buildscript {
         maven { url "https://oss.sonatype.org/content/groups/public" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.9.+'
-        classpath 'com.github.townsfolk:gradle-release:1.2'
-        classpath 'com.squareup.gradle:gradle-android-test-plugin:0.9.1-SNAPSHOT'
+        classpath 'com.android.tools.build:gradle:0.14.4'
         classpath 'de.felixschulze.gradle:gradle-hockeyapp-plugin:1.3+'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.2'
     }
-}
-
-apply plugin: 'release'
-
-release {
-    scm = 'git'
-    preCommitText = 'RELEASE:'
-    preTagCommitMessage = 'Release Build'
-    tagCommitMessage = 'New Tag'
-    newVersionCommitMessage = 'VERSION INCREMENTED'
 }
 /**
  * Returns the build version code.

@@ -1,60 +1,71 @@
 apply plugin: 'android'
-apply plugin: 'android-apt'
 apply plugin: 'hockeyApp'
-apply plugin: 'android-test'
 
 
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion "19.0.3"
+    compileSdkVersion 21
+    buildToolsVersion "21.1.0"
+
+    signingConfigs {
+        release {
+            storeFile file(project.properties.keyStore)
+            storePassword project.properties.keyStorePassword
+            keyAlias project.properties.keyStoreAlias
+            keyPassword project.properties.keyStoreAliasPassword
+        }
+    }
 
     defaultConfig {
-        minSdkVersion 10
-        targetSdkVersion 19
+        minSdkVersion 15
+        targetSdkVersion 21
         versionCode buildVersionCode()
         versionName buildVersionName()
     }
     buildTypes {
         release {
-            runProguard false
+            minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
         applicationVariants.all { variant ->
+
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        def fileName = outputFile.name.replace(".apk", "-" + buildVersionName() + "-b" + buildVersionCode() + ".apk")
+                        output.outputFile = new File(outputFile.parent, fileName)
+                    }
+                }
+            }
             def file = variant.outputFile
 
             //noinspection GroovyAssignabilityCheck
             variant.outputFile = new File(file.parent, file.name.replace(".apk", "-" + buildVersionName() + "-b" + buildVersionCode() + ".apk"))
         }
     }
-    signingConfigs {
-        release
-    }
+
 }
 
 
 dependencies {
-    apt "com.squareup.dagger:dagger-compiler:1.2.1"
-    apt "com.jakewharton:butterknife:4.0.1"
-    compile 'com.android.support:support-v4:19.0.1'
-    compile 'com.android.support:appcompat-v7:19.0.1'
-    compile 'com.flurry.android:FlurryAnalytics:3.3.3'
-    compile 'com.squareup.okhttp:okhttp:1.3.0'
-    compile 'com.squareup.dagger:dagger:1.2.1'
-    compile 'com.jakewharton:butterknife:4.0.1'
+    provided "com.squareup.dagger:dagger-compiler:1.2.2"
+    compile 'com.android.support:support-v4:21.0.2'
+    compile 'com.android.support:appcompat-v7:21.0.2'
+    compile 'com.squareup.okhttp:okhttp-urlconnection:2.1.0'
+    compile 'com.squareup.okhttp:okhttp:2.1.0'
+    compile 'com.squareup.dagger:dagger:1.2.2'
+    compile 'com.jakewharton:butterknife:6.0.0'
     compile 'com.google.code.gson:gson:2.2.4'
-    compile 'com.squareup.picasso:picasso:2.2.0'
+    compile 'com.squareup.picasso:picasso:2.4.0'
+    compile 'com.bugsnag:bugsnag-android:2.2.0'
     compile 'com.willowtreeapps:oak-library:1.3.7'
     compile 'com.willowtreeapps.saguaro:saguaro-android:1.0.0'
-    compile 'com.squareup.retrofit:retrofit:1.4.1'
+    compile 'com.squareup.retrofit:retrofit:1.8.0'
     compile fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 
-    /**
-     * Unit Test dependencies
-     * Required to run Unit Tests
-     */
-    androidTestCompile 'junit:junit:4.+'
-    androidTestCompile 'org.robolectric:robolectric:2.1.+'
+
 }
 
 /**
@@ -68,16 +79,6 @@ dependencies {
  * You can add the keystore to your gradle.properties, just don't put the passwords there, obvs.
  * keystorePassword, alias, and aliasPassword are all fed in through command line arguments on the build server
  */
-if (project.hasProperty('keyStore') &&
-        project.hasProperty('keyStorePassword') &&
-        project.hasProperty('keyStoreAlias') &&
-        project.hasProperty('keyStoreAliasPassword')) {
-    android.signingConfigs.release.storeFile = file(project.properties.keyStore)
-    android.signingConfigs.release.storePassword = project.properties.keyStorePassword
-    android.signingConfigs.release.keyAlias = project.properties.keyStoreAlias
-    android.signingConfigs.release.keyPassword = project.properties.keyStoreAliasPassword
-    android.buildTypes.release.signingConfig = android.signingConfigs.release
-}
 
 hockeyapp {
     apiToken = "YOUR_HOCKEY_API_TOKEN" // Your API token.
