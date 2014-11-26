@@ -6,18 +6,14 @@ What is OAK Android Kit?
 
   * {{{./section-adapter.html}SectionAdapter with Pinned Headers}} - Same as above but with search filtering
 
-  * {{{./resized_textview.html}ResizedTextView}} - Auto-resizing TextView makes long content smaller
-
   * {{{./cancel_edit_text.html}CancelEditText}} - An EditText that lets you specify a tappable drawable
   to clear the field
-
 
   * {{{./crypto_prefs.html}CryptoSharedPreferences}} - Store your shared preferences with encryption!
 
   * {{{./beastviewpager.html}BeastViewPager}} - ViewPager built to work with SlideMenu or inside a ListView Header
 
   * {{{./oakwebview.html}OakWebView}} - Easy to use WebView with built-in controls
-
 
   * {{{./animatedsvgview.html}AnimatedSvgView}} - Allows you to animate in an SVG
 
