@@ -70,7 +70,7 @@ public class SwankyGallery extends FrameLayout {
     /**
      * Set the max zoom level
      *
-     * @param maxZoom
+     * @param maxZoom max zoom level
      */
     public void setMaxZoom(float maxZoom) {
         mMaxZoom = maxZoom;
@@ -86,7 +86,7 @@ public class SwankyGallery extends FrameLayout {
 
     /**
      * Unused
-     * @param sampleSize
+     * @param sampleSize sample size
      */
     public void setLowSampleSize(int sampleSize) {
         if (sampleSize < HI_RES_OPTIONS.inSampleSize) {
@@ -98,7 +98,7 @@ public class SwankyGallery extends FrameLayout {
 
     /**
      * Unused
-     * @param sampleSize
+     * @param sampleSize sample size
      */
     public void setHighSampleSize(int sampleSize) {
         if (sampleSize > LO_RES_OPTIONS.inSampleSize) {

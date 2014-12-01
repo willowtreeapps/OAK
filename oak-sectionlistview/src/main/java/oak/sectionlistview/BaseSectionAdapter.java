@@ -16,6 +16,8 @@
 
 package oak.sectionlistview;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -24,6 +26,7 @@ import android.widget.BaseAdapter;
 import android.widget.SectionIndexer;
 
 
+@TargetApi(Build.VERSION_CODES.CUPCAKE)
 public abstract class BaseSectionAdapter extends BaseAdapter
         implements SectionIndexer, OnScrollListener {
 
@@ -50,6 +53,9 @@ public abstract class BaseSectionAdapter extends BaseAdapter
      * Computes the desired state of the pinned header for the given position of the first visible list item. Allowed
      * return values are {@link #PINNED_HEADER_GONE}, {@link #PINNED_HEADER_VISIBLE} or {@link
      * #PINNED_HEADER_PUSHED_UP}.
+     *
+     * @param position position of item
+     * @return state of item
      */
     public int getPinnedHeaderState(int position) {
         if (position < 0 || getCount() == 0) {
@@ -93,13 +99,19 @@ public abstract class BaseSectionAdapter extends BaseAdapter
 
 
     /**
-     * Configure the view (a listview item) to display headers or not based on displaySectionHeader (e.g. if
-     * displaySectionHeader header.setVisibility(VISIBLE) else header.setVisibility(GONE)).
+     *
+     * @param view view to populate
+     * @param position position of item
+     * @param displaySectionHeader whether to display a section header
      */
     protected abstract void bindSectionHeader(View view, int position, boolean displaySectionHeader);
 
     /**
-     * read: get view too
+     *
+     * @param position position of item
+     * @param convertView view to be recycled
+     * @param parent parent view
+     * @return inflated view
      */
     public abstract View getAmazingView(int position, View convertView, ViewGroup parent);
 

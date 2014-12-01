@@ -97,7 +97,7 @@ public class OakWebViewFragment extends Fragment {
     /**
      * Sets whether buttons fade out after touch
      *
-     * @param fadeControls
+     * @param fadeControls whether to fade controls after inactivity
      */
     public void setFadeControls(boolean fadeControls) {
         this.fadeControls = fadeControls;
@@ -106,7 +106,7 @@ public class OakWebViewFragment extends Fragment {
     /**
      * Sets whether WebView should show controls
      *
-     * @param showControls
+     * @param showControls whether to show controls
      */
     public void setShowControls(boolean showControls) {
         this.showControls = showControls;
@@ -115,7 +115,7 @@ public class OakWebViewFragment extends Fragment {
     /**
      * Sets time in seconds for how long after touch buttons fade out
      *
-     * @param fadeTimeout
+     * @param fadeTimeout timeout for fade in seconds
      */
     public void setFadeTimeout(long fadeTimeout) {
         this.fadeTimeout = fadeTimeout;
@@ -124,7 +124,7 @@ public class OakWebViewFragment extends Fragment {
     /**
      * Sets maximum alpha when buttons fade in
      *
-     * @param maxAlpha
+     * @param maxAlpha maximum alpha for controls.
      */
     public void setMaximumAlpha(float maxAlpha) {
         this.fadeoutMaximum = maxAlpha;
@@ -133,7 +133,7 @@ public class OakWebViewFragment extends Fragment {
     /**
      * Set's minimum alpha when buttons fade out
      *
-     * @param minAlpha
+     * @param minAlpha minimum alpha for controls
      */
     public void setMinimumAlpha(float minAlpha) {
         this.fadeoutMinimum = minAlpha;
@@ -142,7 +142,7 @@ public class OakWebViewFragment extends Fragment {
     /**
      * Set Whether a "open in browser" option is shown in menu.
      *
-     * @param openInBrowserEnabled
+     * @param openInBrowserEnabled whether to open links in device default browser
      */
     public void setOpenInBrowserEnabled(boolean openInBrowserEnabled) {
         this.openInBrowserEnabled = openInBrowserEnabled;

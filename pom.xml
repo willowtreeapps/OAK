@@ -260,11 +260,6 @@
             </plugin>
             <plugin>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <configuration>
-                    <!-- for for Java 8 compilation -->
-                    <!--<additionalparam>-Xdoclint:none</additionalparam>-->
-                    <!--<useStandardDocletOptions>false</useStandardDocletOptions>-->
-                </configuration>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -327,6 +322,9 @@
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <version>2.9.1</version>
                     <configuration>
+                        <!-- for for Java 8 compilation -->
+                        <!--<additionalparam>-Xdoclint:none</additionalparam>-->
+                        <!--<useStandardDocletOptions>false</useStandardDocletOptions>-->
                         <encoding>UTF-8</encoding>
                     </configuration>
                 </plugin>

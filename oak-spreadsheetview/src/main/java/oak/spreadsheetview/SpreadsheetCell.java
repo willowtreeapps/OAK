@@ -67,7 +67,7 @@ public class SpreadsheetCell {
     /**
      * Set the text size for the cells
      *
-     * @param size
+     * @param size size of text
      */
     public void setTextSize(float size) {
         textPaint.setTextSize(size);
@@ -81,7 +81,7 @@ public class SpreadsheetCell {
     /**
      * Sets custom paint parameter to the text in each cell
      *
-     * @param paint
+     * @param paint paint for text
      */
     public void setTextPaint(Paint paint) {
         textPaint = paint;
@@ -90,7 +90,7 @@ public class SpreadsheetCell {
     /**
      * Seta custom typeface to the text
      *
-     * @param typeface
+     * @param typeface typeface for text
      */
     public void setTypeface(Typeface typeface) {
         textPaint.setTypeface(typeface);
@@ -103,7 +103,7 @@ public class SpreadsheetCell {
     /**
      * Sets time in seconds for how long after touch buttons fade out
      *
-     * @param typeface
+     * @param typeface typeface for text
      */
     public void setSelectedTypeface(Typeface typeface) {
         selectedTextPaint.setTypeface(typeface);
@@ -112,7 +112,7 @@ public class SpreadsheetCell {
     /**
      * Sets cusotm color to the text of each cell
      *
-     * @param color
+     * @param color color of text
      */
     public void setTextColor(int color) {
         textPaint.setColor(color);
@@ -130,7 +130,7 @@ public class SpreadsheetCell {
     /**
      * Set custom paint to the selected text of each cell
      *
-     * @param paint
+     * @param paint paint for text
      */
     public void setSelectedTextPaint(Paint paint) {
         this.selectedTextPaint = paint;
@@ -139,7 +139,7 @@ public class SpreadsheetCell {
     /**
      * Set custom color to the selected text of each cell
      *
-     * @param color
+     * @param color color of text
      */
     public void setSelectedTextColor(int color) {
         selectedTextPaint.setColor(color);
@@ -152,7 +152,7 @@ public class SpreadsheetCell {
     /**
      * Set the text size of the selected text of each cell
      *
-     * @param size
+     * @param size size of text
      */
     public void setSelectedTextSize(float size) {
         selectedTextPaint.setTextSize(size);
@@ -170,7 +170,7 @@ public class SpreadsheetCell {
     /**
      * Set custom paint used as the border of eachc ell
      *
-     * @param paint
+     * @param paint paint for selected border
      */
     public void setBorderPaint(Paint paint) {
         this.borderPaint = paint;
@@ -183,7 +183,7 @@ public class SpreadsheetCell {
     /**
      * Sets a custom paint border to a selected cell
      *
-     * @param paint
+     * @param paint paint for border
      */
     public void setSelectedBorderPaint(Paint paint) {
         this.selectedBorderPaint = paint;
@@ -196,7 +196,7 @@ public class SpreadsheetCell {
     /**
      * Set custom paint to each cell
      *
-     * @param paint
+     * @param paint paint for cell
      */
     public void setCellPaint(Paint paint) {
         this.cellPaint = paint;
@@ -209,7 +209,7 @@ public class SpreadsheetCell {
     /**
      * Set custom paint to a cell used when selected
      *
-     * @param paint
+     * @param paint paint for text
      */
     public void setSelectedCellPaint(Paint paint) {
         this.selectedCellPaint = paint;
@@ -222,7 +222,7 @@ public class SpreadsheetCell {
     /**
      * Set custom drawable used for each cell
      *
-     * @param drawable
+     * @param drawable drawable for each cell
      */
     public void setDrawable(Drawable drawable) {
         this.shape = drawable;
@@ -235,7 +235,7 @@ public class SpreadsheetCell {
     /**
      * Set a custom drawable used when a cell is selected
      *
-     * @param drawable
+     * @param drawable drawable for each cell
      */
     public void setSelectedDrawable(Drawable drawable) {
         this.selectedShape = drawable;
@@ -244,7 +244,7 @@ public class SpreadsheetCell {
     /**
      * Set the horizontal border width for each cell
      *
-     * @param width
+     * @param width width of border
      */
     public void setHorizontalBorderWidth(float width) {
         this.horizontalBorderWidth = width;
@@ -257,7 +257,7 @@ public class SpreadsheetCell {
     /**
      * Set the vertical border width for each cell
      *
-     * @param width
+     * @param width width of border
      */
     public void setVerticalBorderWidth(float width) {
         this.verticalBorderWidth = width;

@@ -16,6 +16,8 @@
 
 package oak.sectionlistview;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.util.Pair;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -26,6 +28,7 @@ import java.util.List;
 /**
  * User: Michael Lake Date: 5/17/11 Time: 11:13 AM
  */
+@TargetApi(Build.VERSION_CODES.ECLAIR)
 public abstract class SectionAdapter<T extends Sectionable> extends BaseSectionAdapter
         implements Filterable {
 

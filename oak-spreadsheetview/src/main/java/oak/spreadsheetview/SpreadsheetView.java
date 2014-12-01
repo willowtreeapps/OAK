@@ -1282,7 +1282,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     /**
      * Set the number of sticky columns for your spreadsheet
      *
-     * @param number
+     * @param number number of columns
      */
     public void setNumberStickyColumns(int number) {
         targetNumberStickyColumns = number;
@@ -1320,7 +1320,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     /**
      * Set the text size for the sticky header
      *
-     * @param size
+     * @param size size of text
      */
     public void setStickyHeaderTextSize(float size) {
         stickyHeaderCell.setTextSize(size);
@@ -1333,7 +1333,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     /**
      * Set the text size in a sticky footer
      *
-     * @param size
+     * @param size size of text
      */
     public void setStickyFooterTextSize(float size) {
         stickyFooterCell.setTextSize(size);
@@ -1346,7 +1346,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     /**
      * Set the text size for the sticky columns
      *
-     * @param size
+     * @param size size of text
      */
     public void setStickyColumnTextSize(float size) {
         stickyColumnCell.setTextSize(size);
@@ -1360,7 +1360,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     /**
      * Set text size in a data cell
      *
-     * @param size
+     * @param size size of text
      */
     public void setDataCellTextSize(float size) {
         dataCell.setTextSize(size);
@@ -1378,7 +1378,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     /**
      * Set the height for a sticky header
      *
-     * @param height
+     * @param height height of header
      */
     public void setStickyHeaderHeight(float height) {
         this.stickyHeaderHeight = height;
@@ -1401,7 +1401,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     /**
      * Set height for the sticky footer
      *
-     * @param height
+     * @param height height of header
      */
     public void setStickyFooterHeight(float height) {
         this.stickyFooterHeight = height;
@@ -1420,8 +1420,8 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     /**
      * Set height and width for our data cells
      *
-     * @param width
-     * @param height
+     * @param width  set the width of the cell
+     * @param height height of cell
      */
     public void setDataCellDimensions(float width, float height) {
         this.dataCellWidth = width;
@@ -1441,7 +1441,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     /**
      * Sets the text size of all text in every cell
      *
-     * @param textSize
+     * @param textSize size of text
      */
     public void setAllCellsTextSize(float textSize) {
         stickyColumnCell.setTextSize(textSize);
@@ -1462,8 +1462,8 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     /**
      * Set a border width to every cell. Requires setting both horizontal and vertical params
      *
-     * @param horizontalWidth
-     * @param verticalWidth
+     * @param horizontalWidth horizontal width
+     * @param verticalWidth   horizontal width
      */
     public void setAllCellsBorderWidth(float horizontalWidth, float verticalWidth) {
         stickyColumnCell.setHorizontalBorderWidth(horizontalWidth);
@@ -1484,7 +1484,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     /**
      * Set a color to the text of every cell
      *
-     * @param color
+     * @param color color of text
      */
     public void setAllCellsTextColor(int color) {
         stickyColumnCell.setTextColor(color);
@@ -1499,7 +1499,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     /**
      * Set a color to the selected text of every cell
      *
-     * @param color
+     * @param color color of text
      */
     public void setAllCellsSelectedTextColor(int color) {
         stickyColumnCell.setSelectedTextColor(color);
@@ -1514,7 +1514,7 @@ public class SpreadsheetView extends View implements GestureDetector.OnGestureLi
     /**
      * Set a custom typeface to every cell
      *
-     * @param typeface
+     * @param typeface typeface for text
      */
     public void setAllCellsTypeface(Typeface typeface) {
         stickyColumnCell.setTypeface(typeface);
