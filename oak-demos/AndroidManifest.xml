@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="oak.demo"
     android:versionCode="1202211071"
-    android:versionName="1.3.8-SNAPSHOT">
+    android:versionName="1.3.8"
+    package="oak.demo">
 
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="16" />
     <application
-        android:name=".OakApplication"
         android:debuggable="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
+        android:name=".OakApplication"
         android:theme="@style/Theme.Sherlock.Light.DarkActionBar">
         <activity
-            android:name=".OakDemos"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:name=".OakDemos">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".listview.SectionActivity"
-            android:label="@string/filter_activity">
+            android:label="@string/filter_activity"
+            android:name=".listview.SectionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,8 +32,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".widget.TextViewWithFontActivity"
-            android:label="@string/textview_with_font_activity">
+            android:label="@string/textview_with_font_activity"
+            android:name=".widget.TextViewWithFontActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,19 +42,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".widget.CancelEditTextActivity"
-            android:label="@string/cancel_edit_text_activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".widget.SpreadsheetViewActivity"
-            android:label="@string/spreadsheet_view_activity">
+            android:label="@string/cancel_edit_text_activity"
+            android:name=".widget.CancelEditTextActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -64,128 +53,8 @@
         </activity>
 
         <activity
-            android:name=".other.ObscuredPrefsActivity"
-            android:label="@string/encrypted_prefs_activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".image.SwankyGalleryActivity"
-            android:label="@string/swanky_gallery_activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".widget.CustomProgressDialogActivity"
-            android:label="@string/custom_progress_dialog_activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".widget.ButtonWithFontActivity"
-            android:label="@string/button_with_font_activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".utils.ChangeFontsActivity"
-            android:label="@string/change_font_activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".utils.IsPackageInstalledActivity"
-            android:label="@string/is_package_installed_activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".widget.ParentSwipingViewPagerActivity"
-            android:label="@string/parent_swiping_view_pager_activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".widget.ParentSwipingWebViewActivity"
-            android:label="@string/parent_swiping_web_view_activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".widget.CustomCircularProgressBarActivity"
-            android:label="@string/custom_circular_progress_bar_activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".widget.CheckBoxWithFontActivity"
-            android:label="@string/check_box_with_font_activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".utils.FontTypeFaceSpanActivity"
-            android:label="@string/font_span_activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".widget.AspectRatioLayoutActivity"
-            android:label="@string/aspect_ratio_layout_activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-                <category android:name="oak.android.intent.category.OAK" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".widget.VerticalViewPagerActivity"
-            android:label="@string/vertical_view_pager">
+            android:label="@string/spreadsheet_view_activity"
+            android:name=".widget.SpreadsheetViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -195,8 +64,128 @@
         </activity>
 
         <activity
-            android:name=".widget.ResizableHeaderScrollViewActivity"
-            android:label="@string/resizable_header_scroll_view_activity">
+            android:label="@string/encrypted_prefs_activity"
+            android:name=".other.ObscuredPrefsActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="oak.android.intent.category.OAK" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="@string/swanky_gallery_activity"
+            android:name=".image.SwankyGalleryActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="oak.android.intent.category.OAK" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="@string/custom_progress_dialog_activity"
+            android:name=".widget.CustomProgressDialogActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="oak.android.intent.category.OAK" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="@string/button_with_font_activity"
+            android:name=".widget.ButtonWithFontActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="oak.android.intent.category.OAK" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="@string/change_font_activity"
+            android:name=".utils.ChangeFontsActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="oak.android.intent.category.OAK" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="@string/is_package_installed_activity"
+            android:name=".utils.IsPackageInstalledActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="oak.android.intent.category.OAK" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="@string/parent_swiping_view_pager_activity"
+            android:name=".widget.ParentSwipingViewPagerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="oak.android.intent.category.OAK" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="@string/parent_swiping_web_view_activity"
+            android:name=".widget.ParentSwipingWebViewActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="oak.android.intent.category.OAK" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="@string/custom_circular_progress_bar_activity"
+            android:name=".widget.CustomCircularProgressBarActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="oak.android.intent.category.OAK" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="@string/check_box_with_font_activity"
+            android:name=".widget.CheckBoxWithFontActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="oak.android.intent.category.OAK" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="@string/font_span_activity"
+            android:name=".utils.FontTypeFaceSpanActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="oak.android.intent.category.OAK" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="@string/aspect_ratio_layout_activity"
+            android:name=".widget.AspectRatioLayoutActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="oak.android.intent.category.OAK" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="@string/vertical_view_pager"
+            android:name=".widget.VerticalViewPagerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -206,8 +195,19 @@
         </activity>
 
         <activity
-            android:name=".viewmodel.ViewModelActivity"
-            android:label="ListView/ViewModel ListView">
+            android:label="@string/resizable_header_scroll_view_activity"
+            android:name=".widget.ResizableHeaderScrollViewActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="oak.android.intent.category.OAK" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:label="ListView/ViewModel ListView"
+            android:name=".viewmodel.ViewModelActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -216,8 +216,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".svg.AttributionActivity"
-            android:label="@string/svg_attribution_activity">
+            android:label="@string/svg_attribution_activity"
+            android:name=".svg.AttributionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -226,8 +226,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".svg.FullLogoAttributionActivity"
-            android:label="@string/svg_full_attribution_activity">
+            android:label="@string/svg_full_attribution_activity"
+            android:name=".svg.FullLogoAttributionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -236,8 +236,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".svg.FishbowlSvgActivity"
-            android:label="Svg/Fishbowl Sample">
+            android:label="Svg/Fishbowl Sample"
+            android:name=".svg.FishbowlSvgActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -246,8 +246,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".web.WebLaunchActivity"
-            android:label="@string/web_activity">
+            android:label="@string/web_activity"
+            android:name=".web.WebLaunchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -257,8 +257,8 @@
         </activity>
         <activity android:name="oak.web.WebViewActivity" />
         <activity
-            android:name=".fragmenthostactivity.SupportFragmentHostDemoActivity"
-            android:label="@string/fragment_host_support_demo_activity">
+            android:label="@string/fragment_host_support_demo_activity"
+            android:name=".fragmenthostactivity.SupportFragmentHostDemoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -267,8 +267,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".fragmenthostactivity.FragmentHostDemoActivity"
-            android:label="@string/fragment_host_demo_activity">
+            android:label="@string/fragment_host_demo_activity"
+            android:name=".fragmenthostactivity.FragmentHostDemoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

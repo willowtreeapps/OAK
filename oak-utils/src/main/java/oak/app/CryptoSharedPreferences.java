@@ -189,9 +189,9 @@ public abstract class CryptoSharedPreferences implements SharedPreferences {
             return delegate.commit();
         }
 
-        //        @Override
+        @Override
         public void apply() {
-            //To change body of implemented methods use File | Settings | File Templates.
+            delegate.apply();
         }
 
         @Override
