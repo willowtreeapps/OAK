@@ -470,6 +470,42 @@
                 <!--<module>oak-distribution</module>-->
             </modules>
         </profile>
+
+        <profile>
+            <id>java8</id>
+            <activation>
+                <jdk>[1.8,)</jdk>
+            </activation>
+            <modules>
+                <module>oak-archetype</module>
+                <module>oak-dagger-archetype</module>
+                <module>oak-gradle-archetype</module>
+                <module>oak-dagger-api15-archetype</module>
+                <module>oak-library</module>
+                <module>oak-viewmodel</module>
+                <module>oak-sectionlistview</module>
+                <module>oak-viewswithfont</module>
+                <module>oak-parentswipingviews</module>
+                <module>oak-aspectratioview</module>
+                <module>oak-animatedsvgview</module>
+                <module>oak-spreadsheetview</module>
+                <module>oak-utils</module>
+                <module>oak-demos</module>
+                <module>oak-instrumentation</module>
+                <!--<module>oak-distribution</module>-->
+            </modules>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <configuration>
+                            <additionalparam>-Xdoclint:none</additionalparam>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
 </project>
