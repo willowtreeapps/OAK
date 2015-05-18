@@ -21,12 +21,6 @@
             <version>19.0.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.willowtreeapps</groupId>
-            <artifactId>oak-utils</artifactId>
-            <version>${parent.version}</version>
-        </dependency>
-
 
         <dependency>
             <groupId>com.google.android</groupId>
