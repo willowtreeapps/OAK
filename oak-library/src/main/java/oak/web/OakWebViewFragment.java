@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -27,7 +28,7 @@ public class OakWebViewFragment extends Fragment {
 
     public static final int PROVIDED_LAYOUT = 0;
     private String url;
-    public WebView webView;
+    private WebView webView;
     private View refresh, progress, back, fwd, container;
     private boolean hidden, openInBrowserEnabled = false, showControls = true, refreshInMenuEnabled = false;
     private boolean fadeControls = true;
@@ -150,6 +151,14 @@ public class OakWebViewFragment extends Fragment {
 
     public void setRefreshInMenuEnabled(boolean refreshInMenuEnabled) {
         this.refreshInMenuEnabled = refreshInMenuEnabled;
+    }
+
+    public void setWebViewClient(WebViewClient client) {
+        webView.setWebViewClient(client);
+    }
+
+    public void setwebChromeClient(WebChromeClient client) {
+        webView.setWebChromeClient(client);
     }
 
     public void back() {

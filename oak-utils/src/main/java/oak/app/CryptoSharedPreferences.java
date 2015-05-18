@@ -2,6 +2,7 @@ package oak.app;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -172,12 +173,6 @@ public abstract class CryptoSharedPreferences implements SharedPreferences {
             return null;  //To change body of implemented methods use File | Settings | File Templates.
         }
 
-//      commented out for 2.1 compatibility
-//        @Override
-//        public void apply() {
-//            delegate.apply();
-//        }
-
         @Override
         public Editor clear() {
             delegate.clear();
@@ -191,7 +186,9 @@ public abstract class CryptoSharedPreferences implements SharedPreferences {
 
         @Override
         public void apply() {
-            delegate.apply();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+                delegate.apply();
+            }
         }
 
         @Override
