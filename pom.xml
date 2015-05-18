@@ -418,6 +418,7 @@
                 <module>oak-utils</module>
                 <module>oak-demos</module>
                 <module>oak-instrumentation</module>
+                <module>oak-webview</module>
                 <!--<module>oak-distribution</module>-->
             </modules>
         </profile>
@@ -465,6 +466,7 @@
                 <module>oak-utils</module>
                 <module>oak-demos</module>
                 <module>oak-instrumentation</module>
+                <module>oak-webview</module>
                 <!--<module>oak-distribution</module>-->
             </modules>
         </profile>
@@ -490,6 +492,7 @@
                 <module>oak-utils</module>
                 <module>oak-demos</module>
                 <module>oak-instrumentation</module>
+                <module>oak-webview</module>
                 <!--<module>oak-distribution</module>-->
             </modules>
             <build>
