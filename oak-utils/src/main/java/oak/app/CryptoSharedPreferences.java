@@ -8,6 +8,8 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -24,6 +26,11 @@ import oak.util.Base64;
 
 /**
  * Created by robcook on 4/2/14.
+ * <p/>
+ * Warning, this gives a false sense of security.  If an attacker has enough access to acquire your
+ * password store, then he almost certainly has enough access to acquire your source binary and
+ * figure out your encryption key.  However, it will prevent casual investigators from acquiring
+ * passwords, and thereby may prevent undesired negative publicity.
  */
 
 /**
@@ -168,9 +175,13 @@ public abstract class CryptoSharedPreferences implements SharedPreferences {
             return this;
         }
 
-        //        @Override
-        public SharedPreferences.Editor putStringSet(String s, Set<String> strings) {
-            return null;  //To change body of implemented methods use File | Settings | File Templates.
+        public Editor putStringSet(String s, Set<String> strings) {
+            Set<String> encrypted = new HashSet<String>(strings.size());
+            for (String stringToEncrypt : strings) {
+                encrypted.add(CryptoSharedPreferences.this.encrypt(stringToEncrypt));
+            }
+            this.delegate.putStringSet(s, encrypted);
+            return this;
         }
 
         @Override
@@ -205,7 +216,22 @@ public abstract class CryptoSharedPreferences implements SharedPreferences {
 
     @Override
     public Map<String, ?> getAll() {
-        throw new UnsupportedOperationException(); // left as an exercise to the reader
+        final Map<String, ?> encryptedMap = this.getAll();
+        final Map<String, String> decryptedMap = new HashMap<String, String>(
+                encryptedMap.size());
+        for (Map.Entry<String, ?> entry : encryptedMap.entrySet()) {
+            try {
+                Object cipherText = entry.getValue();
+                if (cipherText != null) {
+                    decryptedMap.put(entry.getKey(),
+                            decrypt(cipherText.toString()));
+                }
+            } catch (Exception e) {
+                decryptedMap.put(entry.getKey(),
+                        entry.getValue().toString());
+            }
+        }
+        return decryptedMap;
     }
 
     @Override
@@ -236,6 +262,19 @@ public abstract class CryptoSharedPreferences implements SharedPreferences {
     public String getString(String key, String defValue) {
         final String v = delegate.getString(key, null);
         return v != null ? decrypt(v) : defValue;
+    }
+
+    @Override
+    public Set<String> getStringSet(String s, Set<String> strings) {
+        Set<String> savedStrings = this.delegate.getStringSet(s, strings);
+        if (savedStrings == null) {
+            return strings;
+        }
+        Set<String> decrypted = new HashSet<String>(strings.size());
+        for (String v : savedStrings) {
+            decrypted.add(this.decrypt(v));
+        }
+        return decrypted;
     }
 
     @Override
