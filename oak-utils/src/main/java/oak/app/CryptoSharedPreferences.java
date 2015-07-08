@@ -216,7 +216,7 @@ public abstract class CryptoSharedPreferences implements SharedPreferences {
 
     @Override
     public Map<String, ?> getAll() {
-        final Map<String, ?> encryptedMap = this.getAll();
+        final Map<String, ?> encryptedMap = this.delegate.getAll();
         final Map<String, String> decryptedMap = new HashMap<String, String>(
                 encryptedMap.size());
         for (Map.Entry<String, ?> entry : encryptedMap.entrySet()) {
