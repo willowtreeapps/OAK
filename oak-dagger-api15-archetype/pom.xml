@@ -20,7 +20,7 @@
     <parent>
         <groupId>com.willowtreeapps</groupId>
         <artifactId>oak-project</artifactId>
-        <version>1.4.0</version>
+        <version>1.4.1-SNAPSHOT</version>
     </parent>
     <groupId>com.willowtreeapps</groupId>
     <artifactId>oak-dagger-api15-archetype</artifactId>

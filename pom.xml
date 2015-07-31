@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.willowtreeapps</groupId>
     <artifactId>oak-project</artifactId>
-    <version>1.4.0</version>
+    <version>1.4.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>OAK Android Kit</name>
     <description>Shared library for android development.</description>
@@ -103,7 +103,7 @@
         <url>http://github.com/willowtreeapps/OAK</url>
         <connection>scm:git:git@github.com:willowtreeapps/OAK.git</connection>
         <developerConnection>scm:git:git@github.com:willowtreeapps/OAK.git</developerConnection>
-        <tag>oak-project-1.4.0</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <reporting>
