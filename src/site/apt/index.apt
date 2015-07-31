@@ -1,25 +1,25 @@
 What is OAK Android Kit?
 
- OAK is a powerful kit of tools and components to use in your Android project (Compatible with API Level 8+)
+ OAK is a powerful kit of tools and components to use in your Android project (Compatible with API Level 10+)
 
-  * {{{./pinnedheader.html}Section ListView}} - mimic the functionality of the contacts app
+ OAK is available in multiple modules depending on what type of functionality you require:
 
-  * {{{./section-adapter.html}SectionAdapter with Pinned Headers}} - Same as above but with search filtering
+  * Oak-Aspect Ratio: A Layout that maintains a given Aspect Ratio
 
-  * {{{./cancel_edit_text.html}CancelEditText}} - An EditText that lets you specify a tappable drawable
-  to clear the field
+  * Oak-Parent Swiping Views: ViewPager built to work with Nested ViewPagers or inside a ListView Header
 
-  * {{{./crypto_prefs.html}CryptoSharedPreferences}} - Store your shared preferences with encryption!
+  * Oak-Section ListView: A Sectioned Header listview with pinned headers
 
-  * {{{./beastviewpager.html}BeastViewPager}} - ViewPager built to work with SlideMenu or inside a ListView Header
+  * Oak-SpreadsheetView: A View that functions like a spreadsheet
 
-  * {{{./oakwebview.html}OakWebView}} - Easy to use WebView with built-in controls
+  * Oak-Utils: Base module with commonly used utils and classes
 
-  * {{{./animatedsvgview.html}AnimatedSvgView}} - Allows you to animate in an SVG
+  * Oak-ViewsWithFont: Views with built in xml font support
 
-  * {{{./swankyimageview.html}SwankyImageView}} - Pinch and Zoom on ImageViews made easy
+  * Oak-AnimatedSvgView: View class to handle animated SVGs
 
-  * {{{./utility.html}OakUtils}} - Various utility methods to make development easier
+  * Oak-WebView: Easy to use webview with navigation controls
+
 
 
 How is OAK licensed?
