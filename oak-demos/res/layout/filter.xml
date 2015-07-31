@@ -32,7 +32,7 @@
         android:singleLine="true"
         oak:oakCancelDrawable="@drawable/oak_ic_cancel" />
 
-    <oak.widget.SectionListView
+    <oak.sectionlistview.SectionListView
         style="@style/Fill"
         android:layout_below="@id/filter_et"
         android:id="@+id/amazing_lv"

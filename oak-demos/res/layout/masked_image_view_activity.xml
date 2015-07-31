@@ -17,12 +17,13 @@
   -->
 
 <LinearLayout
-        style="@style/Fill"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
-    <oak.widget.TextViewWithFont
-            style="@style/FillWidth"
-            android:text="In progress."
-            android:textSize="18sp"/>
+    style="@style/Fill"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <TextViewWithFont
+        style="@style/FillWidth"
+        android:text="In progress."
+        android:textSize="18sp" />
 </LinearLayout>

@@ -15,7 +15,8 @@
 
 package oak.demo.model;
 
-import oak.Sectionable;
+
+import oak.sectionlistview.Sectionable;
 
 /**
  * User: Michael Lake Date: 10/13/11 Time: 3:31 PM

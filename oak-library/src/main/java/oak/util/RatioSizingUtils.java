@@ -1,12 +1,9 @@
 package oak.util;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
-
-import oak.R;
 
 /**
  * User: derek Date: 3/17/14 Time: 11:17 AM
@@ -29,18 +26,18 @@ public class RatioSizingUtils {
             throws IllegalArgumentException {
         RatioSizingInfo rsi = new RatioSizingInfo();
 
-        if (attrs != null) {
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AspectRatioLayout);
-
-            String ratioString = a.getString(R.styleable.AspectRatioLayout_oakAspectRatio);
-            try {
-                rsi = parseRatioSizingInfo(ratioString);
-            } catch (IllegalArgumentException e) {
-                throw e;
-            }
-
-            a.recycle();
-        }
+//        if (attrs != null) {
+//            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AspectRatioLayout);
+//
+//            String ratioString = a.getString(R.styleable.AspectRatioLayout_oakAspectRatio);
+//            try {
+//                rsi = parseRatioSizingInfo(ratioString);
+//            } catch (IllegalArgumentException e) {
+//                throw e;
+//            }
+//
+//            a.recycle();
+//        }
 
         return rsi;
     }

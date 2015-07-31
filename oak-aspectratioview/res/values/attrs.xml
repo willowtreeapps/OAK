@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RatioLinearLayout">
+        <attr name="oakRatioWidth" format="integer|reference" />
+        <attr name="oakRatioHeight" format="integer|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="AspectRatioLayout">
+        <attr name="oakAspectRatio" format="string" />
+    </declare-styleable>
+</resources>

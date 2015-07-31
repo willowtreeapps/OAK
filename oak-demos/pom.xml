@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.willowtreeapps</groupId>
         <artifactId>oak-project</artifactId>
-        <version>1.3.8-SNAPSHOT</version>
+        <version>1.4.1-SNAPSHOT</version>
     </parent>
 
     <groupId>com.willowtreeapps</groupId>
@@ -27,7 +27,37 @@
             <type>aar</type>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
+            <groupId>com.willowtreeapps</groupId>
+            <artifactId>oak-viewmodel</artifactId>
+            <version>${project.version}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.willowtreeapps</groupId>
+            <artifactId>oak-parentswipingviews</artifactId>
+            <version>${project.version}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.willowtreeapps</groupId>
+            <artifactId>oak-utils</artifactId>
+            <version>${project.version}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.willowtreeapps</groupId>
+            <artifactId>oak-sectionlistview</artifactId>
+            <version>${project.version}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.willowtreeapps</groupId>
+            <artifactId>oak-aspectratioview</artifactId>
+            <version>${project.version}</version>
+            <type>aar</type>
+        </dependency>
+        <dependency>
+        <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
@@ -136,6 +166,7 @@
                 <artifactId>android-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
+                    <failOnDuplicatePackages>false</failOnDuplicatePackages>
                     <resourceDirectory>${project.build.directory}/filtered-res</resourceDirectory>
                     <manifest>
                         <debuggable>true</debuggable>

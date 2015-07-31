@@ -1,31 +1,25 @@
 What is OAK Android Kit?
 
- OAK is a powerful kit of tools and components to use in your Android project (Compatible with API Level 8+)
+ OAK is a powerful kit of tools and components to use in your Android project (Compatible with API Level 10+)
 
-  * {{{./pinnedheader.html}Section ListView}} - mimic the functionality of the contacts app
+ OAK is available in multiple modules depending on what type of functionality you require:
 
-  * {{{./section-adapter.html}SectionAdapter with Pinned Headers}} - Same as above but with search filtering
+  * Oak-Aspect Ratio: A Layout that maintains a given Aspect Ratio
 
-  * {{{./resized_textview.html}ResizedTextView}} - Auto-resizing TextView makes long content smaller
+  * Oak-Parent Swiping Views: ViewPager built to work with Nested ViewPagers or inside a ListView Header
 
-  * {{{./cancel_edit_text.html}CancelEditText}} - An EditText that lets you specify a tappable drawable
-  to clear the field
+  * Oak-Section ListView: A Sectioned Header listview with pinned headers
 
-  * {{{./textviewwithfont.html}TextViewWithFont}} - Drop your fonts in "assets/fonts" and use this handy widget to set a custom font in your xml layout
+  * Oak-SpreadsheetView: A View that functions like a spreadsheet
 
-  * {{{./crypto_prefs.html}CryptoSharedPreferences}} - Store your shared preferences with encryption!
+  * Oak-Utils: Base module with commonly used utils and classes
 
-  * {{{./beastviewpager.html}BeastViewPager}} - ViewPager built to work with SlideMenu or inside a ListView Header
+  * Oak-ViewsWithFont: Views with built in xml font support
 
-  * {{{./oakwebview.html}OakWebView}} - Easy to use WebView with built-in controls
+  * Oak-AnimatedSvgView: View class to handle animated SVGs
 
-  * {{{./okhttptool.html}OkHttpTool}} - Painless OkHttp UrlConnection wrapper
+  * Oak-WebView: Easy to use webview with navigation controls
 
-  * {{{./animatedsvgview.html}AnimatedSvgView}} - Allows you to animate in an SVG
-
-  * {{{./swankyimageview.html}SwankyImageView}} - Pinch and Zoom on ImageViews made easy
-
-  * {{{./utility.html}OakUtils}} - Various utility methods to make development easier
 
 
 How is OAK licensed?

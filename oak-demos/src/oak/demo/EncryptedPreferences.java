@@ -20,7 +20,8 @@ import android.content.SharedPreferences;
 
 import java.util.Set;
 
-import oak.CryptoSharedPreferences;
+import oak.app.CryptoSharedPreferences;
+
 
 /**
  * User: mlake Date: 12/19/11 Time: 11:16 AM
@@ -35,6 +36,7 @@ public class EncryptedPreferences extends CryptoSharedPreferences {
     /**
      * This should be replaced with a user input pass phrase or an externally
      * retrieved pass phrase if possible.
+     *
      * @return
      */
     @Override

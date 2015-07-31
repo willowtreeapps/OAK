@@ -2,7 +2,6 @@ package oak.demo.widget;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import oak.demo.OakDemoActivity;
 import oak.demo.R;
@@ -18,7 +17,7 @@ public class ResizableHeaderScrollViewActivity extends OakDemoActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.resizable_header_demo);
         ResizableHeaderScrollView view = (ResizableHeaderScrollView) findViewById(R.id.scrollview);
-        view.setHeaderChangeListener(new ResizableHeaderScrollView.HeaderChangeListener(){
+        view.setHeaderChangeListener(new ResizableHeaderScrollView.HeaderChangeListener() {
 
             @Override
             public void collapse(View header) {

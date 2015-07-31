@@ -30,12 +30,12 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import oak.SectionAdapter;
 import oak.demo.OakDemoActivity;
 import oak.demo.R;
 import oak.demo.model.Person;
+import oak.sectionlistview.SectionAdapter;
+import oak.sectionlistview.SectionListView;
 import oak.widget.CancelEditText;
-import oak.widget.SectionListView;
 import roboguice.inject.InjectView;
 
 /**
@@ -43,8 +43,10 @@ import roboguice.inject.InjectView;
  */
 public class SectionActivity extends OakDemoActivity {
 
-    @InjectView(R.id.amazing_lv) SectionListView mSectionListView;
-    @InjectView(R.id.filter_et) CancelEditText mFilter;
+    @InjectView(R.id.amazing_lv)
+    SectionListView mSectionListView;
+    @InjectView(R.id.filter_et)
+    CancelEditText mFilter;
 
     private PersonAdapter adapter;
 

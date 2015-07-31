@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2011. WillowTree Apps
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,92 +15,97 @@
   -->
 
 <LinearLayout
-        style="@style/Fill"
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Fill"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:oak="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
     <!-- START SNIPPET: resizedtv_layout -->
 
     <oak.widget.ResizedTextView
-            style="@style/FillWidth"
-            android:text="Finally, Android developers have an automatically resizing TextView which will scale the text down to a minimum size and will ellipsize when it's too long."
-            android:maxLines="3"
-            android:textSize="18sp"
+        style="@style/FillWidth"
+        android:text="Finally, Android developers have an automatically resizing TextView which will scale the text down to a minimum size and will ellipsize when it's too long."
+        android:maxLines="3"
+        android:textSize="18sp"
         oak:oakMinTextSize="11sp"
-        android:background="#4400ff00"/>
+        android:background="#4400ff00" />
     <!-- END SNIPPET: resizedtv_layout -->
     <oak.widget.ResizedTextView
-            style="@style/FillWidth"
-            android:text="This ResizedTextView has less text"
-            android:textSize="18sp"
-            android:maxLines="3"
+        style="@style/FillWidth"
+        android:text="This ResizedTextView has less text"
+        android:textSize="18sp"
+        android:maxLines="3"
         oak:oakMinTextSize="11sp"
-        android:background="#44AA88AA"/>
+        android:background="#44AA88AA" />
+
     <oak.widget.ResizedTextView
-            style="@style/FillWidth"
-            android:text="Imagine having your really long article title automatically shrunk to fit on-screen"
+        style="@style/FillWidth"
+        android:text="Imagine having your really long article title automatically shrunk to fit on-screen"
         oak:oakMinTextSize="10sp"
         android:maxLines="2"
-            android:gravity="center"
-            android:background="#440000ff"
-            android:id="@+id/rtv"/>
+        android:gravity="center"
+        android:background="#440000ff"
+        android:id="@+id/rtv" />
+
     <oak.widget.ResizedTextView
-            style="@style/FillWidth"
-            android:text="Even works with different fonts! Those developers at WillowTree Apps are genius!"
-            android:textSize="17sp"
+        style="@style/FillWidth"
+        android:text="Even works with different fonts! Those developers at WillowTree Apps are genius!"
+        android:textSize="17sp"
         oak:oakMinTextSize="13sp"
         android:maxLines="2"
-            android:gravity="center"
-            android:background="#44ff0000"
-            android:id="@+id/rtv"
+        android:gravity="center"
+        android:background="#44ff0000"
+        android:id="@+id/rtv"
         oak:oakFont="Apple Chancery.ttf" />
 
     <oak.widget.ResizedTextView
-            style="@style/FillWidth"
-            android:text="Ofcourse it works with padding, why wouldn't it!"
+        style="@style/FillWidth"
+        android:text="Ofcourse it works with padding, why wouldn't it!"
         oak:oakMinTextSize="11sp"
         android:maxLines="1"
-            android:background="#440000ff"
-            android:id="@+id/rtv"
-            android:padding="15dip"/>
+        android:background="#440000ff"
+        android:id="@+id/rtv"
+        android:padding="15dip" />
+
     <oak.widget.ResizedTextView
-            style="@style/FillWidth"
-            android:text="Take note of the linebreak below"
+        style="@style/FillWidth"
+        android:text="Take note of the linebreak below"
         oak:oakMinTextSize="11sp"
         android:textSize="20sp"
-            android:maxLines="1"
-            android:background="#ff006600"
-            android:padding="0dip"/>
+        android:maxLines="1"
+        android:background="#ff006600"
+        android:padding="0dip" />
+
     <RelativeLayout
-            style="@style/FillWidth"
-            android:background="#99ffffff">
-        <oak.widget.TextViewWithFont
-                style="@style/Wrap"
-                android:id="@+id/label"
+        style="@style/FillWidth"
+        android:background="#99ffffff">
+
+        <TextViewWithFont
+            style="@style/Wrap"
+            android:id="@+id/label"
             oak:oakMinTextSize="11sp"
             android:textSize="13sp"
-                android:text="Profile:"
-                android:textColor="#000000"
-                android:padding="4dip"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
+            android:text="Profile:"
+            android:textColor="#000000"
+            android:padding="4dip"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
             oak:oakFont="Once_upon_a_time.ttf" />
 
         <oak.widget.ResizedTextView
-                style="@style/FillWidth"
-                android:layout_toRightOf="@id/label"
-                android:text="Android Developer\nandroid@willowtreeapps.com"
-                android:textColor="#ffffff"
-                android:maxLines="2"
-                android:textSize="13sp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:gravity="right"
-                android:background="#330000ff"
-                android:paddingBottom="0dip"
-                android:paddingRight="14dip"
-                android:paddingLeft="14dip"
-                android:paddingTop="0dip"
+            style="@style/FillWidth"
+            android:layout_toRightOf="@id/label"
+            android:text="Android Developer\nandroid@willowtreeapps.com"
+            android:textColor="#ffffff"
+            android:maxLines="2"
+            android:textSize="13sp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="right"
+            android:background="#330000ff"
+            android:paddingBottom="0dip"
+            android:paddingRight="14dip"
+            android:paddingLeft="14dip"
+            android:paddingTop="0dip"
             oak:oakFont="Once_upon_a_time.ttf"
             oak:oakMinTextSize="6sp" />
     </RelativeLayout>

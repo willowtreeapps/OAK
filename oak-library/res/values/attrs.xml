@@ -23,15 +23,6 @@
         <attr name="oakMinTextSize" format="dimension" />
     </declare-styleable>
 
-    <declare-styleable name="RatioLinearLayout">
-        <attr name="oakRatioWidth" format="integer|reference" />
-        <attr name="oakRatioHeight" format="integer|reference" />
-    </declare-styleable>
-
-    <declare-styleable name="AspectRatioLayout">
-        <attr name="oakAspectRatio" format="string" />
-    </declare-styleable>
-
     <declare-styleable name="MaskedImageView">
         <attr name="oakFillColor" format="color" />
         <attr name="oakGlareColor" format="color" />
@@ -89,13 +80,13 @@
     </declare-styleable>
 
     <declare-styleable name="ResizableHeaderScrollView">
-        <attr name="headerLayout" format="reference"/>
-        <attr name="contentLayout" format="reference"/>
-        <attr name="resizableHeaderBackground" format="reference"/>
-        <attr name="headerChangeThreshold" format="dimension"/>
-        <attr name="minHeaderHeight" format="dimension"/>
-        <attr name="maxHeaderHeight" format="dimension"/>
-        <attr name="headerCentered" format="boolean"/>
+        <attr name="headerLayout" format="reference" />
+        <attr name="contentLayout" format="reference" />
+        <attr name="resizableHeaderBackground" format="reference" />
+        <attr name="headerChangeThreshold" format="dimension" />
+        <attr name="minHeaderHeight" format="dimension" />
+        <attr name="maxHeaderHeight" format="dimension" />
+        <attr name="headerCentered" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="MultiDirectionSlidingDrawer">
