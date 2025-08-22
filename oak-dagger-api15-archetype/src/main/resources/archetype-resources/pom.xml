@@ -76,7 +76,7 @@
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>2.2.2</version>
+            <version>2.13.1</version>
         </dependency>
 
         <dependency>
@@ -198,7 +198,7 @@
                                 <inherited>true</inherited>
                                 <configuration>
                                     <removeExistingSignatures>true</removeExistingSignatures>
-                                    <archiveDirectory />
+                                    <archiveDirectory/>
                                     <includes>
                                         <include>
                                             \${project.build.directory}/\${project.build.finalName}.apk
