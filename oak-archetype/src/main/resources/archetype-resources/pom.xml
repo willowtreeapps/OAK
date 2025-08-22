@@ -106,7 +106,7 @@
         <dependency>
             <groupId>com.github.rtyley</groupId>
             <artifactId>roboguice-sherlock</artifactId>
-            <version>1.4</version>
+            <version>1.5</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.google.android</groupId>
@@ -208,7 +208,7 @@
                                 <inherited>true</inherited>
                                 <configuration>
                                     <removeExistingSignatures>true</removeExistingSignatures>
-                                    <archiveDirectory />
+                                    <archiveDirectory/>
                                     <includes>
                                         <include>
                                             \${project.build.directory}/\${project.build.finalName}.apk
